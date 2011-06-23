@@ -13,17 +13,362 @@
  */
 package org.mule.module.fws;
 
+import org.mule.module.fws.api.ResponseGroup;
+import org.mule.module.fws.api.ShipmentStatus;
 import org.mule.tools.cloudconnect.annotations.Connector;
 import org.mule.tools.cloudconnect.annotations.Operation;
+import org.mule.tools.cloudconnect.annotations.Parameter;
 
-@Connector(namespacePrefix="fws")
+import java.util.Date;
+
+/**
+ * 
+ * @author flbulgarelli
+ */
+@Connector(namespacePrefix = "fws")
 public class FWSCloudConnector
 {
-    /*
-     * The following is a sample operation
+    
+    /**
+     * Removes items from a pre-existing shipment specified by the ShipmentId. 
+     * 
+     * This operation removes the items
+     * specified in each MerchantSKU parameter from the shipment in their entirety, no matter the quantity.
+     * If the MerchantSKU is not currently a part of the shipment, then that particular line item is ignored, but others are still processed.
+     * 
+     * {@code <delete-inbound-shipment-items merchantSku="#[header:merchantSku]" shipmentId="#[header:shipmentId]" />}
+     * 
+     * @param merchantSku
+     * @param shipmentId
      */
-    @Operation
-    public void myOperation()
+    @Operation public void deleteInboundShipmentItems(@Parameter String merchantSku, @Parameter String shipmentId)
     {
+        
     }
+    
+    /**
+     * Gets the Fulfillment Network SKU (FNSKU) for each supplied merchant item—creating one if needed.
+     * 
+     * This operation is  idempotent in that it can be called multiple times without any adverse effects. This operation is required whenever you need to register items
+     * for Amazon fulfillment that require labeling and when you need to get the identifier prior to creating an offer. This operation is necessary to register items for Amazon
+     * fulfillment in order to send them to Amazon, but does not do the work of marking any offer for this item as Amazon fulfilled.
+     * A response does not imply that the item has an offer for which it can be fulfilled; only that the Amazon Fulfillment Network can track it. An inactive item can have a
+     * quantity in the fulfillment center, but will never be fulfilled.
+     * Use this operation instead of GetFulfillmentIdentifierForMSKU if an offer does not already exist for the MerchantSKU.
+     * 
+     * {@code <get-fulfillment-identifier
+     *      asin="#[variable:asin]"
+     *      itemCondition="#[variable:itemCondition]"
+     *      merchantSku="#[variable:merchantSku]" />}
+     * @param asin
+     * @param itemCondition
+     * @param merchantSku
+     */
+    @Operation public void getFulfillmentIdentifier(String asin, String itemCondition, String merchantSku)
+    {
+        
+    }
+    
+    /**
+     * Gets the Fulfillment Network SKU (FNSKU) for each supplied merchant item—creating one if needed. 
+     * 
+     * This operation is idempotent in that you can call it multiple times without any adverse effects. 
+     * This operation is required whenever you need to register items for Amazon fulfillment that require
+     * labeling. This operation is necessary to register items for Amazon fulfillment in order to send them to Amazon, but doesn't mark any offer for this item as 
+     * Amazon fulfilled.
+     * A response does not imply that the item has an offer for which it can be fulfilled; only that the Amazon Fulfillment Network can track it. An inactive item can have a
+     * quantity in the fulfillment center, but will never be fulfilled.
+     * Use this operation instead of GetFulfillmentIdentifier if an offer already exists for the SKU.
+     * 
+     * {@code <get-fulfillment-identifier-for-msku merchantSku="#[map-payload:merchantSku]"/>}
+     * @param merchantSku
+     */
+    @Operation public void getFulfillmentIdentifierForMsku(String merchantSku)
+    {
+        
+    }
+ 
+    /**
+     * Gets fulfillment item data for the provided Fulfillment Network SKUs (FNSKUs). 
+     * If any of the provided FNSKUs are invalid they are ignored and only the valid SKUs are returned.
+     * A response does not imply that the item has an offer for which it can be fulfilled; only that the Amazon Fulfillment Network
+     * can track it. An inactive item can have a quantity in the fulfillment center, but will never be fulfilled. 
+     *
+     * {@code <get-fulfillment-item-by-fnsku fulfillmentNetworkSku="#[payload]" />}
+     * 
+     * @param fulfillmentNetworkSku
+     */
+    @Operation public void getFulfillmentItemByFnsku(String fulfillmentNetworkSku)
+    {
+        
+    }
+
+    /**
+     * Gets fulfillment item data for the provided Merchant SKUs. 
+     * 
+     * If any of the provided MSKUs are invalid (e.g. does not have an assigned Fulfillment Network SKU), they are ignored and only the valid SKUs are returned.
+     * A response does not imply that the item has an offer for which it can be fulfilled; only that the Amazon Fulfillment Network can track it. An inactive item can have a quantity in the fulfillment center, but will never be fulfille
+     * 
+     * {@code <get-fulfillment-item-by-msku merchantSku="#[map-payload:merchantSku]"/>}
+     * @param merchantSku
+     */
+    @Operation public void getFulfillmentItemByMsku(String merchantSku)
+    {
+
+    }
+ 
+    /**
+     * Gets inbound shipment data without the item details for a given ShipmentId.
+     * {@code <get-inbound-shipment-data shipmentId="#[header:ShipmentId]"/>}
+     * 
+     * @param shipmentId
+     */
+    @Operation public void getInboundShipment(String shipmentId)
+    {
+        
+    }
+ 
+    /**
+     * Gets the information needed to create a set of shipments for a given set of items and the ship from address. 
+     * 
+     * You might need to create multiple shipments for various reasons, but the most common reason is when there are sortable and non-sortable items. 
+     * In this case, there is one shipment for each of the shipment sets returned.
+     *
+     * {@code <get-inbound-shipment-preview  merchantSku="AF15962"  address="#[address]" />}
+     * @param merchantSku
+     * @param address
+     */
+    @Operation public void getInboundShipmentPreview(String merchantSku, String address) 
+    {
+        
+    }
+ 
+    /**
+     * Answers a brief status message from the service
+     * 
+     * {@code <get-inbound-service-status/>}
+     */
+    @Operation public void getInboundServiceStatus()
+    {
+        
+    }
+    
+    /**
+     * Lazily lists fulfillment items registered.
+     * 
+     * If IncludeInactive is set to True, the operation returns both active (available for fulfillment) and inactive (not available for fulfillment) mappings. This parameter defaults to False. You can use inactive mappings to track inventory in Amazon's fulfillment centers; however, inactive items can't be fulfilled.
+     * {@code <list-fulfillment-items includeInactive="true"/>}
+     * 
+     * @param includeInactive
+     */
+    @Operation public Iterable<?> listFulfillmentItems(boolean includeInactive)
+    {
+        return null;
+    }
+
+    /**
+     * TODO
+     * 
+     * {@code <list-inbound-shipment-items shipmentId="#[header:shipmentId]"/>}
+     * 
+     * @param shipmentId
+     * @return
+     */
+    @Operation public Iterable<?> listInboundShipmentItems(String shipmentId)
+    {
+       return null; 
+    }
+ 
+    /**
+     * Lazily lists the inbound shipments a merchant has created, according to the specified query parameters. 
+     * 
+     * {@code <list-inbound-shipments shipmentStatus="CANCELED" createdAfter="#[varaible:creationDate]" />}
+     * 
+     * @param shipmentStatus
+     * @param createdAfter
+     */
+    @Operation public void listInboundShipments(ShipmentStatus shipmentStatus, Date createdAfter)
+    {
+        
+    }
+
+    /**
+     * Adds or replaces inbound shipment data (minus the item details) for a given shipmentId.
+     * 
+     * {@code <put-inbound-shipment-data 
+     *      shipmentId="#[variable:shipmentId]" 
+     *      shipmentName="#[variable:shipmentName]"
+     *      destinationFulfillmentCenter="#[variable:destinationFulfillmentCenter]"
+     *      shipFromAddress="#[variable:shipFromAddress]" />}
+     *      
+     * @param shipmentId
+     * @param shipmentName
+     * @param destinationFulfillmentCenter
+     * @param shipFromAddress
+     */
+    @Operation public void putInboundShipment(String shipmentId, String shipmentName, String destinationFulfillmentCenter, String shipFromAddress)
+    {
+        
+    }
+    
+    /**
+     * Adds line items to a pre-existing shipment that the ShipmentId specifies. 
+     * 
+     * If the MerchantSKU is already in the shipment, then that particular line item is replaced. 
+     * Call PutInboundShipment to create a new shipment. 
+     * This call returns an exception if you attempt to add line items to a shipment that is in a status other than Working.
+     * 
+     * {@code <put-inbound-shipment-items
+     *      shipmentId="#[variable:shipmentId]"
+     *      merchantSku="#[variable:merchantSku]"
+     *      quantity="#[variable:quantity]"/>}
+     * @param shipmentId
+     * @param merchantSku
+     * @param quantity
+     */
+    @Operation public void putInboundShipmentItems(String shipmentId, String merchantSku, int quantity)
+    {
+        
+    }
+ 
+    /**
+     * Sets the inbound shipment status to the specified ShipmentStatus.
+     * Once a shipment's status has been set to Shipped, you cannot make any further changes except to update the status to Cancelled. Any item not received at the time a shipment is cancelled is put into problem receive at the fulfillment center.
+     * 
+     * This operation returns a RequestId upon success, otherwise an explicit error is returned.
+     * {@code <set-inbound-shipment-status
+     *      shipmentId="#[variable:shipmentId]"
+     *      shipmentStatus="SHIPPED"/>}
+     * @param shipmentId
+     * @param shipmentStatus
+     */
+    @Operation public void setInboundShipmentStatus(String shipmentId, ShipmentStatus shipmentStatus)
+    {
+        
+    }
+
+ 
+    /**
+     * Requests Amazon not to fulfill an existing fulfillment order. This is just a hint, already shipped 
+     * orders may not be canceled.
+     * 
+     * {@code <cancel-fulfillment-order orderId="#[header:orderId]"/>}
+     * @param orderId
+     */
+    @Operation public void cancelFulfillmentOrder(String orderId)
+    {
+        
+    }
+
+    /**
+     * Generates a request for Amazon to ship items from the merchant's inventory to a destination address.
+     * 
+     * {@code <create-fulfillment-order orderId="#[orderId]" /> }
+     * @param orderId
+     */
+    @Operation public void createFulfillmentOrder(String orderId)
+    {
+        
+    }
+
+    /**
+     * Gets the original fulfillment order request, the status of
+     * both the order and its items in the Amazon Fulfillment Network, 
+     * and the shipments that have been generated to fulfill the order.
+     * 
+     * {@code <insert-element orderId="#[map-payload:orderId]"/> }
+     * @param orderId
+     */
+    @Operation public void getFulfillmentOrder(String orderId)
+    {
+        
+    }
+
+    /**
+     * Answers estimated shipping dates and fees for a given set of merchant SKUs and quantities.
+     * 
+     * {@code <get-fulfillment-preview 
+     *     merchantSku="FHUD4896" 
+     *     shippingSpeedCategories="Standard"
+     *     quantity="15"
+     *      orderItemId="X123698" /> }
+     *
+     * @param merchantSku
+     * @param shippingSpeedCategories
+     * @param quantity
+     * @param orderItemId
+     */
+    @Operation public void getFulfillmentPreview(String merchantSku, ShippingSpeedCategories shippingSpeedCategories, int quantity, String orderItemId)
+    {
+        
+    }
+
+
+    /**
+     * Answers a brief status message from the service
+     * 
+     * {@code <get-outbound-service-status/>}
+     */
+    @Operation public void getOutboundServiceStatus()
+    {
+        
+    }
+
+
+    /**
+     * Lazily lists all the fulfillment orders
+     * 
+     * {@code <list-fulfillment-orders/> } 
+     */
+    @Operation public void listFulfillmentOrders()
+    {
+        
+    }
+ 
+     
+     /**
+      *  Gets information about the supply of merchant-owned inventory in Amazon's fulfillment network. 
+      *  
+      *  This operation does not return inventory that is unsellable or that }
+      *  is already bound to a customer order or bound to internal fulfillment center processing (for example, labeling).
+      *  
+      *  {@code <get-inventory-supply 
+      *     startDateTime="#[header:querystartDateTime]" 
+      *     responseGroup="DETAILED"/> }
+      * @param startDateTime
+      * @param responseGroup
+      */
+     @Operation public void getInventorySupply(Date startDateTime, ResponseGroup responseGroup)
+     {
+         
+     }
+
+    
+    /**
+     * Answers a brief status message from the service
+     * 
+     * {@code <get-inventory-service-status/>}
+     */
+     @Operation public void getInventoryServiceStatus()
+     {
+         
+     }
+
+    /**
+     * TODO
+     * 
+     * {@code <list-updated-inventory-supply 
+     *      startDateTime="#[header:querystartDateTime]" 
+     *      responseGroup="DETAILED" /> }
+     * 
+     * @param startDateTime
+     * @param responseGroup
+     */
+    @Operation public void listUpdatedInventorySupply(Date startDateTime, ResponseGroup responseGroup) 
+    {
+        
+    }
+   
+
+
 }

@@ -33,7 +33,7 @@
     <inbound-endpoint address="vm://GetFulfillmentId"
       exchange-pattern="request-response" />
     <fws:get-fulfillment-identifier asin="#[variable:asin]"
-      itemCondition="#[variable:itemCondition]" merchantSku="#[variable:merchantSKU]" />
+      itemCondition="#[variable:itemCondition]" merchantSku="#[variable:merchantSku]" />
   </flow>
 
 
@@ -41,7 +41,7 @@
     <inbound-endpoint address="vm://GetFulfillmentIdForMsku"
       exchange-pattern="request-response" />
     <fws:get-fulfillment-identifier-for-msku
-      merchantSKU="#[map-payload:merchantSku]" />
+      merchantSku="#[map-payload:merchantSku]" />
   </flow>
 
 
@@ -57,14 +57,14 @@
     <inbound-endpoint address="vm://GetFulfillmentIdByMsku"
       exchange-pattern="request-response" />
     <fws:get-fulfillment-item-by-msku
-      merchantSKU="#[map-payload:merchantSku]" />
+      merchantSku="#[map-payload:merchantSku]" />
   </flow>
 
 
   <flow name="name">
     <inbound-endpoint address="vm://name"
       exchange-pattern="request-response" />
-    <fws:get-inbound-shipment-data
+    <fws:get-inbound-shipment
       shipmentId="#[header:ShipmentId]" />
   </flow>
 
@@ -87,7 +87,7 @@
   <flow name="ListFulfillments">
     <inbound-endpoint address="vm://ListFulfillments"
       exchange-pattern="request-response" />
-    <fws:list-fulfillments includeInactive="true" />
+    <fws:list-fulfillment-items includeInactive="true" />
   </flow>
 
 
@@ -110,7 +110,7 @@
   <flow name="PutInboundShipmentData">
     <inbound-endpoint address="vm://PutInboundShipmentData"
       exchange-pattern="request-response" />
-    <fws:put-inbound-shipment-data
+    <fws:put-inbound-shipment
       shipmentId="#[variable:shipmentId]" shipmentName="#[variable:shipmentName]"
       destinationFulfillmentCenter="#[variable:destinationFulfillmentCenter]"
       shipFromAddress="#[variable:shipFromAddress]" />
@@ -121,7 +121,7 @@
     <inbound-endpoint address="vm://PutShipmentItems"
       exchange-pattern="request-response" />
     <fws:put-inbound-shipment-items
-      shipmentId="#[variable:shipmentId]" merchantSku="#[variable:merchantSKU]"
+      shipmentId="#[variable:shipmentId]" merchantSku="#[variable:merchantSku]"
       quantity="#[variable:quantity]" />
   </flow>
 
@@ -177,14 +177,14 @@
   <flow name="ListFulfillmentOrders">
     <inbound-endpoint address="vm://ListFulfillmentOrders"
       exchange-pattern="request-response" />
-    <fws:list-fulfillment-Orders />
+    <fws:list-fulfillment-orders />
   </flow>
 
   <flow name="GetInventorySupply">
     <inbound-endpoint address="vm://GetInventorySupply"
       exchange-pattern="request-response" />
     <fws:get-inventory-supply
-      queryStartDateTime="#[header:queryStartDate]" responseGroup="DETAILED" />
+      startDateTime="#[header:querystartDateTime]" responseGroup="DETAILED" />
   </flow>
 
 
@@ -198,7 +198,7 @@
     <inbound-endpoint address="vm://ListUpdatedSupply"
       exchange-pattern="request-response" />
     <fws:list-updated-inventory-supply
-      queryStartDateTime="#[header:queryStartDate]" responseGroup="DETAILED" />
+      startDateTime="#[header:querystartDateTime]" responseGroup="DETAILED" />
   </flow>
 
 </mule>
