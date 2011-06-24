@@ -14,6 +14,9 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.mule.api.lifecycle.InitialisationException;
+import org.mule.module.fws.api.ShipmentStatus;
+
+import java.util.Date;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -49,12 +52,13 @@ public class FWSTestDriver
         assertStatusOk(connector.getInventoryServiceStatus());
     }
     
-//    @Test
-//    public void listFulfillmentOrders()
-//    {
-//        assertNotNull(connector.listFulfillmentOrders());
-//    }
+    @Test
+    public void listFulfillmentOrders()
+    {
+        assertNotNull(connector.listFulfillmentOrders());
+    }
     
+
     @Test
     public void listFulfillmentItems()
     {
@@ -63,17 +67,17 @@ public class FWSTestDriver
         assertTrue(fulfillmentItems.iterator().hasNext());
     }
 
-//    @Test
-//    public void listInboundShipments()
-//    {
-//        assertNotNull(connector.listInboundShipments(ShipmentStatus.SHIPPED, new Date()));
-//    }
-//
-//    @Test
-//    public void listUpdatedInventorySupply()
-//    {
-//        connector.listUpdatedInventorySupply(new Date(), ResponseGroup.FOO);
-//    }
+    @Test
+    public void listInboundShipments()
+    {
+        assertNotNull(connector.listInboundShipments(ShipmentStatus.SHIPPED, new Date()));
+    }
+
+    @Test
+    public void listUpdatedInventorySupply()
+    {
+        connector.listUpdatedInventorySupply(new Date(), "foo");
+    }
 //    
 //    @Test
 //    public void createAndCancelFulfillmentOrder()

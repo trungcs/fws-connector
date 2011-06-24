@@ -72,7 +72,7 @@ public interface FWSClient<ExceptionType extends Throwable>
 
     String getOutboundServiceStatus() throws ExceptionType;
 
-    void listFulfillmentOrders() throws ExceptionType;
+    Iterable<?> listFulfillmentOrders() throws ExceptionType;
 
     List<MerchantSKUSupply> getInventorySupply(String merchantSku, String responseGroup) throws ExceptionType;
 

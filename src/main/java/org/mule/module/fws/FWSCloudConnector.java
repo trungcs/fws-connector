@@ -382,10 +382,10 @@ public class FWSCloudConnector implements Initialisable
      * {@code <list-fulfillment-orders/> } 
      */
     @Operation
-    public void listFulfillmentOrders()
+    public Iterable<?> listFulfillmentOrders()
     {
         /* TODO */
-        client.listFulfillmentOrders();
+        return client.listFulfillmentOrders();
     }
      
      /**

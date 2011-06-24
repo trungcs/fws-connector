@@ -18,10 +18,15 @@ import org.mule.module.fws.api.internal.AmazonFBAOutboundPortType;
 import org.mule.module.fws.api.internal.AmazonFWSInboundLocator;
 import org.mule.module.fws.api.internal.AmazonFWSInboundPortType;
 import org.mule.module.fws.api.internal.FulfillmentItem;
+import org.mule.module.fws.api.internal.FulfillmentOrder;
 import org.mule.module.fws.api.internal.FulfillmentPreview;
 import org.mule.module.fws.api.internal.GetFulfillmentOrderResult;
 import org.mule.module.fws.api.internal.GetFulfillmentPreviewItem;
 import org.mule.module.fws.api.internal.InboundShipmentData;
+import org.mule.module.fws.api.internal.ListAllFulfillmentItemsByNextTokenResult;
+import org.mule.module.fws.api.internal.ListAllFulfillmentItemsResult;
+import org.mule.module.fws.api.internal.ListAllFulfillmentOrdersByNextTokenResult;
+import org.mule.module.fws.api.internal.ListAllFulfillmentOrdersResult;
 import org.mule.module.fws.api.internal.MerchantItem;
 import org.mule.module.fws.api.internal.MerchantSKUQuantityItem;
 import org.mule.module.fws.api.internal.MerchantSKUSupply;
@@ -36,11 +41,16 @@ import org.mule.module.fws.api.internal.holders.GetInboundShipmentDataResultHold
 import org.mule.module.fws.api.internal.holders.GetInboundShipmentPreviewResultHolder;
 import org.mule.module.fws.api.internal.holders.GetInventorySupplyResultHolder;
 import org.mule.module.fws.api.internal.holders.GetServiceStatusResultHolder;
+import org.mule.module.fws.api.internal.holders.ListAllFulfillmentItemsByNextTokenResultHolder;
+import org.mule.module.fws.api.internal.holders.ListAllFulfillmentItemsResultHolder;
+import org.mule.module.fws.api.internal.holders.ListAllFulfillmentOrdersByNextTokenResultHolder;
+import org.mule.module.fws.api.internal.holders.ListAllFulfillmentOrdersResultHolder;
 import org.mule.module.fws.api.internal.holders.ResponseMetadataHolder;
 
 import java.rmi.RemoteException;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.xml.rpc.ServiceException;
@@ -208,15 +218,69 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         return result.value.getStatus();
     }
 
-    public Iterable<?> listFulfillmentItems(boolean includeInactive)
+    public Iterable<?> listFulfillmentItems(final boolean includeInactive) throws RemoteException
     {
-        // TODO Auto-generated method stub
-        return null;
+        return new FwsPaginatedIterable<FulfillmentItem, ListAllFulfillmentItemsResult>()
+        {
+            @Override
+            protected ListAllFulfillmentItemsResult firstFwsPage() throws RemoteException 
+            {
+                ListAllFulfillmentItemsResultHolder result = new ListAllFulfillmentItemsResultHolder();
+                inboundPortProvider.getPort(result).listAllFulfillmentItems(includeInactive, 100, result,
+                    new ResponseMetadataHolder());
+                return result.value;
+            }
+
+            @Override
+            protected ListAllFulfillmentItemsResult nextFwsPage(ListAllFulfillmentItemsResult currentPage) throws RemoteException
+            {
+                ListAllFulfillmentItemsByNextTokenResultHolder result = new ListAllFulfillmentItemsByNextTokenResultHolder();
+                inboundPortProvider.getPort(result).listAllFulfillmentItemsByNextToken(
+                    currentPage.getNextToken(), result, new ResponseMetadataHolder());
+                ListAllFulfillmentItemsByNextTokenResult value = result.value;
+                return new ListAllFulfillmentItemsResult(value.getNextToken(), value.isHasNext(), value.getFulfillmentItem());
+            }
+            
+            @Override
+            protected FulfillmentItem[] pageArray(ListAllFulfillmentItemsResult page)
+            {
+                return page.getFulfillmentItem();
+            }
+
+        };
     }
 
-    public void listFulfillmentOrders()
+    public Iterable<?> listFulfillmentOrders()
     {
-        // TODO Auto-generated method stub
+        return new FwsPaginatedIterable<FulfillmentOrder, ListAllFulfillmentOrdersResult>()
+        {
+
+            @Override
+            protected ListAllFulfillmentOrdersResult firstFwsPage() throws RemoteException
+            {
+                /*TODO*/
+                outboundPortProvider.getPort("").listAllFulfillmentOrders(100, "", new String[]{}, new ListAllFulfillmentOrdersResultHolder(), new ResponseMetadataHolder());
+                return null;
+            }
+
+            @Override
+            protected ListAllFulfillmentOrdersResult nextFwsPage(ListAllFulfillmentOrdersResult currentPage) throws RemoteException
+            {
+                ListAllFulfillmentOrdersByNextTokenResultHolder result = new ListAllFulfillmentOrdersByNextTokenResultHolder();
+                    outboundPortProvider.getPort(result).listAllFulfillmentOrdersByNextToken(
+                        currentPage.getNextToken(), result, new ResponseMetadataHolder());
+                ListAllFulfillmentOrdersByNextTokenResult value = result.value;
+                return  new ListAllFulfillmentOrdersResult(
+                    value.getNextToken(), value.isHasNext(), value.getFulfillmentOrder());
+            }
+
+           @Override
+        protected FulfillmentOrder[] pageArray(ListAllFulfillmentOrdersResult page)
+        {
+            return page.getFulfillmentOrder();
+        }
+
+        };
 
     }
 
