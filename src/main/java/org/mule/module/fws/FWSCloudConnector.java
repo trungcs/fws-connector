@@ -61,7 +61,8 @@ public class FWSCloudConnector implements Initialisable
      * @param merchantSku
      * @param shipmentId
      */
-    @Operation public void deleteInboundShipmentItems(@Parameter String merchantSku, @Parameter String shipmentId)
+    @Operation
+    public void deleteInboundShipmentItems(@Parameter String merchantSku, @Parameter String shipmentId)
     {
         client.deleteInboundShipmentItems(merchantSku, shipmentId);
     }
@@ -85,7 +86,10 @@ public class FWSCloudConnector implements Initialisable
      * @param merchantSku
      * @return 
      */
-    @Operation public List<FulfillmentItem> getFulfillmentIdentifier(String asin, ItemCondition itemCondition, String merchantSku)
+    @Operation
+    public List<FulfillmentItem> getFulfillmentIdentifier(String asin,
+                                                          ItemCondition itemCondition,
+                                                          String merchantSku)
     {
         return client.getFulfillmentIdentifier(asin, itemCondition, merchantSku);
     }
@@ -105,7 +109,8 @@ public class FWSCloudConnector implements Initialisable
      * @param merchantSku
      * @return 
      */
-    @Operation public List<FulfillmentItem> getFulfillmentIdentifierForMsku(String merchantSku)
+    @Operation
+    public List<FulfillmentItem> getFulfillmentIdentifierForMsku(String merchantSku)
     {
         return client.getFulfillmentIdentifierForMsku(merchantSku);
     }
@@ -121,7 +126,8 @@ public class FWSCloudConnector implements Initialisable
      * @param fulfillmentNetworkSku
      * @return 
      */
-    @Operation public List<FulfillmentItem> getFulfillmentItemByFnsku(String fulfillmentNetworkSku)
+    @Operation
+    public List<FulfillmentItem> getFulfillmentItemByFnsku(String fulfillmentNetworkSku)
     {
         return client.getFulfillmentItemByFnsku(fulfillmentNetworkSku);
     }
@@ -136,7 +142,8 @@ public class FWSCloudConnector implements Initialisable
      * @param merchantSku
      * @return 
      */
-    @Operation public List<FulfillmentItem> getFulfillmentItemByMsku(String merchantSku)
+    @Operation
+    public List<FulfillmentItem> getFulfillmentItemByMsku(String merchantSku)
     {
         return client.getFulfillmentItemByMsku(merchantSku);
     }
@@ -148,7 +155,8 @@ public class FWSCloudConnector implements Initialisable
      * @param shipmentId
      * @return 
      */
-    @Operation public InboundShipmentData getInboundShipment(String shipmentId)
+    @Operation
+    public InboundShipmentData getInboundShipment(String shipmentId)
     {
         return client.getInboundShipment(shipmentId);
     }
@@ -164,7 +172,8 @@ public class FWSCloudConnector implements Initialisable
      * @param address
      * @return the list of previews 
      */
-    @Operation public List<ShipmentPreview> getInboundShipmentPreview(String merchantSku, Address address) 
+    @Operation
+    public List<ShipmentPreview> getInboundShipmentPreview(String merchantSku, Address address)
     {
         return client.getInboundShipmentPreview(merchantSku, address);
     }
@@ -175,7 +184,8 @@ public class FWSCloudConnector implements Initialisable
      * {@code <get-inbound-service-status/>}
      * @return the status message
      */
-    @Operation public String getInboundServiceStatus() 
+    @Operation
+    public String getInboundServiceStatus()
     {
         return client.getInboundServiceStatus();
     }
@@ -188,7 +198,8 @@ public class FWSCloudConnector implements Initialisable
      * 
      * @param includeInactive
      */
-    @Operation public Iterable<?> listFulfillmentItems(boolean includeInactive)
+    @Operation
+    public Iterable<?> listFulfillmentItems(boolean includeInactive)
     {
         return client.listFulfillmentItems(includeInactive);
     }
@@ -201,9 +212,10 @@ public class FWSCloudConnector implements Initialisable
      * @param shipmentId
      * @return
      */
-    @Operation public Iterable<?> listInboundShipmentItems(String shipmentId)
+    @Operation
+    public Iterable<?> listInboundShipmentItems(String shipmentId)
     {
-       return client.listInboundShipmentItems(shipmentId); 
+        return client.listInboundShipmentItems(shipmentId);
     }
  
     /**
@@ -214,7 +226,8 @@ public class FWSCloudConnector implements Initialisable
      * @param shipmentStatus
      * @param createdAfter
      */
-    @Operation public Iterable<?> listInboundShipments(ShipmentStatus shipmentStatus, Date createdAfter)
+    @Operation
+    public Iterable<?> listInboundShipments(ShipmentStatus shipmentStatus, Date createdAfter)
     {
         return client.listInboundShipments(shipmentStatus, createdAfter);
     }
@@ -233,9 +246,13 @@ public class FWSCloudConnector implements Initialisable
      * @param destinationFulfillmentCenter
      * @param shipFromAddress
      */
-    @Operation public void putInboundShipment(String shipmentId, String shipmentName, String destinationFulfillmentCenter, String shipFromAddress)
+    @Operation
+    public void putInboundShipment(String shipmentId,
+                                   String shipmentName,
+                                   String destinationFulfillmentCenter,
+                                   String shipFromAddress)
     {
-        //TODO putShipment vs putSHipmentData
+        // TODO putShipment vs putSHipmentData
         client.putInboundShipment(shipmentId, shipmentName, destinationFulfillmentCenter, shipFromAddress);
     }
     
@@ -254,7 +271,8 @@ public class FWSCloudConnector implements Initialisable
      * @param merchantSku
      * @param quantity
      */
-    @Operation public void putInboundShipmentItems(String shipmentId, String merchantSku, int quantity)
+    @Operation
+    public void putInboundShipmentItems(String shipmentId, String merchantSku, int quantity)
     {
         client.putInboundShipmentItems(shipmentId, merchantSku, quantity);
     }
@@ -270,11 +288,11 @@ public class FWSCloudConnector implements Initialisable
      * @param shipmentId
      * @param shipmentStatus
      */
-    @Operation public void setInboundShipmentStatus(String shipmentId, ShipmentStatus shipmentStatus)
+    @Operation
+    public void setInboundShipmentStatus(String shipmentId, ShipmentStatus shipmentStatus)
     {
         client.setInboundShipmentStatus(shipmentId, shipmentStatus);
     }
-
  
     /**
      * Requests Amazon not to fulfill an existing fulfillment order. This is just a hint, already shipped 
@@ -283,7 +301,8 @@ public class FWSCloudConnector implements Initialisable
      * {@code <cancel-fulfillment-order orderId="#[header:orderId]"/>}
      * @param orderId
      */
-    @Operation public void cancelFulfillmentOrder(String orderId)
+    @Operation
+    public void cancelFulfillmentOrder(String orderId)
     {
         client.cancelFulfillmentOrder(orderId);
     }
@@ -294,9 +313,10 @@ public class FWSCloudConnector implements Initialisable
      * {@code <create-fulfillment-order orderId="#[orderId]" /> }
      * @param orderId
      */
-    @Operation public void createFulfillmentOrder(String orderId)
+    @Operation
+    public void createFulfillmentOrder(String orderId)
     {
-        //TODO
+        // TODO
         client.createFulfillmentOrder(orderId);
     }
 
@@ -309,7 +329,8 @@ public class FWSCloudConnector implements Initialisable
      * @param orderId
      * @return 
      */
-    @Operation public GetFulfillmentOrderResult getFulfillmentOrder(String orderId)
+    @Operation
+    public GetFulfillmentOrderResult getFulfillmentOrder(String orderId)
     {
         return client.getFulfillmentOrder(orderId);
     }
@@ -330,9 +351,15 @@ public class FWSCloudConnector implements Initialisable
      * @param orderItemId
      * @return 
      */
-    @Operation public List<FulfillmentPreview> getFulfillmentPreview(Address address, String merchantSku, String shippingSpeedCategories, int quantity, String orderItemId)
+    @Operation
+    public List<FulfillmentPreview> getFulfillmentPreview(Address address,
+                                                          String merchantSku,
+                                                          String shippingSpeedCategories,
+                                                          int quantity,
+                                                          String orderItemId)
     {
-        return client.getFulfillmentPreview(address, merchantSku, shippingSpeedCategories /*TODO*/, quantity, orderItemId);
+        return client.getFulfillmentPreview(address, merchantSku, shippingSpeedCategories /* TODO */,
+            quantity, orderItemId);
     }
 
 
@@ -342,7 +369,8 @@ public class FWSCloudConnector implements Initialisable
      * {@code <get-outbound-service-status/>}
      * @return the status message
      */
-    @Operation public String getOutboundServiceStatus()
+    @Operation
+    public String getOutboundServiceStatus()
     {
         return client.getOutboundServiceStatus();
     }
@@ -353,12 +381,12 @@ public class FWSCloudConnector implements Initialisable
      * 
      * {@code <list-fulfillment-orders/> } 
      */
-    @Operation public void listFulfillmentOrders()
+    @Operation
+    public void listFulfillmentOrders()
     {
-        /*TODO*/
+        /* TODO */
         client.listFulfillmentOrders();
     }
- 
      
      /**
       *  Gets information about the supply of merchant-owned inventory in Amazon's fulfillment network. 
@@ -373,11 +401,11 @@ public class FWSCloudConnector implements Initialisable
       * @param responseGroup
      *  @return 
       */
-     @Operation public List<MerchantSKUSupply> getInventorySupply(String merchantSku, String responseGroup)
-     {
-         return client.getInventorySupply(merchantSku, responseGroup);
-     }
-
+    @Operation
+    public List<MerchantSKUSupply> getInventorySupply(String merchantSku, String responseGroup)
+    {
+        return client.getInventorySupply(merchantSku, responseGroup);
+    }
     
     /**
      * Answers a brief status message from the service
@@ -385,10 +413,11 @@ public class FWSCloudConnector implements Initialisable
      * {@code <get-inventory-service-status/>}
      * @return the status message 
      */
-     @Operation public String getInventoryServiceStatus()
-     {
-         return client.getInventoryServiceStatus();
-     }
+    @Operation
+    public String getInventoryServiceStatus()
+    {
+        return client.getInventoryServiceStatus();
+    }
 
     /**
      * TODO
@@ -400,9 +429,10 @@ public class FWSCloudConnector implements Initialisable
      * @param startDateTime
      * @param responseGroup
      */
-    @Operation public void listUpdatedInventorySupply(Date startDateTime, String responseGroup) 
+    @Operation
+    public void listUpdatedInventorySupply(Date startDateTime, String responseGroup)
     {
-        /*TODO*/
+        /* TODO */
         client.listUpdatedInventorySupply(startDateTime, responseGroup);
     }
 
