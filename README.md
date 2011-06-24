@@ -46,13 +46,16 @@ Configuration
 
 You can configure the connector as follows:
 
-    <fws:config/>
+    <fws:config client="value" accessKey="value" secretKey="value"/>
 
 Here is detailed list of all the configuration attributes:
 
 | attribute | description | optional | default value |
 |:-----------|:-----------|:---------|:--------------|
 |name|Give a name to this configuration so it can be later referenced by config-ref.|yes||
+|client||yes|
+|accessKey||no|
+|secretKey||no|
 
 
 Delete Inbound Shipment Items
@@ -99,7 +102,7 @@ Use this operation instead of GetFulfillmentIdentifierForMSKU if an offer does n
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |asin||no||
-|itemCondition||no||
+|itemCondition||no||*NEW_ITEM*, *NEW_WITH_WARRANTY*, *NEW_OEM*, *NEW_OPEN_BOX*, *USED_LIKE_NEW*, *USED_VERY_GOOD*, *USED_GOOD*, *USED_ACCEPTABLE*, *USED_POOR*, *USED_REFURBISHED*, *COLLECTIBLE_LIKE_NEW*, *COLLECTIBLE_VERY_GOOD*, *COLLECTIBLE_GOOD*, *COLLECTIBLE_ACCEPTABLE*, *COLLECTIBLE_POOR*, *REFURBISHED_WITH_WARRANTY*, *REFUrbished*, *CLUB*, *UNKNOWN*, *fwsItemCondition*
 |merchantSku||no||
 
 
@@ -199,6 +202,8 @@ In this case, there is one shipment for each of the shipment sets returned.
 |merchantSku||no||
 |address||no||
 
+Returns list of previews
+
 
 
 Get Inbound Service Status
@@ -213,6 +218,8 @@ Answers a brief status message from the service
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
+
+Returns status message
 
 
 
@@ -261,7 +268,7 @@ Lazily lists the inbound shipments a merchant has created, according to the spec
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|shipmentStatus||no||
+|shipmentStatus||no||*WORKING*, *SHIPPED*, *INTRANSIT*, *DELIVERED*, *CHECKEDIN*, *RECEIVING*, *CLOSED*, *CANCELLED*, *ERROR*, *fwsShipmentStatus*
 |createdAfter||no||
 
 
@@ -331,7 +338,7 @@ This operation returns a RequestId upon success, otherwise an explicit error is 
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |shipmentId||no||
-|shipmentStatus||no||
+|shipmentStatus||no||*WORKING*, *SHIPPED*, *INTRANSIT*, *DELIVERED*, *CHECKEDIN*, *RECEIVING*, *CLOSED*, *CANCELLED*, *ERROR*, *fwsShipmentStatus*
 
 
 
@@ -393,15 +400,17 @@ Answers estimated shipping dates and fees for a given set of merchant SKUs and q
 
 
 
-     <get-fulfillment-preview 
+     <get-fulfillment-preview
+        address="#[variable:address]" 
         merchantSku="FHUD4896" 
         shippingSpeedCategories="Standard"
         quantity="15"
-         orderItemId="X123698" /> 
+        orderItemId="X123698" /> 
 
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
+|address||no||
 |merchantSku||no||
 |shippingSpeedCategories||no||
 |quantity||no||
@@ -421,6 +430,8 @@ Answers a brief status message from the service
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
+
+Returns status message
 
 
 
@@ -450,13 +461,13 @@ Gets information about the supply of merchant-owned inventory in Amazon's fulfil
  
 
      <get-inventory-supply 
-        startDateTime="#[header:querystartDateTime]" 
+        merchantSku="#[header:merchantSku]" 
         responseGroup="DETAILED"/> 
 
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|startDateTime||no||
+|merchantSku||no||
 |responseGroup||no||
 
 
@@ -473,6 +484,8 @@ Answers a brief status message from the service
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
+
+Returns status message
 
 
 
@@ -492,6 +505,20 @@ TODO
 |config-ref|Specify which configuration to use for this invocation|yes||
 |startDateTime||no||
 |responseGroup||no||
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

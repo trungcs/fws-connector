@@ -10,12 +10,10 @@
 
 package org.mule.module.fws.api;
 
-/**
- * 
- */
-public class ResponseGroup
+public class FWSClientAdaptor
 {
-
+    public static FWSClient<RuntimeException> adapt(FWSClient<?> client)
+    {
+        return (FWSClient<RuntimeException>) client;
+    }
 }
-
-

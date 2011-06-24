@@ -1,0 +1,1166 @@
+<?xml version ="1.0" encoding="UTF-8"?>
+<!-- ***************************************************************************
+*
+* Copyright (c) 2007-2008 Amazon.com, Inc. All rights reserved.
+* AMAZON.COM CONFIDENTIAL
+* 
+* DISCLAIMER:
+* All strings returned by get and list operations have not been scrubbed for
+* potential SQL, HTML or log injection vulnerabilities.
+* 
+**************************************************************************** -->
+
+<wsdl:definitions
+  targetNamespace="http://fba-outbound.amazonaws.com/doc/2007-08-02/"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:wsa="http://www.w3.org/2005/08/addressing"
+  xmlns:tns="http://fba-outbound.amazonaws.com/doc/2007-08-02/">
+
+
+  <!-- *************************************************************************
+   * Service Types
+   ************************************************************************* -->
+
+  <wsdl:types>
+    <xs:schema
+      targetNamespace="http://fba-outbound.amazonaws.com/doc/2007-08-02/"
+      xmlns:xs="http://www.w3.org/2001/XMLSchema"
+      xmlns:tns="http://fba-outbound.amazonaws.com/doc/2007-08-02/"
+      elementFormDefault="qualified">
+
+      <!-- *********************************************************************
+       * Request and Response Types
+       ********************************************************************* -->
+
+      <xs:element name="GetServiceStatus">
+        <xs:annotation>
+          <xs:documentation>
+            Request to poll the system for availability.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence />
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="GetServiceStatusResponse">
+        <xs:annotation>
+          <xs:documentation>
+            Response to GetServiceStatus request.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element ref="tns:GetServiceStatusResult" />
+            <xs:element ref="tns:ResponseMetadata" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="CreateFulfillmentOrder">
+        <xs:annotation>
+          <xs:documentation>
+            The MerchantFulfillmentOrderId must be unique for all fulfillment
+            orders created by the merchant.  If your system already has a
+            unique order identifier, then that may be a good value to put in
+            this field.
+
+            This DisplayableOrderDateTime will appear as the "order date" in
+            recipient-facing materials such as the packing slip.  The format
+            must be based on the RFC3339 profile of ISO8610 as follows:
+              [YYYY]-[MM]-[DD]T[HH]:[MM]:[SS][TZ]
+
+            The DisplayableOrderId will appear as the "order id" in those
+            materials, and the DisplayableOrderComment will appear as well.
+            
+            ShippingSpeedCategory is the Service Level Agreement for how long it
+            will take a shipment to be transported from the fulfillment center
+            to the recipient, once shipped.
+            See enumeration for possible values, no default.
+
+            DestinationAddress is the address the items will be shipped to.
+
+            FulfillmentPolicy indicates how unfulfillable items should be 
+            handled. 
+            See enumeration for possible values, default is FillOrKill.
+
+            FulfillmentMethod indicates the intended recipient channel for the 
+            order whether it be a consumer order or inventory return.
+            See enumeration for possible values, default is Consumer.
+            
+            NotificationEmailList can be used to provide a list of e-mail 
+            addresses to receive ship-complete e-mail notifications. These 
+            e-mails are customer-facing e-mails sent by FBA on behalf of 
+            the merchant.
+            
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="MerchantFulfillmentOrderId" type="xs:string" />
+            <xs:element name="DisplayableOrderId" type="xs:string" />
+            <xs:element name="DisplayableOrderDateTime" type="xs:string" />
+            <xs:element name="DisplayableOrderComment" type="xs:string" />
+            <xs:element name="ShippingSpeedCategory" type="xs:string" />
+            <xs:element name="DestinationAddress" type="tns:Address" />
+            <xs:element name="FulfillmentPolicy" type="xs:string" minOccurs="0" />
+            <xs:element name="FulfillmentMethod" type="xs:string" minOccurs="0" />
+            <xs:element name="NotificationEmailList" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>          
+            <xs:element name="Item" type="tns:CreateFulfillmentOrderItem" maxOccurs="unbounded" />            
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      
+      <xs:element name="CreateFulfillmentOrderResponse">
+        <xs:annotation>
+          <xs:documentation>
+            Response to CreateFulfillmentOrder request.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element ref="tns:ResponseMetadata" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="CancelFulfillmentOrder">
+        <xs:annotation>
+          <xs:documentation>
+            Request to cancel a fulfillment order.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="MerchantFulfillmentOrderId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="CancelFulfillmentOrderResponse">
+        <xs:annotation>
+          <xs:documentation>
+            Response to a CreateFulfillmentOrder request.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element ref="tns:ResponseMetadata" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="GetFulfillmentOrder">
+        <xs:annotation>
+          <xs:documentation>
+            Request to retrieve a given fulfillment order.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="MerchantFulfillmentOrderId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="GetFulfillmentOrderResponse">
+        <xs:annotation>
+          <xs:documentation>
+            Response to GetFulfillmentOrder request.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element ref="tns:GetFulfillmentOrderResult" />
+            <xs:element ref="tns:ResponseMetadata" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="ListAllFulfillmentOrders">
+        <xs:annotation>
+          <xs:documentation>
+            Request to list all fulfillment orders where a status change has
+            occured since the specified query start time.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="NumberOfResultsRequested" type="xs:int" />
+            <xs:element name="QueryStartDateTime" type="xs:string" minOccurs="0" />
+            <xs:element name="FulfillmentMethod" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="ListAllFulfillmentOrdersResponse">
+        <xs:annotation>
+          <xs:documentation>
+            Response to ListAllFulfillmentOrders request.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element ref="tns:ListAllFulfillmentOrdersResult" />
+            <xs:element ref="tns:ResponseMetadata" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="ListAllFulfillmentOrdersByNextToken">
+        <xs:annotation>
+          <xs:documentation>
+            Request to list all fulfillment orders following the initial call
+            to ListAllFulfillmentOrders.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="NextToken" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="ListAllFulfillmentOrdersByNextTokenResponse">
+        <xs:annotation>
+          <xs:documentation>
+            Response to ListAllFulfillmentOrdersByNextToken request.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element ref="tns:ListAllFulfillmentOrdersByNextTokenResult" />
+            <xs:element ref="tns:ResponseMetadata" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="GetFulfillmentPreview">
+        <xs:annotation>
+          <xs:documentation>
+            Get estimated shipping dates and fees for all available 
+            shipping speed given a set of merchant SKUs and quantities.
+
+            ShippingSpeedCategory is the Service Level Agreement for how long 
+            it will take a shipment to be transported from the fulfillment 
+            center to the recipient, once shipped.
+            If "ShippingSpeedCategories" are inputed, only previews for those 
+            options will be returned. If "ShippingSpeedCategories" are not 
+            inputed, then previews for all available options are returned.
+            The following shipping speeds are available for US domestic:
+               * Standard, 3-5 business days
+               * Expedited, 2 business days
+               * Priority, 1 business day
+            Shipping speeds may vary elsewhere.  Please consult your merchant
+            manual for published SLAs.
+
+            Address is the address the items will be shipped to.
+            
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Address" type="tns:Address" />
+            <xs:element name="Items" type="tns:GetFulfillmentPreviewItem" maxOccurs="unbounded"/>
+            <xs:element name="ShippingSpeedCategories" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="GetFulfillmentPreviewResponse">
+        <xs:annotation>
+          <xs:documentation>
+            Response to GetFulfillmentPreview request.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>          
+            <xs:element ref="tns:GetFulfillmentPreviewResult" />
+            <xs:element ref="tns:ResponseMetadata" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <!-- *********************************************************************
+       * Shared Types
+       ********************************************************************* -->
+
+      <xs:element name="GetServiceStatusResult">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Status" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="GetFulfillmentOrderResult">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="FulfillmentOrder" type="tns:FulfillmentOrder" />
+            <xs:element name="FulfillmentOrderItem" type="tns:FulfillmentOrderItem" maxOccurs="unbounded" />
+            <xs:element name="FulfillmentShipment" type="tns:FulfillmentShipment" minOccurs="0" maxOccurs="unbounded" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="ListAllFulfillmentOrdersResult">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="NextToken" type="xs:string" />
+            <xs:element name="HasNext" type="xs:boolean" />
+            <xs:element name="FulfillmentOrder" type="tns:FulfillmentOrder" minOccurs="0" maxOccurs="unbounded" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="ListAllFulfillmentOrdersByNextTokenResult">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="NextToken" type="xs:string" />
+            <xs:element name="HasNext" type="xs:boolean" />
+            <xs:element name="FulfillmentOrder" type="tns:FulfillmentOrder" minOccurs="0" maxOccurs="unbounded" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="GetFulfillmentPreviewResult">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="FulfillmentPreviews" type="tns:FulfillmentPreview" minOccurs="0" maxOccurs="unbounded" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:complexType name="Address">
+        <xs:annotation>
+          <xs:documentation>
+            Postal address. CountryCode must be the ISO-3166-1 alpha-2
+            code (example 'US', 'GB', 'JP'). 
+            Please don't use City field for JP address. For other country 
+            the City field is required.   
+            
+          </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="Name" type="xs:string" />
+          <xs:element name="Line1" type="xs:string" /> 
+          <xs:element name="Line2" type="xs:string" minOccurs="0" />
+          <xs:element name="Line3" type="xs:string" minOccurs="0" />
+          <xs:element name="City" type="xs:string" minOccurs="0"/>
+          <xs:element name="StateOrProvinceCode" type="xs:string" />
+          <xs:element name="CountryCode" type="xs:string" />
+          <xs:element name="PostalCode" type="xs:string" minOccurs="0" />
+          <xs:element name="PhoneNumber" type="xs:string" minOccurs="0" />
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="CreateFulfillmentOrderItem">
+        <xs:annotation>
+          <xs:documentation>
+            Specifies a single line item in a fulfillment order.
+
+            MerchantFulfillmentOrderItemId must be unique for every item in the 
+            same fulfillment order.  It is used to disambiguate multiple line 
+            items with the same merchant SKU.
+
+            FulfillmentNetworkSKU may be specified when the active merchant SKU
+            doesn't map to the desired fulfillment network SKU (FNSKU); please 
+            note the merchant SKU is always required.  The value is only ever 
+            considered when Removal fulfillment method is selected.
+
+            OrderItemDisposition indicates the disposition of the inventory, 
+            either Sellable or Unsellable.  The Unsellable disposition is only
+            permitted when Removal fulfillment method is selected.
+            See enumeration for possible values, default is Sellable.
+
+            PerUnitDeclaredValue is the monetary value assigned by the
+            merchant to each unit of inventory of the merchantSku for this line
+            item. If not specified, it defaults to zero.
+
+          </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="MerchantSKU" type="xs:string" />
+          <xs:element name="MerchantFulfillmentOrderItemId" type="xs:string" />
+          <xs:element name="Quantity" type="xs:int" />
+          <xs:element name="GiftMessage" type="xs:string" minOccurs="0" />
+          <xs:element name="DisplayableComment" type="xs:string" minOccurs="0" />
+          <xs:element name="FulfillmentNetworkSKU" type="xs:string" minOccurs="0" />
+          <xs:element name="OrderItemDisposition" type="xs:string" minOccurs="0" />
+          <xs:element name="PerUnitDeclaredValue" type="tns:Currency" minOccurs="0" />
+        </xs:sequence>
+      </xs:complexType>
+      
+      <xs:complexType name="Currency">
+        <xs:annotation>
+            <xs:documentation>
+                Currency type.
+                the CurrencyCode is the ISO currency code.
+
+                the Value is the amount of the currency.
+                for CurrencyCode="USD", the unit of Value is dollars, the scale of decimal is two.
+                example:5$ the Value is 5.00.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="CurrencyCode" type="xs:string"/>                       
+            <xs:element name="Value" type="xs:decimal"/>
+        </xs:sequence>
+      </xs:complexType>
+
+
+      <xs:complexType name="FulfillmentOrder">
+        <xs:annotation>
+          <xs:documentation>
+            The MerchantFulfillmentOrderId must be unique for all fulfillment
+            orders created by the merchant. If your system already has a unique
+            order identifier, then that may be a good value to put in this
+            field.
+
+            This DisplayableOrderDate will appear as the "order date" in
+            recipient-facing materials such as the packing slip. The
+            DisplayableOrderId will appear as the "order id" in those
+            materials, and the DisplayableOrderComment will appear as well.
+
+            The ReceivedDate indicates when Amazon received the
+            CreateFulfillmentOrder request for this order.
+
+            The StatusUpdatedDate indicates when Status of this order last
+            changed.
+
+            ShippingSpeedCategory is the Service Level Agreement for how long it will
+            take a shipment to be transported from the fulfillment center to
+            the recipient, once shipped.
+            See enumeration for possible values, no default.
+
+            FulfillmentPolicy indicates how unfulfillable items should be handled.
+            See enumeration for possible values, default is FillOrKill.
+
+            FulfillmentMethod indicates the intended recipient channel for the
+            order whether it be a consumer order or inventory return.
+            See enumeration for possible values, default is Consumer.
+
+            NotificationEmailList can be used to provide a list of e-mail 
+            addresses to receive ship-complete e-mail notifications. These 
+            e-mails are customer-facing e-mails sent by FBA on behalf of 
+            the merchant.
+                        
+          </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="MerchantFulfillmentOrderId" type="xs:string" />
+          <xs:element name="DisplayableOrderId" type="xs:string" />
+          <xs:element name="DisplayableOrderDateTime" type="xs:string" />
+          <xs:element name="DisplayableOrderComment" type="xs:string" />
+          <xs:element name="ShippingSpeedCategory" type="xs:string" />
+          <xs:element name="DestinationAddress" type="tns:Address" />
+          <xs:element name="FulfillmentPolicy" type="xs:string" minOccurs="0" />
+          <xs:element name="FulfillmentMethod" type="xs:string" minOccurs="0" />
+          <xs:element name="ReceivedDateTime" type="xs:string" />
+          <xs:element name="FulfillmentOrderStatus" type="tns:FulfillmentOrderStatus" />
+          <xs:element name="StatusUpdatedDateTime" type="xs:string" />
+          <xs:element name="NotificationEmailList" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>          
+        </xs:sequence>
+      </xs:complexType>
+      
+      <xs:complexType name="FulfillmentOrderItem">
+        <xs:annotation>
+          <xs:documentation>
+            The MerchantFulfillmentOrderItemId must be unique for all items
+            in the same fulfillment order. This value can be used to
+            disambiguate multiple fulfillment items that have the same SKU.
+            If your system already has a unique order line-item identifier,
+            then that may be a good value to put in this field.
+
+            DisplayableComment contains a value that will appear in
+            recipient-facing materials such as the packing slip.
+
+            FulfillmentNetworkSKU may be specified when the active merchant SKU
+            doesn't map to the desired fulfillment network SKU (FNSKU); please
+            note the merchant SKU is always required.  The value is only ever
+            considered when Removal fulfillment method is selected.
+
+            OrderItemDisposition indicates the disposition of the inventory,
+            either Sellable or Unsellable.  The Unsellable disposition is only
+            permitted when Removal fulfillment method is selected.
+            See enumeration for possible values, default is Sellable.
+
+            PerUnitDeclaredValue is the monetary value assigned by the
+            merchant to each unit of inventory of the merchantSku for this line
+            item. If not specified, it defaults to zero.
+            
+          </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="MerchantSKU" type="xs:string" />
+          <xs:element name="MerchantFulfillmentOrderItemId" type="xs:string" />
+          <xs:element name="Quantity" type="xs:int" />
+          <xs:element name="GiftMessage" type="xs:string" minOccurs="0" />
+          <xs:element name="DisplayableComment" type="xs:string" minOccurs="0" />
+          <xs:element name="FulfillmentNetworkSKU" type="xs:string" minOccurs="0" />
+          <xs:element name="OrderItemDisposition" type="xs:string" minOccurs="0" />
+          <xs:element name="CancelledQuantity" type="xs:int" />
+          <xs:element name="UnfulfillableQuantity" type="xs:int" />
+          <xs:element name="EstimatedShipDateTime" type="xs:string" minOccurs="0" />
+          <xs:element name="EstimatedArrivalDateTime" type="xs:string" minOccurs="0" />
+          <xs:element name="PerUnitDeclaredValue" type="tns:Currency" minOccurs="0" />
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="FulfillmentShipmentPackage">
+        <xs:annotation>
+          <xs:documentation>
+            Represents a single package in a shipment. The package id
+            uniquely identifies the package within the shipment. The
+            CarrierCode identifies the carrier who will deliver the shipment
+            to the end recipient. The TrackingNumber, if provided, may be
+            used to obtain tracking and delivery information about the
+            package from the carrier.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="PackageNumber" type="xs:int" />
+          <xs:element name="CarrierCode" type="xs:string" />
+          <xs:element name="TrackingNumber" type="xs:string" minOccurs="0" />
+          <xs:element name="EstimatedArrivalDateTime" type="xs:string" minOccurs="0" />
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="FulfillmentShipmentItem">
+        <xs:annotation>
+          <xs:documentation>
+            Represents an item included in a shipment.  
+
+            MerchantFulfillmentOrderItemId should be used to relate the shipped
+            item to the ordered item.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="MerchantSKU" type="xs:string" />
+          <xs:element name="MerchantFulfillmentOrderItemId" type="xs:string" />
+          <xs:element name="Quantity" type="xs:int" />
+          <xs:element name="PackageNumber" type="xs:int" minOccurs="0" />
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="FulfillmentShipment">
+        <xs:annotation>
+          <xs:documentation>
+            The meaning of ShippingDate depends on the current shipment status.
+            If the shipment status is Pending, then the ShippingDate is the
+            estimated date and time that the shipment will leave the
+            fulfillment center. If the shipment status is Shipped, then the
+            ShippingDate is the actual date and time that the shipment left
+            the fulfillment center.
+
+            If the shipment was cancelled, the ShippingDate field does not
+            appear.
+
+            The EstimatedArrivalDate may change over time. If the shipment has
+            been cancelled, this field does not appear.
+
+            Packages can be related to shipment items via the PackageId
+            element. Note that several packages in the same shipment may
+            contain quantities of the same item.
+          </xs:documentation>
+        </xs:annotation>    
+        <xs:sequence>
+          <xs:element name="AmazonShipmentId" type="xs:string" />
+          <xs:element name="FulfillmentCenterId" type="xs:string" />
+          <xs:element name="FulfillmentShipmentStatus" type="tns:FulfillmentShipmentStatus" />
+          <xs:element name="ShippingDateTime" type="xs:string" minOccurs="0" />
+          <xs:element name="EstimatedArrivalDateTime" type="xs:string" minOccurs="0" />
+          <xs:element name="FulfillmentShipmentItem" type="tns:FulfillmentShipmentItem" maxOccurs="unbounded" />
+          <xs:element name="FulfillmentShipmentPackage" type="tns:FulfillmentShipmentPackage" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="GetFulfillmentPreviewItem">
+        <xs:sequence>
+          <xs:element name="MerchantSKU" type="xs:string"/>
+          <xs:element name="Quantity" type="xs:int"/>
+          <xs:element name="MerchantFulfillmentOrderItemId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="FulfillmentPreview">
+        <xs:annotation>
+          <xs:documentation>
+            Provides information regarding the fulfillability of 
+            an order and a specific shipping speed. This can also provide
+            information regarding the fees associated with fulfilling this
+            order.
+
+            ShippingSpeedCategory - provides the relative speed for this particular order
+
+            IsFulfillable - True means Fulfillable, False means Unfulfillable 
+
+            EstimatedShippingWeight - the estimated shipping weight for the shipment
+                                      described.
+            EstimatedFees -  if applicable the estimated fees for this order
+
+            FulfillmentPreviewShipments - a list of fulfillable shipments
+            UnfulfillableItems - a list of unfulfillable items
+
+            OrderUnfulfillableReasons - error codes associated at the order level. 
+                                   Tries to explain why the order was unfulfillable. 
+                                   * DeliverySLAUnavailable
+                                   * InvalidDestinationAddress
+
+          </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="ShippingSpeedCategory" type="xs:string"/>
+          <xs:element name="IsFulfillable" type="xs:boolean"/>
+          <xs:element name="EstimatedShippingWeight" type="tns:Weight" minOccurs="0"/>
+          <xs:element name="EstimatedFees" type="tns:Fee" 
+              minOccurs="0" maxOccurs="unbounded" />
+          <xs:element name="FulfillmentPreviewShipments" type="tns:FulfillmentPreviewShipment"
+              minOccurs="0" maxOccurs="unbounded" />
+          <xs:element name="UnfulfillablePreviewItems" type="tns:UnfulfillablePreviewItem" 
+              minOccurs="0" maxOccurs="unbounded" />
+          <xs:element name="OrderUnfulfillableReasons" type="xs:string"
+              minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="Fee">
+        <xs:sequence>
+          <xs:element name="Name" type="xs:string"/>
+          <xs:element name="Amount" type="tns:Currency"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="FulfillmentPreviewShipment">
+        <xs:annotation>
+          <xs:documentation>
+            Holds items and promise attributes for this fulfillable shipment
+          </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="EarliestShipDate" type="xs:string"/>
+          <xs:element name="LatestShipDate" type="xs:string"/>
+          <xs:element name="EarliestArrivalDate" type="xs:string"/>
+          <xs:element name="LatestArrivalDate" type="xs:string"/>
+          <xs:element name="FulfillmentPreviewItems" type="tns:FulfillmentPreviewItem"
+              maxOccurs="unbounded" />
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="FulfillmentPreviewItem">
+        <xs:annotation>
+          <xs:documentation>
+            The field "estimatedShippingWeight" refers to the item-level
+            estimated shipping weight.  This is per item, not the total
+            for the quantity given.
+
+            The field "ShippingWeightCalculationMethod" provides the method used 
+            to calculate shipping weight. It can use one of two methods:
+            *Package 
+            *Dimensional
+
+          </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="MerchantSKU" type="xs:string"/>
+          <xs:element name="Quantity" type="xs:int"/>
+          <xs:element name="MerchantFulfillmentOrderItemId" type="xs:string"/>
+          <xs:element name="EstimatedShippingWeight" type="tns:Weight" minOccurs="0"/>
+          <xs:element name="ShippingWeightCalculationMethod" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="UnfulfillablePreviewItem">
+        <xs:annotation>
+          <xs:documentation>
+            Holds item attributes and if available, reasons why the item was
+            unfulfillable.
+            ItemUnfulfillableReasons - error codes associated at the item level. 
+                               Tries to explain why the item was unfulfillable.
+                               currently state:
+                               * InventoryUnavailable
+                               * NoDeliveryOption
+                               * UnknownDeliveryServiceError
+          </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="MerchantSKU" type="xs:string"/>
+          <xs:element name="Quantity" type="xs:int"/>
+          <xs:element name="MerchantFulfillmentOrderItemId" type="xs:string"/>
+          <xs:element name="ItemUnfulfillableReasons" type="xs:string"
+              minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="Weight">
+        <xs:annotation>
+          <xs:documentation>
+            generic weight info element - weight is a float with KG or LB for units
+          </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="Unit" type="xs:string"/>
+          <xs:element name="Value" type="xs:decimal"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <!-- *********************************************************************
+       * Enumerated Types
+       ********************************************************************* -->
+
+      <xs:simpleType name="FulfillmentMethod">
+        <xs:annotation>
+          <xs:documentation>
+            FulfillmentMethod indicates the intended recipient channel for the
+            order whether it be a consumer order or inventory return.
+
+            The available methods to fulfill a given order:
+              * Consumer indicates a customer order, this is the default.
+              * Removal indicates that the inventory should be returned to the
+                specified destination address.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Consumer" />
+          <xs:enumeration value="Removal" />
+        </xs:restriction>
+      </xs:simpleType>
+
+      <xs:simpleType name="FulfillmentOrderStatus">
+        <xs:annotation>
+          <xs:documentation>
+            Status of a fulfillment order.
+
+            Described by the following states:
+              * New, The order has been received but not validated.
+              * Received, Validation is complete but no action has been taken 
+                to fulfill the order.
+              * Planning, The order has been sent to Amazon's fulfillment 
+                network but no shipments are currently being worked on.
+              * Processing, At least one shipment is currently being worked on.
+              * Cancelled, The order has been cancelled by the merchant.
+              * Complete, All items on the order have been fulfilled.
+              * CompletePartialled, Some item-quantities on the order were
+                fulfilled; the rest were cancelled or unfulfillable.
+              * Unfulfillable, No items on the order could be fulfilled.
+              * Invalid, The order was deemed to be invalid and no further 
+                action can be taken.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="New" />
+          <xs:enumeration value="Received" />
+          <xs:enumeration value="Planning" />
+          <xs:enumeration value="Processing" />
+          <xs:enumeration value="Cancelled" />
+          <xs:enumeration value="Complete" />
+          <xs:enumeration value="CompletePartialled" />
+          <xs:enumeration value="Unfulfillable" />
+          <xs:enumeration value="Invalid" />
+        </xs:restriction>
+      </xs:simpleType>
+
+      <xs:simpleType name="FulfillmentPolicy">
+        <xs:annotation>
+          <xs:documentation>
+            FulfillmentPolicy indicates how unfulfillable items should be 
+            handled.
+
+            The available options include:
+              * FillOrKill if any item is determined to be unfulfillable
+                before any items have started shipping, the entire order is
+                considered unfulfillable.  Once any part of the order has
+                started shipping, as much of the order as possible will be
+                shipped.
+              * FillAll never consider any item unfulfillable.  Items must
+                either be fulfilled or merchant-cancelled.
+              * FillAllAvailable fulfill as much of the order as possible.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="FillOrKill" />
+          <xs:enumeration value="FillAll" />
+          <xs:enumeration value="FillAllAvailable" />
+        </xs:restriction>
+      </xs:simpleType>
+
+      <xs:simpleType name="FulfillmentShipmentStatus">
+        <xs:annotation>
+          <xs:documentation>
+            Status of a fulfillment shipment.
+
+            Described by the following states:
+              * Pending, The fulfillment center has started the pick, pack and
+                ship process.
+              * Shipped, All packages in the shipment have left the fulfillment
+                center.
+              * CancelledByFulfiller, The fulfillment center could not fulfill
+                the shipment as planned. This is probably because the inventory
+                wasn't at the expected location in the fulfillment center.
+              * CancelledByMerchant, The shipment was started but a
+                CancelFulfillmentOrder request was received so it was stopped.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Pending" />
+          <xs:enumeration value="Shipped" />
+          <xs:enumeration value="CancelledByFulfiller" />
+          <xs:enumeration value="CancelledByMerchant" />
+        </xs:restriction>
+      </xs:simpleType>
+
+      <xs:simpleType name="OrderItemDisposition">
+        <xs:annotation>
+          <xs:documentation>
+            OrderItemDisposition indicates the disposition of the inventory,
+            either Sellable or Unsellable.  The Unsellable disposition is only
+            permitted when Removal fulfillment method is selected.
+
+            The available options include:
+              * Sellable indicates fulfillable inventory.
+              * Unsellable indicates carrier damaged, defective, expired,
+                vendor damaged or warehouse damaged.  Only permitted when the
+                fulfillment method is Removal.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Sellable" />
+          <xs:enumeration value="Unsellable" />
+        </xs:restriction>
+      </xs:simpleType>
+
+      <xs:simpleType name="ShippingSpeedCategory">
+        <xs:annotation>
+          <xs:documentation>
+            ShippingSpeedCategory is the Service Level Agreement for how long
+            it will take a shipment to be transported from the fulfillment
+            center to the recipient, once shipped.
+
+            The following shipping speeds are available for US domestic:
+              * Standard, 3-5 business days
+              * Expedited, 2 business days
+              * Priority, 1 business day
+
+            Shipping speeds may vary elsewhere.  Please consult your merchant
+            manual for published SLAs.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Standard" />
+          <xs:enumeration value="Expedited" />
+          <xs:enumeration value="Priority" />
+        </xs:restriction>
+      </xs:simpleType>
+
+      <!-- *********************************************************************
+       * AWS Standard Types
+       ********************************************************************* -->
+
+      <xs:element name="ResponseMetadata">
+        <xs:annotation>
+          <xs:documentation>
+            Response metadata contains the unique request ID.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="RequestId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="ErrorResponse">
+        <xs:annotation>
+          <xs:documentation>
+            Error response used for REST.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element ref="tns:Error" maxOccurs="unbounded" />
+            <xs:element name="RequestId" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="Error">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Type">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="Receiver" />
+                  <xs:enumeration value="Sender" />
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="Code" type="xs:string" />
+            <xs:element name="Message" type="xs:string" />
+            <xs:element name="Detail">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:any namespace="##any" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+                </xs:sequence>
+                <xs:anyAttribute namespace="##other" processContents="lax" />
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+    </xs:schema>
+  </wsdl:types>
+
+
+  <!-- *************************************************************************
+   * Service Messages
+   ************************************************************************* -->
+
+  <wsdl:message name="GetServiceStatusRequestMsg">
+    <wsdl:part name="body" element="tns:GetServiceStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceStatusResponseMsg">
+    <wsdl:part name="body" element="tns:GetServiceStatusResponse" />
+  </wsdl:message>
+
+  <wsdl:message name="CreateFulfillmentOrderRequestMsg">
+    <wsdl:part name="body" element="tns:CreateFulfillmentOrder" />
+  </wsdl:message>
+  <wsdl:message name="CreateFulfillmentOrderResponseMsg">
+    <wsdl:part name="body" element="tns:CreateFulfillmentOrderResponse" />
+  </wsdl:message>
+
+  <wsdl:message name="CancelFulfillmentOrderRequestMsg">
+    <wsdl:part name="body" element="tns:CancelFulfillmentOrder" />
+  </wsdl:message>
+  <wsdl:message name="CancelFulfillmentOrderResponseMsg">
+    <wsdl:part name="body" element="tns:CancelFulfillmentOrderResponse" />
+  </wsdl:message>
+
+  <wsdl:message name="GetFulfillmentOrderRequestMsg">
+    <wsdl:part name="body" element="tns:GetFulfillmentOrder" />
+  </wsdl:message>
+  <wsdl:message name="GetFulfillmentOrderResponseMsg">
+    <wsdl:part name="body" element="tns:GetFulfillmentOrderResponse" />
+  </wsdl:message>
+
+  <wsdl:message name="ListAllFulfillmentOrdersRequestMsg">
+    <wsdl:part name="body" element="tns:ListAllFulfillmentOrders" />
+  </wsdl:message>
+  <wsdl:message name="ListAllFulfillmentOrdersResponseMsg">
+    <wsdl:part name="body" element="tns:ListAllFulfillmentOrdersResponse" />
+  </wsdl:message>
+
+  <wsdl:message name="ListAllFulfillmentOrdersByNextTokenRequestMsg">
+    <wsdl:part name="body" element="tns:ListAllFulfillmentOrdersByNextToken" />
+  </wsdl:message>
+  <wsdl:message name="ListAllFulfillmentOrdersByNextTokenResponseMsg">
+    <wsdl:part name="body" element="tns:ListAllFulfillmentOrdersByNextTokenResponse" />
+  </wsdl:message>
+
+  <wsdl:message name="GetFulfillmentPreviewRequestMsg">
+    <wsdl:part name="body" element="tns:GetFulfillmentPreview" />
+  </wsdl:message>
+  <wsdl:message name="GetFulfillmentPreviewResponseMsg">
+    <wsdl:part name="body" element="tns:GetFulfillmentPreviewResponse" />
+  </wsdl:message>
+
+
+  <!-- *************************************************************************
+   * Service Ports and Operations
+   ************************************************************************* -->
+
+  <wsdl:portType name="AmazonFBAOutboundPortType">
+
+    <wsdl:operation name="GetServiceStatus">
+      <wsdl:documentation>
+        Gets a brief status message from the service.
+      </wsdl:documentation>
+      <wsdl:input message="tns:GetServiceStatusRequestMsg" wsa:Action="urn:GetServiceStatus" />
+      <wsdl:output message="tns:GetServiceStatusResponseMsg" wsa:Action="urn:GetServiceStatus:Response" />
+    </wsdl:operation>
+
+    <wsdl:operation name="CreateFulfillmentOrder">
+      <wsdl:documentation>
+         Request for Amazon to send items from the merchant's inventory to a
+         destination address.
+      </wsdl:documentation>
+      <wsdl:input message="tns:CreateFulfillmentOrderRequestMsg" wsa:Action="urn:CreateFulfillmentOrder" />
+      <wsdl:output message="tns:CreateFulfillmentOrderResponseMsg" wsa:Action="urn:CreateFulfillmentOrder:Response" />
+    </wsdl:operation>
+
+    <wsdl:operation name="CancelFulfillmentOrder">
+      <wsdl:documentation>
+    	Request for Amazon to no longer attempt to fulfill an existing
+        fulfillment order. Amazon will attempt to stop fulfillment of all
+        items that haven't already shipped, but cannot guarantee success.
+	    Note: Items that have already shipped cannot be cancelled. 	
+      </wsdl:documentation>
+      <wsdl:input message="tns:CancelFulfillmentOrderRequestMsg" wsa:Action="urn:CancelFulfillmentOrder" />
+      <wsdl:output message="tns:CancelFulfillmentOrderResponseMsg" wsa:Action="urn:CancelFulfillmentOrder:Response" />
+    </wsdl:operation>
+
+    <wsdl:operation name="GetFulfillmentOrder">
+      <wsdl:documentation>
+        Get detailed information about a FulfillmentOrder.  This includes the
+        original fulfillment order request, the status of the order and its
+        items in Amazon's fulfillment network, and the shipments that have been
+        generated to fulfill the order.
+      </wsdl:documentation>
+      <wsdl:input message="tns:GetFulfillmentOrderRequestMsg" wsa:Action="urn:GetFulfillmentOrder" />
+      <wsdl:output message="tns:GetFulfillmentOrderResponseMsg" wsa:Action="urn:GetFulfillmentOrder:Response" />
+    </wsdl:operation>
+
+    <wsdl:operation name="ListAllFulfillmentOrders">
+      <wsdl:documentation>
+        Gets the first set of fulfillment orders that are currently being
+        fulfilled or that were being fulfilled at some time in the past
+        (as specified by the query parameters). Also returns a NextToken
+        which can be used iterate through the remaining fulfillment orders
+        (via the ListAllFulfillmentOrdersByNextToken operation).
+
+        The service will return between 0 and 'MaxCount' fulfillment orders.
+        Please check the value of 'HasNext' to determine whether there may be
+        additional fulfillment orders to list.
+
+        If the QueryStartDateTime is set, the results will include all orders
+        currently being fulfilled, and all orders that were being fulfilled
+        since that date and time. If it is not set, it defaults to 72 hours
+        prior to "now".
+      </wsdl:documentation>
+      <wsdl:input message="tns:ListAllFulfillmentOrdersRequestMsg" wsa:Action="urn:ListAllFulfillmentOrders" />
+      <wsdl:output message="tns:ListAllFulfillmentOrdersResponseMsg" wsa:Action="urn:ListAllFulfillmentOrders:Response" />
+    </wsdl:operation>
+
+    <wsdl:operation name="ListAllFulfillmentOrdersByNextToken">
+      <wsdl:documentation>
+        Gets the next set of fulfillment orders that are currently being
+        being fulfilled or that were being fulfilled at some time in the
+        past.
+
+        The service will return between 0 and 'MaxCount' fulfillment orders.
+        Please check the value of 'HasNext' to determine whether there may be
+        additional fulfillment orders to list.
+      </wsdl:documentation>
+      <wsdl:input message="tns:ListAllFulfillmentOrdersByNextTokenRequestMsg" wsa:Action="ListAllFulfillmentOrdersByNextToken" />
+      <wsdl:output message="tns:ListAllFulfillmentOrdersByNextTokenResponseMsg" wsa:Action="ListAllFulfillmentOrdersByNextToken:Response" />
+    </wsdl:operation>
+
+    <wsdl:operation name="GetFulfillmentPreview">
+      <wsdl:documentation>
+        Get estimated shipping dates and fees for all 
+        available shipping speed given a set of merchant SKUs and quantities      
+
+        If "ShippingSpeedCategories" are inputed, only previews for those options will be returned. 
+        
+        If "ShippingSpeedCategories" are not inputed, then previews for all available options 
+        are returned.
+
+        The service will return the fulfillment estimates for a set of merchant 
+        SKUs and quantities.
+      </wsdl:documentation>
+      <wsdl:input message="tns:GetFulfillmentPreviewRequestMsg" wsa:Action="urn:GetFulfillmentPreview" />
+      <wsdl:output message="tns:GetFulfillmentPreviewResponseMsg" wsa:Action="urn:GetFulfillmentPreview:Response" />
+    </wsdl:operation>
+
+  </wsdl:portType>
+
+
+  <!-- *************************************************************************
+   * Service Bindings
+   ************************************************************************* -->
+
+  <wsdl:binding name="AmazonFBAOutboundBinding" type="tns:AmazonFBAOutboundPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+
+    <wsdl:operation name="GetServiceStatus">
+      <soap:operation soapAction="GetServiceStatus" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="CreateFulfillmentOrder">
+      <soap:operation soapAction="CreateFulfillmentOrder" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="CancelFulfillmentOrder">
+      <soap:operation soapAction="CancelFulfillmentOrder" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetFulfillmentOrder">
+      <soap:operation soapAction="GetFulfillmentOrder" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="ListAllFulfillmentOrders">
+      <soap:operation soapAction="ListAllFulfillmentOrders" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="ListAllFulfillmentOrdersByNextToken">
+      <soap:operation soapAction="ListAllFulfillmentOrdersByNextToken" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+    <wsdl:operation name="GetFulfillmentPreview">
+      <soap:operation soapAction="GetFulfillmentPreview" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+
+
+  </wsdl:binding>
+
+
+  <!-- *************************************************************************
+   * Service Definition
+   ************************************************************************* -->
+
+  <wsdl:service name="AmazonFBAOutbound">
+    <wsdl:documentation>
+      Amazon Web Service used to create and manage outbound shipments from
+      the Amazon Fulfillment Network.
+    </wsdl:documentation>
+    <wsdl:port name="AmazonFBAOutboundPort" binding="tns:AmazonFBAOutboundBinding">
+      <soap:address location="https://fba-outbound.amazonaws.com" />
+    </wsdl:port>
+  </wsdl:service>
+
+</wsdl:definitions>

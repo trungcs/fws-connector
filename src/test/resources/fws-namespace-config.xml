@@ -19,7 +19,7 @@
                           http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
                           http://www.mulesoft.org/schema/mule/fws http://www.mulesoft.org/schema/mule/fws/1.0/mule-fws.xsd">
 
-  <fws:config />
+  <fws:config accessKey="foo"  secretKey="bar"/>
 
   <flow name="DeleteInboundShipmentItems">
     <inbound-endpoint address="vm://DeleteInboundShipmentItems"
@@ -103,7 +103,7 @@
     <inbound-endpoint address="vm://ListInboundShipments"
       exchange-pattern="request-response" />
     <fws:list-inbound-shipments
-      shipmentStatus="CANCELED" createdAfter="#[varaible:creationDate]" />
+      shipmentStatus="CANCELLED" createdAfter="#[varaible:creationDate]" />
   </flow>
 
 
@@ -160,7 +160,7 @@
   <flow name="GetFulfillmentPreview">
     <inbound-endpoint address="vm://GetFulfillmentPreview"
       exchange-pattern="request-response" />
-    <fws:get-fulfillment-preview
+    <fws:get-fulfillment-preview address="#[variable:address]"
       merchantSku="FHUD4896" shippingSpeedCategories="Standard"
       quantity="15" orderItemId="X123698" />
   </flow>
@@ -184,7 +184,7 @@
     <inbound-endpoint address="vm://GetInventorySupply"
       exchange-pattern="request-response" />
     <fws:get-inventory-supply
-      startDateTime="#[header:querystartDateTime]" responseGroup="DETAILED" />
+      merchantSku="FDF68" responseGroup="DETAILED" />
   </flow>
 
 

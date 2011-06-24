@@ -17,7 +17,7 @@ import org.junit.Test;
 
 import org.mule.module.fws.FWSCloudConnector;
 
-public class FWSTestCase
+public class FWSUnitTest
 {
     @Test
     public void invokeSomeMethodOnTheCloudConnector()
