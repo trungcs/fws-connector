@@ -22,6 +22,9 @@ import org.mule.module.fws.api.internal.ShipmentPreview;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
+import javax.validation.constraints.NotNull;
 
 public interface FWSClient<ExceptionType extends Throwable>
 {
@@ -39,8 +42,9 @@ public interface FWSClient<ExceptionType extends Throwable>
 
     InboundShipmentData getInboundShipment(String shipmentId) throws ExceptionType;
 
-    List<ShipmentPreview> getInboundShipmentPreview(String merchantSku,
-                                                    Address address,
+    List<ShipmentPreview> getInboundShipmentPreview(@NotNull String merchantSku,
+                                                    int quantity,
+                                                    @NotNull Address address,
                                                     LabelPreference labelPreference) throws ExceptionType;
 
     String getInboundServiceStatus() throws ExceptionType;
@@ -55,11 +59,9 @@ public interface FWSClient<ExceptionType extends Throwable>
                             String shipmentName,
                             String destinationFulfillmentCenter,
                             Address shipFromAddress,
-                            String merchantSku,
-                            org.mule.module.fws.api.LabelPreference labelPreference,
-                            int quantity) throws ExceptionType;
+                            org.mule.module.fws.api.LabelPreference labelPreference) throws ExceptionType;
 
-    void putInboundShipmentItems(String shipmentId, String merchantSku, int quantity) throws ExceptionType;
+    void putInboundShipmentItems(String shipmentId, Map<String,Integer> itemQuantities) throws ExceptionType;
 
     void setInboundShipmentStatus(String shipmentId, ShipmentStatus shipmentStatus) throws ExceptionType;
 
@@ -71,8 +73,8 @@ public interface FWSClient<ExceptionType extends Throwable>
 
     List<FulfillmentPreview> getFulfillmentPreview(Address address,
                                                    String merchantSku,
-                                                   String shippingSpeedCategories,
                                                    int quantity,
+                                                   String shippingSpeedCategories,
                                                    String orderItemId) throws ExceptionType;
 
     String getOutboundServiceStatus() throws ExceptionType;

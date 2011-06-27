@@ -9,16 +9,21 @@
  */
 
 package org.mule.module.fws.api;
+
+import org.mule.module.fws.api.internal.LabelPrepPreference;
+
 /**
- * {@link LabelPreference} enum wrapper for {@link org.mule.module.fws.api.internal.LabelPrepPreference}
+ * {@link LabelPreference} enum wrapper for
+ * {@link org.mule.module.fws.api.internal.LabelPrepPreference}
+ * 
  * @author flbulgarelli
  */
 public enum LabelPreference
 {
-    AMAZON_LABEL_ONLY(org.mule.module.fws.api.internal.LabelPrepPreference.AMAZON_LABEL_ONLY),
-    AMAZON_LABEL_PREFERRED(org.mule.module.fws.api.internal.LabelPrepPreference.AMAZON_LABEL_PREFERRED),
-    MERCHANT_LABEL (org.mule.module.fws.api.internal.LabelPrepPreference.MERCHANT_LABEL);
-    
+    AMAZON_LABEL_ONLY(org.mule.module.fws.api.internal.LabelPrepPreference.AMAZON_LABEL_ONLY), AMAZON_LABEL_PREFERRED(
+                    org.mule.module.fws.api.internal.LabelPrepPreference.AMAZON_LABEL_PREFERRED), MERCHANT_LABEL(
+                    org.mule.module.fws.api.internal.LabelPrepPreference.MERCHANT_LABEL);
+
     private final org.mule.module.fws.api.internal.LabelPrepPreference fwsLabelPrepPreference;
 
     private LabelPreference(org.mule.module.fws.api.internal.LabelPrepPreference fwsLabelPrepPreference)
@@ -31,6 +36,9 @@ public enum LabelPreference
         return fwsLabelPrepPreference;
     }
 
+    public static LabelPrepPreference toFwsLabelPrepPreference(LabelPreference labelPreference)
+    {
+        return labelPreference == null ? null : labelPreference.toFwsLabelPrepPreference();
+    }
+
 }
-
-

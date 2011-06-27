@@ -20,7 +20,6 @@ import org.mule.module.fws.api.FWSClient;
 import org.mule.module.fws.api.FWSClientAdaptor;
 import org.mule.module.fws.api.ItemCondition;
 import org.mule.module.fws.api.LabelPreference;
-import org.mule.module.fws.api.LabelPreference;
 import org.mule.module.fws.api.ShipmentStatus;
 import org.mule.module.fws.api.internal.Address;
 import org.mule.module.fws.api.internal.FulfillmentItem;
@@ -38,6 +37,7 @@ import org.mule.tools.cloudconnect.annotations.Property;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 
@@ -175,15 +175,16 @@ public class FWSCloudConnector implements Initialisable
      * @param merchantSku
      * @param address
      * @param labelPreference 
+     * @param quantity 
      * @return the list of previews 
      */
     @Operation
-    public List<ShipmentPreview> getInboundShipmentPreview(String merchantSku,
-                                                           Address address,
-                                                           /* TODO optional */
-                                                           LabelPreference labelPreference)
+    public List<ShipmentPreview> getInboundShipmentPreview(@Parameter String merchantSku,
+                                                           @Parameter(optional = true, defaultValue = "1") int quantity,
+                                                           @Parameter Address address,
+                                                           @Parameter(optional = true) LabelPreference labelPreference)
     {
-        return client.getInboundShipmentPreview(merchantSku, address, labelPreference);
+        return client.getInboundShipmentPreview(merchantSku, quantity, address, labelPreference);
     }
  
     /**
@@ -258,21 +259,16 @@ public class FWSCloudConnector implements Initialisable
      * @param shipmentName
      * @param destinationFulfillmentCenter
      * @param shipFromAddress
-     * @param merchantSku 
      * @param labelPreference 
-     * @param quantity 
      */
     @Operation
-    public void putInboundShipment(String shipmentId,
-                                   String shipmentName,
-                                   String destinationFulfillmentCenter,
-                                   Address shipFromAddress,
-                                   String merchantSku,
-                                   LabelPreference labelPreference,
-                                   int quantity)
+    public void putInboundShipment(@Parameter String shipmentId,
+                                   @Parameter String shipmentName,
+                                   @Parameter String destinationFulfillmentCenter,
+                                   @Parameter Address shipFromAddress,
+                                   @Parameter(optional = true) LabelPreference labelPreference)
     {
-        client.putInboundShipment(shipmentId, shipmentName, destinationFulfillmentCenter, shipFromAddress,
-            merchantSku, labelPreference, quantity);
+        client.putInboundShipment(shipmentId, shipmentName, destinationFulfillmentCenter, shipFromAddress, labelPreference);
     }
     
     /**
@@ -283,17 +279,21 @@ public class FWSCloudConnector implements Initialisable
      * This call returns an exception if you attempt to add line items to a shipment that is in a status other than Working.
      * 
      * {@code <put-inbound-shipment-items
-     *      shipmentId="#[variable:shipmentId]"
-     *      merchantSku="#[variable:merchantSku]"
-     *      quantity="#[variable:quantity]"/>}
+     *      shipmentId="#[variable:shipmentId]">
+     *          <itemQuantities>
+     *              <itemQuantity key="#[variable:aMerchantSku]" value="#[variable:quantity]"/>
+     *          </itemQuantities>
+     *        </put-inbound-shipment-items>}
      * @param shipmentId
-     * @param merchantSku
-     * @param quantity
+     * @param itemQuantities 
+     * @param itemQuantitiesRef
      */
     @Operation
-    public void putInboundShipmentItems(String shipmentId, String merchantSku, int quantity)
+    public void putInboundShipmentItems(@Parameter String shipmentId,
+                                        @Parameter(optional = true) Map<String, Integer> itemQuantities,
+                                        @Parameter(optional = true) Object itemQuantitiesRef)
     {
-        client.putInboundShipmentItems(shipmentId, merchantSku, quantity);
+        client.putInboundShipmentItems(shipmentId, itemQuantities);
     }
  
     /**
@@ -377,8 +377,8 @@ public class FWSCloudConnector implements Initialisable
                                                           int quantity,
                                                           String orderItemId)
     {
-        return client.getFulfillmentPreview(address, merchantSku, shippingSpeedCategories /* TODO */,
-            quantity, orderItemId);
+        return client.getFulfillmentPreview(address, merchantSku, quantity, shippingSpeedCategories,
+            orderItemId);
     }
 
 
