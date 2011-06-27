@@ -76,9 +76,7 @@ public abstract class PortProvider<T>
 
     private String getTimestamp()
     {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        df.setTimeZone(TimeZone.getTimeZone("UTC"));
-        return df.format(new Date());
+        return FwsDates.format(new Date());
     }
 
     private String sign(String data, String key) throws SignatureException

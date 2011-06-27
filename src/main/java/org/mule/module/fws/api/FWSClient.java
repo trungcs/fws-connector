@@ -12,14 +12,14 @@ package org.mule.module.fws.api;
 
 import org.mule.module.fws.api.internal.Address;
 import org.mule.module.fws.api.internal.FulfillmentItem;
+import org.mule.module.fws.api.internal.FulfillmentOrder;
 import org.mule.module.fws.api.internal.FulfillmentPreview;
 import org.mule.module.fws.api.internal.GetFulfillmentOrderResult;
 import org.mule.module.fws.api.internal.InboundShipmentData;
+import org.mule.module.fws.api.internal.InboundShipmentItem;
 import org.mule.module.fws.api.internal.MerchantSKUSupply;
 import org.mule.module.fws.api.internal.ShipmentPreview;
-import org.mule.tools.cloudconnect.annotations.Parameter;
 
-import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.List;
 
@@ -45,9 +45,9 @@ public interface FWSClient<ExceptionType extends Throwable>
 
     Iterable<?> listFulfillmentItems(boolean includeInactive) throws ExceptionType;
 
-    Iterable<?> listInboundShipmentItems(String shipmentId) throws ExceptionType;
+    Iterable<InboundShipmentItem> listInboundShipmentItems(String shipmentId) throws ExceptionType;
 
-    Iterable<?> listInboundShipments(ShipmentStatus shipmentStatus, Date createdAfter) throws ExceptionType;
+    Iterable<InboundShipmentData> listInboundShipments(ShipmentStatus shipmentStatus, Date createdAfter, Date createdBefore) throws ExceptionType;
 
     void putInboundShipment(String shipmentId,
                             String shipmentName,
@@ -72,11 +72,11 @@ public interface FWSClient<ExceptionType extends Throwable>
 
     String getOutboundServiceStatus() throws ExceptionType;
 
-    Iterable<?> listFulfillmentOrders() throws ExceptionType;
+    Iterable<FulfillmentOrder> listFulfillmentOrders(Date startDate) throws ExceptionType;
 
     List<MerchantSKUSupply> getInventorySupply(String merchantSku, String responseGroup) throws ExceptionType;
 
     String getInventoryServiceStatus() throws ExceptionType;
 
-    void listUpdatedInventorySupply(Date startDateTime, String responseGroup) throws ExceptionType;
+    Iterable<MerchantSKUSupply> listUpdatedInventorySupply(Date startDateTime, String responseGroup) throws ExceptionType;
 }

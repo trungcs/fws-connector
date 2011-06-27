@@ -17,12 +17,15 @@ import java.rmi.RemoteException;
 import java.util.Arrays;
 import java.util.Iterator;
 
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.MethodUtils;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.UnhandledException;
 
 public abstract class FwsPaginatedIterable<T, Page> extends PaginatedIterable<T, Page>
 {
-    private Object[] EMPTY = new Object[0];
+    private static final Object[] EMPTY = new Object[0];
 
     @Override
     protected final Page firstPage()
@@ -53,19 +56,26 @@ public abstract class FwsPaginatedIterable<T, Page> extends PaginatedIterable<T,
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected final Page nextPage(Page currentPage)
     {
         try
         {
-            return nextFwsPage(currentPage);
+            Page nextPage = (Page) currentPage.getClass().newInstance();
+            PropertyUtils.copyProperties(nextPage, nextFwsPage(currentPage));
+            return nextPage;
         }
         catch (RemoteException e)
         {
             throw new UnhandledException(e);
         }
+        catch (Exception e)
+        {
+            throw new AssertionError(e);
+        }
     }
 
-    protected abstract Page nextFwsPage(Page currentPage) throws RemoteException;
+    protected abstract Object nextFwsPage(Page currentPage) throws RemoteException;
 
     @Override
     protected final Iterator<T> pageIterator(Page page)

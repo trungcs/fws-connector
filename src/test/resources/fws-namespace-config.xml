@@ -103,7 +103,9 @@
     <inbound-endpoint address="vm://ListInboundShipments"
       exchange-pattern="request-response" />
     <fws:list-inbound-shipments
-      shipmentStatus="CANCELLED" createdAfter="#[varaible:creationDate]" />
+      shipmentStatus="CANCELLED" 
+      createdAfter="#[varaible:initialCreationDate]" 
+      createdBefore="#[varaible:finalCreationDate]"/>
   </flow>
 
 
@@ -177,7 +179,7 @@
   <flow name="ListFulfillmentOrders">
     <inbound-endpoint address="vm://ListFulfillmentOrders"
       exchange-pattern="request-response" />
-    <fws:list-fulfillment-orders />
+    <fws:list-fulfillment-orders startDate="#[payload]" />
   </flow>
 
   <flow name="GetInventorySupply">

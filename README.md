@@ -270,6 +270,9 @@ Lazily lists the inbound shipments a merchant has created, according to the spec
 |config-ref|Specify which configuration to use for this invocation|yes||
 |shipmentStatus||no||*WORKING*, *SHIPPED*, *INTRANSIT*, *DELIVERED*, *CHECKEDIN*, *RECEIVING*, *CLOSED*, *CANCELLED*, *ERROR*, *fwsShipmentStatus*
 |createdAfter||no||
+|createdBefore||no||
+
+Returns shipment data iterable
 
 
 
@@ -447,6 +450,9 @@ Lazily lists all the fulfillment orders
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
+|startDate||no||
+
+Returns orders iterable
 
 
 
@@ -469,6 +475,8 @@ Gets information about the supply of merchant-owned inventory in Amazon's fulfil
 |config-ref|Specify which configuration to use for this invocation|yes||
 |merchantSku||no||
 |responseGroup||no||
+
+Returns merchant sku supply iterable
 
 
 
@@ -505,6 +513,8 @@ TODO
 |config-ref|Specify which configuration to use for this invocation|yes||
 |startDateTime||no||
 |responseGroup||no||
+
+Returns merchant sku supply iterable
 
 
 

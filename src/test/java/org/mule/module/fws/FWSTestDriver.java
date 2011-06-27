@@ -10,11 +10,12 @@
 
 package org.mule.module.fws;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertTrue;
 
 import org.mule.api.lifecycle.InitialisationException;
 import org.mule.module.fws.api.ShipmentStatus;
+import org.mule.module.fws.api.internal.FulfillmentOrder;
 
 import java.util.Date;
 
@@ -55,7 +56,9 @@ public class FWSTestDriver
     @Test
     public void listFulfillmentOrders()
     {
-        assertNotNull(connector.listFulfillmentOrders());
+        assertFalse(connector.listFulfillmentOrders(new Date()).iterator().hasNext());
+        connector.createFulfillmentOrder("126");
+        assertTrue(connector.listFulfillmentOrders(new Date()).iterator().hasNext());
     }
     
 
@@ -70,7 +73,7 @@ public class FWSTestDriver
     @Test
     public void listInboundShipments()
     {
-        assertNotNull(connector.listInboundShipments(ShipmentStatus.SHIPPED, new Date()));
+        assertNotNull(connector.listInboundShipments(ShipmentStatus.SHIPPED, new Date(), new Date()));
     }
 
     @Test

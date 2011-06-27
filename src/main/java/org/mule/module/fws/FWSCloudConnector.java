@@ -22,6 +22,7 @@ import org.mule.module.fws.api.ItemCondition;
 import org.mule.module.fws.api.ShipmentStatus;
 import org.mule.module.fws.api.internal.Address;
 import org.mule.module.fws.api.internal.FulfillmentItem;
+import org.mule.module.fws.api.internal.FulfillmentOrder;
 import org.mule.module.fws.api.internal.FulfillmentPreview;
 import org.mule.module.fws.api.internal.GetFulfillmentOrderResult;
 import org.mule.module.fws.api.internal.InboundShipmentData;
@@ -225,11 +226,13 @@ public class FWSCloudConnector implements Initialisable
      * 
      * @param shipmentStatus
      * @param createdAfter
+     * @param createdBefore 
+     * @return a shipment data iterable
      */
     @Operation
-    public Iterable<?> listInboundShipments(ShipmentStatus shipmentStatus, Date createdAfter)
+    public Iterable<InboundShipmentData> listInboundShipments(ShipmentStatus shipmentStatus, Date createdAfter, /*TODO optional*/Date createdBefore)
     {
-        return client.listInboundShipments(shipmentStatus, createdAfter);
+        return client.listInboundShipments(shipmentStatus, createdAfter, createdBefore);
     }
 
     /**
@@ -380,12 +383,13 @@ public class FWSCloudConnector implements Initialisable
      * Lazily lists all the fulfillment orders
      * 
      * {@code <list-fulfillment-orders/> } 
+     * @param startDate 
+     * @return the orders iterable 
      */
     @Operation
-    public Iterable<?> listFulfillmentOrders()
+    public Iterable<FulfillmentOrder> listFulfillmentOrders(Date startDate /*TODO optional*/)
     {
-        /* TODO */
-        return client.listFulfillmentOrders();
+        return client.listFulfillmentOrders(startDate);
     }
      
      /**
@@ -399,7 +403,7 @@ public class FWSCloudConnector implements Initialisable
       *     responseGroup="DETAILED"/> }
       * @param merchantSku
       * @param responseGroup
-     *  @return 
+     *  @return a merchant sku supply iterable
       */
     @Operation
     public List<MerchantSKUSupply> getInventorySupply(String merchantSku, String responseGroup)
@@ -428,12 +432,12 @@ public class FWSCloudConnector implements Initialisable
      * 
      * @param startDateTime
      * @param responseGroup
+     * @return a merchant sku supply iterable
      */
     @Operation
-    public void listUpdatedInventorySupply(Date startDateTime, String responseGroup)
+    public Iterable<MerchantSKUSupply> listUpdatedInventorySupply(Date startDateTime, String responseGroup)
     {
-        /* TODO */
-        client.listUpdatedInventorySupply(startDateTime, responseGroup);
+        return client.listUpdatedInventorySupply(startDateTime, responseGroup);
     }
 
     public void initialise() throws InitialisationException
