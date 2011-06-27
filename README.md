@@ -201,6 +201,7 @@ In this case, there is one shipment for each of the shipment sets returned.
 |config-ref|Specify which configuration to use for this invocation|yes||
 |merchantSku||no||
 |address||no||
+|labelPreference||no||*AMAZON_LABEL_ONLY*, *AMAZON_LABEL_PREFERRED*, *MERCHANT_LABEL*, *fwsLabelPreference*
 
 Returns list of previews
 
@@ -238,6 +239,8 @@ If IncludeInactive is set to True, the operation returns both active (available 
 |config-ref|Specify which configuration to use for this invocation|yes||
 |includeInactive||no||
 
+Returns fulfullment items iterable
+
 
 
 List Inbound Shipment Items
@@ -253,6 +256,8 @@ TODO
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |shipmentId||no||
+
+Returns shipment items iterable
 
 
 
@@ -296,6 +301,9 @@ Adds or replaces inbound shipment data (minus the item details) for a given ship
 |shipmentName||no||
 |destinationFulfillmentCenter||no||
 |shipFromAddress||no||
+|merchantSku||no||
+|labelPrepPreference||no||*AMAZON_LABEL_ONLY*, *AMAZON_LABEL_PREFERRED*, *MERCHANT_LABEL*, *fwsLabelPrepPreference*
+|quantity||no||
 
 
 

@@ -39,11 +39,13 @@ public interface FWSClient<ExceptionType extends Throwable>
 
     InboundShipmentData getInboundShipment(String shipmentId) throws ExceptionType;
 
-    List<ShipmentPreview> getInboundShipmentPreview(String merchantSku, Address address) throws ExceptionType;
+    List<ShipmentPreview> getInboundShipmentPreview(String merchantSku,
+                                                    Address address,
+                                                    LabelPreference labelPreference) throws ExceptionType;
 
     String getInboundServiceStatus() throws ExceptionType;
 
-    Iterable<?> listFulfillmentItems(boolean includeInactive) throws ExceptionType;
+    Iterable<FulfillmentItem> listFulfillmentItems(boolean includeInactive) throws ExceptionType;
 
     Iterable<InboundShipmentItem> listInboundShipmentItems(String shipmentId) throws ExceptionType;
 
@@ -52,7 +54,10 @@ public interface FWSClient<ExceptionType extends Throwable>
     void putInboundShipment(String shipmentId,
                             String shipmentName,
                             String destinationFulfillmentCenter,
-                            String shipFromAddress) throws ExceptionType;
+                            Address shipFromAddress,
+                            String merchantSku,
+                            org.mule.module.fws.api.LabelPreference labelPreference,
+                            int quantity) throws ExceptionType;
 
     void putInboundShipmentItems(String shipmentId, String merchantSku, int quantity) throws ExceptionType;
 
@@ -60,7 +65,7 @@ public interface FWSClient<ExceptionType extends Throwable>
 
     void cancelFulfillmentOrder(String orderId) throws ExceptionType;
 
-    void createFulfillmentOrder(String orderId) throws ExceptionType;
+    GetFulfillmentOrderResult createFulfillmentOrder(String orderId) throws ExceptionType;
 
     GetFulfillmentOrderResult getFulfillmentOrder(String orderId) throws ExceptionType;
 

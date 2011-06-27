@@ -19,6 +19,8 @@ import org.mule.module.fws.api.AxisFWSClient;
 import org.mule.module.fws.api.FWSClient;
 import org.mule.module.fws.api.FWSClientAdaptor;
 import org.mule.module.fws.api.ItemCondition;
+import org.mule.module.fws.api.LabelPreference;
+import org.mule.module.fws.api.LabelPreference;
 import org.mule.module.fws.api.ShipmentStatus;
 import org.mule.module.fws.api.internal.Address;
 import org.mule.module.fws.api.internal.FulfillmentItem;
@@ -26,6 +28,7 @@ import org.mule.module.fws.api.internal.FulfillmentOrder;
 import org.mule.module.fws.api.internal.FulfillmentPreview;
 import org.mule.module.fws.api.internal.GetFulfillmentOrderResult;
 import org.mule.module.fws.api.internal.InboundShipmentData;
+import org.mule.module.fws.api.internal.InboundShipmentItem;
 import org.mule.module.fws.api.internal.MerchantSKUSupply;
 import org.mule.module.fws.api.internal.ShipmentPreview;
 import org.mule.tools.cloudconnect.annotations.Connector;
@@ -168,15 +171,19 @@ public class FWSCloudConnector implements Initialisable
      * You might need to create multiple shipments for various reasons, but the most common reason is when there are sortable and non-sortable items. 
      * In this case, there is one shipment for each of the shipment sets returned.
      *
-     * {@code <get-inbound-shipment-preview  merchantSku="AF15962"  address="#[address]" />}
+     * {@code <get-inbound-shipment-preview  merchantSku="AF15962"  address="#[address]" labelPreference="MERCHANT_LABEL" />}
      * @param merchantSku
      * @param address
+     * @param labelPreference 
      * @return the list of previews 
      */
     @Operation
-    public List<ShipmentPreview> getInboundShipmentPreview(String merchantSku, Address address)
+    public List<ShipmentPreview> getInboundShipmentPreview(String merchantSku,
+                                                           Address address,
+                                                           /* TODO optional */
+                                                           LabelPreference labelPreference)
     {
-        return client.getInboundShipmentPreview(merchantSku, address);
+        return client.getInboundShipmentPreview(merchantSku, address, labelPreference);
     }
  
     /**
@@ -198,9 +205,10 @@ public class FWSCloudConnector implements Initialisable
      * {@code <list-fulfillment-items includeInactive="true"/>}
      * 
      * @param includeInactive
+     * @return a fulfullment items iterable
      */
     @Operation
-    public Iterable<?> listFulfillmentItems(boolean includeInactive)
+    public Iterable<FulfillmentItem> listFulfillmentItems(boolean includeInactive)
     {
         return client.listFulfillmentItems(includeInactive);
     }
@@ -211,10 +219,10 @@ public class FWSCloudConnector implements Initialisable
      * {@code <list-inbound-shipment-items shipmentId="#[header:shipmentId]"/>}
      * 
      * @param shipmentId
-     * @return
+     * @return a shipment items iterable
      */
     @Operation
-    public Iterable<?> listInboundShipmentItems(String shipmentId)
+    public Iterable<InboundShipmentItem> listInboundShipmentItems(String shipmentId)
     {
         return client.listInboundShipmentItems(shipmentId);
     }
@@ -238,25 +246,33 @@ public class FWSCloudConnector implements Initialisable
     /**
      * Adds or replaces inbound shipment data (minus the item details) for a given shipmentId.
      * 
-     * {@code <put-inbound-shipment-data 
-     *      shipmentId="#[variable:shipmentId]" 
-     *      shipmentName="#[variable:shipmentName]"
-     *      destinationFulfillmentCenter="#[variable:destinationFulfillmentCenter]"
-     *      shipFromAddress="#[variable:shipFromAddress]" />}
+     * {@code <put-inbound-shipment 
+     *    labelPreference="MERCHANT_LABEL"
+     *    merchantSku="#[variable:merchantSku]"
+     *    quantity="10"
+     *    shipmentId="#[variable:shipmentId]" shipmentName="#[variable:shipmentName]"
+     *    destinationFulfillmentCenter="#[variable:destinationFulfillmentCenter]"
+     *    shipFromAddress="#[variable:shipFromAddress]" />}
      *      
      * @param shipmentId
      * @param shipmentName
      * @param destinationFulfillmentCenter
      * @param shipFromAddress
+     * @param merchantSku 
+     * @param labelPreference 
+     * @param quantity 
      */
     @Operation
     public void putInboundShipment(String shipmentId,
                                    String shipmentName,
                                    String destinationFulfillmentCenter,
-                                   String shipFromAddress)
+                                   Address shipFromAddress,
+                                   String merchantSku,
+                                   LabelPreference labelPreference,
+                                   int quantity)
     {
-        // TODO putShipment vs putSHipmentData
-        client.putInboundShipment(shipmentId, shipmentName, destinationFulfillmentCenter, shipFromAddress);
+        client.putInboundShipment(shipmentId, shipmentName, destinationFulfillmentCenter, shipFromAddress,
+            merchantSku, labelPreference, quantity);
     }
     
     /**
@@ -315,12 +331,12 @@ public class FWSCloudConnector implements Initialisable
      * 
      * {@code <create-fulfillment-order orderId="#[orderId]" /> }
      * @param orderId
+     * @return 
      */
     @Operation
-    public void createFulfillmentOrder(String orderId)
+    public GetFulfillmentOrderResult createFulfillmentOrder(String orderId)
     {
-        // TODO
-        client.createFulfillmentOrder(orderId);
+        return client.createFulfillmentOrder(orderId);
     }
 
     /**
@@ -347,7 +363,7 @@ public class FWSCloudConnector implements Initialisable
      *     shippingSpeedCategories="Standard"
      *     quantity="15"
      *     orderItemId="X123698" /> }
-     *
+     * @param address 
      * @param merchantSku
      * @param shippingSpeedCategories
      * @param quantity

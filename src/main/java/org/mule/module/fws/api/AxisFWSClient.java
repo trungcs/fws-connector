@@ -106,21 +106,22 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         };
     }
 
-    public void cancelFulfillmentOrder(String orderId)
+    public void cancelFulfillmentOrder(String orderId) throws RemoteException
     {
-        // TODO
+        outboundPortProvider.getPort("CancelFulfillmentOrder").cancelFulfillmentOrder(orderId);
     }
 
-    public void createFulfillmentOrder(String orderId)
+    public GetFulfillmentOrderResult createFulfillmentOrder(String orderId) throws RemoteException
     {
-        // TODO Auto-generated method stub
-
+        GetFulfillmentOrderResultHolder result = new GetFulfillmentOrderResultHolder();
+        outboundPortProvider.getPort(result).getFulfillmentOrder(orderId, result , new ResponseMetadataHolder());
+        return result.value;
     }
 
-    public void deleteInboundShipmentItems(String merchantSku, String shipmentId)
+    public void deleteInboundShipmentItems(String merchantSku, String shipmentId) throws RemoteException
     {
-        // TODO Auto-generated method stub
-
+        inboundPortProvider.getPort("DeleteInboundShipmentItems").deleteInboundShipmentItems(shipmentId,
+            new String[]{merchantSku});
     }
 
     public List<FulfillmentItem> getFulfillmentIdentifier(String asin,
@@ -199,12 +200,12 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         return result.value.getShipmentData();
     }
 
-    public List<ShipmentPreview> getInboundShipmentPreview(String merchantSku, Address address)
+    public List<ShipmentPreview> getInboundShipmentPreview(String merchantSku, Address address, LabelPreference labelPreference)
         throws RemoteException
     {
         GetInboundShipmentPreviewResultHolder result = new GetInboundShipmentPreviewResultHolder();
         inboundPortProvider.getPort(result).getInboundShipmentPreview(address, null, /* TODO */
-        null /* TODO */, result, new ResponseMetadataHolder());
+        labelPreference.toFwsLabelPrepPreference(), result, new ResponseMetadataHolder());
         return Arrays.asList(result.value.getShipmentPreview());
     }
 
@@ -231,7 +232,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         return result.value.getStatus();
     }
 
-    public Iterable<?> listFulfillmentItems(final boolean includeInactive) throws RemoteException
+    public Iterable<FulfillmentItem> listFulfillmentItems(final boolean includeInactive) throws RemoteException
     {
         return new FwsPaginatedIterable<FulfillmentItem, ListAllFulfillmentItemsResult>()
         {
@@ -391,9 +392,15 @@ public class AxisFWSClient implements FWSClient<RemoteException>
     public void putInboundShipment(String shipmentId,
                                    String shipmentName,
                                    String destinationFulfillmentCenter,
-                                   String shipFromAddress)
+                                   Address shipFromAddress, 
+                                   String merchantSku, 
+                                   org.mule.module.fws.api.LabelPreference labelPreference, 
+                                   int quantity) throws RemoteException
     {
-        // TODO
+        inboundPortProvider.getPort("PutInboundShipment")//
+            .putInboundShipment(shipmentId, shipmentName, destinationFulfillmentCenter, shipFromAddress,
+                labelPreference.toFwsLabelPrepPreference(), 
+                new MerchantSKUQuantityItem[]{new MerchantSKUQuantityItem(merchantSku, quantity)});
     }
 
     public void putInboundShipmentItems(String shipmentId, String merchantSku, int quantity)
