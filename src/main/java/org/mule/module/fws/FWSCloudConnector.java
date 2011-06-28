@@ -36,6 +36,7 @@ import org.mule.module.fws.api.internal.FulfillmentPreview;
 import org.mule.module.fws.api.internal.GetFulfillmentOrderResult;
 import org.mule.module.fws.api.internal.InboundShipmentData;
 import org.mule.module.fws.api.internal.InboundShipmentItem;
+import org.mule.module.fws.api.internal.MerchantSKUQuantityItem;
 import org.mule.module.fws.api.internal.MerchantSKUSupply;
 import org.mule.module.fws.api.internal.ShipmentPreview;
 import org.mule.tools.cloudconnect.annotations.Connector;
@@ -307,16 +308,15 @@ public class FWSCloudConnector implements Initialisable
      *              <itemQuantity key="#[variable:aMerchantSku]" value="#[variable:quantity]"/>
      *          </itemQuantities>
      *        </put-inbound-shipment-items>}
-     * @param shipmentId
-     * @param itemQuantities 
-     * @param itemQuantitiesRef
+     * @param shipmentId the mandatory shipment's id
+     * @param itemQuantities a mandatory list of MerchantSKUQuantityItem objects, with the amount of item for each merchant sku. 
+     *              At least one item must be passed
      */
+    @SuppressWarnings("unchecked")
     @Operation //XXX collection handling required
-    public void putInboundShipmentItems(@Parameter String shipmentId,
-                                        @Parameter(optional = true) Map<String, Integer> itemQuantities,
-                                        @Parameter(optional = true) Object itemQuantitiesRef)
+    public void putInboundShipmentItems(@Parameter String shipmentId, @Parameter Object itemQuantities)
     {
-        client.putInboundShipmentItems(shipmentId, itemQuantities);
+        client.putInboundShipmentItems(shipmentId, (List<MerchantSKUQuantityItem>) itemQuantities);
     }
  
     /**

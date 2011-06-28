@@ -121,13 +121,7 @@
   <flow name="PutShipmentItems">
     <inbound-endpoint address="vm://PutShipmentItems"
       exchange-pattern="request-response" />
-    <fws:put-inbound-shipment-items
-      shipmentId="#[variable:shipmentId]">
-      <fws:itemQuantities>
-        <fws:itemQuantity key="#[variable:aMerchantSku]"
-          value="#[variable:quantity]" />
-      </fws:itemQuantities>
-    </fws:put-inbound-shipment-items>
+    <fws:put-inbound-shipment-items shipmentId="#[variable:shipmentId]" itemQuantities="#[variable:aQuantityItem]"/>
   </flow>
 
 

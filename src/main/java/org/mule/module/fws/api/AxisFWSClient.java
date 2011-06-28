@@ -115,7 +115,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         Validate.notNull(displayableOrderDate);
         Validate.notNull(emails);
         Validate.notNull(items);
-        Validate.isTrue(!items.isEmpty(), "At least an item must be passed");
+        Validate.notEmpty(items, "At least an item must be passed");
         GetFulfillmentOrderResultHolder result = new GetFulfillmentOrderResultHolder();
         getPort(outboundPortProvider, result).createFulfillmentOrder(orderId, displayableOrderId,
             FwsDates.format(displayableOrderDate), displayableOrderComment, shippingSpeedCategory,
@@ -436,12 +436,15 @@ public class AxisFWSClient implements FWSClient<RemoteException>
             labelPreference.toFwsLabelPrepPreference());
     }
 
-    public void putInboundShipmentItems(String shipmentId, Map<String, Integer> itemQuantities)
+    public void putInboundShipmentItems(String shipmentId, List<MerchantSKUQuantityItem> itemQuantities)
         throws RemoteException
     {
+        Validate.notEmpty(shipmentId);
+        Validate.notEmpty(itemQuantities, "At least an item quantity must be passed");
         getPort(inboundPortProvider, "PutInboundShipmentItems").putInboundShipmentItems(shipmentId,
-            toQuantityItems(itemQuantities));
+            itemQuantities.toArray(new MerchantSKUQuantityItem[itemQuantities.size()]));
     }
+    
 
     public void setInboundShipmentStatus(String shipmentId,
                                          org.mule.module.fws.api.ShipmentStatus shipmentStatus)
@@ -451,17 +454,6 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         Validate.notNull(shipmentStatus);
         getPort(inboundPortProvider, "SetInboundShipmentStatus").setInboundShipmentStatus(shipmentId,
             shipmentStatus.toFwsShipmentStatus());
-    }
-
-    public static MerchantSKUQuantityItem[] toQuantityItems(Map<String, Integer> map)
-    {
-        MerchantSKUQuantityItem[] items = new MerchantSKUQuantityItem[map.size()];
-        int i = 0;
-        for (Map.Entry<String, Integer> e : map.entrySet())
-        {
-            items[i++] = new MerchantSKUQuantityItem(e.getKey(), e.getValue());
-        }
-        return items;
     }
 
     private <T> T getPort(PortProvider<T> provider, Object action) throws RemoteException

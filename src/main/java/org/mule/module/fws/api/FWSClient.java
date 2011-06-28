@@ -18,12 +18,12 @@ import org.mule.module.fws.api.internal.FulfillmentPreview;
 import org.mule.module.fws.api.internal.GetFulfillmentOrderResult;
 import org.mule.module.fws.api.internal.InboundShipmentData;
 import org.mule.module.fws.api.internal.InboundShipmentItem;
+import org.mule.module.fws.api.internal.MerchantSKUQuantityItem;
 import org.mule.module.fws.api.internal.MerchantSKUSupply;
 import org.mule.module.fws.api.internal.ShipmentPreview;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.validation.constraints.NotNull;
 
@@ -64,7 +64,7 @@ public interface FWSClient<ExceptionType extends Throwable>
                             Address shipFromAddress,
                             org.mule.module.fws.api.LabelPreference labelPreference) throws ExceptionType;
 
-    void putInboundShipmentItems(String shipmentId, Map<String, Integer> itemQuantities) throws ExceptionType;
+    void putInboundShipmentItems(String shipmentId, List<MerchantSKUQuantityItem> itemQuantities) throws ExceptionType;
 
     void setInboundShipmentStatus(@NotNull String shipmentId, @NotNull ShipmentStatus shipmentStatus) throws ExceptionType;
 

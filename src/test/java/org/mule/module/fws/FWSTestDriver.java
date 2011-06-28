@@ -22,6 +22,7 @@ import org.mule.module.fws.api.internal.CreateFulfillmentOrderItem;
 import org.mule.module.fws.api.internal.Currency;
 import org.mule.module.fws.api.internal.FulfillmentItem;
 import org.mule.module.fws.api.internal.GetFulfillmentOrderResult;
+import org.mule.module.fws.api.internal.MerchantSKUQuantityItem;
 import org.mule.module.fws.api.internal.ShipmentPreview;
 
 import java.math.BigDecimal;
@@ -104,9 +105,7 @@ public class FWSTestDriver
         {
             connector.putInboundShipment(shipmentGroup.getShipmentId(), "A shippment",
                 shipmentGroup.getDestinationFulfillmentCenter(), TEST_ADDRESS, null);
-            connector.putInboundShipmentItems(shipmentGroup.getShipmentId(), Collections.singletonMap(
-                TEST_MSKU, 1), null);
-
+            connector.putInboundShipmentItems(shipmentGroup.getShipmentId(), Collections.singletonList(new MerchantSKUQuantityItem(TEST_MSKU, 1)));
             assertTrue(connector.listInboundShipmentItems(shipmentGroup.getShipmentId()).iterator().hasNext());
             assertTrue(connector.listInboundShipments(ShipmentStatus.WORKING, null, null).iterator().hasNext());
         }
