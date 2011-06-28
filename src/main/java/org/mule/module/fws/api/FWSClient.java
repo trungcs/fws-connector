@@ -21,7 +21,6 @@ import org.mule.module.fws.api.internal.InboundShipmentItem;
 import org.mule.module.fws.api.internal.MerchantSKUSupply;
 import org.mule.module.fws.api.internal.ShipmentPreview;
 
-import java.rmi.RemoteException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -32,17 +31,17 @@ public interface FWSClient<ExceptionType extends Throwable>
 {
     void deleteInboundShipmentItems(String merchantSku, String shipmentId) throws ExceptionType;
 
-    List<FulfillmentItem> getFulfillmentIdentifier(String asin,
-                                                   ItemCondition itemCondition,
-                                                   String merchantSku) throws ExceptionType;
+    List<FulfillmentItem> getFulfillmentIdentifier(@NotNull String asin,
+                                                   @NotNull ItemCondition itemCondition,
+                                                   @NotNull String merchantSku) throws ExceptionType;
 
-    List<FulfillmentItem> getFulfillmentIdentifierForMsku(String merchantSku) throws ExceptionType;
+    List<FulfillmentItem> getFulfillmentIdentifierForMsku(@NotNull String merchantSku) throws ExceptionType;
 
     List<FulfillmentItem> getFulfillmentItemByFnsku(String fulfillmentNetworkSku) throws ExceptionType;
 
-    List<FulfillmentItem> getFulfillmentItemByMsku(String merchantSku) throws ExceptionType;
+    List<FulfillmentItem> getFulfillmentItemByMsku(@NotNull String merchantSku) throws ExceptionType;
 
-    InboundShipmentData getInboundShipment(String shipmentId) throws ExceptionType;
+    InboundShipmentData getInboundShipment(@NotNull String shipmentId) throws ExceptionType;
 
     List<ShipmentPreview> getInboundShipmentPreview(@NotNull String merchantSku,
                                                     int quantity,
@@ -53,7 +52,7 @@ public interface FWSClient<ExceptionType extends Throwable>
 
     Iterable<FulfillmentItem> listFulfillmentItems(boolean includeInactive) throws ExceptionType;
 
-    Iterable<InboundShipmentItem> listInboundShipmentItems(String shipmentId) throws ExceptionType;
+    Iterable<InboundShipmentItem> listInboundShipmentItems(@NotNull String shipmentId) throws ExceptionType;
 
     Iterable<InboundShipmentData> listInboundShipments(@NotNull ShipmentStatus shipmentStatus,
                                                        Date createdAfter,
@@ -69,7 +68,7 @@ public interface FWSClient<ExceptionType extends Throwable>
 
     void setInboundShipmentStatus(@NotNull String shipmentId, @NotNull ShipmentStatus shipmentStatus) throws ExceptionType;
 
-    void cancelFulfillmentOrder(String orderId) throws ExceptionType;
+    void cancelFulfillmentOrder(@NotNull String orderId) throws ExceptionType;
 
     GetFulfillmentOrderResult createFulfillmentOrder(@NotNull String orderId,
                                                      @NotNull String displayableOrderId,
@@ -83,7 +82,7 @@ public interface FWSClient<ExceptionType extends Throwable>
                                                      @NotNull List<CreateFulfillmentOrderItem> items)
         throws ExceptionType;
 
-    GetFulfillmentOrderResult getFulfillmentOrder(String orderId) throws ExceptionType;
+    GetFulfillmentOrderResult getFulfillmentOrder(@NotNull String orderId) throws ExceptionType;
 
     List<FulfillmentPreview> getFulfillmentPreview(@NotNull Address address,
                                                    @NotNull String merchantSku,
@@ -95,7 +94,7 @@ public interface FWSClient<ExceptionType extends Throwable>
 
     Iterable<FulfillmentOrder> listFulfillmentOrders(Date startDate) throws ExceptionType;
 
-    List<MerchantSKUSupply> getInventorySupply(String merchantSku, String responseGroup) throws ExceptionType;
+    List<MerchantSKUSupply> getInventorySupply(@NotNull String merchantSku, String responseGroup) throws ExceptionType;
 
     String getInventoryServiceStatus() throws ExceptionType;
 

@@ -101,9 +101,9 @@ Use this operation instead of getFulfillmentIdentifierForMSKU if an offer does n
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|asin||no||
-|itemCondition||no||*NEW_ITEM*, *NEW_WITH_WARRANTY*, *NEW_OEM*, *NEW_OPEN_BOX*, *USED_LIKE_NEW*, *USED_VERY_GOOD*, *USED_GOOD*, *USED_ACCEPTABLE*, *USED_POOR*, *USED_REFURBISHED*, *COLLECTIBLE_LIKE_NEW*, *COLLECTIBLE_VERY_GOOD*, *COLLECTIBLE_GOOD*, *COLLECTIBLE_ACCEPTABLE*, *COLLECTIBLE_POOR*, *REFURBISHED_WITH_WARRANTY*, *REFUrbished*, *CLUB*, *UNKNOWN*, *fwsItemCondition*
-|merchantSku||no||
+|asin|the mandatory Aamzon's identifier|no||
+|itemCondition|the mandatory item's condition|no||*NEW_ITEM*, *NEW_WITH_WARRANTY*, *NEW_OEM*, *NEW_OPEN_BOX*, *USED_LIKE_NEW*, *USED_VERY_GOOD*, *USED_GOOD*, *USED_ACCEPTABLE*, *USED_POOR*, *USED_REFURBISHED*, *COLLECTIBLE_LIKE_NEW*, *COLLECTIBLE_VERY_GOOD*, *COLLECTIBLE_GOOD*, *COLLECTIBLE_ACCEPTABLE*, *COLLECTIBLE_POOR*, *REFURBISHED_WITH_WARRANTY*, *REFUrbished*, *CLUB*, *UNKNOWN*, *fwsItemCondition*
+|merchantSku|the mandatory merchant's sku|no||
 
 
 
@@ -146,7 +146,7 @@ can track it. An inactive item can have a quantity in the fulfillment center, bu
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|fulfillmentNetworkSku||no||
+|fulfillmentNetworkSku|the mandatory fulfillment network sku - aka nsku, aka fnsku|no||
 
 
 
@@ -165,7 +165,7 @@ A response does not imply that the item has an offer for which it can be fulfill
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|merchantSku||no||
+|merchantSku|the mandatory merchant's sku|no||
 
 
 
@@ -180,7 +180,7 @@ Gets inbound shipment data without the item details for a given ShipmentId.
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|shipmentId||no||
+|shipmentId|the mandatory shipment id|no||
 
 
 
@@ -238,16 +238,16 @@ If IncludeInactive is set to True, the operation returns both active (available 
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|includeInactive||no||
+|includeInactive|optional. Whether non available items for fulfillment should be listed|yes|false|
 
-Returns fulfullment items iterable
+Returns FulfillmentItem iterable
 
 
 
 List Inbound Shipment Items
 ---------------------------
 
-TODO
+Lazily retrieved the all the inbound shipment items for the given shipmentId. 
 
 
 
@@ -256,9 +256,9 @@ TODO
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|shipmentId||no||
+|shipmentId|the mandatory shipment's id|no||
 
-Returns shipment items iterable
+Returns InboundShipmentItem items iterable
 
 
 
@@ -274,9 +274,9 @@ Lazily lists the inbound shipments a merchant has created, according to the spec
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|shipmentStatus||no||*WORKING*, *SHIPPED*, *INTRANSIT*, *DELIVERED*, *CHECKEDIN*, *RECEIVING*, *CLOSED*, *CANCELLED*, *ERROR*, *fwsShipmentStatus*
-|createdAfter||yes||
-|createdBefore||yes||
+|shipmentStatus|the mandatory status of listed items|no||*WORKING*, *SHIPPED*, *INTRANSIT*, *DELIVERED*, *CHECKEDIN*, *RECEIVING*, *CLOSED*, *CANCELLED*, *ERROR*, *fwsShipmentStatus*
+|createdAfter|optional. The min creation date of listed shipment|yes||
+|createdBefore|optional. The max creation date of listed shipments|yes||
 
 Returns shipment data iterable
 
@@ -369,7 +369,7 @@ orders may not be canceled.
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|orderId||no||
+|orderId|the mandatory order's id|no||
 
 
 
@@ -418,7 +418,7 @@ and the shipments that have been generated to fulfill the order.
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|orderId||no||
+|orderId|the mandatory order id of the fulfillment|no||
 
 Returns GetFulfillmentOrderResult
 
@@ -478,7 +478,7 @@ Lazily lists all the fulfillment orders
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|startDate||no||
+|startDate|the start date of the query|yes||
 
 Returns orders iterable
 
@@ -489,7 +489,7 @@ Get Inventory Supply
 
 Gets information about the supply of merchant-owned inventory in Amazon's fulfillment network. 
  
- This operation does not return inventory that is unsellable or that }
+ This operation does not return inventory that is unsellable or that 
  is already bound to a customer order or bound to internal fulfillment center processing (for example, labeling).
  
  
@@ -501,8 +501,8 @@ Gets information about the supply of merchant-owned inventory in Amazon's fulfil
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|merchantSku||no||
-|responseGroup||no||
+|merchantSku|the mandatory merchant's sku|no||
+|responseGroup|the optional response group|yes||
 
 Returns merchant sku supply iterable
 
@@ -528,7 +528,10 @@ Returns status message
 List Updated Inventory Supply
 -----------------------------
 
-TODO
+Lazily retrieves all the information about the supply of merchant-owned inventory in Amazon's fulfillment network, for
+inventory items that may have had recent changes in inventory levels. The type of inventory data
+returned by this operation is the same as that returned by getInventorySupply.
+This operation provides the most efficient mechanism for clients to maintain local copies of inventory supply data.
 
 
 
@@ -540,7 +543,7 @@ TODO
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |startDateTime||no||
-|responseGroup||no||
+|responseGroup||yes||
 
 Returns MerchantSKUSupply iterable
 

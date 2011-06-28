@@ -13,18 +13,19 @@
  */
 
 package org.mule.module.fws;
-import static org.mule.module.fws.api.Arrays.asArray;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
-import static org.mockito.Matchers.*;
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
+import static org.mockito.Matchers.isNull;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
+import static org.mule.module.fws.api.Arrays.asArray;
 
 import org.mule.module.fws.api.AxisFWSClient;
 import org.mule.module.fws.api.ItemCondition;
@@ -75,7 +76,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.mockito.Matchers;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
@@ -152,8 +152,8 @@ public class FWSUnitTest
                 h.value = new GetFulfillmentIdentifierResult(new FulfillmentItem[0]);
             }
         }).when(in).getFulfillmentIdentifier( //
-            eq(new MerchantItem[]{new MerchantItem(ASIN,
-                org.mule.module.fws.api.internal.ItemCondition.NewItem, MSKU)}), //
+            eq(asArray(new MerchantItem(ASIN,
+                org.mule.module.fws.api.internal.ItemCondition.NewItem, MSKU))), //
             any(GetFulfillmentIdentifierResultHolder.class), //
             anyMetadata());
         connector.getFulfillmentIdentifier(ASIN, ItemCondition.NEW_ITEM, MSKU);
@@ -170,7 +170,7 @@ public class FWSUnitTest
             {
                 h.value = new GetFulfillmentIdentifierForMSKUResult(new FulfillmentItem[0]);
             }
-        }).when(in).getFulfillmentIdentifierForMSKU(eq(new String[]{MSKU}),
+        }).when(in).getFulfillmentIdentifierForMSKU(eq(asArray(MSKU)),
             any(GetFulfillmentIdentifierForMSKUResultHolder.class), anyMetadata());
         connector.getFulfillmentIdentifierForMsku(MSKU);
         reset(in);
@@ -186,7 +186,7 @@ public class FWSUnitTest
             {
                 h.value = new GetFulfillmentItemByFNSKUResult(new FulfillmentItem[0]);
             }
-        }).when(in).getFulfillmentItemByFNSKU(eq(new String[]{NSKU}),
+        }).when(in).getFulfillmentItemByFNSKU(eq(asArray(NSKU)),
             any(GetFulfillmentItemByFNSKUResultHolder.class), anyMetadata());
         connector.getFulfillmentItemByFnsku(NSKU);
         reset(in);
@@ -224,7 +224,7 @@ public class FWSUnitTest
         assertSame(result, connector.getFulfillmentOrder(ORDER_ID));
         reset(out);
     }
-
+    
     @Test
     public void getFulfillmentPreviewWithCategories() throws RemoteException
     {
@@ -291,61 +291,91 @@ public class FWSUnitTest
         reset(in);
     }
 
-    public List<ShipmentPreview> getInboundShipmentPreview(String merchantSku,
-                                                           int quantity,
-                                                           Address address,
-                                                           LabelPreference labelPreference)
+    @Ignore
+    @Test
+    public void getInboundShipmentPreview()
     {
-        return connector.getInboundShipmentPreview(merchantSku, quantity, address, labelPreference);
-    }
-
-    public List<MerchantSKUSupply> getInventorySupply(String merchantSku, String responseGroup)
-    {
-        return connector.getInventorySupply(merchantSku, responseGroup);
-    }
-
-    public Iterable<FulfillmentItem> listFulfillmentItems(boolean includeInactive)
-    {
-        return connector.listFulfillmentItems(includeInactive);
-    }
-
-    public Iterable<FulfillmentOrder> listFulfillmentOrders(Date startDate)
-    {
-        return connector.listFulfillmentOrders(startDate);
-    }
-
-    public Iterable<InboundShipmentItem> listInboundShipmentItems(String shipmentId)
-    {
-        return connector.listInboundShipmentItems(shipmentId);
-    }
-
-    public Iterable<InboundShipmentData> listInboundShipments(ShipmentStatus shipmentStatus,
-                                                              Date createdAfter,
-                                                              Date createdBefore)
-    {
-        return connector.listInboundShipments(shipmentStatus, createdAfter, createdBefore);
-    }
-
-    public Iterable<MerchantSKUSupply> listUpdatedInventorySupply(Date startDateTime, String responseGroup)
-    {
-        return connector.listUpdatedInventorySupply(startDateTime, responseGroup);
+        connector.getInboundShipmentPreview(MSKU, 10, new Address(), LabelPreference.MERCHANT_LABEL);
     }
 
     @Ignore
     @Test
+    public void getInventorySupplyWithoutGroup()
+    {
+        connector.getInventorySupply(MSKU, null);
+    }
+    
+    @Ignore
+    @Test
+    public void getInventorySupplyWithGroup()
+    {
+        connector.getInventorySupply(MSKU, "a group");
+    }
+
+    @Test
+    public void listFulfillmentItems()
+    {
+        connector.listFulfillmentItems(false);
+    }
+
+    @Test
+    public void listFulfillmentOrdersWithoutDate()
+    {
+        connector.listFulfillmentOrders(null);
+    }
+    
+    @Test
+    public void listFulfillmentOrdersWithDate()
+    {
+        connector.listFulfillmentOrders(new Date());
+    }
+
+    @Test
+    public void listInboundShipmentItems()
+    {
+        connector.listInboundShipmentItems(SHIP_ID);
+    }
+
+    @Test
+    public void listInboundShipmentsWithoutBeforeDate()
+    {
+        connector.listInboundShipments(ShipmentStatus.ERROR, new Date(), null);
+    }
+    
+    @Test
+    public void listInboundShipmentsWithAfterDate()
+    {
+        connector.listInboundShipments(ShipmentStatus.ERROR, null, new Date());
+    }
+
+    @Test
+    public void listUpdatedInventorySupplyWithoutGroup()
+    {
+        connector.listUpdatedInventorySupply(new Date(), null);
+    }
+    
+    @Test
+    public void listUpdatedInventorySupplyWithGroup()
+    {
+        connector.listUpdatedInventorySupply(new Date(), "");
+    }
+
+    @Test
+    @Ignore
     public void putInboundShipment()
     {
-        // connector.putInboundShipment(shipmentId, shipmentName,
-        // destinationFulfillmentCenter, shipFromAddress,
-        // labelPreference);
+        Address shipFromAddress = new Address();
+        connector.putInboundShipment(SHIP_ID, "A shipment", "a center", shipFromAddress,
+            LabelPreference.AMAZON_LABEL_ONLY);
     }
 
-    @Ignore
     @Test
+    @Ignore
     public void putInboundShipmentItems()
     {
-        // connector.putInboundShipmentItems(shipmentId, itemQuantities,
-        // itemQuantitiesRef);
+//        Address shipFromAddress = new Address();
+//        connector.putInboundShipmentItems(SHIP_ID, "A shipment", "a center", shipFromAddress,
+//            LabelPreference.AMAZON_LABEL_ONLY);
     }
 
     @Test

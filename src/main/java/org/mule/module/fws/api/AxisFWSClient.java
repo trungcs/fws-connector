@@ -10,6 +10,8 @@
 
 package org.mule.module.fws.api;
 
+import static org.mule.module.fws.api.Arrays.asArray;
+
 import org.mule.module.fws.api.internal.Address;
 import org.mule.module.fws.api.internal.AmazonFBAInventoryPortType;
 import org.mule.module.fws.api.internal.AmazonFBAOutboundPortType;
@@ -35,7 +37,6 @@ import org.mule.module.fws.api.internal.MerchantItem;
 import org.mule.module.fws.api.internal.MerchantSKUQuantityItem;
 import org.mule.module.fws.api.internal.MerchantSKUSupply;
 import org.mule.module.fws.api.internal.ShipmentPreview;
-import org.mule.module.fws.api.internal.ShipmentStatus;
 import org.mule.module.fws.api.internal.holders.GetFulfillmentIdentifierForMSKUResultHolder;
 import org.mule.module.fws.api.internal.holders.GetFulfillmentIdentifierResultHolder;
 import org.mule.module.fws.api.internal.holders.GetFulfillmentItemByFNSKUResultHolder;
@@ -64,10 +65,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.constraints.NotNull;
 import javax.xml.rpc.holders.Holder;
 
 import org.apache.commons.lang.Validate;
-import static org.mule.module.fws.api.Arrays.*; 
 
 public class AxisFWSClient implements FWSClient<RemoteException>
 {
@@ -90,6 +91,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
 
     public void cancelFulfillmentOrder(String orderId) throws RemoteException
     {
+        Validate.notEmpty(orderId);
         getPort(outboundPortProvider, "CancelFulfillmentOrder").cancelFulfillmentOrder(orderId);
     }
     
@@ -133,6 +135,9 @@ public class AxisFWSClient implements FWSClient<RemoteException>
                                                           ItemCondition itemCondition,
                                                           String merchantSku) throws RemoteException
     {
+        Validate.notEmpty(asin);
+        Validate.notNull(itemCondition);
+        Validate.notEmpty(merchantSku);
         GetFulfillmentIdentifierResultHolder result = new GetFulfillmentIdentifierResultHolder();
         getPort(inboundPortProvider, result).getFulfillmentIdentifier(
             asArray(new MerchantItem(asin, itemCondition.toFwsItemCondition(), merchantSku)),
@@ -140,8 +145,9 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         return Arrays.asList(result.value.getFulfillmentItem());
     }
 
-    public List<FulfillmentItem> getFulfillmentIdentifierForMsku(String merchantSku) throws RemoteException
+    public List<FulfillmentItem> getFulfillmentIdentifierForMsku(@NotNull String merchantSku) throws RemoteException
     {
+        Validate.notEmpty(merchantSku);
         GetFulfillmentIdentifierForMSKUResultHolder result = new GetFulfillmentIdentifierForMSKUResultHolder();
         getPort(inboundPortProvider, result).getFulfillmentIdentifierForMSKU(//
             asArray(merchantSku), result, new ResponseMetadataHolder());
@@ -151,6 +157,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
     public List<FulfillmentItem> getFulfillmentItemByFnsku(String fulfillmentNetworkSku)
         throws RemoteException
     {
+        Validate.notEmpty(fulfillmentNetworkSku);
         GetFulfillmentItemByFNSKUResultHolder result = new GetFulfillmentItemByFNSKUResultHolder();
         getPort(inboundPortProvider, result).getFulfillmentItemByFNSKU(asArray(fulfillmentNetworkSku),
             result, new ResponseMetadataHolder());
@@ -159,6 +166,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
 
     public List<FulfillmentItem> getFulfillmentItemByMsku(String merchantSku) throws RemoteException
     {
+        Validate.notEmpty(merchantSku);
         GetFulfillmentItemByMSKUResultHolder result = new GetFulfillmentItemByMSKUResultHolder();
         getPort(inboundPortProvider, result).getFulfillmentItemByMSKU(//
             asArray(merchantSku), result, new ResponseMetadataHolder());
@@ -167,6 +175,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
 
     public GetFulfillmentOrderResult getFulfillmentOrder(String orderId) throws RemoteException
     {
+        Validate.notEmpty(orderId);
         GetFulfillmentOrderResultHolder result = new GetFulfillmentOrderResultHolder();
         getPort(outboundPortProvider, result).getFulfillmentOrder(orderId, result,
             new ResponseMetadataHolder());
@@ -201,6 +210,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
 
     public InboundShipmentData getInboundShipment(String shipmentId) throws RemoteException
     {
+        Validate.notEmpty(shipmentId);
         GetInboundShipmentDataResultHolder result = new GetInboundShipmentDataResultHolder();
         getPort(inboundPortProvider, result).getInboundShipmentData(shipmentId, result,
             new ResponseMetadataHolder());
@@ -213,7 +223,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
                                                            LabelPreference labelPreference)
         throws RemoteException
     {
-        Validate.notNull(merchantSku);
+        Validate.notEmpty(merchantSku);
         Validate.notNull(address);
         GetInboundShipmentPreviewResultHolder result = new GetInboundShipmentPreviewResultHolder();
         getPort(inboundPortProvider, result).getInboundShipmentPreview(address,
@@ -232,6 +242,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
     public List<MerchantSKUSupply> getInventorySupply(String merchantSku, String responseGroup)
         throws RemoteException
     {
+        Validate.notEmpty(merchantSku);
         GetInventorySupplyResultHolder result = new GetInventorySupplyResultHolder();
         getPort(inventoryPortProvider, result).getInventorySupply(asArray(merchantSku), responseGroup,
             result, new ResponseMetadataHolder());
@@ -288,7 +299,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
             {
                 ListAllFulfillmentOrdersResultHolder result = new ListAllFulfillmentOrdersResultHolder();
                 getPort(outboundPortProvider, result).listAllFulfillmentOrders(PAGE_SIZE,
-                    FwsDates.format(startDate), new String[0], result, new ResponseMetadataHolder());
+                    FwsDates.format(startDate), new String[0]/*TODO*/, result, new ResponseMetadataHolder());
                 return result.value;
             }
 
@@ -312,6 +323,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
 
     public Iterable<InboundShipmentItem> listInboundShipmentItems(final String shipmentId)
     {
+        Validate.notEmpty(shipmentId);
         return new FwsPaginatedIterable<InboundShipmentItem, ListInboundShipmentItemsResult>()
         {
 
@@ -382,6 +394,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
     public Iterable<MerchantSKUSupply> listUpdatedInventorySupply(final Date startDate,
                                                                   final String responseGroup)
     {
+        Validate.notNull(startDate);
         return new FwsPaginatedIterable<MerchantSKUSupply, ListUpdatedInventorySupplyResult>()
         {
             @Override

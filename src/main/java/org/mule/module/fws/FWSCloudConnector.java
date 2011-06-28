@@ -98,9 +98,9 @@ public class FWSCloudConnector implements Initialisable
      *      asin="#[variable:asin]"
      *      itemCondition="#[variable:itemCondition]"
      *      merchantSku="#[variable:merchantSku]" />}
-     * @param asin
-     * @param itemCondition
-     * @param merchantSku
+     * @param asin the mandatory Aamzon's identifier
+     * @param itemCondition the mandatory item's condition
+     * @param merchantSku the mandatory merchant's sku
      * @return 
      */
     @Operation
@@ -128,7 +128,7 @@ public class FWSCloudConnector implements Initialisable
      * @return 
      */
     @Operation
-    public List<FulfillmentItem> getFulfillmentIdentifierForMsku(String merchantSku)
+    public List<FulfillmentItem> getFulfillmentIdentifierForMsku(@Parameter String merchantSku)
     {
         //TODO should be a sngle element
         return client.getFulfillmentIdentifierForMsku(merchantSku);
@@ -142,11 +142,11 @@ public class FWSCloudConnector implements Initialisable
      *
      * {@code <get-fulfillment-item-by-fnsku fulfillmentNetworkSku="#[payload]" />}
      * 
-     * @param fulfillmentNetworkSku
+     * @param fulfillmentNetworkSku the mandatory fulfillment network sku - aka nsku, aka fnsku
      * @return 
      */
     @Operation
-    public List<FulfillmentItem> getFulfillmentItemByFnsku(String fulfillmentNetworkSku)
+    public List<FulfillmentItem> getFulfillmentItemByFnsku(@Parameter String fulfillmentNetworkSku)
     {
       //TODO should be a sngle element
         return client.getFulfillmentItemByFnsku(fulfillmentNetworkSku);
@@ -159,11 +159,11 @@ public class FWSCloudConnector implements Initialisable
      * A response does not imply that the item has an offer for which it can be fulfilled; only that the Amazon Fulfillment Network can track it. An inactive item can have a quantity in the fulfillment center, but will never be fulfille
      * 
      * {@code <get-fulfillment-item-by-msku merchantSku="#[map-payload:merchantSku]"/>}
-     * @param merchantSku
+     * @param merchantSku the mandatory merchant's sku
      * @return 
      */
     @Operation
-    public List<FulfillmentItem> getFulfillmentItemByMsku(String merchantSku)
+    public List<FulfillmentItem> getFulfillmentItemByMsku(@Parameter String merchantSku)
     {
       //TODO should be a sngle element
         return client.getFulfillmentItemByMsku(merchantSku);
@@ -173,11 +173,11 @@ public class FWSCloudConnector implements Initialisable
      * Gets inbound shipment data without the item details for a given ShipmentId.
      * {@code <get-inbound-shipment-data shipmentId="#[header:ShipmentId]"/>}
      * 
-     * @param shipmentId
+     * @param shipmentId the mandatory shipment id
      * @return 
      */
     @Operation
-    public InboundShipmentData getInboundShipment(String shipmentId)
+    public InboundShipmentData getInboundShipment(@Parameter String shipmentId)
     {
         return client.getInboundShipment(shipmentId);
     }
@@ -223,25 +223,25 @@ public class FWSCloudConnector implements Initialisable
      * If IncludeInactive is set to True, the operation returns both active (available for fulfillment) and inactive (not available for fulfillment) mappings. This parameter defaults to False. You can use inactive mappings to track inventory in Amazon's fulfillment centers; however, inactive items can't be fulfilled.
      * {@code <list-fulfillment-items includeInactive="true"/>}
      * 
-     * @param includeInactive
-     * @return a fulfullment items iterable
+     * @param includeInactive optional. Whether non available items for fulfillment should be listed   
+     * @return a FulfillmentItem iterable
      */
     @Operation
-    public Iterable<FulfillmentItem> listFulfillmentItems(boolean includeInactive)
+    public Iterable<FulfillmentItem> listFulfillmentItems(@Parameter(optional = true, defaultValue = "false") boolean includeInactive)
     {
         return client.listFulfillmentItems(includeInactive);
     }
 
     /**
-     * TODO
+     * Lazily retrieved the all the inbound shipment items for the given shipmentId. 
      * 
      * {@code <list-inbound-shipment-items shipmentId="#[header:shipmentId]"/>}
      * 
-     * @param shipmentId
-     * @return a shipment items iterable
+     * @param shipmentId the mandatory shipment's id
+     * @return a InboundShipmentItem items iterable
      */
     @Operation
-    public Iterable<InboundShipmentItem> listInboundShipmentItems(String shipmentId)
+    public Iterable<InboundShipmentItem> listInboundShipmentItems(@Parameter String shipmentId)
     {
         return client.listInboundShipmentItems(shipmentId);
     }
@@ -251,9 +251,9 @@ public class FWSCloudConnector implements Initialisable
      * 
      * {@code <list-inbound-shipments shipmentStatus="CANCELED" createdAfter="#[varaible:creationDate]" />}
      * 
-     * @param shipmentStatus
-     * @param createdAfter
-     * @param createdBefore 
+     * @param shipmentStatus the mandatory status of listed items
+     * @param createdAfter optional. The min creation date of listed shipment
+     * @param createdBefore optional. The max creation date of listed shipments
      * @return a shipment data iterable
      */
     @Operation
@@ -338,10 +338,10 @@ public class FWSCloudConnector implements Initialisable
      * orders may not be canceled.
      * 
      * {@code <cancel-fulfillment-order orderId="#[header:orderId]"/>}
-     * @param orderId
+     * @param orderId the mandatory order's id
      */
     @Operation
-    public void cancelFulfillmentOrder(String orderId)
+    public void cancelFulfillmentOrder(@Parameter String orderId)
     {
         client.cancelFulfillmentOrder(orderId);
     }
@@ -403,11 +403,11 @@ public class FWSCloudConnector implements Initialisable
      * and the shipments that have been generated to fulfill the order.
      * 
      * {@code <insert-element orderId="#[map-payload:orderId]"/> }
-     * @param orderId
+     * @param orderId the mandatory order id of the fulfillment
      * @return a GetFulfillmentOrderResult
      */
     @Operation
-    public GetFulfillmentOrderResult getFulfillmentOrder(String orderId)
+    public GetFulfillmentOrderResult getFulfillmentOrder(@Parameter String orderId)
     {
         return client.getFulfillmentOrder(orderId);
     }
@@ -457,11 +457,11 @@ public class FWSCloudConnector implements Initialisable
      * Lazily lists all the fulfillment orders
      * 
      * {@code <list-fulfillment-orders/> } 
-     * @param startDate 
+     * @param startDate the start date of the query 
      * @return the orders iterable 
      */
     @Operation
-    public Iterable<FulfillmentOrder> listFulfillmentOrders(Date startDate /*TODO optional*/)
+    public Iterable<FulfillmentOrder> listFulfillmentOrders(@Parameter(optional = true) Date startDate)
     {
         return client.listFulfillmentOrders(startDate);
     }
@@ -469,18 +469,19 @@ public class FWSCloudConnector implements Initialisable
      /**
       *  Gets information about the supply of merchant-owned inventory in Amazon's fulfillment network. 
       *  
-      *  This operation does not return inventory that is unsellable or that }
+      *  This operation does not return inventory that is unsellable or that 
       *  is already bound to a customer order or bound to internal fulfillment center processing (for example, labeling).
       *  
       *  {@code <get-inventory-supply 
       *     merchantSku="#[header:merchantSku]" 
       *     responseGroup="DETAILED"/> }
-      * @param merchantSku
-      * @param responseGroup
+      * @param merchantSku the mandatory merchant's sku
+      * @param responseGroup the optional response group
      *  @return a merchant sku supply iterable
       */
     @Operation //TODO single element
-    public List<MerchantSKUSupply> getInventorySupply(String merchantSku, String responseGroup)
+    public List<MerchantSKUSupply> getInventorySupply(@Parameter String merchantSku,
+                                                      @Parameter(optional = true) String responseGroup)
     {
         return client.getInventorySupply(merchantSku, responseGroup);
     }
@@ -498,7 +499,10 @@ public class FWSCloudConnector implements Initialisable
     }
 
     /**
-     * TODO
+     * Lazily retrieves all the information about the supply of merchant-owned inventory in Amazon's fulfillment network, for
+     * inventory items that may have had recent changes in inventory levels. The type of inventory data
+     * returned by this operation is the same as that returned by getInventorySupply.
+     * This operation provides the most efficient mechanism for clients to maintain local copies of inventory supply data.
      * 
      * {@code <list-updated-inventory-supply 
      *      startDateTime="#[header:querystartDateTime]" 
@@ -509,7 +513,8 @@ public class FWSCloudConnector implements Initialisable
      * @return a MerchantSKUSupply iterable
      */
     @Operation
-    public Iterable<MerchantSKUSupply> listUpdatedInventorySupply(Date startDateTime, String responseGroup)
+    public Iterable<MerchantSKUSupply> listUpdatedInventorySupply(@Parameter Date startDateTime,
+                                                                  @Parameter(optional = true) String responseGroup)
     {
         return client.listUpdatedInventorySupply(startDateTime, responseGroup);
     }
