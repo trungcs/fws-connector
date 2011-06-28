@@ -124,7 +124,7 @@ public class FWSCloudConnector implements Initialisable
      * Use this operation instead of GetFulfillmentIdentifier if an offer already exists for the SKU.
      * 
      * {@code <get-fulfillment-identifier-for-msku merchantSku="#[map-payload:merchantSku]"/>}
-     * @param merchantSku
+     * @param merchantSku the merchant's sku
      * @return 
      */
     @Operation
@@ -189,10 +189,10 @@ public class FWSCloudConnector implements Initialisable
      * In this case, there is one shipment for each of the shipment sets returned.
      *
      * {@code <get-inbound-shipment-preview  merchantSku="AF15962"  address="#[address]" labelPreference="MERCHANT_LABEL" />}
-     * @param merchantSku
-     * @param address
-     * @param labelPreference 
-     * @param quantity 
+     * @param merchantSku the mandatory merchant's sku
+     * @param address the mandatory destination address
+     * @param labelPreference the optional label preference
+     * @param quantity the optional quantity to deliver. Default is 1.
      * @return the list of previews 
      */
     @Operation
@@ -275,11 +275,12 @@ public class FWSCloudConnector implements Initialisable
      *    destinationFulfillmentCenter="#[variable:destinationFulfillmentCenter]"
      *    shipFromAddress="#[variable:shipFromAddress]" />}
      *      
-     * @param shipmentId
+     * @param shipmentId the mandatory shipment's id
      * @param shipmentName
-     * @param destinationFulfillmentCenter
-     * @param shipFromAddress
-     * @param labelPreference 
+     * @param destinationFulfillmentCenter the mandatory Amazon's fulfillment center where the 
+     *      client's products are stored
+     * @param shipFromAddress  
+     * @param labelPreference  the optional label preference
      */
     @Operation
     public void putInboundShipment(@Parameter String shipmentId,
@@ -288,8 +289,10 @@ public class FWSCloudConnector implements Initialisable
                                    @Parameter Address shipFromAddress,
                                    @Parameter(optional = true) LabelPreference labelPreference)
     {
+        //TODO description and pass the initial items
         client.putInboundShipment(shipmentId, shipmentName, destinationFulfillmentCenter, shipFromAddress, labelPreference);
     }
+    
     
     /**
      * Adds line items to a pre-existing shipment that the ShipmentId specifies. 
@@ -324,8 +327,8 @@ public class FWSCloudConnector implements Initialisable
      * {@code <set-inbound-shipment-status
      *      shipmentId="#[variable:shipmentId]"
      *      shipmentStatus="SHIPPED"/>}
-     * @param shipmentId
-     * @param shipmentStatus
+     * @param shipmentId the mandatory shipment's id
+     * @param shipmentStatus the mandatory new status for the given shipment
      */
     @Operation
     public void setInboundShipmentStatus(@Parameter String shipmentId, @Parameter  ShipmentStatus shipmentStatus)
@@ -359,8 +362,8 @@ public class FWSCloudConnector implements Initialisable
      * @param destinationAddress the mandatory destination address of the fulfillment 
      * @param fulfillmentPolicy the optional fulfillment policy
      * @param fulfillmentMethod the optional fulfillment method
-     * @param shippingSpeedCategory  
-     * @param displayableOrderComment 
+     * @param shippingSpeedCategory  the mandatory shipping speed category 
+     * @param displayableOrderComment the mandatory comment that will be displayed in the order
      * @param displayableOrderDate the mandatory order date displayed in the fulfillment
      * @param emails an optional list of email strings
      * @param items a mandatory list of CreateFulfillmentOrderItem. At least one item must be specified
@@ -421,18 +424,18 @@ public class FWSCloudConnector implements Initialisable
      *     shippingSpeedCategories="Standard"
      *     quantity="15"
      *     orderItemId="X123698" /> }
-     * @param address 
-     * @param merchantSku
-     * @param shippingSpeedCategories
-     * @param quantity
-     * @param orderItemId
+     * @param address the mandatory destination address 
+     * @param merchantSku the mandatory merchant's sku
+     * @param shippingSpeedCategories the optional shipping categories
+     * @param quantity the optional quantity to deliver. Default is 1.
+     * @param orderItemId the mandatory order item id
      * @return 
      */
     @Operation
     public List<FulfillmentPreview> getFulfillmentPreview(@Parameter Address address,
                                                           @Parameter String merchantSku,
                                                           @Parameter(optional = true) String shippingSpeedCategories,
-                                                          @Parameter int quantity,
+                                                          @Parameter(optional = true, defaultValue = "1") int quantity,
                                                           @Parameter String orderItemId)
     {
         // TODO single element

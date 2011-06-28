@@ -127,7 +127,7 @@ Use this operation instead of GetFulfillmentIdentifier if an offer already exist
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|merchantSku||no||
+|merchantSku|the merchant's sku|no||
 
 
 
@@ -199,10 +199,10 @@ In this case, there is one shipment for each of the shipment sets returned.
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|merchantSku||no||
-|quantity||yes|1|
-|address||no||
-|labelPreference||yes||*AMAZON_LABEL_ONLY*, *AMAZON_LABEL_PREFERRED*, *MERCHANT_LABEL*, *fwsLabelPrepPreference*
+|merchantSku|the mandatory merchant's sku|no||
+|quantity|the optional quantity to deliver. Default is 1.|yes|1|
+|address|the mandatory destination address|no||
+|labelPreference|the optional label preference|yes||*AMAZON_LABEL_ONLY*, *AMAZON_LABEL_PREFERRED*, *MERCHANT_LABEL*, *fwsLabelPrepPreference*
 
 Returns list of previews
 
@@ -300,11 +300,11 @@ Adds or replaces inbound shipment data (minus the item details) for a given ship
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|shipmentId||no||
+|shipmentId|the mandatory shipment's id|no||
 |shipmentName||no||
-|destinationFulfillmentCenter||no||
+|destinationFulfillmentCenter|the mandatory Amazon's fulfillment center where the client's products are stored|no||
 |shipFromAddress||no||
-|labelPreference||yes||*AMAZON_LABEL_ONLY*, *AMAZON_LABEL_PREFERRED*, *MERCHANT_LABEL*, *fwsLabelPrepPreference*
+|labelPreference|the optional label preference|yes||*AMAZON_LABEL_ONLY*, *AMAZON_LABEL_PREFERRED*, *MERCHANT_LABEL*, *fwsLabelPrepPreference*
 
 
 
@@ -351,8 +351,8 @@ This operation returns a RequestId upon success, otherwise an explicit error is 
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|shipmentId||no||
-|shipmentStatus||no||*WORKING*, *SHIPPED*, *INTRANSIT*, *DELIVERED*, *CHECKEDIN*, *RECEIVING*, *CLOSED*, *CANCELLED*, *ERROR*, *fwsShipmentStatus*
+|shipmentId|the mandatory shipment's id|no||
+|shipmentStatus|the mandatory new status for the given shipment|no||*WORKING*, *SHIPPED*, *INTRANSIT*, *DELIVERED*, *CHECKEDIN*, *RECEIVING*, *CLOSED*, *CANCELLED*, *ERROR*, *fwsShipmentStatus*
 
 
 
@@ -394,8 +394,8 @@ Generates a request for Amazon to ship items from the merchant's inventory to a 
 |destinationAddress|the mandatory destination address of the fulfillment|no||
 |fulfillmentPolicy|the optional fulfillment policy|yes||
 |fulfillmentMethod|the optional fulfillment method|yes||
-|shippingSpeedCategory||no||
-|displayableOrderComment||no||
+|shippingSpeedCategory|the mandatory shipping speed category|no||
+|displayableOrderComment|the mandatory comment that will be displayed in the order|no||
 |displayableOrderDate|the mandatory order date displayed in the fulfillment|no||
 |emails|an optional list of email strings|yes||
 |items|a mandatory list of CreateFulfillmentOrderItem. At least one item must be specified|no||
@@ -441,11 +441,11 @@ Answers estimated shipping dates and fees for a given set of merchant SKUs and q
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|address||no||
-|merchantSku||no||
-|shippingSpeedCategories||yes||
-|quantity||no||
-|orderItemId||no||
+|address|the mandatory destination address|no||
+|merchantSku|the mandatory merchant's sku|no||
+|shippingSpeedCategories|the optional shipping categories|yes||
+|quantity|the optional quantity to deliver. Default is 1.|yes|1|
+|orderItemId|the mandatory order item id|no||
 
 
 
