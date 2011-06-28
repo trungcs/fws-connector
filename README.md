@@ -89,7 +89,7 @@ for Amazon fulfillment that require labeling and when you need to get the identi
 fulfillment in order to send them to Amazon, but does not do the work of marking any offer for this item as Amazon fulfilled.
 A response does not imply that the item has an offer for which it can be fulfilled; only that the Amazon Fulfillment Network can track it. An inactive item can have a
 quantity in the fulfillment center, but will never be fulfilled.
-Use this operation instead of GetFulfillmentIdentifierForMSKU if an offer does not already exist for the MerchantSKU.
+Use this operation instead of getFulfillmentIdentifierForMSKU if an offer does not already exist for the MerchantSKU.
 
 
 
@@ -194,14 +194,15 @@ In this case, there is one shipment for each of the shipment sets returned.
 
 
 
-     <get-inbound-shipment-preview  merchantSku="AF15962"  address="#[address]" />
+     <get-inbound-shipment-preview  merchantSku="AF15962"  address="#[address]" labelPreference="MERCHANT_LABEL" />
 
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |merchantSku||no||
+|quantity||yes|1|
 |address||no||
-|labelPreference||no||*AMAZON_LABEL_ONLY*, *AMAZON_LABEL_PREFERRED*, *MERCHANT_LABEL*, *fwsLabelPreference*
+|labelPreference||yes||*AMAZON_LABEL_ONLY*, *AMAZON_LABEL_PREFERRED*, *MERCHANT_LABEL*, *fwsLabelPrepPreference*
 
 Returns list of previews
 
@@ -274,8 +275,8 @@ Lazily lists the inbound shipments a merchant has created, according to the spec
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |shipmentStatus||no||*WORKING*, *SHIPPED*, *INTRANSIT*, *DELIVERED*, *CHECKEDIN*, *RECEIVING*, *CLOSED*, *CANCELLED*, *ERROR*, *fwsShipmentStatus*
-|createdAfter||no||
-|createdBefore||no||
+|createdAfter||yes||
+|createdBefore||yes||
 
 Returns shipment data iterable
 
@@ -288,11 +289,13 @@ Adds or replaces inbound shipment data (minus the item details) for a given ship
 
 
 
-     <put-inbound-shipment-data 
-         shipmentId="#[variable:shipmentId]" 
-         shipmentName="#[variable:shipmentName]"
-         destinationFulfillmentCenter="#[variable:destinationFulfillmentCenter]"
-         shipFromAddress="#[variable:shipFromAddress]" />
+     <put-inbound-shipment 
+       labelPreference="MERCHANT_LABEL"
+       merchantSku="#[variable:merchantSku]"
+       quantity="10"
+       shipmentId="#[variable:shipmentId]" shipmentName="#[variable:shipmentName]"
+       destinationFulfillmentCenter="#[variable:destinationFulfillmentCenter]"
+       shipFromAddress="#[variable:shipFromAddress]" />
 
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
@@ -301,9 +304,7 @@ Adds or replaces inbound shipment data (minus the item details) for a given ship
 |shipmentName||no||
 |destinationFulfillmentCenter||no||
 |shipFromAddress||no||
-|merchantSku||no||
-|labelPrepPreference||no||*AMAZON_LABEL_ONLY*, *AMAZON_LABEL_PREFERRED*, *MERCHANT_LABEL*, *fwsLabelPrepPreference*
-|quantity||no||
+|labelPreference||yes||*AMAZON_LABEL_ONLY*, *AMAZON_LABEL_PREFERRED*, *MERCHANT_LABEL*, *fwsLabelPrepPreference*
 
 
 
@@ -319,16 +320,18 @@ This call returns an exception if you attempt to add line items to a shipment th
 
 
      <put-inbound-shipment-items
-         shipmentId="#[variable:shipmentId]"
-         merchantSku="#[variable:merchantSku]"
-         quantity="#[variable:quantity]"/>
+         shipmentId="#[variable:shipmentId]">
+             <itemQuantities>
+                 <itemQuantity key="#[variable:aMerchantSku]" value="#[variable:quantity]"/>
+             </itemQuantities>
+           </put-inbound-shipment-items>
 
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |shipmentId||no||
-|merchantSku||no||
-|quantity||no||
+|itemQuantities||yes||
+|itemQuantitiesRef||yes||
 
 
 
@@ -377,12 +380,27 @@ Generates a request for Amazon to ship items from the merchant's inventory to a 
 
 
 
-     <create-fulfillment-order orderId="#[orderId]" /> 
+     <create-fulfillment-order 
+              destinationAddress="#[map-payload:destinationAddress]" orderId="#[map-payload:orderId]"
+              displayableOrderComment="#[map-payload:comment]"
+              displayableOrderDate="[map-payload:orderDate]" items="#[map-payload:items]"
+              shippingSpeedCategory="#[map-payload:shippingSpeed]" /> 
 
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|orderId||no||
+|orderId|the mandatory fulfillment order id|no||
+|displayableOrderId|the order id displayed in the fulfillment. If not specified, the orderId is used.|yes||
+|destinationAddress|the mandatory destination address of the fulfillment|no||
+|fulfillmentPolicy|the optional fulfillment policy|yes||
+|fulfillmentMethod|the optional fulfillment method|yes||
+|shippingSpeedCategory||no||
+|displayableOrderComment||no||
+|displayableOrderDate|the mandatory order date displayed in the fulfillment|no||
+|emails|an optional list of email strings|yes||
+|items|a mandatory list of CreateFulfillmentOrderItem. At least one item must be specified|no||
+
+Returns fulfillment result
 
 
 
@@ -401,6 +419,8 @@ and the shipments that have been generated to fulfill the order.
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |orderId||no||
+
+Returns GetFulfillmentOrderResult
 
 
 
@@ -423,7 +443,7 @@ Answers estimated shipping dates and fees for a given set of merchant SKUs and q
 |config-ref|Specify which configuration to use for this invocation|yes||
 |address||no||
 |merchantSku||no||
-|shippingSpeedCategories||no||
+|shippingSpeedCategories||yes||
 |quantity||no||
 |orderItemId||no||
 
@@ -522,7 +542,7 @@ TODO
 |startDateTime||no||
 |responseGroup||no||
 
-Returns merchant sku supply iterable
+Returns MerchantSKUSupply iterable
 
 
 

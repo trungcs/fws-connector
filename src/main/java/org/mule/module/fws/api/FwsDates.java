@@ -31,6 +31,10 @@ public final class FwsDates
 
     public static Calendar toCalendar(Date date)
     {
+        if (date == null)
+        {
+            return null;
+        }
         GregorianCalendar calendar = new GregorianCalendar();
         calendar.setTime(date);
         return calendar;

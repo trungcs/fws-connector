@@ -10,19 +10,22 @@
 
 package org.mule.module.fws;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.mule.api.lifecycle.InitialisationException;
 import org.mule.module.fws.api.ShipmentStatus;
 import org.mule.module.fws.api.internal.Address;
-import org.mule.module.fws.api.internal.AmazonFWSInbound;
+import org.mule.module.fws.api.internal.CreateFulfillmentOrderItem;
+import org.mule.module.fws.api.internal.Currency;
 import org.mule.module.fws.api.internal.FulfillmentItem;
 import org.mule.module.fws.api.internal.GetFulfillmentOrderResult;
-import org.mule.module.fws.api.internal.MerchantSKUQuantityItem;
 import org.mule.module.fws.api.internal.ShipmentPreview;
 
+import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -131,9 +134,13 @@ public class FWSTestDriver
     
     @Test
     public void testOrderNoInventory() throws Exception
-    {   
-        GetFulfillmentOrderResult result = connector.createFulfillmentOrder("TEST_ORDER1");
-        //FIXME should fail
+    {
+        String nsku = connector.getFulfillmentIdentifierForMsku(TEST_MSKU).get(0).getFulfillmentNetworkSKU();
+        GetFulfillmentOrderResult result = connector.createFulfillmentOrder("TEST_ORDER1", null,
+            TEST_ADDRESS, null, null, "QUICK", "AN order", new Date(), null,
+            Arrays.asList(new CreateFulfillmentOrderItem(TEST_MSKU, "1", 1, "", "An item", "", nsku,
+                new Currency("USD", BigDecimal.valueOf(100)))));
+        // FIXME should fail
         assertNotNull(result);
     }
     
@@ -142,81 +149,6 @@ public class FWSTestDriver
     {
         assertFalse(connector.listFulfillmentOrders(new Date()).iterator().hasNext());
     }
-
-    //    
-    // @Test
-    // public void createAndCancelFulfillmentOrder()
-    // {
-    // connector.cancelFulfillmentOrder(orderId);
-    // connector.createFulfillmentOrder(orderId);
-    // }
-
-    // public void deleteInboundShipmentItems(String merchantSku, String shipmentId)
-    // {
-    // connector.deleteInboundShipmentItems(merchantSku, shipmentId);
-    // }
-    //
-    // public void getFulfillmentIdentifier(String asin, String itemCondition, String
-    // merchantSku)
-    // {
-    // connector.getFulfillmentIdentifier(asin, itemCondition, merchantSku);
-    // }
-    //
-    //
-    // public void getFulfillmentItemByFnsku(String fulfillmentNetworkSku)
-    // {
-    // connector.getFulfillmentItemByFnsku(fulfillmentNetworkSku);
-    // }
-    //
-    // public void getFulfillmentItemByMsku(String merchantSku)
-    // {
-    // connector.getFulfillmentItemByMsku(merchantSku);
-    // }
-    //
-    // public void getFulfillmentOrder(String orderId)
-    // {
-    // connector.getFulfillmentOrder(orderId);
-    // }
-    //
-    // public void getFulfillmentPreview(String merchantSku,
-    // ShippingSpeedCategories shippingSpeedCategories,
-    // int quantity,
-    // String orderItemId)
-    // {
-    // connector.getFulfillmentPreview(merchantSku, shippingSpeedCategories,
-    // quantity, orderItemId);
-    // }
-    //
-    // public void getInboundShipment(String shipmentId)
-    // {
-    // connector.getInboundShipment(shipmentId);
-    // }
-    //
-    // public void getInboundShipmentPreview(String merchantSku, String address)
-    // {
-    // connector.getInboundShipmentPreview(merchantSku, address);
-    // }
-    //
-    // public void getInventorySupply(Date startDateTime, ResponseGroup
-    // responseGroup)
-    // {
-    // connector.getInventorySupply(startDateTime, responseGroup);
-    // }
-    //
-    //    
-    // public Iterable<?> listInboundShipmentItems(String shipmentId)
-    // {
-    // return connector.listInboundShipmentItems(shipmentId);
-    // }
-    //
-    //
-    // @Test
-    // public void putInboundShipmentAndItems()
-    // {
-    // connector.putInboundShipment(shipmentId, shipmentName,
-    // destinationFulfillmentCenter, shipFromAddress);
-    // connector.putInboundShipmentItems(shipmentId, merchantSku, quantity);
-    // }
 
     private void assertStatusOk(String status)
     {

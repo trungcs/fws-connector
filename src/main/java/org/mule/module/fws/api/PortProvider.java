@@ -36,11 +36,7 @@ public abstract class PortProvider<T>
         this.secretKey = secretKey;
     }
 
-    public T getPort(Object action) throws RemoteException
-    {
-        return getPort(getActionName(action));
-    }
-
+    
     public T getPort(String action) throws RemoteException
     {
         try
@@ -57,14 +53,6 @@ public abstract class PortProvider<T>
 
     protected abstract T newPort() throws ServiceException;
 
-    private String getActionName(Object action) throws RemoteException
-    {
-        if (action instanceof Holder)
-        {
-            return action.getClass().getName().replace("ResultHolder", "");
-        }
-        throw new AssertionError();
-    }
 
     private void setHeaders(String timestamp, String action, org.apache.axis.client.Stub port)
         throws SignatureException

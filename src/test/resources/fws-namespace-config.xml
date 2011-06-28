@@ -19,7 +19,7 @@
                           http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
                           http://www.mulesoft.org/schema/mule/fws http://www.mulesoft.org/schema/mule/fws/1.0/mule-fws.xsd">
 
-  <fws:config accessKey="foo"  secretKey="bar"/>
+  <fws:config accessKey="foo" secretKey="bar" />
 
   <flow name="DeleteInboundShipmentItems">
     <inbound-endpoint address="vm://DeleteInboundShipmentItems"
@@ -64,18 +64,15 @@
   <flow name="name">
     <inbound-endpoint address="vm://name"
       exchange-pattern="request-response" />
-    <fws:get-inbound-shipment
-      shipmentId="#[header:ShipmentId]" />
+    <fws:get-inbound-shipment shipmentId="#[header:ShipmentId]" />
   </flow>
 
 
   <flow name="GetInboundShipmentPreview">
     <inbound-endpoint address="vm://GetInboundShipmentPreview"
       exchange-pattern="request-response" />
-    <fws:get-inbound-shipment-preview 
-      labelPreference="MERCHANT_LABEL"
-      merchantSku="AF15962" 
-      address="#[address]" />
+    <fws:get-inbound-shipment-preview
+      labelPreference="MERCHANT_LABEL" merchantSku="AF15962" address="#[address]" />
   </flow>
 
 
@@ -89,7 +86,8 @@
   <flow name="ListFulfillments">
     <inbound-endpoint address="vm://ListFulfillments"
       exchange-pattern="request-response" />
-    <fws:list-fulfillment-items includeInactive="true" />
+    <fws:list-fulfillment-items
+      includeInactive="true" />
   </flow>
 
 
@@ -105,17 +103,15 @@
     <inbound-endpoint address="vm://ListInboundShipments"
       exchange-pattern="request-response" />
     <fws:list-inbound-shipments
-      shipmentStatus="CANCELLED" 
-      createdAfter="#[varaible:initialCreationDate]" 
-      createdBefore="#[varaible:finalCreationDate]"/>
+      shipmentStatus="CANCELLED" createdAfter="#[varaible:initialCreationDate]"
+      createdBefore="#[varaible:finalCreationDate]" />
   </flow>
 
 
   <flow name="PutInboundShipmentData">
     <inbound-endpoint address="vm://PutInboundShipmentData"
       exchange-pattern="request-response" />
-    <fws:put-inbound-shipment 
-      labelPreference="MERCHANT_LABEL"
+    <fws:put-inbound-shipment labelPreference="MERCHANT_LABEL"
       shipmentId="#[variable:shipmentId]" shipmentName="#[variable:shipmentName]"
       destinationFulfillmentCenter="#[variable:destinationFulfillmentCenter]"
       shipFromAddress="#[variable:shipFromAddress]" />
@@ -128,9 +124,10 @@
     <fws:put-inbound-shipment-items
       shipmentId="#[variable:shipmentId]">
       <fws:itemQuantities>
-              <fws:itemQuantity key="#[variable:aMerchantSku]" value="#[variable:quantity]"/>
+        <fws:itemQuantity key="#[variable:aMerchantSku]"
+          value="#[variable:quantity]" />
       </fws:itemQuantities>
-    </fws:put-inbound-shipment-items> 
+    </fws:put-inbound-shipment-items>
   </flow>
 
 
@@ -153,10 +150,12 @@
   <flow name="CreateFulfillmentOrder">
     <inbound-endpoint address="vm://CreateFulfillmentOrder"
       exchange-pattern="request-response" />
-    <fws:create-fulfillment-order orderId="#[orderId]" />
+    <fws:create-fulfillment-order
+      destinationAddress="#[map-payload:destinationAddress]" orderId="#[map-payload:orderId]"
+      displayableOrderComment="#[map-payload:comment]"
+      displayableOrderDate="[map-payload:orderDate]" items="#[map-payload:items]"
+      shippingSpeedCategory="#[map-payload:shippingSpeed]" />
   </flow>
-
-
 
   <flow name="GetFulfillmentOrder">
     <inbound-endpoint address="vm://GetFulfillmentOrder"
@@ -191,8 +190,8 @@
   <flow name="GetInventorySupply">
     <inbound-endpoint address="vm://GetInventorySupply"
       exchange-pattern="request-response" />
-    <fws:get-inventory-supply
-      merchantSku="FDF68" responseGroup="DETAILED" />
+    <fws:get-inventory-supply merchantSku="FDF68"
+      responseGroup="DETAILED" />
   </flow>
 
 

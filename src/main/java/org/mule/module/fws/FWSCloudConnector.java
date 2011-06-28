@@ -20,8 +20,16 @@ import org.mule.module.fws.api.FWSClient;
 import org.mule.module.fws.api.FWSClientAdaptor;
 import org.mule.module.fws.api.ItemCondition;
 import org.mule.module.fws.api.LabelPreference;
+import org.mule.module.fws.api.PortProvider;
 import org.mule.module.fws.api.ShipmentStatus;
 import org.mule.module.fws.api.internal.Address;
+import org.mule.module.fws.api.internal.AmazonFBAInventoryLocator;
+import org.mule.module.fws.api.internal.AmazonFBAInventoryPortType;
+import org.mule.module.fws.api.internal.AmazonFBAOutboundLocator;
+import org.mule.module.fws.api.internal.AmazonFBAOutboundPortType;
+import org.mule.module.fws.api.internal.AmazonFWSInboundLocator;
+import org.mule.module.fws.api.internal.AmazonFWSInboundPortType;
+import org.mule.module.fws.api.internal.CreateFulfillmentOrderItem;
 import org.mule.module.fws.api.internal.FulfillmentItem;
 import org.mule.module.fws.api.internal.FulfillmentOrder;
 import org.mule.module.fws.api.internal.FulfillmentPreview;
@@ -35,9 +43,14 @@ import org.mule.tools.cloudconnect.annotations.Operation;
 import org.mule.tools.cloudconnect.annotations.Parameter;
 import org.mule.tools.cloudconnect.annotations.Property;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import javax.xml.rpc.ServiceException;
+
+import org.apache.commons.lang.Validate;
 
 /**
  * 
@@ -79,7 +92,7 @@ public class FWSCloudConnector implements Initialisable
      * fulfillment in order to send them to Amazon, but does not do the work of marking any offer for this item as Amazon fulfilled.
      * A response does not imply that the item has an offer for which it can be fulfilled; only that the Amazon Fulfillment Network can track it. An inactive item can have a
      * quantity in the fulfillment center, but will never be fulfilled.
-     * Use this operation instead of GetFulfillmentIdentifierForMSKU if an offer does not already exist for the MerchantSKU.
+     * Use this operation instead of getFulfillmentIdentifierForMSKU if an offer does not already exist for the MerchantSKU.
      * 
      * {@code <get-fulfillment-identifier
      *      asin="#[variable:asin]"
@@ -91,10 +104,11 @@ public class FWSCloudConnector implements Initialisable
      * @return 
      */
     @Operation
-    public List<FulfillmentItem> getFulfillmentIdentifier(String asin,
-                                                          ItemCondition itemCondition,
-                                                          String merchantSku)
+    public List<FulfillmentItem> getFulfillmentIdentifier(@Parameter String asin,
+                                                          @Parameter ItemCondition itemCondition,
+                                                          @Parameter String merchantSku)
     {
+        //TODO should be a sngle element
         return client.getFulfillmentIdentifier(asin, itemCondition, merchantSku);
     }
     
@@ -116,6 +130,7 @@ public class FWSCloudConnector implements Initialisable
     @Operation
     public List<FulfillmentItem> getFulfillmentIdentifierForMsku(String merchantSku)
     {
+        //TODO should be a sngle element
         return client.getFulfillmentIdentifierForMsku(merchantSku);
     }
  
@@ -133,6 +148,7 @@ public class FWSCloudConnector implements Initialisable
     @Operation
     public List<FulfillmentItem> getFulfillmentItemByFnsku(String fulfillmentNetworkSku)
     {
+      //TODO should be a sngle element
         return client.getFulfillmentItemByFnsku(fulfillmentNetworkSku);
     }
 
@@ -149,6 +165,7 @@ public class FWSCloudConnector implements Initialisable
     @Operation
     public List<FulfillmentItem> getFulfillmentItemByMsku(String merchantSku)
     {
+      //TODO should be a sngle element
         return client.getFulfillmentItemByMsku(merchantSku);
     }
  
@@ -184,6 +201,7 @@ public class FWSCloudConnector implements Initialisable
                                                            @Parameter Address address,
                                                            @Parameter(optional = true) LabelPreference labelPreference)
     {
+      //TODO should be a sngle element
         return client.getInboundShipmentPreview(merchantSku, quantity, address, labelPreference);
     }
  
@@ -239,7 +257,9 @@ public class FWSCloudConnector implements Initialisable
      * @return a shipment data iterable
      */
     @Operation
-    public Iterable<InboundShipmentData> listInboundShipments(ShipmentStatus shipmentStatus, Date createdAfter, /*TODO optional*/Date createdBefore)
+    public Iterable<InboundShipmentData> listInboundShipments(@Parameter ShipmentStatus shipmentStatus,
+                                                              @Parameter(optional = true) Date createdAfter,
+                                                              @Parameter(optional = true) Date createdBefore)
     {
         return client.listInboundShipments(shipmentStatus, createdAfter, createdBefore);
     }
@@ -288,7 +308,7 @@ public class FWSCloudConnector implements Initialisable
      * @param itemQuantities 
      * @param itemQuantitiesRef
      */
-    @Operation
+    @Operation //XXX collection handling required
     public void putInboundShipmentItems(@Parameter String shipmentId,
                                         @Parameter(optional = true) Map<String, Integer> itemQuantities,
                                         @Parameter(optional = true) Object itemQuantitiesRef)
@@ -308,7 +328,7 @@ public class FWSCloudConnector implements Initialisable
      * @param shipmentStatus
      */
     @Operation
-    public void setInboundShipmentStatus(String shipmentId, ShipmentStatus shipmentStatus)
+    public void setInboundShipmentStatus(@Parameter String shipmentId, @Parameter  ShipmentStatus shipmentStatus)
     {
         client.setInboundShipmentStatus(shipmentId, shipmentStatus);
     }
@@ -329,14 +349,52 @@ public class FWSCloudConnector implements Initialisable
     /**
      * Generates a request for Amazon to ship items from the merchant's inventory to a destination address.
      * 
-     * {@code <create-fulfillment-order orderId="#[orderId]" /> }
-     * @param orderId
-     * @return 
+     * {@code <create-fulfillment-order 
+     *           destinationAddress="#[map-payload:destinationAddress]" orderId="#[map-payload:orderId]"
+     *           displayableOrderComment="#[map-payload:comment]"
+     *           displayableOrderDate="[map-payload:orderDate]" items="#[map-payload:items]"
+     *           shippingSpeedCategory="#[map-payload:shippingSpeed]" /> }
+     * @param orderId the mandatory fulfillment order id
+     * @param displayableOrderId the order id displayed in the fulfillment. If not specified, the orderId is used.
+     * @param destinationAddress the mandatory destination address of the fulfillment 
+     * @param fulfillmentPolicy the optional fulfillment policy
+     * @param fulfillmentMethod the optional fulfillment method
+     * @param shippingSpeedCategory  
+     * @param displayableOrderComment 
+     * @param displayableOrderDate the mandatory order date displayed in the fulfillment
+     * @param emails an optional list of email strings
+     * @param items a mandatory list of CreateFulfillmentOrderItem. At least one item must be specified
+     * @return the fulfillment result  
      */
     @Operation
-    public GetFulfillmentOrderResult createFulfillmentOrder(String orderId)
+    @SuppressWarnings("unchecked")
+    public GetFulfillmentOrderResult createFulfillmentOrder(@Parameter String orderId,
+                                                            @Parameter(optional = true) String displayableOrderId,
+                                                            @Parameter Address destinationAddress,
+                                                            @Parameter(optional = true) String fulfillmentPolicy,
+                                                            @Parameter(optional = true) String fulfillmentMethod,
+                                                            @Parameter String shippingSpeedCategory,
+                                                            @Parameter String displayableOrderComment,
+                                                            @Parameter Date displayableOrderDate,
+                                                            @Parameter(optional = true) Object emails,
+                                                            @Parameter Object items)
     {
-        return client.createFulfillmentOrder(orderId);
+        return client.createFulfillmentOrder(
+            orderId, // 
+            coalesce(displayableOrderId, orderId), // 
+            destinationAddress, // 
+            fulfillmentPolicy, // 
+            fulfillmentMethod, // 
+            shippingSpeedCategory, // 
+            displayableOrderComment, //
+            displayableOrderDate, // 
+            coalesce((List<String>) emails, Collections.<String> emptyList()),
+            (List<CreateFulfillmentOrderItem>) items);
+    }
+    
+    private static <T> T coalesce(T o1, T o2)
+    {
+        return o1 != null ? o1 : o2;
     }
 
     /**
@@ -346,7 +404,7 @@ public class FWSCloudConnector implements Initialisable
      * 
      * {@code <insert-element orderId="#[map-payload:orderId]"/> }
      * @param orderId
-     * @return 
+     * @return a GetFulfillmentOrderResult
      */
     @Operation
     public GetFulfillmentOrderResult getFulfillmentOrder(String orderId)
@@ -371,16 +429,16 @@ public class FWSCloudConnector implements Initialisable
      * @return 
      */
     @Operation
-    public List<FulfillmentPreview> getFulfillmentPreview(Address address,
-                                                          String merchantSku,
-                                                          String shippingSpeedCategories,
-                                                          int quantity,
-                                                          String orderItemId)
+    public List<FulfillmentPreview> getFulfillmentPreview(@Parameter Address address,
+                                                          @Parameter String merchantSku,
+                                                          @Parameter(optional = true) String shippingSpeedCategories,
+                                                          @Parameter int quantity,
+                                                          @Parameter String orderItemId)
     {
+        // TODO single element
         return client.getFulfillmentPreview(address, merchantSku, quantity, shippingSpeedCategories,
             orderItemId);
     }
-
 
     /**
      * Answers a brief status message from the service
@@ -421,7 +479,7 @@ public class FWSCloudConnector implements Initialisable
       * @param responseGroup
      *  @return a merchant sku supply iterable
       */
-    @Operation
+    @Operation //TODO single element
     public List<MerchantSKUSupply> getInventorySupply(String merchantSku, String responseGroup)
     {
         return client.getInventorySupply(merchantSku, responseGroup);
@@ -448,7 +506,7 @@ public class FWSCloudConnector implements Initialisable
      * 
      * @param startDateTime
      * @param responseGroup
-     * @return a merchant sku supply iterable
+     * @return a MerchantSKUSupply iterable
      */
     @Operation
     public Iterable<MerchantSKUSupply> listUpdatedInventorySupply(Date startDateTime, String responseGroup)
@@ -460,8 +518,31 @@ public class FWSCloudConnector implements Initialisable
     {
         if (client == null)
         {
-            setClient(new AxisFWSClient(accessKey, secretKey));
-        }   
+            Validate.notNull(accessKey);
+            Validate.notNull(secretKey);
+            setClient(new AxisFWSClient(new PortProvider<AmazonFWSInboundPortType>(accessKey, secretKey)
+            {
+                @Override
+                protected AmazonFWSInboundPortType newPort() throws ServiceException
+                {
+                    return new AmazonFWSInboundLocator().getAmazonFWSInboundPort();
+                }
+            }, new PortProvider<AmazonFBAOutboundPortType>(accessKey, secretKey)
+            {
+                @Override
+                protected AmazonFBAOutboundPortType newPort() throws ServiceException
+                {
+                    return new AmazonFBAOutboundLocator().getAmazonFBAOutboundPort();
+                }
+            }, new PortProvider<AmazonFBAInventoryPortType>(accessKey, secretKey)
+            {
+                @Override
+                protected AmazonFBAInventoryPortType newPort() throws ServiceException
+                {
+                    return new AmazonFBAInventoryLocator().getAmazonFBAInventoryPort();
+                }
+            }));
+        }
     }
 
     public FWSClient<RuntimeException> getClient()
