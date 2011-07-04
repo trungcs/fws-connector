@@ -178,19 +178,18 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         getPort(outboundPortProvider, result).getFulfillmentOrder(orderId, result, newOutboundMetadata());
         return result.value;
     }
-
+    
     public List<FulfillmentPreview> getFulfillmentPreview(Address address,
-                                                          String merchantSku,
-                                                          int quantity,
+                                                          List<GetFulfillmentPreviewItem> item,
                                                           String shippingSpeedCategories,
                                                           String orderItemId) throws RemoteException
     {
         Validate.notNull(address);
-        Validate.notNull(merchantSku);
+        Validate.notEmpty(item);
         Validate.notNull(orderItemId);
         GetFulfillmentPreviewResultHolder result = new GetFulfillmentPreviewResultHolder();
         getPort(outboundPortProvider, result).getFulfillmentPreview(address.toOutboundAddress(), //
-            asArray(new GetFulfillmentPreviewItem(merchantSku, quantity, orderItemId)), // 
+            item.toArray(new GetFulfillmentPreviewItem[item.size()]), // 
             shippingSpeedCategories == null ? null : asArray(shippingSpeedCategories), // 
             result, //
             newOutboundMetadata());
@@ -212,17 +211,16 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         return result.value.getShipmentData();
     }
 
-    public List<ShipmentPreview> getInboundShipmentPreview(String merchantSku,
-                                                           int quantity,
+    public List<ShipmentPreview> getInboundShipmentPreview(List<MerchantSKUQuantityItem> items,
                                                            Address address,
                                                            LabelPreference labelPreference)
         throws RemoteException
     {
-        Validate.notEmpty(merchantSku);
+        Validate.notEmpty(items);
         Validate.notNull(address);
         GetInboundShipmentPreviewResultHolder result = new GetInboundShipmentPreviewResultHolder();
         getPort(inboundPortProvider, result).getInboundShipmentPreview(address.toInboundAddress(),
-            asArray(new MerchantSKUQuantityItem(merchantSku, quantity)),
+            items.toArray(new MerchantSKUQuantityItem[items.size()]),
             LabelPreference.toFwsLabelPrepPreference(labelPreference), result, newInboundMetadata());
         return Arrays.asList(result.value.getShipmentPreview());
     }

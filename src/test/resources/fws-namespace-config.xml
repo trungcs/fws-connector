@@ -72,7 +72,7 @@
     <inbound-endpoint address="vm://GetInboundShipmentPreview"
       exchange-pattern="request-response" />
     <fws:get-inbound-shipment-preview
-      labelPreference="MERCHANT_LABEL" merchantSku="AF15962" address="#[address]" />
+      labelPreference="MERCHANT_LABEL" items="#[variable:items]" address="#[address]" />
   </flow>
 
 
@@ -162,8 +162,8 @@
     <inbound-endpoint address="vm://GetFulfillmentPreview"
       exchange-pattern="request-response" />
     <fws:get-fulfillment-preview address="#[variable:address]"
-      merchantSku="FHUD4896" shippingSpeedCategories="Standard"
-      quantity="15" orderItemId="X123698" />
+      shippingSpeedCategories="Standard"
+      items="#[variable:items]" orderItemId="X123698" />
   </flow>
 
 

@@ -20,6 +20,7 @@ import com.amazonaws.fba_outbound.doc._2007_08_02.CreateFulfillmentOrderItem;
 import com.amazonaws.fba_outbound.doc._2007_08_02.FulfillmentOrder;
 import com.amazonaws.fba_outbound.doc._2007_08_02.FulfillmentPreview;
 import com.amazonaws.fba_outbound.doc._2007_08_02.GetFulfillmentOrderResult;
+import com.amazonaws.fba_outbound.doc._2007_08_02.GetFulfillmentPreviewItem;
 
 import java.util.Date;
 import java.util.List;
@@ -42,8 +43,7 @@ public interface FWSClient<ExceptionType extends Throwable>
 
     InboundShipmentData getInboundShipment(@NotNull String shipmentId) throws ExceptionType;
 
-    List<ShipmentPreview> getInboundShipmentPreview(@NotNull String merchantSku,
-                                                    int quantity,
+    List<ShipmentPreview> getInboundShipmentPreview(@NotNull List<MerchantSKUQuantityItem> items,
                                                     @NotNull Address address,
                                                     LabelPreference labelPreference) throws ExceptionType;
 
@@ -86,8 +86,7 @@ public interface FWSClient<ExceptionType extends Throwable>
     GetFulfillmentOrderResult getFulfillmentOrder(@NotNull String orderId) throws ExceptionType;
 
     List<FulfillmentPreview> getFulfillmentPreview(@NotNull Address address,
-                                                   @NotNull String merchantSku,
-                                                   int quantity,
+                                                   @NotNull List<GetFulfillmentPreviewItem> item,
                                                    String shippingSpeedCategories,
                                                    @NotNull String orderItemId) throws ExceptionType;
 

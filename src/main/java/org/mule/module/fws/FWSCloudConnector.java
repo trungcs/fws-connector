@@ -44,6 +44,7 @@ import com.amazonaws.fba_outbound.doc._2007_08_02.CreateFulfillmentOrderItem;
 import com.amazonaws.fba_outbound.doc._2007_08_02.FulfillmentOrder;
 import com.amazonaws.fba_outbound.doc._2007_08_02.FulfillmentPreview;
 import com.amazonaws.fba_outbound.doc._2007_08_02.GetFulfillmentOrderResult;
+import com.amazonaws.fba_outbound.doc._2007_08_02.GetFulfillmentPreviewItem;
 
 import java.util.Collections;
 import java.util.Date;
@@ -185,21 +186,19 @@ public class FWSCloudConnector implements Initialisable
      * You might need to create multiple shipments for various reasons, but the most common reason is when there are sortable and non-sortable items. 
      * In this case, there is one shipment for each of the shipment sets returned.
      *
-     * {@code <get-inbound-shipment-preview  merchantSku="AF15962"  address="#[address]" labelPreference="MERCHANT_LABEL" />}
-     * @param merchantSku the mandatory merchant's sku
+     * {@code <get-inbound-shipment-preview  items="#[variable:items]"  address="#[address]" labelPreference="MERCHANT_LABEL" />}
+     * @param items the mandatory items list of MerchantSkuItems to preview. At least one item is required
      * @param address the mandatory destination address
      * @param labelPreference the optional label preference
-     * @param quantity the optional quantity to deliver. Default is 1.
      * @return the list of previews 
      */
     @Operation
-    public List<ShipmentPreview> getInboundShipmentPreview(@Parameter String merchantSku,
-                                                           @Parameter(optional = true, defaultValue = "1") int quantity,
+    @SuppressWarnings("unchecked")
+    public List<ShipmentPreview> getInboundShipmentPreview(@Parameter Object items,
                                                            @Parameter Address address,
                                                            @Parameter(optional = true) LabelPreference labelPreference)
     {
-      //TODO bulk
-        return client.getInboundShipmentPreview(merchantSku, quantity, address, labelPreference);
+        return client.getInboundShipmentPreview((List<MerchantSKUQuantityItem>) items, address, labelPreference);
     }
  
     /**
@@ -416,27 +415,24 @@ public class FWSCloudConnector implements Initialisable
      * 
      * {@code <get-fulfillment-preview
      *     address="#[variable:address]" 
-     *     merchantSku="FHUD4896" 
+     *     items="#[variable:items]" 
      *     shippingSpeedCategories="Standard"
-     *     quantity="15"
      *     orderItemId="X123698" /> }
-     * @param address the mandatory destination address 
-     * @param merchantSku the mandatory merchant's sku
+     * @param address the mandatory destination address
+     * @param items the mandatory items list of GetFulfillmentPreviewItem to preview. At least one item is required 
      * @param shippingSpeedCategories the optional shipping categories
-     * @param quantity the optional quantity to deliver. Default is 1.
      * @param orderItemId the mandatory order item id
-     * @return 
+     * @return  a list of fulfillment previews
      */
+    @SuppressWarnings("unchecked")
     @Operation
     public List<FulfillmentPreview> getFulfillmentPreview(@Parameter Address address,
-                                                          @Parameter String merchantSku,
+                                                          @Parameter Object items,
                                                           @Parameter(optional = true) String shippingSpeedCategories,
-                                                          @Parameter(optional = true, defaultValue = "1") int quantity,
                                                           @Parameter String orderItemId)
     {
-        // TODO bulk
-        return client.getFulfillmentPreview(address, merchantSku, quantity, shippingSpeedCategories,
-            orderItemId);
+        return client.getFulfillmentPreview(address, (List<GetFulfillmentPreviewItem>) items,
+            shippingSpeedCategories, orderItemId);
     }
 
     /**

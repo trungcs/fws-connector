@@ -10,6 +10,7 @@
 
 package org.mule.module.fws;
 
+import static org.mule.module.fws.api.Arrays.asArray;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -97,8 +98,9 @@ public class FWSTestDriver
     @Test
     public void getPreviewAndPutItems() throws Exception
     {
-        List<ShipmentPreview> preview = connector.getInboundShipmentPreview(TEST_MSKU, 1, TEST_ADDRESS, null);
-        assertEquals(preview.size(), 1); // FIXME should not be a list
+        List<ShipmentPreview> preview = connector.getInboundShipmentPreview(
+            Arrays.asList(new MerchantSKUQuantityItem(TEST_MSKU, 1)), TEST_ADDRESS, null);
+        assertEquals(preview.size(), 1);
         ShipmentPreview shipmentGroup = preview.get(0);
         assertFalse(connector.listInboundShipments(ShipmentStatus.WORKING, null, null).iterator().hasNext());
         try

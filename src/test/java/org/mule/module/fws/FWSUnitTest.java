@@ -258,7 +258,8 @@ public class FWSUnitTest
             (String[]) isNull(), //
             any(GetFulfillmentPreviewResultHolder.class), // 
             anyOutboundMetadata());
-        connector.getFulfillmentPreview(new Address(), MSKU, null, 10, ORDER_ITEM_ID);
+        connector.getFulfillmentPreview(new Address(), //
+            Arrays.asList(new GetFulfillmentPreviewItem(MSKU, 10, ORDER_ITEM_ID)), null, ORDER_ITEM_ID);
         reset(out);
     }
 
@@ -271,7 +272,8 @@ public class FWSUnitTest
             eq(asArray("CAT-1")), //
             any(GetFulfillmentPreviewResultHolder.class), //
             anyOutboundMetadata());
-        connector.getFulfillmentPreview(new Address(), MSKU, "CAT-1", 10, ORDER_ITEM_ID);
+        connector.getFulfillmentPreview(new Address(), Arrays.asList(new GetFulfillmentPreviewItem(MSKU, 10,
+            ORDER_ITEM_ID)), "CAT-1", ORDER_ITEM_ID);
         reset(out);
     }
 
@@ -319,13 +321,6 @@ public class FWSUnitTest
             anyInboundMetadata());
         assertSame(shipmentData, connector.getInboundShipment(SHIP_ID));
         reset(in);
-    }
-
-    @Ignore
-    @Test
-    public void getInboundShipmentPreview()
-    {
-        connector.getInboundShipmentPreview(MSKU, 10, new Address(), LabelPreference.MERCHANT_LABEL);
     }
 
     @Ignore
