@@ -240,7 +240,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         getPort(inventoryPortProvider, result).getInventorySupply(asArray(merchantSku), responseGroup,
             result, newInventoryMetadata());
         final MerchantSKUSupply[] supply = result.value.getMerchantSKUSupply();
-        if (merchantSku.length() != 1)
+        if (supply.length != 1)
         {
             throw new RemoteException("There is no available inventory for the given sku " + merchantSku);
         }
@@ -287,7 +287,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         };
     }
 
-    public Iterable<FulfillmentOrder> listFulfillmentOrders(final Date startDate)
+    public Iterable<FulfillmentOrder> listFulfillmentOrders(final Date startDate, final List<String> fulfillmentMethod)
     {
         return new FwsPaginatedIterable<FulfillmentOrder, ListAllFulfillmentOrdersResult>()
         {
@@ -297,7 +297,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
             {
                 ListAllFulfillmentOrdersResultHolder result = new ListAllFulfillmentOrdersResultHolder();
                 getPort(outboundPortProvider, result).listAllFulfillmentOrders(PAGE_SIZE,
-                    FwsDates.format(startDate), new String[0]/* TODO */, result, newOutboundMetadata());
+                    FwsDates.format(startDate), fulfillmentMethod.toArray(new String[fulfillmentMethod.size()]), result, newOutboundMetadata());
                 return result.value;
             }
 

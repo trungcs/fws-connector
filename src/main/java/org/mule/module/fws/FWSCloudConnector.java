@@ -270,18 +270,19 @@ public class FWSCloudConnector implements Initialisable
      *    destinationFulfillmentCenter="#[variable:destinationFulfillmentCenter]"
      *    shipFromAddress="#[variable:shipFromAddress]" />}
      * 
-     * @param shipmentId
-     * @param shipmentName
-     * @param destinationFulfillmentCenter
-     * @param shipFromAddress
-     * @param labelPreference
+     * @param shipmentId the mandatory shipment's id
+     * @param shipmentName the mandatory shipment name
+     * @param destinationFulfillmentCenter the mandatory Amazon's fulfillment center where the 
+     *      client's products are stored
+     * @param shipFromAddress 
+     * @param labelPreference  the optional label preference
      */
     @Operation
     public void putInboundShipmentData(@Parameter String shipmentId,
-                                   @Parameter String shipmentName,
-                                   @Parameter String destinationFulfillmentCenter,
-                                   @Parameter Address shipFromAddress,
-                                   @Parameter(optional = true) LabelPreference labelPreference)
+                                       @Parameter String shipmentName,
+                                       @Parameter String destinationFulfillmentCenter,
+                                       @Parameter Address shipFromAddress,
+                                       @Parameter(optional = true) LabelPreference labelPreference)
     {
         client.putInboundShipmentData(shipmentId, shipmentName, destinationFulfillmentCenter, shipFromAddress, labelPreference);
     }
@@ -494,12 +495,16 @@ public class FWSCloudConnector implements Initialisable
      * 
      * {@code <list-fulfillment-orders/> } 
      * @param startDate the start date of the query 
+     * @param fulfillmentMethod optional
      * @return the orders iterable 
      */
+    @SuppressWarnings("unchecked")
     @Operation
-    public Iterable<FulfillmentOrder> listFulfillmentOrders(@Parameter(optional = true) Date startDate)
+    public Iterable<FulfillmentOrder> listFulfillmentOrders(@Parameter(optional = true) Date startDate,
+                                                            @Parameter(optional = true) Object fulfillmentMethod)
     {
-        return client.listFulfillmentOrders(startDate);
+        return client.listFulfillmentOrders(startDate, coalesce((List<String>) fulfillmentMethod,
+            Collections.<String> emptyList()));
     }
      
      /**

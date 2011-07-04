@@ -13,7 +13,7 @@
  */
 
 package org.mule.module.fws;
-
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 import static org.mockito.Matchers.any;
@@ -45,13 +45,18 @@ import com.amazonaws.fba_inbound.doc._2007_05_10.GetFulfillmentItemByMSKUResult;
 import com.amazonaws.fba_inbound.doc._2007_05_10.GetInboundShipmentDataResult;
 import com.amazonaws.fba_inbound.doc._2007_05_10.GetServiceStatusResult;
 import com.amazonaws.fba_inbound.doc._2007_05_10.InboundShipmentData;
+import com.amazonaws.fba_inbound.doc._2007_05_10.LabelPrepPreference;
 import com.amazonaws.fba_inbound.doc._2007_05_10.MerchantItem;
+import com.amazonaws.fba_inbound.doc._2007_05_10.MerchantSKUQuantityItem;
 import com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetFulfillmentIdentifierForMSKUResultHolder;
 import com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetFulfillmentIdentifierResultHolder;
 import com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetFulfillmentItemByFNSKUResultHolder;
 import com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetFulfillmentItemByMSKUResultHolder;
 import com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetInboundShipmentDataResultHolder;
 import com.amazonaws.fba_inventory.doc._2009_07_31.AmazonFBAInventoryPortType;
+import com.amazonaws.fba_inventory.doc._2009_07_31.GetInventorySupplyResult;
+import com.amazonaws.fba_inventory.doc._2009_07_31.MerchantSKUSupply;
+import com.amazonaws.fba_inventory.doc._2009_07_31.holders.GetInventorySupplyResultHolder;
 import com.amazonaws.fba_outbound.doc._2007_08_02.AmazonFBAOutboundPortType;
 import com.amazonaws.fba_outbound.doc._2007_08_02.CreateFulfillmentOrderItem;
 import com.amazonaws.fba_outbound.doc._2007_08_02.Currency;
@@ -323,85 +328,79 @@ public class FWSUnitTest
         reset(in);
     }
 
-    @Ignore
     @Test
-    public void getInventorySupplyWithoutGroup()
+    public void getInventorySupplyWithoutGroup() throws RemoteException
     {
+        doAnswer(new UpdateHolderAnswer<GetInventorySupplyResultHolder>(2)
+        {
+            @Override
+            void updateHolder(GetInventorySupplyResultHolder h)
+            {
+                h.value = new GetInventorySupplyResult(asArray(new MerchantSKUSupply()));
+            }
+        }).when(inventory).getInventorySupply(eq(asArray(MSKU)), (String) isNull(),
+            any(GetInventorySupplyResultHolder.class), anyInventoryMetadata());
         connector.getInventorySupply(MSKU, null);
-    }
-
-    @Ignore
-    @Test
-    public void getInventorySupplyWithGroup()
-    {
-        connector.getInventorySupply(MSKU, "a group");
+        reset(inventory);
     }
 
     @Test
     public void listFulfillmentItems()
     {
-        connector.listFulfillmentItems(false);
+        assertNotNull(connector.listFulfillmentItems(false));
     }
 
     @Test
     public void listFulfillmentOrdersWithoutDate()
     {
-        connector.listFulfillmentOrders(null);
+        assertNotNull(connector.listFulfillmentOrders(null, null));
     }
 
     @Test
     public void listFulfillmentOrdersWithDate()
     {
-        connector.listFulfillmentOrders(new Date());
+        assertNotNull(connector.listFulfillmentOrders(new Date(), null));
     }
 
     @Test
     public void listInboundShipmentItems()
     {
-        connector.listInboundShipmentItems(SHIP_ID);
+        assertNotNull(connector.listInboundShipmentItems(SHIP_ID));
     }
 
     @Test
     public void listInboundShipmentsWithoutBeforeDate()
     {
-        connector.listInboundShipments(ShipmentStatus.ERROR, new Date(), null);
+        assertNotNull(connector.listInboundShipments(ShipmentStatus.ERROR, new Date(), null));
     }
 
     @Test
     public void listInboundShipmentsWithAfterDate()
     {
-        connector.listInboundShipments(ShipmentStatus.ERROR, null, new Date());
+        assertNotNull(connector.listInboundShipments(ShipmentStatus.ERROR, null, new Date()));
     }
 
     @Test
     public void listUpdatedInventorySupplyWithoutGroup()
     {
-        connector.listUpdatedInventorySupply(new Date(), null);
+        assertNotNull(connector.listUpdatedInventorySupply(new Date(), null));
     }
 
     @Test
     public void listUpdatedInventorySupplyWithGroup()
     {
-        connector.listUpdatedInventorySupply(new Date(), "");
+        assertNotNull(connector.listUpdatedInventorySupply(new Date(), ""));
     }
 
     @Test
-    @Ignore
-    public void putInboundShipment()
+    public void putInboundShipment() throws RemoteException
     {
         Address shipFromAddress = new Address();
         connector.putInboundShipmentData(SHIP_ID, "A shipment", "a center", shipFromAddress,
             LabelPreference.AMAZON_LABEL_ONLY);
-    }
-
-    @Test
-    @Ignore
-    public void putInboundShipmentItems()
-    {
-        // Address shipFromAddress = new Address();
-        // connector.putInboundShipmentItems(SHIP_ID, "A shipment", "a center",
-        // shipFromAddress,
-        // LabelPreference.AMAZON_LABEL_ONLY);
+        verify(in).putInboundShipmentData(eq(SHIP_ID), eq("A shipment"), eq("a center"),
+            any(com.amazonaws.fba_inbound.doc._2007_05_10.Address.class),
+            eq(LabelPrepPreference.AMAZON_LABEL_ONLY));
     }
 
     @Test

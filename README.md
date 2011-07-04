@@ -304,11 +304,11 @@ for the given ShipmentId.
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|shipmentId||no||
-|shipmentName||no||
-|destinationFulfillmentCenter||no||
+|shipmentId|the mandatory shipment's id|no||
+|shipmentName|the mandatory shipment name|no||
+|destinationFulfillmentCenter|the mandatory Amazon's fulfillment center where the client's products are stored|no||
 |shipFromAddress||no||
-|labelPreference||yes||*AMAZON_LABEL_ONLY*, *AMAZON_LABEL_PREFERRED*, *MERCHANT_LABEL*, *fwsLabelPrepPreference*
+|labelPreference|the optional label preference|yes||*AMAZON_LABEL_ONLY*, *AMAZON_LABEL_PREFERRED*, *MERCHANT_LABEL*, *fwsLabelPrepPreference*
 
 
 
@@ -519,6 +519,7 @@ Lazily lists all the fulfillment orders
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |startDate|the start date of the query|yes||
+|fulfillmentMethod|optional|yes||
 
 Returns orders iterable
 

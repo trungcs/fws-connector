@@ -148,7 +148,7 @@ public class FWSTestDriver
     @Test
     public void listOrdersNoOrder()
     {
-        assertFalse(connector.listFulfillmentOrders(new Date()).iterator().hasNext());
+        assertFalse(connector.listFulfillmentOrders(new Date(), null).iterator().hasNext());
     }
 
     // Inventory

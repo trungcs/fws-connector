@@ -99,7 +99,8 @@ public interface FWSClient<ExceptionType extends Throwable>
 
     String getOutboundServiceStatus() throws ExceptionType;
 
-    Iterable<FulfillmentOrder> listFulfillmentOrders(Date startDate) throws ExceptionType;
+    Iterable<FulfillmentOrder> listFulfillmentOrders(Date startDate, List<String> fulfillmentMethod)
+        throws ExceptionType;
 
     MerchantSKUSupply getInventorySupply(@NotNull String merchantSku, String responseGroup)
         throws ExceptionType;
