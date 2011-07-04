@@ -57,11 +57,18 @@ public interface FWSClient<ExceptionType extends Throwable>
                                                        Date createdAfter,
                                                        Date createdBefore) throws ExceptionType;
 
-    void putInboundShipment(String shipmentId,
-                            String shipmentName,
-                            String destinationFulfillmentCenter,
-                            Address shipFromAddress,
-                            org.mule.module.fws.api.LabelPreference labelPreference) throws ExceptionType;
+    void putInboundShipmentData(String shipmentId,
+                                String shipmentName,
+                                String destinationFulfillmentCenter,
+                                Address shipFromAddress,
+                                org.mule.module.fws.api.LabelPreference labelPreference) throws ExceptionType;
+
+    public void putInboundShipment(String shipmentId,
+                                   String shipmentName,
+                                   String destinationFulfillmentCenter,
+                                   Address shipFromAddress,
+                                   org.mule.module.fws.api.LabelPreference labelPreference,
+                                   List<MerchantSKUQuantityItem> itemQuantities) throws ExceptionType;
 
     void putInboundShipmentItems(String shipmentId, List<MerchantSKUQuantityItem> itemQuantities)
         throws ExceptionType;

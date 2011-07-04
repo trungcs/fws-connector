@@ -261,12 +261,48 @@ public class FWSCloudConnector implements Initialisable
     }
 
     /**
-     * Adds or replaces inbound shipment data (minus the item details) for a given shipmentId.
+     * Adds or replaces the merchant's inbound shipment header information
+     * for the given ShipmentId.
      * 
      * {@code <put-inbound-shipment 
      *    labelPreference="MERCHANT_LABEL"
-     *    merchantSku="#[variable:merchantSku]"
-     *    quantity="10"
+     *    shipmentId="#[variable:shipmentId]" shipmentName="#[variable:shipmentName]"
+     *    destinationFulfillmentCenter="#[variable:destinationFulfillmentCenter]"
+     *    shipFromAddress="#[variable:shipFromAddress]" />}
+     * 
+     * @param shipmentId
+     * @param shipmentName
+     * @param destinationFulfillmentCenter
+     * @param shipFromAddress
+     * @param labelPreference
+     */
+    @Operation
+    public void putInboundShipmentData(@Parameter String shipmentId,
+                                   @Parameter String shipmentName,
+                                   @Parameter String destinationFulfillmentCenter,
+                                   @Parameter Address shipFromAddress,
+                                   @Parameter(optional = true) LabelPreference labelPreference)
+    {
+        client.putInboundShipmentData(shipmentId, shipmentName, destinationFulfillmentCenter, shipFromAddress, labelPreference);
+    }
+    
+    /**
+     * Adds or replaces inbound shipment for a given shipmentId. If the shipment does not
+     * exist, one will be created. Note, the merchant should call
+     * SetInboundShipmentStatus with a status of 'Shipped' when the shipment is
+     * picked up, or set the status to 'Cancelled' if the shipment is abandoned. The
+     * intial status of a shipment will be set to 'Working'. Once a shipment's status
+     * has been set to 'Shipped', the merchant may make no further changes except to
+     * update the status to 'Cancelled'. Any items not received at the time a
+     * shipment is 'Cancelled' will be sidelined if they arrive at the fulfillment
+     * center.  
+     * 
+     * NOTE: If you are experiencing time-outs due to too many items in the shipment, calling this operation with a subset of
+     * the items should work. You may add more items to the shipment by calling putInboundShipmentItems. 
+     * 
+     * {@code <put-inbound-shipment 
+     *    labelPreference="MERCHANT_LABEL"
+     *    items="#[variable:items]"
      *    shipmentId="#[variable:shipmentId]" shipmentName="#[variable:shipmentName]"
      *    destinationFulfillmentCenter="#[variable:destinationFulfillmentCenter]"
      *    shipFromAddress="#[variable:shipFromAddress]" />}
@@ -277,17 +313,22 @@ public class FWSCloudConnector implements Initialisable
      *      client's products are stored
      * @param shipFromAddress  
      * @param labelPreference  the optional label preference
+     * @param itemQuantities a mandatory list of MerchantSKUQuantityItem objects, with the amount of item for each merchant sku. 
+     *              At least one item must be passed
      */
     @Operation
+    @SuppressWarnings("unchecked")
     public void putInboundShipment(@Parameter String shipmentId,
                                    @Parameter String shipmentName,
                                    @Parameter String destinationFulfillmentCenter,
                                    @Parameter Address shipFromAddress,
-                                   @Parameter(optional = true) LabelPreference labelPreference)
+                                   @Parameter(optional = true) LabelPreference labelPreference,
+                                   @Parameter Object itemQuantities)
     {
-        //TODO description and pass the initial items
-        client.putInboundShipment(shipmentId, shipmentName, destinationFulfillmentCenter, shipFromAddress, labelPreference);
+        client.putInboundShipment(shipmentId, shipmentName, destinationFulfillmentCenter, shipFromAddress,
+            labelPreference, (List<MerchantSKUQuantityItem>) itemQuantities);
     }
+    
     
     
     /**

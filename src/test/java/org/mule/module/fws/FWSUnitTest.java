@@ -390,7 +390,7 @@ public class FWSUnitTest
     public void putInboundShipment()
     {
         Address shipFromAddress = new Address();
-        connector.putInboundShipment(SHIP_ID, "A shipment", "a center", shipFromAddress,
+        connector.putInboundShipmentData(SHIP_ID, "A shipment", "a center", shipFromAddress,
             LabelPreference.AMAZON_LABEL_ONLY);
     }
 

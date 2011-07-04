@@ -82,7 +82,7 @@ If the MerchantSKU is not currently a part of the shipment, then that particular
 Get Fulfillment Identifier
 --------------------------
 
-Gets the Fulfillment Network SKU (FNSKU) for each supplied merchant item—creating one if needed.
+Gets the Fulfillment Network SKU (FNSKU) for the supplied merchant item - creating it if needed.
 
 This operation is  idempotent in that it can be called multiple times without any adverse effects. This operation is required whenever you need to register items
 for Amazon fulfillment that require labeling and when you need to get the identifier prior to creating an offer. This operation is necessary to register items for Amazon
@@ -110,7 +110,7 @@ Use this operation instead of getFulfillmentIdentifierForMSKU if an offer does n
 Get Fulfillment Identifier For Msku
 -----------------------------------
 
-Gets the Fulfillment Network SKU (FNSKU) for each supplied merchant item—creating one if needed. 
+Gets the Fulfillment Network SKU (FNSKU) for the supplied merchant item - creating it if needed. 
 
 This operation is idempotent in that you can call it multiple times without any adverse effects. 
 This operation is required whenever you need to register items for Amazon fulfillment that require
@@ -134,8 +134,8 @@ Use this operation instead of GetFulfillmentIdentifier if an offer already exist
 Get Fulfillment Item By Fnsku
 -----------------------------
 
-Gets fulfillment item data for the provided Fulfillment Network SKUs (FNSKUs). 
-If any of the provided FNSKUs are invalid they are ignored and only the valid SKUs are returned.
+Gets fulfillment item data for the provided Fulfillment Network SKU (FNSKU). Throws an FWSException if the fnsku is invalid.
+ 
 A response does not imply that the item has an offer for which it can be fulfilled; only that the Amazon Fulfillment Network
 can track it. An inactive item can have a quantity in the fulfillment center, but will never be fulfilled. 
 
@@ -148,15 +148,17 @@ can track it. An inactive item can have a quantity in the fulfillment center, bu
 |config-ref|Specify which configuration to use for this invocation|yes||
 |fulfillmentNetworkSku|the mandatory fulfillment network sku - aka nsku, aka fnsku|no||
 
+Returns FulfillmentItem
+
 
 
 Get Fulfillment Item By Msku
 ----------------------------
 
-Gets fulfillment item data for the provided Merchant SKUs. 
+Gets fulfillment item data for the provided Merchant SKU. Throws an FWSException if the msku is invalid.
 
-If any of the provided MSKUs are invalid (e.g. does not have an assigned Fulfillment Network SKU), they are ignored and only the valid SKUs are returned.
-A response does not imply that the item has an offer for which it can be fulfilled; only that the Amazon Fulfillment Network can track it. An inactive item can have a quantity in the fulfillment center, but will never be fulfille
+A response does not imply that the item has an offer for which it can be fulfilled; 
+only that the Amazon Fulfillment Network can track it. An inactive item can have a quantity in the fulfillment center, but will never be fulfille
 
 
 
@@ -166,6 +168,8 @@ A response does not imply that the item has an offer for which it can be fulfill
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |merchantSku|the mandatory merchant's sku|no||
+
+Returns FulfillmentItem
 
 
 
@@ -182,6 +186,8 @@ Gets inbound shipment data without the item details for a given ShipmentId.
 |config-ref|Specify which configuration to use for this invocation|yes||
 |shipmentId|the mandatory shipment id|no||
 
+Returns InboundShipmentData
+
 
 
 Get Inbound Shipment Preview
@@ -194,13 +200,12 @@ In this case, there is one shipment for each of the shipment sets returned.
 
 
 
-     <get-inbound-shipment-preview  merchantSku="AF15962"  address="#[address]" labelPreference="MERCHANT_LABEL" />
+     <get-inbound-shipment-preview  items="#[variable:items]"  address="#[address]" labelPreference="MERCHANT_LABEL" />
 
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|merchantSku|the mandatory merchant's sku|no||
-|quantity|the optional quantity to deliver. Default is 1.|yes|1|
+|items|the mandatory items list of MerchantSkuItems to preview. At least one item is required|no||
 |address|the mandatory destination address|no||
 |labelPreference|the optional label preference|yes||*AMAZON_LABEL_ONLY*, *AMAZON_LABEL_PREFERRED*, *MERCHANT_LABEL*, *fwsLabelPrepPreference*
 
@@ -282,17 +287,52 @@ Returns shipment data iterable
 
 
 
-Put Inbound Shipment
---------------------
+Put Inbound Shipment Data
+-------------------------
 
-Adds or replaces inbound shipment data (minus the item details) for a given shipmentId.
+Adds or replaces the merchant's inbound shipment header information
+for the given ShipmentId.
 
 
 
      <put-inbound-shipment 
        labelPreference="MERCHANT_LABEL"
-       merchantSku="#[variable:merchantSku]"
-       quantity="10"
+       shipmentId="#[variable:shipmentId]" shipmentName="#[variable:shipmentName]"
+       destinationFulfillmentCenter="#[variable:destinationFulfillmentCenter]"
+       shipFromAddress="#[variable:shipFromAddress]" />
+
+| attribute | description | optional | default value | possible values |
+|:-----------|:-----------|:---------|:--------------|:----------------|
+|config-ref|Specify which configuration to use for this invocation|yes||
+|shipmentId||no||
+|shipmentName||no||
+|destinationFulfillmentCenter||no||
+|shipFromAddress||no||
+|labelPreference||yes||*AMAZON_LABEL_ONLY*, *AMAZON_LABEL_PREFERRED*, *MERCHANT_LABEL*, *fwsLabelPrepPreference*
+
+
+
+Put Inbound Shipment
+--------------------
+
+Adds or replaces inbound shipment for a given shipmentId. If the shipment does not
+exist, one will be created. Note, the merchant should call
+SetInboundShipmentStatus with a status of 'Shipped' when the shipment is
+picked up, or set the status to 'Cancelled' if the shipment is abandoned. The
+intial status of a shipment will be set to 'Working'. Once a shipment's status
+has been set to 'Shipped', the merchant may make no further changes except to
+update the status to 'Cancelled'. Any items not received at the time a
+shipment is 'Cancelled' will be sidelined if they arrive at the fulfillment
+center.  
+
+NOTE: If you are experiencing time-outs due to too many items in the shipment, calling this operation with a subset of
+the items should work. You may add more items to the shipment by calling putInboundShipmentItems. 
+
+
+
+     <put-inbound-shipment 
+       labelPreference="MERCHANT_LABEL"
+       items="#[variable:items]"
        shipmentId="#[variable:shipmentId]" shipmentName="#[variable:shipmentName]"
        destinationFulfillmentCenter="#[variable:destinationFulfillmentCenter]"
        shipFromAddress="#[variable:shipFromAddress]" />
@@ -305,6 +345,7 @@ Adds or replaces inbound shipment data (minus the item details) for a given ship
 |destinationFulfillmentCenter|the mandatory Amazon's fulfillment center where the client's products are stored|no||
 |shipFromAddress||no||
 |labelPreference|the optional label preference|yes||*AMAZON_LABEL_ONLY*, *AMAZON_LABEL_PREFERRED*, *MERCHANT_LABEL*, *fwsLabelPrepPreference*
+|itemQuantities|a mandatory list of MerchantSKUQuantityItem objects, with the amount of item for each merchant sku. At least one item must be passed|no||
 
 
 
@@ -329,9 +370,8 @@ This call returns an exception if you attempt to add line items to a shipment th
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|shipmentId||no||
-|itemQuantities||yes||
-|itemQuantitiesRef||yes||
+|shipmentId|the mandatory shipment's id|no||
+|itemQuantities|a mandatory list of MerchantSKUQuantityItem objects, with the amount of item for each merchant sku. At least one item must be passed|no||
 
 
 
@@ -433,19 +473,19 @@ Answers estimated shipping dates and fees for a given set of merchant SKUs and q
 
      <get-fulfillment-preview
         address="#[variable:address]" 
-        merchantSku="FHUD4896" 
+        items="#[variable:items]" 
         shippingSpeedCategories="Standard"
-        quantity="15"
         orderItemId="X123698" /> 
 
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |address|the mandatory destination address|no||
-|merchantSku|the mandatory merchant's sku|no||
+|items|the mandatory items list of GetFulfillmentPreviewItem to preview. At least one item is required|no||
 |shippingSpeedCategories|the optional shipping categories|yes||
-|quantity|the optional quantity to deliver. Default is 1.|yes|1|
 |orderItemId|the mandatory order item id|no||
+
+Returns list of fulfillment previews
 
 
 
@@ -489,8 +529,9 @@ Get Inventory Supply
 
 Gets information about the supply of merchant-owned inventory in Amazon's fulfillment network. 
  
- This operation does not return inventory that is unsellable or that 
- is already bound to a customer order or bound to internal fulfillment center processing (for example, labeling).
+ Throws a FWSException if inventory is unsellable or  
+ is already bound to a customer order or 
+ bound to internal fulfillment center processing (for example, labeling).
  
  
 

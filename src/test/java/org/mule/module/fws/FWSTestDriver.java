@@ -106,8 +106,7 @@ public class FWSTestDriver
         try
         {
             connector.putInboundShipment(shipmentGroup.getShipmentId(), "A shippment",
-                shipmentGroup.getDestinationFulfillmentCenter(), TEST_ADDRESS, null);
-            connector.putInboundShipmentItems(shipmentGroup.getShipmentId(),
+                shipmentGroup.getDestinationFulfillmentCenter(), TEST_ADDRESS, null,
                 Collections.singletonList(new MerchantSKUQuantityItem(TEST_MSKU, 1)));
             assertTrue(connector.listInboundShipmentItems(shipmentGroup.getShipmentId()).iterator().hasNext());
             assertTrue(connector.listInboundShipments(ShipmentStatus.WORKING, null, null)

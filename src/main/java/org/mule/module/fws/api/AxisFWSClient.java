@@ -421,7 +421,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         };
     }
 
-    public void putInboundShipment(String shipmentId,
+    public void putInboundShipmentData(String shipmentId,
                                    String shipmentName,
                                    String destinationFulfillmentCenter,
                                    Address shipFromAddress,
@@ -431,6 +431,21 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         getPort(inboundPortProvider, "PutInboundShipment")//
         .putInboundShipmentData(shipmentId, shipmentName, destinationFulfillmentCenter,
             shipFromAddress.toInboundAddress(), labelPreference.toFwsLabelPrepPreference());
+    }
+    
+    public void putInboundShipment(String shipmentId,
+                                   String shipmentName,
+                                   String destinationFulfillmentCenter,
+                                   Address shipFromAddress,
+                                   org.mule.module.fws.api.LabelPreference labelPreference, 
+                                   List<MerchantSKUQuantityItem> itemQuantities)
+        throws RemoteException
+    {
+        Validate.notEmpty(itemQuantities);
+        getPort(inboundPortProvider, "PutInboundShipment")//
+        .putInboundShipment(shipmentId, shipmentName, destinationFulfillmentCenter,
+            shipFromAddress.toInboundAddress(), labelPreference.toFwsLabelPrepPreference(),
+            itemQuantities.toArray(new MerchantSKUQuantityItem[itemQuantities.size()]));
     }
 
     public void putInboundShipmentItems(String shipmentId, List<MerchantSKUQuantityItem> itemQuantities)

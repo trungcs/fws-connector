@@ -111,7 +111,7 @@
   <flow name="PutInboundShipmentData">
     <inbound-endpoint address="vm://PutInboundShipmentData"
       exchange-pattern="request-response" />
-    <fws:put-inbound-shipment labelPreference="MERCHANT_LABEL"
+    <fws:put-inbound-shipment-data labelPreference="MERCHANT_LABEL"
       shipmentId="#[variable:shipmentId]" shipmentName="#[variable:shipmentName]"
       destinationFulfillmentCenter="#[variable:destinationFulfillmentCenter]"
       shipFromAddress="#[variable:shipFromAddress]" />
