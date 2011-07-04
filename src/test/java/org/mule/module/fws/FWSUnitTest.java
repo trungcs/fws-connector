@@ -28,6 +28,7 @@ import static org.mockito.Mockito.when;
 import static org.mule.module.fws.api.Arrays.asArray;
 
 import org.mule.module.fws.api.AxisFWSClient;
+import org.mule.module.fws.api.FwsException;
 import org.mule.module.fws.api.ItemCondition;
 import org.mule.module.fws.api.LabelPreference;
 import org.mule.module.fws.api.PortProvider;
@@ -149,7 +150,7 @@ public class FWSUnitTest
             @Override
             void updateHolder(GetFulfillmentIdentifierResultHolder h)
             {
-                h.value = new GetFulfillmentIdentifierResult(new FulfillmentItem[0]);
+                h.value = new GetFulfillmentIdentifierResult(asArray(new FulfillmentItem()));
             }
         }).when(in).getFulfillmentIdentifier( //
             eq(asArray(new MerchantItem(ASIN,
@@ -159,16 +160,28 @@ public class FWSUnitTest
         connector.getFulfillmentIdentifier(ASIN, ItemCondition.NEW_ITEM, MSKU);
         reset(in);
     }
-
+    
     @Test
     public void getFulfillmentIdentifierForMsku() throws RemoteException
+    {
+        getFulfillmentIdForMsku(asArray(new FulfillmentItem()));
+    }
+
+    @Ignore
+    @Test(expected = FwsException.class)
+    public void getFulfillmentIdentifierForMskuInvallidId() throws RemoteException
+    {
+        getFulfillmentIdForMsku(new FulfillmentItem[0]);
+    }
+
+    private void getFulfillmentIdForMsku(final FulfillmentItem[] fulfillmentItem) throws RemoteException
     {
         doAnswer(new UpdateHolderAnswer<GetFulfillmentIdentifierForMSKUResultHolder>(1)
         {
             @Override
             void updateHolder(GetFulfillmentIdentifierForMSKUResultHolder h)
             {
-                h.value = new GetFulfillmentIdentifierForMSKUResult(new FulfillmentItem[0]);
+                h.value = new GetFulfillmentIdentifierForMSKUResult(fulfillmentItem);
             }
         }).when(in).getFulfillmentIdentifierForMSKU(eq(asArray(MSKU)),
             any(GetFulfillmentIdentifierForMSKUResultHolder.class), anyMetadata());
@@ -179,12 +192,24 @@ public class FWSUnitTest
     @Test
     public void getFulfillmentItemByFnsku() throws RemoteException
     {
+        getFulfillmentByFnsku(asArray(new FulfillmentItem()));
+    }
+    
+    @Ignore
+    @Test(expected = FwsException.class)
+    public void getFulfillmentItemByFnskuInvallidId() throws RemoteException
+    {
+        getFulfillmentByFnsku(new FulfillmentItem[0]);
+    }
+
+    private void getFulfillmentByFnsku(final FulfillmentItem[] result) throws RemoteException
+    {
         doAnswer(new UpdateHolderAnswer<GetFulfillmentItemByFNSKUResultHolder>(1)
         {
             @Override
             void updateHolder(GetFulfillmentItemByFNSKUResultHolder h)
             {
-                h.value = new GetFulfillmentItemByFNSKUResult(new FulfillmentItem[0]);
+                h.value = new GetFulfillmentItemByFNSKUResult(result);
             }
         }).when(in).getFulfillmentItemByFNSKU(eq(asArray(NSKU)),
             any(GetFulfillmentItemByFNSKUResultHolder.class), anyMetadata());
@@ -200,7 +225,8 @@ public class FWSUnitTest
             @Override
             void updateHolder(GetFulfillmentItemByMSKUResultHolder h)
             {
-                h.value = new GetFulfillmentItemByMSKUResult(new FulfillmentItem[0]);
+                final FulfillmentItem[] returnedItems = asArray(new FulfillmentItem());
+                h.value = new GetFulfillmentItemByMSKUResult(returnedItems);
             }
         }).when(in).getFulfillmentItemByMSKU(eq(new String[]{MSKU}),
             any(GetFulfillmentItemByMSKUResultHolder.class), anyMetadata());

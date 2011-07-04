@@ -31,15 +31,15 @@ public interface FWSClient<ExceptionType extends Throwable>
 {
     void deleteInboundShipmentItems(String merchantSku, String shipmentId) throws ExceptionType;
 
-    List<FulfillmentItem> getFulfillmentIdentifier(@NotNull String asin,
+    FulfillmentItem getFulfillmentIdentifier(@NotNull String asin,
                                                    @NotNull ItemCondition itemCondition,
                                                    @NotNull String merchantSku) throws ExceptionType;
 
-    List<FulfillmentItem> getFulfillmentIdentifierForMsku(@NotNull String merchantSku) throws ExceptionType;
+    FulfillmentItem getFulfillmentIdentifierForMsku(@NotNull String merchantSku) throws ExceptionType;
 
-    List<FulfillmentItem> getFulfillmentItemByFnsku(String fulfillmentNetworkSku) throws ExceptionType;
+    FulfillmentItem getFulfillmentItemByFnsku(String fulfillmentNetworkSku) throws ExceptionType;
 
-    List<FulfillmentItem> getFulfillmentItemByMsku(@NotNull String merchantSku) throws ExceptionType;
+    FulfillmentItem getFulfillmentItemByMsku(@NotNull String merchantSku) throws ExceptionType;
 
     InboundShipmentData getInboundShipment(@NotNull String shipmentId) throws ExceptionType;
 
@@ -94,7 +94,7 @@ public interface FWSClient<ExceptionType extends Throwable>
 
     Iterable<FulfillmentOrder> listFulfillmentOrders(Date startDate) throws ExceptionType;
 
-    List<MerchantSKUSupply> getInventorySupply(@NotNull String merchantSku, String responseGroup) throws ExceptionType;
+    MerchantSKUSupply getInventorySupply(@NotNull String merchantSku, String responseGroup) throws ExceptionType;
 
     String getInventoryServiceStatus() throws ExceptionType;
 

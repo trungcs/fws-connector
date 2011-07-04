@@ -86,7 +86,7 @@ public class FWSCloudConnector implements Initialisable
     }
     
     /**
-     * Gets the Fulfillment Network SKU (FNSKU) for each supplied merchant item—creating one if needed.
+     * Gets the Fulfillment Network SKU (FNSKU) for the supplied merchant item - creating it if needed.
      * 
      * This operation is  idempotent in that it can be called multiple times without any adverse effects. This operation is required whenever you need to register items
      * for Amazon fulfillment that require labeling and when you need to get the identifier prior to creating an offer. This operation is necessary to register items for Amazon
@@ -105,16 +105,15 @@ public class FWSCloudConnector implements Initialisable
      * @return 
      */
     @Operation
-    public List<FulfillmentItem> getFulfillmentIdentifier(@Parameter String asin,
+    public FulfillmentItem getFulfillmentIdentifier(@Parameter String asin,
                                                           @Parameter ItemCondition itemCondition,
                                                           @Parameter String merchantSku)
     {
-        //TODO should be a sngle element
         return client.getFulfillmentIdentifier(asin, itemCondition, merchantSku);
     }
     
     /**
-     * Gets the Fulfillment Network SKU (FNSKU) for each supplied merchant item—creating one if needed. 
+     * Gets the Fulfillment Network SKU (FNSKU) for the supplied merchant item - creating it if needed. 
      * 
      * This operation is idempotent in that you can call it multiple times without any adverse effects. 
      * This operation is required whenever you need to register items for Amazon fulfillment that require
@@ -129,44 +128,41 @@ public class FWSCloudConnector implements Initialisable
      * @return 
      */
     @Operation
-    public List<FulfillmentItem> getFulfillmentIdentifierForMsku(@Parameter String merchantSku)
+    public FulfillmentItem getFulfillmentIdentifierForMsku(@Parameter String merchantSku)
     {
-        //TODO should be a sngle element
         return client.getFulfillmentIdentifierForMsku(merchantSku);
     }
  
     /**
-     * Gets fulfillment item data for the provided Fulfillment Network SKUs (FNSKUs). 
-     * If any of the provided FNSKUs are invalid they are ignored and only the valid SKUs are returned.
+     * Gets fulfillment item data for the provided Fulfillment Network SKU (FNSKU). Throws an FWSException if the fnsku is invalid.
+     *  
      * A response does not imply that the item has an offer for which it can be fulfilled; only that the Amazon Fulfillment Network
      * can track it. An inactive item can have a quantity in the fulfillment center, but will never be fulfilled. 
      *
      * {@code <get-fulfillment-item-by-fnsku fulfillmentNetworkSku="#[payload]" />}
      * 
      * @param fulfillmentNetworkSku the mandatory fulfillment network sku - aka nsku, aka fnsku
-     * @return 
+     * @return a FulfillmentItem
      */
     @Operation
-    public List<FulfillmentItem> getFulfillmentItemByFnsku(@Parameter String fulfillmentNetworkSku)
+    public FulfillmentItem getFulfillmentItemByFnsku(@Parameter String fulfillmentNetworkSku)
     {
-      //TODO should be a sngle element
         return client.getFulfillmentItemByFnsku(fulfillmentNetworkSku);
     }
 
     /**
-     * Gets fulfillment item data for the provided Merchant SKUs. 
+     * Gets fulfillment item data for the provided Merchant SKU. Throws an FWSException if the msku is invalid.
      * 
-     * If any of the provided MSKUs are invalid (e.g. does not have an assigned Fulfillment Network SKU), they are ignored and only the valid SKUs are returned.
-     * A response does not imply that the item has an offer for which it can be fulfilled; only that the Amazon Fulfillment Network can track it. An inactive item can have a quantity in the fulfillment center, but will never be fulfille
+     * A response does not imply that the item has an offer for which it can be fulfilled; 
+     * only that the Amazon Fulfillment Network can track it. An inactive item can have a quantity in the fulfillment center, but will never be fulfille
      * 
      * {@code <get-fulfillment-item-by-msku merchantSku="#[map-payload:merchantSku]"/>}
      * @param merchantSku the mandatory merchant's sku
-     * @return 
+     * @return a FulfillmentItem
      */
     @Operation
-    public List<FulfillmentItem> getFulfillmentItemByMsku(@Parameter String merchantSku)
+    public FulfillmentItem getFulfillmentItemByMsku(@Parameter String merchantSku)
     {
-      //TODO should be a sngle element
         return client.getFulfillmentItemByMsku(merchantSku);
     }
  
@@ -175,7 +171,7 @@ public class FWSCloudConnector implements Initialisable
      * {@code <get-inbound-shipment-data shipmentId="#[header:ShipmentId]"/>}
      * 
      * @param shipmentId the mandatory shipment id
-     * @return 
+     * @return an InboundShipmentData
      */
     @Operation
     public InboundShipmentData getInboundShipment(@Parameter String shipmentId)
@@ -202,7 +198,7 @@ public class FWSCloudConnector implements Initialisable
                                                            @Parameter Address address,
                                                            @Parameter(optional = true) LabelPreference labelPreference)
     {
-      //TODO should be a sngle element
+      //TODO bulk
         return client.getInboundShipmentPreview(merchantSku, quantity, address, labelPreference);
     }
  
@@ -313,7 +309,7 @@ public class FWSCloudConnector implements Initialisable
      *              At least one item must be passed
      */
     @SuppressWarnings("unchecked")
-    @Operation //XXX collection handling required
+    @Operation 
     public void putInboundShipmentItems(@Parameter String shipmentId, @Parameter Object itemQuantities)
     {
         client.putInboundShipmentItems(shipmentId, (List<MerchantSKUQuantityItem>) itemQuantities);
@@ -438,7 +434,7 @@ public class FWSCloudConnector implements Initialisable
                                                           @Parameter(optional = true, defaultValue = "1") int quantity,
                                                           @Parameter String orderItemId)
     {
-        // TODO single element
+        // TODO bulk
         return client.getFulfillmentPreview(address, merchantSku, quantity, shippingSpeedCategories,
             orderItemId);
     }
@@ -472,8 +468,9 @@ public class FWSCloudConnector implements Initialisable
      /**
       *  Gets information about the supply of merchant-owned inventory in Amazon's fulfillment network. 
       *  
-      *  This operation does not return inventory that is unsellable or that 
-      *  is already bound to a customer order or bound to internal fulfillment center processing (for example, labeling).
+      *  Throws a FWSException if inventory is unsellable or  
+      *  is already bound to a customer order or 
+      *  bound to internal fulfillment center processing (for example, labeling).
       *  
       *  {@code <get-inventory-supply 
       *     merchantSku="#[header:merchantSku]" 
@@ -482,9 +479,9 @@ public class FWSCloudConnector implements Initialisable
       * @param responseGroup the optional response group
      *  @return a merchant sku supply iterable
       */
-    @Operation //TODO single element
-    public List<MerchantSKUSupply> getInventorySupply(@Parameter String merchantSku,
-                                                      @Parameter(optional = true) String responseGroup)
+    @Operation 
+    public MerchantSKUSupply getInventorySupply(@Parameter String merchantSku,
+                                                @Parameter(optional = true) String responseGroup)
     {
         return client.getInventorySupply(merchantSku, responseGroup);
     }
@@ -582,4 +579,38 @@ public class FWSCloudConnector implements Initialisable
     {
         this.secretKey = secretKey;
     }
+    
+    /*
+     * 
+     *    * Get estimated shipping dates and fees for all 
+     *         available shipping speed given a set of merchant SKUs and
+     * quantities      
+     * 
+     *         If "ShippingSpeedCategories" are inputed, only previews for
+     * those options will be returned. 
+     *         
+     *         If "ShippingSpeedCategories" are not inputed, then previews
+     * for all available options 
+     *         are returned.
+     * 
+     *         The service will return the fulfillment estimates for a set
+     * of merchant 
+     *         SKUs and quantities.
+
+
+
+    /**
+     * Returns the information needed to create a set of shipments
+     * for the given collection of items and source address.  When 
+     *                     all the items are not all in the same category
+     * (e.g. some 
+     *                     sortable, some non-sortable) it may be necessary
+     * to create 
+     *                     multiple shipments (one for each of the shipment
+     * groups
+     *                     returned).
+     * 
+     * 
+     */
+    
 }

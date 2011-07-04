@@ -86,8 +86,7 @@ public class FWSTestDriver
     @Test
     public void getFnsku() throws Exception
     {
-        List<FulfillmentItem> items = connector.getFulfillmentIdentifierForMsku(TEST_MSKU);
-        assertFalse(items.isEmpty());
+        assertNotNull(connector.getFulfillmentIdentifierForMsku(TEST_MSKU));
     }
 
     /**
@@ -134,7 +133,7 @@ public class FWSTestDriver
     @Test
     public void testOrderNoInventory() throws Exception
     {
-        String nsku = connector.getFulfillmentIdentifierForMsku(TEST_MSKU).get(0).getFulfillmentNetworkSKU();
+        String nsku = connector.getFulfillmentIdentifierForMsku(TEST_MSKU).getFulfillmentNetworkSKU();
         GetFulfillmentOrderResult result = connector.createFulfillmentOrder("TEST_ORDER1", null,
             TEST_ADDRESS, null, null, "QUICK", "AN order", new Date(), null,
             Arrays.asList(new CreateFulfillmentOrderItem(TEST_MSKU, "1", 1, "", "An item", "", nsku,
