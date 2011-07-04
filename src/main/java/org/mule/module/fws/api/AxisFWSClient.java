@@ -481,7 +481,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
     {
         if (action instanceof Holder)
         {
-            return action.getClass().getName().replace("ResultHolder", "");
+            return action.getClass().getSimpleName().replace("ResultHolder", "");
         }
         throw new AssertionError();
     }

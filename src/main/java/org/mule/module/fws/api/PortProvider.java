@@ -64,7 +64,7 @@ public abstract class PortProvider<T>
 
     private String getTimestamp()
     {
-        return FwsDates.format(new Date());
+        return FwsDates.formatForSignature(new Date());
     }
 
     private String sign(String data, String key) throws SignatureException

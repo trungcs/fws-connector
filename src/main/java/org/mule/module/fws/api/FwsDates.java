@@ -22,12 +22,19 @@ public final class FwsDates
     {
     }
 
-    public static String format(Date date)
-    {   //YYYY-MM-DDThh:mm:ss
+    public static String formatForSignature(Date date)
+    {   
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         df.setTimeZone(TimeZone.getTimeZone("UTC"));
         return df.format(date);
     }
+    
+    public static String format(Date date)
+    {   
+        return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").format(date);
+    }
+    
+    
 
     public static Calendar toCalendar(Date date)
     {

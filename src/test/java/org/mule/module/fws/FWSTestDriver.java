@@ -25,6 +25,12 @@ import org.mule.module.fws.api.internal.GetFulfillmentOrderResult;
 import org.mule.module.fws.api.internal.MerchantSKUQuantityItem;
 import org.mule.module.fws.api.internal.ShipmentPreview;
 
+import com.amazonaws.fba_inbound.AmazonFWSInbound;
+import com.amazonaws.fba_inbound.AmazonFWSInboundClient;
+import com.amazonaws.fba_inbound.AmazonFWSInboundConfig;
+import com.amazonaws.fba_inbound.model.GetServiceStatus;
+import com.amazonaws.fba_inbound.model.GetServiceStatusResponse;
+
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collections;
@@ -37,6 +43,7 @@ import org.junit.Test;
 public class FWSTestDriver
 {
     private FWSCloudConnector connector;
+    private AmazonFWSInboundClient c;
     private static final String TEST_MSKU = "my-test-sku-01";
     @SuppressWarnings("serial")
     private static final Address TEST_ADDRESS = new Address()
@@ -55,11 +62,10 @@ public class FWSTestDriver
     public void setup() throws InitialisationException
     {
         connector = new FWSCloudConnector();
-        connector.setAccessKey("0QY05JR56ZA8E56XPG82");
-        connector.setSecretKey("foobaz");
+        connector.setAccessKey(System.getenv("accessKey"));
+        connector.setSecretKey(System.getenv("secretKey"));
         connector.initialise();
     }
-
     // Status
 
     @Test
@@ -151,7 +157,7 @@ public class FWSTestDriver
     private void assertStatusOk(String status)
     {
         assertNotNull(status);
-        assertTrue(status.contains("OK"));
+        assertTrue(status.contains("service available"));
     }
 
 }

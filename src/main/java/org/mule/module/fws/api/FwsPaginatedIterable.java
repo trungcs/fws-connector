@@ -15,6 +15,7 @@ import org.mule.module.fws.api.internal.holders.ListAllFulfillmentOrdersResultHo
 import java.lang.reflect.InvocationTargetException;
 import java.rmi.RemoteException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 
 import org.apache.commons.beanutils.BeanUtils;
@@ -80,7 +81,12 @@ public abstract class FwsPaginatedIterable<T, Page> extends PaginatedIterable<T,
     @Override
     protected final Iterator<T> pageIterator(Page page)
     {
-        return Arrays.asList(pageArray(page)).iterator();
+        T[] pageArray = pageArray(page);
+        if (pageArray != null)
+        {
+            return Arrays.asList(pageArray).iterator();
+        }
+        return Collections.<T> emptyList().iterator();
     }
 
     protected abstract T[] pageArray(Page page);
