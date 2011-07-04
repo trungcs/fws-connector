@@ -170,11 +170,17 @@ public class FWSUnitTest
         getFulfillmentIdForMsku(asArray(new FulfillmentItem()));
     }
 
-    @Ignore
     @Test(expected = FwsException.class)
     public void getFulfillmentIdentifierForMskuInvallidId() throws RemoteException
     {
-        getFulfillmentIdForMsku(new FulfillmentItem[0]);
+        try
+        {
+            getFulfillmentIdForMsku(new FulfillmentItem[0]);
+        }
+        finally
+        {
+            reset(in);
+        }
     }
 
     private void getFulfillmentIdForMsku(final FulfillmentItem[] fulfillmentItem) throws RemoteException
@@ -198,11 +204,18 @@ public class FWSUnitTest
         getFulfillmentByFnsku(asArray(new FulfillmentItem()));
     }
 
-    @Ignore
+    
     @Test(expected = FwsException.class)
     public void getFulfillmentItemByFnskuInvallidId() throws RemoteException
     {
-        getFulfillmentByFnsku(new FulfillmentItem[0]);
+        try
+        {
+            getFulfillmentByFnsku(new FulfillmentItem[0]);
+        }
+        finally
+        {
+            reset(in);
+        }
     }
 
     private void getFulfillmentByFnsku(final FulfillmentItem[] result) throws RemoteException

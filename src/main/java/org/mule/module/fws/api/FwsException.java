@@ -19,4 +19,9 @@ public class FwsException extends RuntimeException
         super(message, cause);
     }
 
+    public FwsException(Throwable cause)
+    {
+        super(cause);
+    }
+
 }
