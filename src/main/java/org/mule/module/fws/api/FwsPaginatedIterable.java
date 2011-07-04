@@ -10,16 +10,13 @@
 
 package org.mule.module.fws.api;
 
-import org.mule.module.fws.api.internal.holders.ListAllFulfillmentOrdersResultHolder;
+import com.amazonaws.fba_outbound.doc._2007_08_02.holders.ListAllFulfillmentOrdersResultHolder;
 
-import java.lang.reflect.InvocationTargetException;
 import java.rmi.RemoteException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Iterator;
 
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.beanutils.BeanUtilsBean;
 import org.apache.commons.beanutils.MethodUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.UnhandledException;

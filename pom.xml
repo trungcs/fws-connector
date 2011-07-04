@@ -78,11 +78,11 @@
         <configuration>
           <sourceDirectory>src/main/resources</sourceDirectory>
           <wsdlFiles>
+            <wsdlFile>AmazonFBAOutbound.wsdl</wsdlFile>
             <wsdlFile>AmazonFBAInventory.wsdl</wsdlFile>
             <wsdlFile>FBAInboundService.wsdl</wsdlFile>
-            <wsdlFile>AmazonFBAOutbound.wsdl</wsdlFile>
           </wsdlFiles>
-          <packageSpace>org.mule.module.fws.api.internal</packageSpace>
+<!--          <packageSpace>org.mule.module.fws.api.internal</packageSpace>-->
         </configuration>
         <executions>
           <execution>

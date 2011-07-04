@@ -12,52 +12,51 @@ package org.mule.module.fws.api;
 
 import static org.mule.module.fws.api.Arrays.asArray;
 
-import org.mule.module.fws.api.internal.Address;
-import org.mule.module.fws.api.internal.AmazonFBAInventoryPortType;
-import org.mule.module.fws.api.internal.AmazonFBAOutboundPortType;
-import org.mule.module.fws.api.internal.AmazonFWSInboundPortType;
-import org.mule.module.fws.api.internal.CreateFulfillmentOrderItem;
-import org.mule.module.fws.api.internal.FulfillmentItem;
-import org.mule.module.fws.api.internal.FulfillmentOrder;
-import org.mule.module.fws.api.internal.FulfillmentPreview;
-import org.mule.module.fws.api.internal.GetFulfillmentOrderResult;
-import org.mule.module.fws.api.internal.GetFulfillmentPreviewItem;
-import org.mule.module.fws.api.internal.InboundShipmentData;
-import org.mule.module.fws.api.internal.InboundShipmentItem;
-import org.mule.module.fws.api.internal.ListAllFulfillmentItemsByNextTokenResult;
-import org.mule.module.fws.api.internal.ListAllFulfillmentItemsResult;
-import org.mule.module.fws.api.internal.ListAllFulfillmentOrdersResult;
-import org.mule.module.fws.api.internal.ListInboundShipmentItemsByNextTokenResult;
-import org.mule.module.fws.api.internal.ListInboundShipmentItemsResult;
-import org.mule.module.fws.api.internal.ListInboundShipmentsByNextTokenResult;
-import org.mule.module.fws.api.internal.ListInboundShipmentsResult;
-import org.mule.module.fws.api.internal.ListUpdatedInventorySupplyByNextTokenResult;
-import org.mule.module.fws.api.internal.ListUpdatedInventorySupplyResult;
-import org.mule.module.fws.api.internal.MerchantItem;
-import org.mule.module.fws.api.internal.MerchantSKUQuantityItem;
-import org.mule.module.fws.api.internal.MerchantSKUSupply;
-import org.mule.module.fws.api.internal.ShipmentPreview;
-import org.mule.module.fws.api.internal.holders.GetFulfillmentIdentifierForMSKUResultHolder;
-import org.mule.module.fws.api.internal.holders.GetFulfillmentIdentifierResultHolder;
-import org.mule.module.fws.api.internal.holders.GetFulfillmentItemByFNSKUResultHolder;
-import org.mule.module.fws.api.internal.holders.GetFulfillmentItemByMSKUResultHolder;
-import org.mule.module.fws.api.internal.holders.GetFulfillmentOrderResultHolder;
-import org.mule.module.fws.api.internal.holders.GetFulfillmentPreviewResultHolder;
-import org.mule.module.fws.api.internal.holders.GetInboundShipmentDataResultHolder;
-import org.mule.module.fws.api.internal.holders.GetInboundShipmentPreviewResultHolder;
-import org.mule.module.fws.api.internal.holders.GetInventorySupplyResultHolder;
-import org.mule.module.fws.api.internal.holders.GetServiceStatusResultHolder;
-import org.mule.module.fws.api.internal.holders.ListAllFulfillmentItemsByNextTokenResultHolder;
-import org.mule.module.fws.api.internal.holders.ListAllFulfillmentItemsResultHolder;
-import org.mule.module.fws.api.internal.holders.ListAllFulfillmentOrdersByNextTokenResultHolder;
-import org.mule.module.fws.api.internal.holders.ListAllFulfillmentOrdersResultHolder;
-import org.mule.module.fws.api.internal.holders.ListInboundShipmentItemsByNextTokenResultHolder;
-import org.mule.module.fws.api.internal.holders.ListInboundShipmentItemsResultHolder;
-import org.mule.module.fws.api.internal.holders.ListInboundShipmentsByNextTokenResultHolder;
-import org.mule.module.fws.api.internal.holders.ListInboundShipmentsResultHolder;
-import org.mule.module.fws.api.internal.holders.ListUpdatedInventorySupplyByNextTokenResultHolder;
-import org.mule.module.fws.api.internal.holders.ListUpdatedInventorySupplyResultHolder;
-import org.mule.module.fws.api.internal.holders.ResponseMetadataHolder;
+import com.amazonaws.fba_inbound.doc._2007_05_10.AmazonFWSInboundPortType;
+import com.amazonaws.fba_inbound.doc._2007_05_10.FulfillmentItem;
+import com.amazonaws.fba_inbound.doc._2007_05_10.InboundShipmentData;
+import com.amazonaws.fba_inbound.doc._2007_05_10.InboundShipmentItem;
+import com.amazonaws.fba_inbound.doc._2007_05_10.ListAllFulfillmentItemsByNextTokenResult;
+import com.amazonaws.fba_inbound.doc._2007_05_10.ListAllFulfillmentItemsResult;
+import com.amazonaws.fba_inbound.doc._2007_05_10.ListInboundShipmentItemsByNextTokenResult;
+import com.amazonaws.fba_inbound.doc._2007_05_10.ListInboundShipmentItemsResult;
+import com.amazonaws.fba_inbound.doc._2007_05_10.ListInboundShipmentsByNextTokenResult;
+import com.amazonaws.fba_inbound.doc._2007_05_10.ListInboundShipmentsResult;
+import com.amazonaws.fba_inbound.doc._2007_05_10.MerchantItem;
+import com.amazonaws.fba_inbound.doc._2007_05_10.MerchantSKUQuantityItem;
+import com.amazonaws.fba_inbound.doc._2007_05_10.ShipmentPreview;
+import com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetFulfillmentIdentifierForMSKUResultHolder;
+import com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetFulfillmentIdentifierResultHolder;
+import com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetFulfillmentItemByFNSKUResultHolder;
+import com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetFulfillmentItemByMSKUResultHolder;
+import com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetInboundShipmentDataResultHolder;
+import com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetInboundShipmentPreviewResultHolder;
+import com.amazonaws.fba_inbound.doc._2007_05_10.holders.ListAllFulfillmentItemsByNextTokenResultHolder;
+import com.amazonaws.fba_inbound.doc._2007_05_10.holders.ListAllFulfillmentItemsResultHolder;
+import com.amazonaws.fba_inbound.doc._2007_05_10.holders.ListInboundShipmentItemsByNextTokenResultHolder;
+import com.amazonaws.fba_inbound.doc._2007_05_10.holders.ListInboundShipmentItemsResultHolder;
+import com.amazonaws.fba_inbound.doc._2007_05_10.holders.ListInboundShipmentsByNextTokenResultHolder;
+import com.amazonaws.fba_inbound.doc._2007_05_10.holders.ListInboundShipmentsResultHolder;
+import com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder;
+import com.amazonaws.fba_inventory.doc._2009_07_31.AmazonFBAInventoryPortType;
+import com.amazonaws.fba_inventory.doc._2009_07_31.ListUpdatedInventorySupplyByNextTokenResult;
+import com.amazonaws.fba_inventory.doc._2009_07_31.ListUpdatedInventorySupplyResult;
+import com.amazonaws.fba_inventory.doc._2009_07_31.MerchantSKUSupply;
+import com.amazonaws.fba_inventory.doc._2009_07_31.holders.GetInventorySupplyResultHolder;
+import com.amazonaws.fba_inventory.doc._2009_07_31.holders.ListUpdatedInventorySupplyByNextTokenResultHolder;
+import com.amazonaws.fba_inventory.doc._2009_07_31.holders.ListUpdatedInventorySupplyResultHolder;
+import com.amazonaws.fba_outbound.doc._2007_08_02.AmazonFBAOutboundPortType;
+import com.amazonaws.fba_outbound.doc._2007_08_02.CreateFulfillmentOrderItem;
+import com.amazonaws.fba_outbound.doc._2007_08_02.FulfillmentOrder;
+import com.amazonaws.fba_outbound.doc._2007_08_02.FulfillmentPreview;
+import com.amazonaws.fba_outbound.doc._2007_08_02.GetFulfillmentOrderResult;
+import com.amazonaws.fba_outbound.doc._2007_08_02.GetFulfillmentPreviewItem;
+import com.amazonaws.fba_outbound.doc._2007_08_02.ListAllFulfillmentOrdersResult;
+import com.amazonaws.fba_outbound.doc._2007_08_02.holders.GetFulfillmentOrderResultHolder;
+import com.amazonaws.fba_outbound.doc._2007_08_02.holders.GetFulfillmentPreviewResultHolder;
+import com.amazonaws.fba_outbound.doc._2007_08_02.holders.GetServiceStatusResultHolder;
+import com.amazonaws.fba_outbound.doc._2007_08_02.holders.ListAllFulfillmentOrdersByNextTokenResultHolder;
+import com.amazonaws.fba_outbound.doc._2007_08_02.holders.ListAllFulfillmentOrdersResultHolder;
 
 import java.rmi.RemoteException;
 import java.util.Arrays;
@@ -118,7 +117,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         GetFulfillmentOrderResultHolder result = new GetFulfillmentOrderResultHolder();
         getPort(outboundPortProvider, result).createFulfillmentOrder(orderId, displayableOrderId,
             FwsDates.format(displayableOrderDate), displayableOrderComment, shippingSpeedCategory,
-            destinationAddress, fulfillmentPolicy, fulfillmentMethod,
+            destinationAddress.toOutboundAddress(), fulfillmentPolicy, fulfillmentMethod,
             emails.toArray(new String[emails.size()]),
             items.toArray(new CreateFulfillmentOrderItem[items.size()]));
         return result.value;
@@ -140,8 +139,8 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         GetFulfillmentIdentifierResultHolder result = new GetFulfillmentIdentifierResultHolder();
         getPort(inboundPortProvider, result).getFulfillmentIdentifier(
             asArray(new MerchantItem(asin, itemCondition.toFwsItemCondition(), merchantSku)), result,
-            new ResponseMetadataHolder());
-        return  getSingleItem(merchantSku, result.value.getFulfillmentItem());
+            newInboundMetadata());
+        return getSingleItem(merchantSku, result.value.getFulfillmentItem());
     }
 
     public FulfillmentItem getFulfillmentIdentifierForMsku(@NotNull String merchantSku)
@@ -150,7 +149,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         Validate.notEmpty(merchantSku);
         GetFulfillmentIdentifierForMSKUResultHolder result = new GetFulfillmentIdentifierForMSKUResultHolder();
         getPort(inboundPortProvider, result).getFulfillmentIdentifierForMSKU(//
-            asArray(merchantSku), result, new ResponseMetadataHolder());
+            asArray(merchantSku), result, newInboundMetadata());
         return getSingleItem(merchantSku, result.value.getFulfillmentItem());
     }
 
@@ -159,7 +158,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         Validate.notEmpty(fulfillmentNetworkSku);
         GetFulfillmentItemByFNSKUResultHolder result = new GetFulfillmentItemByFNSKUResultHolder();
         getPort(inboundPortProvider, result).getFulfillmentItemByFNSKU(asArray(fulfillmentNetworkSku),
-            result, new ResponseMetadataHolder());
+            result, newInboundMetadata());
         return getSingleItem(fulfillmentNetworkSku, result.value.getFulfillmentItem());
     }
 
@@ -168,7 +167,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         Validate.notEmpty(merchantSku);
         GetFulfillmentItemByMSKUResultHolder result = new GetFulfillmentItemByMSKUResultHolder();
         getPort(inboundPortProvider, result).getFulfillmentItemByMSKU(//
-            asArray(merchantSku), result, new ResponseMetadataHolder());
+            asArray(merchantSku), result, newInboundMetadata());
         return getSingleItem(merchantSku, result.value.getFulfillmentItem());
     }
 
@@ -176,8 +175,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
     {
         Validate.notEmpty(orderId);
         GetFulfillmentOrderResultHolder result = new GetFulfillmentOrderResultHolder();
-        getPort(outboundPortProvider, result).getFulfillmentOrder(orderId, result,
-            new ResponseMetadataHolder());
+        getPort(outboundPortProvider, result).getFulfillmentOrder(orderId, result, newOutboundMetadata());
         return result.value;
     }
 
@@ -191,18 +189,18 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         Validate.notNull(merchantSku);
         Validate.notNull(orderItemId);
         GetFulfillmentPreviewResultHolder result = new GetFulfillmentPreviewResultHolder();
-        getPort(outboundPortProvider, result).getFulfillmentPreview(address, //
+        getPort(outboundPortProvider, result).getFulfillmentPreview(address.toOutboundAddress(), //
             asArray(new GetFulfillmentPreviewItem(merchantSku, quantity, orderItemId)), // 
             shippingSpeedCategories == null ? null : asArray(shippingSpeedCategories), // 
             result, //
-            new ResponseMetadataHolder());
+            newOutboundMetadata());
         return Arrays.asList(result.value.getFulfillmentPreviews());
     }
 
     public String getInboundServiceStatus() throws RemoteException
     {
-        GetServiceStatusResultHolder result = new GetServiceStatusResultHolder();
-        getPort(inboundPortProvider, result).getServiceStatus(result, new ResponseMetadataHolder());
+        com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetServiceStatusResultHolder result = new com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetServiceStatusResultHolder();
+        getPort(inboundPortProvider, result).getServiceStatus(result, newInboundMetadata());
         return result.value.getStatus();
     }
 
@@ -210,8 +208,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
     {
         Validate.notEmpty(shipmentId);
         GetInboundShipmentDataResultHolder result = new GetInboundShipmentDataResultHolder();
-        getPort(inboundPortProvider, result).getInboundShipmentData(shipmentId, result,
-            new ResponseMetadataHolder());
+        getPort(inboundPortProvider, result).getInboundShipmentData(shipmentId, result, newInboundMetadata());
         return result.value.getShipmentData();
     }
 
@@ -224,16 +221,16 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         Validate.notEmpty(merchantSku);
         Validate.notNull(address);
         GetInboundShipmentPreviewResultHolder result = new GetInboundShipmentPreviewResultHolder();
-        getPort(inboundPortProvider, result).getInboundShipmentPreview(address,
+        getPort(inboundPortProvider, result).getInboundShipmentPreview(address.toInboundAddress(),
             asArray(new MerchantSKUQuantityItem(merchantSku, quantity)),
-            LabelPreference.toFwsLabelPrepPreference(labelPreference), result, new ResponseMetadataHolder());
+            LabelPreference.toFwsLabelPrepPreference(labelPreference), result, newInboundMetadata());
         return Arrays.asList(result.value.getShipmentPreview());
     }
 
     public String getInventoryServiceStatus() throws RemoteException
     {
-        GetServiceStatusResultHolder result = new GetServiceStatusResultHolder();
-        getPort(inventoryPortProvider, result).getServiceStatus(result, new ResponseMetadataHolder());
+        com.amazonaws.fba_inventory.doc._2009_07_31.holders.GetServiceStatusResultHolder result = new com.amazonaws.fba_inventory.doc._2009_07_31.holders.GetServiceStatusResultHolder();
+        getPort(inventoryPortProvider, result).getServiceStatus(result, newInventoryMetadata());
         return result.value.getStatus();
     }
 
@@ -243,7 +240,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         Validate.notEmpty(merchantSku);
         GetInventorySupplyResultHolder result = new GetInventorySupplyResultHolder();
         getPort(inventoryPortProvider, result).getInventorySupply(asArray(merchantSku), responseGroup,
-            result, new ResponseMetadataHolder());
+            result, newInventoryMetadata());
         final MerchantSKUSupply[] supply = result.value.getMerchantSKUSupply();
         if (merchantSku.length() != 1)
         {
@@ -255,7 +252,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
     public String getOutboundServiceStatus() throws RemoteException
     {
         GetServiceStatusResultHolder result = new GetServiceStatusResultHolder();
-        getPort(outboundPortProvider, result).getServiceStatus(result, new ResponseMetadataHolder());
+        getPort(outboundPortProvider, result).getServiceStatus(result, newOutboundMetadata());
         return result.value.getStatus();
     }
 
@@ -269,7 +266,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
             {
                 ListAllFulfillmentItemsResultHolder result = new ListAllFulfillmentItemsResultHolder();
                 getPort(inboundPortProvider, result).listAllFulfillmentItems(includeInactive, PAGE_SIZE,
-                    result, new ResponseMetadataHolder());
+                    result, newInboundMetadata());
                 return result.value;
             }
 
@@ -279,7 +276,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
             {
                 ListAllFulfillmentItemsByNextTokenResultHolder result = new ListAllFulfillmentItemsByNextTokenResultHolder();
                 getPort(inboundPortProvider, result).listAllFulfillmentItemsByNextToken(
-                    currentPage.getNextToken(), result, new ResponseMetadataHolder());
+                    currentPage.getNextToken(), result, newInboundMetadata());
                 return result.value;
             }
 
@@ -302,7 +299,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
             {
                 ListAllFulfillmentOrdersResultHolder result = new ListAllFulfillmentOrdersResultHolder();
                 getPort(outboundPortProvider, result).listAllFulfillmentOrders(PAGE_SIZE,
-                    FwsDates.format(startDate), new String[0]/* TODO */, result, new ResponseMetadataHolder());
+                    FwsDates.format(startDate), new String[0]/* TODO */, result, newOutboundMetadata());
                 return result.value;
             }
 
@@ -312,7 +309,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
             {
                 ListAllFulfillmentOrdersByNextTokenResultHolder result = new ListAllFulfillmentOrdersByNextTokenResultHolder();
                 getPort(outboundPortProvider, result).listAllFulfillmentOrdersByNextToken(
-                    currentPage.getNextToken(), result, new ResponseMetadataHolder());
+                    currentPage.getNextToken(), result, newOutboundMetadata());
                 return result;
             }
 
@@ -335,7 +332,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
             {
                 ListInboundShipmentItemsResultHolder result = new ListInboundShipmentItemsResultHolder();
                 getPort(inboundPortProvider, result).listInboundShipmentItems(shipmentId, PAGE_SIZE, result,
-                    new ResponseMetadataHolder());
+                    newInboundMetadata());
                 return result.value;
             }
 
@@ -345,7 +342,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
             {
                 ListInboundShipmentItemsByNextTokenResultHolder result = new ListInboundShipmentItemsByNextTokenResultHolder();
                 getPort(inboundPortProvider, result).listInboundShipmentItemsByNextToken(
-                    currentPage.getNextToken(), result, new ResponseMetadataHolder());
+                    currentPage.getNextToken(), result, newInboundMetadata());
                 return result.value;
             }
 
@@ -370,7 +367,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
                 ListInboundShipmentsResultHolder result = new ListInboundShipmentsResultHolder();
                 getPort(inboundPortProvider, result).listInboundShipments(
                     asArray(shipmentStatus.toFwsShipmentStatus()), FwsDates.toCalendar(createdBefore),
-                    FwsDates.toCalendar(createdAfter), PAGE_SIZE, result, new ResponseMetadataHolder());
+                    FwsDates.toCalendar(createdAfter), PAGE_SIZE, result, newInboundMetadata());
                 return result.value;
             }
 
@@ -380,7 +377,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
             {
                 ListInboundShipmentsByNextTokenResultHolder result = new ListInboundShipmentsByNextTokenResultHolder();
                 getPort(inboundPortProvider, result).listInboundShipmentsByNextToken(
-                    currentPage.getNextToken(), result, new ResponseMetadataHolder());
+                    currentPage.getNextToken(), result, newInboundMetadata());
                 return result.value;
             }
 
@@ -404,7 +401,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
             {
                 ListUpdatedInventorySupplyResultHolder result = new ListUpdatedInventorySupplyResultHolder();
                 getPort(inventoryPortProvider, result).listUpdatedInventorySupply(PAGE_SIZE,
-                    FwsDates.format(startDate), responseGroup, result, new ResponseMetadataHolder());
+                    FwsDates.format(startDate), responseGroup, result, newInventoryMetadata());
                 return result.value;
             }
 
@@ -414,7 +411,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
             {
                 ListUpdatedInventorySupplyByNextTokenResultHolder result = new ListUpdatedInventorySupplyByNextTokenResultHolder();
                 getPort(inventoryPortProvider, result).listUpdatedInventorySupplyByNextToken(
-                    currentPage.getNextToken(), result, new ResponseMetadataHolder());
+                    currentPage.getNextToken(), result, newInventoryMetadata());
                 return result.value;
             }
 
@@ -434,8 +431,8 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         throws RemoteException
     {
         getPort(inboundPortProvider, "PutInboundShipment")//
-        .putInboundShipmentData(shipmentId, shipmentName, destinationFulfillmentCenter, shipFromAddress,
-            labelPreference.toFwsLabelPrepPreference());
+        .putInboundShipmentData(shipmentId, shipmentName, destinationFulfillmentCenter,
+            shipFromAddress.toInboundAddress(), labelPreference.toFwsLabelPrepPreference());
     }
 
     public void putInboundShipmentItems(String shipmentId, List<MerchantSKUQuantityItem> itemQuantities)
@@ -484,6 +481,21 @@ public class AxisFWSClient implements FWSClient<RemoteException>
             return action.getClass().getSimpleName().replace("ResultHolder", "");
         }
         throw new AssertionError();
+    }
+
+    private ResponseMetadataHolder newInboundMetadata()
+    {
+        return new ResponseMetadataHolder();
+    }
+
+    private com.amazonaws.fba_outbound.doc._2007_08_02.holders.ResponseMetadataHolder newOutboundMetadata()
+    {
+        return new com.amazonaws.fba_outbound.doc._2007_08_02.holders.ResponseMetadataHolder();
+    }
+
+    private com.amazonaws.fba_inventory.doc._2009_07_31.holders.ResponseMetadataHolder newInventoryMetadata()
+    {
+        return new com.amazonaws.fba_inventory.doc._2009_07_31.holders.ResponseMetadataHolder();
     }
 
 }

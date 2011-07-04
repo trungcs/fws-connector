@@ -13,6 +13,7 @@
  */
 
 package org.mule.module.fws;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 import static org.mockito.Matchers.any;
@@ -27,51 +28,47 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 import static org.mule.module.fws.api.Arrays.asArray;
 
+import org.mule.module.fws.api.Address;
 import org.mule.module.fws.api.AxisFWSClient;
 import org.mule.module.fws.api.FwsException;
 import org.mule.module.fws.api.ItemCondition;
 import org.mule.module.fws.api.LabelPreference;
 import org.mule.module.fws.api.PortProvider;
 import org.mule.module.fws.api.ShipmentStatus;
-import org.mule.module.fws.api.internal.Address;
-import org.mule.module.fws.api.internal.AmazonFBAInventoryPortType;
-import org.mule.module.fws.api.internal.AmazonFBAOutboundPortType;
-import org.mule.module.fws.api.internal.AmazonFWSInboundPortType;
-import org.mule.module.fws.api.internal.CreateFulfillmentOrderItem;
-import org.mule.module.fws.api.internal.Currency;
-import org.mule.module.fws.api.internal.FulfillmentItem;
-import org.mule.module.fws.api.internal.FulfillmentOrder;
-import org.mule.module.fws.api.internal.FulfillmentPreview;
-import org.mule.module.fws.api.internal.GetFulfillmentIdentifierForMSKUResult;
-import org.mule.module.fws.api.internal.GetFulfillmentIdentifierResult;
-import org.mule.module.fws.api.internal.GetFulfillmentItemByFNSKUResult;
-import org.mule.module.fws.api.internal.GetFulfillmentItemByMSKUResult;
-import org.mule.module.fws.api.internal.GetFulfillmentOrderResult;
-import org.mule.module.fws.api.internal.GetFulfillmentPreviewItem;
-import org.mule.module.fws.api.internal.GetFulfillmentPreviewResult;
-import org.mule.module.fws.api.internal.GetInboundShipmentDataResult;
-import org.mule.module.fws.api.internal.GetServiceStatusResult;
-import org.mule.module.fws.api.internal.InboundShipmentData;
-import org.mule.module.fws.api.internal.InboundShipmentItem;
-import org.mule.module.fws.api.internal.MerchantItem;
-import org.mule.module.fws.api.internal.MerchantSKUSupply;
-import org.mule.module.fws.api.internal.ShipmentPreview;
-import org.mule.module.fws.api.internal.holders.GetFulfillmentIdentifierForMSKUResultHolder;
-import org.mule.module.fws.api.internal.holders.GetFulfillmentIdentifierResultHolder;
-import org.mule.module.fws.api.internal.holders.GetFulfillmentItemByFNSKUResultHolder;
-import org.mule.module.fws.api.internal.holders.GetFulfillmentItemByMSKUResultHolder;
-import org.mule.module.fws.api.internal.holders.GetFulfillmentOrderResultHolder;
-import org.mule.module.fws.api.internal.holders.GetFulfillmentPreviewResultHolder;
-import org.mule.module.fws.api.internal.holders.GetInboundShipmentDataResultHolder;
-import org.mule.module.fws.api.internal.holders.GetServiceStatusResultHolder;
-import org.mule.module.fws.api.internal.holders.ResponseMetadataHolder;
+
+import com.amazonaws.fba_inbound.doc._2007_05_10.AmazonFWSInboundPortType;
+import com.amazonaws.fba_inbound.doc._2007_05_10.FulfillmentItem;
+import com.amazonaws.fba_inbound.doc._2007_05_10.GetFulfillmentIdentifierForMSKUResult;
+import com.amazonaws.fba_inbound.doc._2007_05_10.GetFulfillmentIdentifierResult;
+import com.amazonaws.fba_inbound.doc._2007_05_10.GetFulfillmentItemByFNSKUResult;
+import com.amazonaws.fba_inbound.doc._2007_05_10.GetFulfillmentItemByMSKUResult;
+import com.amazonaws.fba_inbound.doc._2007_05_10.GetInboundShipmentDataResult;
+import com.amazonaws.fba_inbound.doc._2007_05_10.GetServiceStatusResult;
+import com.amazonaws.fba_inbound.doc._2007_05_10.InboundShipmentData;
+import com.amazonaws.fba_inbound.doc._2007_05_10.MerchantItem;
+import com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetFulfillmentIdentifierForMSKUResultHolder;
+import com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetFulfillmentIdentifierResultHolder;
+import com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetFulfillmentItemByFNSKUResultHolder;
+import com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetFulfillmentItemByMSKUResultHolder;
+import com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetInboundShipmentDataResultHolder;
+import com.amazonaws.fba_inventory.doc._2009_07_31.AmazonFBAInventoryPortType;
+import com.amazonaws.fba_outbound.doc._2007_08_02.AmazonFBAOutboundPortType;
+import com.amazonaws.fba_outbound.doc._2007_08_02.CreateFulfillmentOrderItem;
+import com.amazonaws.fba_outbound.doc._2007_08_02.Currency;
+import com.amazonaws.fba_outbound.doc._2007_08_02.FulfillmentPreview;
+import com.amazonaws.fba_outbound.doc._2007_08_02.GetFulfillmentOrderResult;
+import com.amazonaws.fba_outbound.doc._2007_08_02.GetFulfillmentPreviewItem;
+import com.amazonaws.fba_outbound.doc._2007_08_02.GetFulfillmentPreviewResult;
+import com.amazonaws.fba_outbound.doc._2007_08_02.holders.GetFulfillmentOrderResultHolder;
+import com.amazonaws.fba_outbound.doc._2007_08_02.holders.GetFulfillmentPreviewResultHolder;
+import com.amazonaws.fba_outbound.doc._2007_08_02.holders.GetServiceStatusResultHolder;
+import com.amazonaws.fba_outbound.doc._2007_08_02.holders.ResponseMetadataHolder;
 
 import java.rmi.RemoteException;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -132,7 +129,8 @@ public class FWSUnitTest
             Arrays.asList(new CreateFulfillmentOrderItem(MSKU, "1", 1, "", "An item", "", NSKU,
                 new Currency())));
         verify(out).createFulfillmentOrder(eq(ORDER_ID), eq(ORDER_ID), eq("2011-06-28T15:00Z"),
-            eq("An order"), null, eq(new Address()), eq("QUICK"), null, null, null);
+            eq("An order"), null, eq(new com.amazonaws.fba_outbound.doc._2007_08_02.Address()), eq("QUICK"),
+            null, null, null);
     }
 
     @Test
@@ -154,13 +152,13 @@ public class FWSUnitTest
             }
         }).when(in).getFulfillmentIdentifier( //
             eq(asArray(new MerchantItem(ASIN,
-                org.mule.module.fws.api.internal.ItemCondition.NewItem, MSKU))), //
+                com.amazonaws.fba_inbound.doc._2007_05_10.ItemCondition.NewItem, MSKU))), //
             any(GetFulfillmentIdentifierResultHolder.class), //
-            anyMetadata());
+            anyInboundMetadata());
         connector.getFulfillmentIdentifier(ASIN, ItemCondition.NEW_ITEM, MSKU);
         reset(in);
     }
-    
+
     @Test
     public void getFulfillmentIdentifierForMsku() throws RemoteException
     {
@@ -184,7 +182,7 @@ public class FWSUnitTest
                 h.value = new GetFulfillmentIdentifierForMSKUResult(fulfillmentItem);
             }
         }).when(in).getFulfillmentIdentifierForMSKU(eq(asArray(MSKU)),
-            any(GetFulfillmentIdentifierForMSKUResultHolder.class), anyMetadata());
+            any(GetFulfillmentIdentifierForMSKUResultHolder.class), anyInboundMetadata());
         connector.getFulfillmentIdentifierForMsku(MSKU);
         reset(in);
     }
@@ -194,7 +192,7 @@ public class FWSUnitTest
     {
         getFulfillmentByFnsku(asArray(new FulfillmentItem()));
     }
-    
+
     @Ignore
     @Test(expected = FwsException.class)
     public void getFulfillmentItemByFnskuInvallidId() throws RemoteException
@@ -212,7 +210,7 @@ public class FWSUnitTest
                 h.value = new GetFulfillmentItemByFNSKUResult(result);
             }
         }).when(in).getFulfillmentItemByFNSKU(eq(asArray(NSKU)),
-            any(GetFulfillmentItemByFNSKUResultHolder.class), anyMetadata());
+            any(GetFulfillmentItemByFNSKUResultHolder.class), anyInboundMetadata());
         connector.getFulfillmentItemByFnsku(NSKU);
         reset(in);
     }
@@ -229,7 +227,7 @@ public class FWSUnitTest
                 h.value = new GetFulfillmentItemByMSKUResult(returnedItems);
             }
         }).when(in).getFulfillmentItemByMSKU(eq(new String[]{MSKU}),
-            any(GetFulfillmentItemByMSKUResultHolder.class), anyMetadata());
+            any(GetFulfillmentItemByMSKUResultHolder.class), anyInboundMetadata());
         connector.getFulfillmentItemByMsku(MSKU);
         reset(in);
     }
@@ -246,29 +244,33 @@ public class FWSUnitTest
                 h.value = result;
             }
         }).when(out).getFulfillmentOrder(eq(ORDER_ID), any(GetFulfillmentOrderResultHolder.class),
-            anyMetadata());
+            anyOutboundMetadata());
         assertSame(result, connector.getFulfillmentOrder(ORDER_ID));
         reset(out);
     }
-    
+
     @Test
     public void getFulfillmentPreviewWithCategories() throws RemoteException
     {
-        final Address address = new Address();
-        doAnswer(updatePreview()).when(out).getFulfillmentPreview(eq(address),
-            eq(asArray(new GetFulfillmentPreviewItem(MSKU, 10, ORDER_ITEM_ID))), (String[]) isNull(),
-            any(GetFulfillmentPreviewResultHolder.class), anyMetadata());
-        connector.getFulfillmentPreview(address, MSKU, null, 10, ORDER_ITEM_ID);
+        doAnswer(updatePreview()).when(out).getFulfillmentPreview(
+            any(com.amazonaws.fba_outbound.doc._2007_08_02.Address.class),
+            eq(asArray(new GetFulfillmentPreviewItem(MSKU, 10, ORDER_ITEM_ID))), //
+            (String[]) isNull(), //
+            any(GetFulfillmentPreviewResultHolder.class), // 
+            anyOutboundMetadata());
+        connector.getFulfillmentPreview(new Address(), MSKU, null, 10, ORDER_ITEM_ID);
         reset(out);
     }
 
     @Test
     public void getFulfillmentPreviewWithoutCategories() throws RemoteException
     {
-        final Address address = new Address();
-        doAnswer(updatePreview()).when(out).getFulfillmentPreview(eq(address),
-            eq(asArray(new GetFulfillmentPreviewItem(MSKU, 10, ORDER_ITEM_ID))), eq(asArray("CAT-1")),
-            any(GetFulfillmentPreviewResultHolder.class), anyMetadata());
+        doAnswer(updatePreview()).when(out).getFulfillmentPreview(
+            any(com.amazonaws.fba_outbound.doc._2007_08_02.Address.class),
+            eq(asArray(new GetFulfillmentPreviewItem(MSKU, 10, ORDER_ITEM_ID))),//
+            eq(asArray("CAT-1")), //
+            any(GetFulfillmentPreviewResultHolder.class), //
+            anyOutboundMetadata());
         connector.getFulfillmentPreview(new Address(), MSKU, "CAT-1", 10, ORDER_ITEM_ID);
         reset(out);
     }
@@ -276,8 +278,9 @@ public class FWSUnitTest
     @Test
     public void getInboundServiceStatus() throws RemoteException
     {
-        doAnswer(updateStatus()).when(in).getServiceStatus(any(GetServiceStatusResultHolder.class),
-            anyMetadata());
+        doAnswer(updateInboundStatus()).when(in).getServiceStatus(
+            any(com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetServiceStatusResultHolder.class),
+            anyInboundMetadata());
         assertEquals(STATUS_MESSAGE, connector.getInboundServiceStatus());
         reset(in);
     }
@@ -285,8 +288,9 @@ public class FWSUnitTest
     @Test
     public void getInventoryServiceStatus() throws RemoteException
     {
-        doAnswer(updateStatus()).when(inventory).getServiceStatus(any(GetServiceStatusResultHolder.class),
-            anyMetadata());
+        doAnswer(updateInventoryStatus()).when(inventory).getServiceStatus(
+            any(com.amazonaws.fba_inventory.doc._2009_07_31.holders.GetServiceStatusResultHolder.class),
+            anyInventoryMetadata());
         assertEquals(STATUS_MESSAGE, connector.getInventoryServiceStatus());
         reset(inventory);
     }
@@ -294,8 +298,8 @@ public class FWSUnitTest
     @Test
     public void getOutboundServiceStatus() throws RemoteException
     {
-        doAnswer(updateStatus()).when(out).getServiceStatus(any(GetServiceStatusResultHolder.class),
-            anyMetadata());
+        doAnswer(updateOutboundStatus()).when(out).getServiceStatus(any(GetServiceStatusResultHolder.class),
+            anyOutboundMetadata());
         assertEquals(STATUS_MESSAGE, connector.getOutboundServiceStatus());
         reset(out);
     }
@@ -312,7 +316,7 @@ public class FWSUnitTest
                 h.value = new GetInboundShipmentDataResult(shipmentData);
             }
         }).when(in).getInboundShipmentData(eq(SHIP_ID), any(GetInboundShipmentDataResultHolder.class),
-            anyMetadata());
+            anyInboundMetadata());
         assertSame(shipmentData, connector.getInboundShipment(SHIP_ID));
         reset(in);
     }
@@ -330,7 +334,7 @@ public class FWSUnitTest
     {
         connector.getInventorySupply(MSKU, null);
     }
-    
+
     @Ignore
     @Test
     public void getInventorySupplyWithGroup()
@@ -349,7 +353,7 @@ public class FWSUnitTest
     {
         connector.listFulfillmentOrders(null);
     }
-    
+
     @Test
     public void listFulfillmentOrdersWithDate()
     {
@@ -367,7 +371,7 @@ public class FWSUnitTest
     {
         connector.listInboundShipments(ShipmentStatus.ERROR, new Date(), null);
     }
-    
+
     @Test
     public void listInboundShipmentsWithAfterDate()
     {
@@ -379,7 +383,7 @@ public class FWSUnitTest
     {
         connector.listUpdatedInventorySupply(new Date(), null);
     }
-    
+
     @Test
     public void listUpdatedInventorySupplyWithGroup()
     {
@@ -399,9 +403,10 @@ public class FWSUnitTest
     @Ignore
     public void putInboundShipmentItems()
     {
-//        Address shipFromAddress = new Address();
-//        connector.putInboundShipmentItems(SHIP_ID, "A shipment", "a center", shipFromAddress,
-//            LabelPreference.AMAZON_LABEL_ONLY);
+        // Address shipFromAddress = new Address();
+        // connector.putInboundShipmentItems(SHIP_ID, "A shipment", "a center",
+        // shipFromAddress,
+        // LabelPreference.AMAZON_LABEL_ONLY);
     }
 
     @Test
@@ -409,7 +414,7 @@ public class FWSUnitTest
     {
         connector.setInboundShipmentStatus(SHIP_ID, ShipmentStatus.DELIVERED);
         verify(in).setInboundShipmentStatus(SHIP_ID,
-            org.mule.module.fws.api.internal.ShipmentStatus.Delivered);
+            com.amazonaws.fba_inbound.doc._2007_05_10.ShipmentStatus.Delivered);
     }
 
     abstract class UpdateHolderAnswer<HolderType> implements Answer<Void>
@@ -431,18 +436,42 @@ public class FWSUnitTest
         abstract void updateHolder(HolderType h);
     }
 
-    private Answer<Void> updateStatus()
+    private Answer<Void> updateInventoryStatus()
     {
-        return new UpdateHolderAnswer<GetServiceStatusResultHolder>(0)
+        return new UpdateHolderAnswer<com.amazonaws.fba_inventory.doc._2009_07_31.holders.GetServiceStatusResultHolder>(0)
         {
             @Override
-            void updateHolder(GetServiceStatusResultHolder h)
+            void updateHolder(com.amazonaws.fba_inventory.doc._2009_07_31.holders.GetServiceStatusResultHolder h)
+            {
+                h.value = new com.amazonaws.fba_inventory.doc._2009_07_31.GetServiceStatusResult(STATUS_MESSAGE);
+            }
+        };
+    }
+    
+    private Answer<Void> updateInboundStatus()
+    {
+        return new UpdateHolderAnswer<com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetServiceStatusResultHolder>(0)
+        {
+            @Override
+            void updateHolder(com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetServiceStatusResultHolder h)
             {
                 h.value = new GetServiceStatusResult(STATUS_MESSAGE);
             }
         };
     }
     
+    private Answer<Void> updateOutboundStatus()
+    {
+        return new UpdateHolderAnswer<GetServiceStatusResultHolder>(0)
+        {
+            @Override
+            void updateHolder(GetServiceStatusResultHolder h)
+            {
+                h.value = new com.amazonaws.fba_outbound.doc._2007_08_02.GetServiceStatusResult(STATUS_MESSAGE);
+            }
+        };
+    }
+
     private UpdateHolderAnswer<GetFulfillmentPreviewResultHolder> updatePreview()
     {
         return new UpdateHolderAnswer<GetFulfillmentPreviewResultHolder>(3)
@@ -454,11 +483,21 @@ public class FWSUnitTest
             }
         };
     }
+
+    private com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder anyInboundMetadata()
+    {
+        return any(com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder.class);
+    }
     
-    private ResponseMetadataHolder anyMetadata()
+
+    private com.amazonaws.fba_inventory.doc._2009_07_31.holders.ResponseMetadataHolder anyInventoryMetadata()
+    {
+        return any(com.amazonaws.fba_inventory.doc._2009_07_31.holders.ResponseMetadataHolder.class);
+    }
+
+    private ResponseMetadataHolder anyOutboundMetadata()
     {
         return any(ResponseMetadataHolder.class);
     }
-
 
 }

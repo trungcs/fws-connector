@@ -15,6 +15,7 @@ package org.mule.module.fws;
 
 import org.mule.api.lifecycle.Initialisable;
 import org.mule.api.lifecycle.InitialisationException;
+import org.mule.module.fws.api.Address;
 import org.mule.module.fws.api.AxisFWSClient;
 import org.mule.module.fws.api.FWSClient;
 import org.mule.module.fws.api.FWSClientAdaptor;
@@ -22,32 +23,31 @@ import org.mule.module.fws.api.ItemCondition;
 import org.mule.module.fws.api.LabelPreference;
 import org.mule.module.fws.api.PortProvider;
 import org.mule.module.fws.api.ShipmentStatus;
-import org.mule.module.fws.api.internal.Address;
-import org.mule.module.fws.api.internal.AmazonFBAInventoryLocator;
-import org.mule.module.fws.api.internal.AmazonFBAInventoryPortType;
-import org.mule.module.fws.api.internal.AmazonFBAOutboundLocator;
-import org.mule.module.fws.api.internal.AmazonFBAOutboundPortType;
-import org.mule.module.fws.api.internal.AmazonFWSInboundLocator;
-import org.mule.module.fws.api.internal.AmazonFWSInboundPortType;
-import org.mule.module.fws.api.internal.CreateFulfillmentOrderItem;
-import org.mule.module.fws.api.internal.FulfillmentItem;
-import org.mule.module.fws.api.internal.FulfillmentOrder;
-import org.mule.module.fws.api.internal.FulfillmentPreview;
-import org.mule.module.fws.api.internal.GetFulfillmentOrderResult;
-import org.mule.module.fws.api.internal.InboundShipmentData;
-import org.mule.module.fws.api.internal.InboundShipmentItem;
-import org.mule.module.fws.api.internal.MerchantSKUQuantityItem;
-import org.mule.module.fws.api.internal.MerchantSKUSupply;
-import org.mule.module.fws.api.internal.ShipmentPreview;
 import org.mule.tools.cloudconnect.annotations.Connector;
 import org.mule.tools.cloudconnect.annotations.Operation;
 import org.mule.tools.cloudconnect.annotations.Parameter;
 import org.mule.tools.cloudconnect.annotations.Property;
 
+import com.amazonaws.fba_inbound.doc._2007_05_10.AmazonFWSInboundLocator;
+import com.amazonaws.fba_inbound.doc._2007_05_10.AmazonFWSInboundPortType;
+import com.amazonaws.fba_inbound.doc._2007_05_10.FulfillmentItem;
+import com.amazonaws.fba_inbound.doc._2007_05_10.InboundShipmentData;
+import com.amazonaws.fba_inbound.doc._2007_05_10.InboundShipmentItem;
+import com.amazonaws.fba_inbound.doc._2007_05_10.MerchantSKUQuantityItem;
+import com.amazonaws.fba_inbound.doc._2007_05_10.ShipmentPreview;
+import com.amazonaws.fba_inventory.doc._2009_07_31.AmazonFBAInventoryLocator;
+import com.amazonaws.fba_inventory.doc._2009_07_31.AmazonFBAInventoryPortType;
+import com.amazonaws.fba_inventory.doc._2009_07_31.MerchantSKUSupply;
+import com.amazonaws.fba_outbound.doc._2007_08_02.AmazonFBAOutboundLocator;
+import com.amazonaws.fba_outbound.doc._2007_08_02.AmazonFBAOutboundPortType;
+import com.amazonaws.fba_outbound.doc._2007_08_02.CreateFulfillmentOrderItem;
+import com.amazonaws.fba_outbound.doc._2007_08_02.FulfillmentOrder;
+import com.amazonaws.fba_outbound.doc._2007_08_02.FulfillmentPreview;
+import com.amazonaws.fba_outbound.doc._2007_08_02.GetFulfillmentOrderResult;
+
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.xml.rpc.ServiceException;
 

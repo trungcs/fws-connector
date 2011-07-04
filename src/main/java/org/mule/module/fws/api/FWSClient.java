@@ -10,17 +10,16 @@
 
 package org.mule.module.fws.api;
 
-import org.mule.module.fws.api.internal.Address;
-import org.mule.module.fws.api.internal.CreateFulfillmentOrderItem;
-import org.mule.module.fws.api.internal.FulfillmentItem;
-import org.mule.module.fws.api.internal.FulfillmentOrder;
-import org.mule.module.fws.api.internal.FulfillmentPreview;
-import org.mule.module.fws.api.internal.GetFulfillmentOrderResult;
-import org.mule.module.fws.api.internal.InboundShipmentData;
-import org.mule.module.fws.api.internal.InboundShipmentItem;
-import org.mule.module.fws.api.internal.MerchantSKUQuantityItem;
-import org.mule.module.fws.api.internal.MerchantSKUSupply;
-import org.mule.module.fws.api.internal.ShipmentPreview;
+import com.amazonaws.fba_inbound.doc._2007_05_10.FulfillmentItem;
+import com.amazonaws.fba_inbound.doc._2007_05_10.InboundShipmentData;
+import com.amazonaws.fba_inbound.doc._2007_05_10.InboundShipmentItem;
+import com.amazonaws.fba_inbound.doc._2007_05_10.MerchantSKUQuantityItem;
+import com.amazonaws.fba_inbound.doc._2007_05_10.ShipmentPreview;
+import com.amazonaws.fba_inventory.doc._2009_07_31.MerchantSKUSupply;
+import com.amazonaws.fba_outbound.doc._2007_08_02.CreateFulfillmentOrderItem;
+import com.amazonaws.fba_outbound.doc._2007_08_02.FulfillmentOrder;
+import com.amazonaws.fba_outbound.doc._2007_08_02.FulfillmentPreview;
+import com.amazonaws.fba_outbound.doc._2007_08_02.GetFulfillmentOrderResult;
 
 import java.util.Date;
 import java.util.List;
@@ -32,8 +31,8 @@ public interface FWSClient<ExceptionType extends Throwable>
     void deleteInboundShipmentItems(String merchantSku, String shipmentId) throws ExceptionType;
 
     FulfillmentItem getFulfillmentIdentifier(@NotNull String asin,
-                                                   @NotNull ItemCondition itemCondition,
-                                                   @NotNull String merchantSku) throws ExceptionType;
+                                             @NotNull ItemCondition itemCondition,
+                                             @NotNull String merchantSku) throws ExceptionType;
 
     FulfillmentItem getFulfillmentIdentifierForMsku(@NotNull String merchantSku) throws ExceptionType;
 
@@ -64,9 +63,11 @@ public interface FWSClient<ExceptionType extends Throwable>
                             Address shipFromAddress,
                             org.mule.module.fws.api.LabelPreference labelPreference) throws ExceptionType;
 
-    void putInboundShipmentItems(String shipmentId, List<MerchantSKUQuantityItem> itemQuantities) throws ExceptionType;
+    void putInboundShipmentItems(String shipmentId, List<MerchantSKUQuantityItem> itemQuantities)
+        throws ExceptionType;
 
-    void setInboundShipmentStatus(@NotNull String shipmentId, @NotNull ShipmentStatus shipmentStatus) throws ExceptionType;
+    void setInboundShipmentStatus(@NotNull String shipmentId, @NotNull ShipmentStatus shipmentStatus)
+        throws ExceptionType;
 
     void cancelFulfillmentOrder(@NotNull String orderId) throws ExceptionType;
 
@@ -94,7 +95,8 @@ public interface FWSClient<ExceptionType extends Throwable>
 
     Iterable<FulfillmentOrder> listFulfillmentOrders(Date startDate) throws ExceptionType;
 
-    MerchantSKUSupply getInventorySupply(@NotNull String merchantSku, String responseGroup) throws ExceptionType;
+    MerchantSKUSupply getInventorySupply(@NotNull String merchantSku, String responseGroup)
+        throws ExceptionType;
 
     String getInventoryServiceStatus() throws ExceptionType;
 

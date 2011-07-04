@@ -10,25 +10,7 @@
 
 package org.mule.module.fws.api;
 
-import static org.mule.module.fws.api.internal.ItemCondition.Club;
-import static org.mule.module.fws.api.internal.ItemCondition.CollectibleAcceptable;
-import static org.mule.module.fws.api.internal.ItemCondition.CollectibleGood;
-import static org.mule.module.fws.api.internal.ItemCondition.CollectibleLikeNew;
-import static org.mule.module.fws.api.internal.ItemCondition.CollectiblePoor;
-import static org.mule.module.fws.api.internal.ItemCondition.CollectibleVeryGood;
-import static org.mule.module.fws.api.internal.ItemCondition.NewItem;
-import static org.mule.module.fws.api.internal.ItemCondition.NewOEM;
-import static org.mule.module.fws.api.internal.ItemCondition.NewOpenBox;
-import static org.mule.module.fws.api.internal.ItemCondition.NewWithWarranty;
-import static org.mule.module.fws.api.internal.ItemCondition.Refurbished;
-import static org.mule.module.fws.api.internal.ItemCondition.RefurbishedWithWarranty;
-import static org.mule.module.fws.api.internal.ItemCondition.Unknown;
-import static org.mule.module.fws.api.internal.ItemCondition.UsedAcceptable;
-import static org.mule.module.fws.api.internal.ItemCondition.UsedGood;
-import static org.mule.module.fws.api.internal.ItemCondition.UsedLikeNew;
-import static org.mule.module.fws.api.internal.ItemCondition.UsedPoor;
-import static org.mule.module.fws.api.internal.ItemCondition.UsedRefurbished;
-import static org.mule.module.fws.api.internal.ItemCondition.UsedVeryGood;
+import static com.amazonaws.fba_inbound.doc._2007_05_10.ItemCondition.*;
 
 public enum ItemCondition
 {
@@ -53,14 +35,14 @@ public enum ItemCondition
     CLUB (Club),
     UNKNOWN (Unknown);
     
-    private final org.mule.module.fws.api.internal.ItemCondition fwsItemCondition;
+    private final com.amazonaws.fba_inbound.doc._2007_05_10.ItemCondition fwsItemCondition;
 
-    private ItemCondition(org.mule.module.fws.api.internal.ItemCondition fwsItemCondition)
+    private ItemCondition(com.amazonaws.fba_inbound.doc._2007_05_10.ItemCondition fwsItemCondition)
     {
         this.fwsItemCondition = fwsItemCondition;
     }
 
-    public org.mule.module.fws.api.internal.ItemCondition toFwsItemCondition()
+    public com.amazonaws.fba_inbound.doc._2007_05_10.ItemCondition toFwsItemCondition()
     {
         return fwsItemCondition;
     }

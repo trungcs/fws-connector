@@ -16,20 +16,14 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.mule.api.lifecycle.InitialisationException;
+import org.mule.module.fws.api.Address;
 import org.mule.module.fws.api.ShipmentStatus;
-import org.mule.module.fws.api.internal.Address;
-import org.mule.module.fws.api.internal.CreateFulfillmentOrderItem;
-import org.mule.module.fws.api.internal.Currency;
-import org.mule.module.fws.api.internal.FulfillmentItem;
-import org.mule.module.fws.api.internal.GetFulfillmentOrderResult;
-import org.mule.module.fws.api.internal.MerchantSKUQuantityItem;
-import org.mule.module.fws.api.internal.ShipmentPreview;
 
-import com.amazonaws.fba_inbound.AmazonFWSInbound;
-import com.amazonaws.fba_inbound.AmazonFWSInboundClient;
-import com.amazonaws.fba_inbound.AmazonFWSInboundConfig;
-import com.amazonaws.fba_inbound.model.GetServiceStatus;
-import com.amazonaws.fba_inbound.model.GetServiceStatusResponse;
+import com.amazonaws.fba_inbound.doc._2007_05_10.MerchantSKUQuantityItem;
+import com.amazonaws.fba_inbound.doc._2007_05_10.ShipmentPreview;
+import com.amazonaws.fba_outbound.doc._2007_08_02.CreateFulfillmentOrderItem;
+import com.amazonaws.fba_outbound.doc._2007_08_02.Currency;
+import com.amazonaws.fba_outbound.doc._2007_08_02.GetFulfillmentOrderResult;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -37,19 +31,19 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang.time.DateUtils;
 import org.junit.Before;
 import org.junit.Test;
 
 public class FWSTestDriver
 {
     private FWSCloudConnector connector;
-    private AmazonFWSInboundClient c;
     private static final String TEST_MSKU = "my-test-sku-01";
     @SuppressWarnings("serial")
     private static final Address TEST_ADDRESS = new Address()
     {
         {
-            setLine1("605 5th Ave SE");
+            setAddressLine1("605 5th Ave SE");
             setCity("Seattle");
             setCountryCode("US");
             setName("My Ship From Address");
@@ -66,6 +60,7 @@ public class FWSTestDriver
         connector.setSecretKey(System.getenv("secretKey"));
         connector.initialise();
     }
+
     // Status
 
     @Test
@@ -96,7 +91,7 @@ public class FWSTestDriver
     }
 
     /**
-     * Tests a flow of getting a preview and putting items, as explained in 
+     * Tests a flow of getting a preview and putting items, as explained in
      * http://docs.amazonwebservices.com/fws/1.1/GettingStartedGuide/createShip.html
      */
     @Test
@@ -110,9 +105,12 @@ public class FWSTestDriver
         {
             connector.putInboundShipment(shipmentGroup.getShipmentId(), "A shippment",
                 shipmentGroup.getDestinationFulfillmentCenter(), TEST_ADDRESS, null);
-            connector.putInboundShipmentItems(shipmentGroup.getShipmentId(), Collections.singletonList(new MerchantSKUQuantityItem(TEST_MSKU, 1)));
+            connector.putInboundShipmentItems(shipmentGroup.getShipmentId(),
+                Collections.singletonList(new MerchantSKUQuantityItem(TEST_MSKU, 1)));
             assertTrue(connector.listInboundShipmentItems(shipmentGroup.getShipmentId()).iterator().hasNext());
-            assertTrue(connector.listInboundShipments(ShipmentStatus.WORKING, null, null).iterator().hasNext());
+            assertTrue(connector.listInboundShipments(ShipmentStatus.WORKING, null, null)
+                .iterator()
+                .hasNext());
         }
         finally
         {
@@ -129,13 +127,11 @@ public class FWSTestDriver
     @Test
     public void listInboundShipmentsNoShipments()
     {
-        assertFalse(connector.listInboundShipments(ShipmentStatus.SHIPPED, new Date(), new Date())
-            .iterator()
-            .hasNext());
+        assertFalse(connector.listInboundShipments(ShipmentStatus.SHIPPED, null, null).iterator().hasNext());
     }
-    
-    //outbound
-    
+
+    // outbound
+
     @Test
     public void testOrderNoInventory() throws Exception
     {
@@ -147,17 +143,27 @@ public class FWSTestDriver
         // FIXME should fail
         assertNotNull(result);
     }
-    
+
     @Test
     public void listOrdersNoOrder()
     {
         assertFalse(connector.listFulfillmentOrders(new Date()).iterator().hasNext());
     }
 
+    // Inventory
+
+    @Test
+    public void listUpdatedSupllyNoInventory()
+    {
+        assertFalse(connector.listUpdatedInventorySupply(DateUtils.addDays(new Date(), -10), null)
+            .iterator()
+            .hasNext());
+    }
+
     private void assertStatusOk(String status)
     {
         assertNotNull(status);
-        assertTrue(status.contains("service available"));
+        assertTrue(status.matches(".*service (available|responding).*"));
     }
 
 }

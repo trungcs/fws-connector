@@ -10,7 +10,6 @@
 
 package org.mule.module.fws.api;
 
-import org.mule.module.fws.api.internal.LabelPrepPreference;
 
 /**
  * {@link LabelPreference} enum wrapper for
@@ -20,23 +19,23 @@ import org.mule.module.fws.api.internal.LabelPrepPreference;
  */
 public enum LabelPreference
 {
-    AMAZON_LABEL_ONLY(org.mule.module.fws.api.internal.LabelPrepPreference.AMAZON_LABEL_ONLY), AMAZON_LABEL_PREFERRED(
-                    org.mule.module.fws.api.internal.LabelPrepPreference.AMAZON_LABEL_PREFERRED), MERCHANT_LABEL(
-                    org.mule.module.fws.api.internal.LabelPrepPreference.MERCHANT_LABEL);
+    AMAZON_LABEL_ONLY(com.amazonaws.fba_inbound.doc._2007_05_10.LabelPrepPreference.AMAZON_LABEL_ONLY), 
+    AMAZON_LABEL_PREFERRED(com.amazonaws.fba_inbound.doc._2007_05_10.LabelPrepPreference.AMAZON_LABEL_PREFERRED), 
+    MERCHANT_LABEL(com.amazonaws.fba_inbound.doc._2007_05_10.LabelPrepPreference.MERCHANT_LABEL);
 
-    private final org.mule.module.fws.api.internal.LabelPrepPreference fwsLabelPrepPreference;
+    private final com.amazonaws.fba_inbound.doc._2007_05_10.LabelPrepPreference fwsLabelPrepPreference;
 
-    private LabelPreference(org.mule.module.fws.api.internal.LabelPrepPreference fwsLabelPrepPreference)
+    private LabelPreference(com.amazonaws.fba_inbound.doc._2007_05_10.LabelPrepPreference fwsLabelPrepPreference)
     {
         this.fwsLabelPrepPreference = fwsLabelPrepPreference;
     }
 
-    public org.mule.module.fws.api.internal.LabelPrepPreference toFwsLabelPrepPreference()
+    public com.amazonaws.fba_inbound.doc._2007_05_10.LabelPrepPreference toFwsLabelPrepPreference()
     {
         return fwsLabelPrepPreference;
     }
 
-    public static LabelPrepPreference toFwsLabelPrepPreference(LabelPreference labelPreference)
+    public static com.amazonaws.fba_inbound.doc._2007_05_10.LabelPrepPreference toFwsLabelPrepPreference(LabelPreference labelPreference)
     {
         return labelPreference == null ? null : labelPreference.toFwsLabelPrepPreference();
     }
