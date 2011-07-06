@@ -440,8 +440,6 @@ Generates a request for Amazon to ship items from the merchant's inventory to a 
 |emails|an optional list of email strings|yes||
 |items|a mandatory list of CreateFulfillmentOrderItem. At least one item must be specified|no||
 
-Returns fulfillment result
-
 
 
 Get Fulfillment Order
