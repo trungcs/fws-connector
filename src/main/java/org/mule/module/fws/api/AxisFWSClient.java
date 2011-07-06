@@ -93,7 +93,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         getPort(outboundPortProvider, "CancelFulfillmentOrder").cancelFulfillmentOrder(orderId);
     }
 
-    public GetFulfillmentOrderResult createFulfillmentOrder(String orderId,
+    public void createFulfillmentOrder(String orderId,
                                                             String displayableOrderId,
                                                             Address destinationAddress,
                                                             String fulfillmentPolicy,
@@ -114,13 +114,11 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         Validate.notNull(emails);
         Validate.notNull(items);
         Validate.notEmpty(items, "At least an item must be passed");
-        GetFulfillmentOrderResultHolder result = new GetFulfillmentOrderResultHolder();
-        getPort(outboundPortProvider, result).createFulfillmentOrder(orderId, displayableOrderId,
+        getPort(outboundPortProvider, "CreateFulfillmentOrder").createFulfillmentOrder(orderId, displayableOrderId,
             FwsDates.format(displayableOrderDate), displayableOrderComment, shippingSpeedCategory,
             destinationAddress.toOutboundAddress(), fulfillmentPolicy, fulfillmentMethod,
             emails.toArray(new String[emails.size()]),
             items.toArray(new CreateFulfillmentOrderItem[items.size()]));
-        return result.value;
     }
 
     public void deleteInboundShipmentItems(String merchantSku, String shipmentId) throws RemoteException

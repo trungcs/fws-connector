@@ -404,11 +404,10 @@ public class FWSCloudConnector implements Initialisable
      * @param displayableOrderDate the mandatory order date displayed in the fulfillment
      * @param emails an optional list of email strings
      * @param items a mandatory list of CreateFulfillmentOrderItem. At least one item must be specified
-     * @return the fulfillment result  
      */
     @Operation
     @SuppressWarnings("unchecked")
-    public GetFulfillmentOrderResult createFulfillmentOrder(@Parameter String orderId,
+    public void createFulfillmentOrder(@Parameter String orderId,
                                                             @Parameter(optional = true) String displayableOrderId,
                                                             @Parameter Address destinationAddress,
                                                             @Parameter(optional = true) String fulfillmentPolicy,
@@ -419,7 +418,7 @@ public class FWSCloudConnector implements Initialisable
                                                             @Parameter(optional = true) Object emails,
                                                             @Parameter Object items)
     {
-        return client.createFulfillmentOrder(
+        client.createFulfillmentOrder(
             orderId, // 
             coalesce(displayableOrderId, orderId), // 
             destinationAddress, // 

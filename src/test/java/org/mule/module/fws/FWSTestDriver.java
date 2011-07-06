@@ -20,6 +20,7 @@ import org.mule.api.lifecycle.InitialisationException;
 import org.mule.module.fws.api.Address;
 import org.mule.module.fws.api.ShipmentStatus;
 
+import com.amazonaws.fba_inbound.doc._2007_05_10.FulfillmentItem;
 import com.amazonaws.fba_inbound.doc._2007_05_10.MerchantSKUQuantityItem;
 import com.amazonaws.fba_inbound.doc._2007_05_10.ShipmentPreview;
 import com.amazonaws.fba_outbound.doc._2007_08_02.CreateFulfillmentOrderItem;
@@ -30,14 +31,17 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.lang.time.DateUtils;
+import org.apache.xml.security.utils.ElementCheckerImpl.FullChecker;
 import org.junit.Before;
 import org.junit.Test;
 
 public class FWSTestDriver
 {
+    private static final String TEST_ORDER_ID = "TEST_ORDER1";
     private FWSCloudConnector connector;
     private static final String TEST_MSKU = "my-test-sku-01";
     @SuppressWarnings("serial")
@@ -119,10 +123,19 @@ public class FWSTestDriver
         }
     }
 
+    /**
+     * Tests the {@link FWSCloudConnector#listFulfillmentItems(boolean)}.
+     * This whole test case assumes there is only one item created (an IPod). 
+     * 
+     * @see  <a href="http://docs.amazonwebservices.com/AWSFWS/1.0/GettingStartedGuide/">FWS GettingStarted</a>
+     */
     @Test
     public void listFulfillmentItemsNoItems()
     {
-        assertFalse(connector.listFulfillmentItems(true).iterator().hasNext());
+        Iterator<FulfillmentItem> fulfillmentItems = connector.listFulfillmentItems(true).iterator();
+        assertTrue(fulfillmentItems.hasNext());
+        assertEquals(TEST_MSKU, fulfillmentItems.next().getMerchantSKU());
+        assertFalse(fulfillmentItems.hasNext());
     }
 
     @Test
@@ -133,16 +146,21 @@ public class FWSTestDriver
 
     // outbound
 
+    /**
+     * Tests that orders can be created. 
+     * As there is no real inventory in Amazon, this order is unfulfillable.
+     * Then, it will be canceled*/
     @Test
-    public void testOrderNoInventory() throws Exception
+    public void testCreateOrderNoInventory() throws Exception
     {
         String nsku = connector.getFulfillmentIdentifierForMsku(TEST_MSKU).getFulfillmentNetworkSKU();
-        GetFulfillmentOrderResult result = connector.createFulfillmentOrder("TEST_ORDER1", null,
+        connector.createFulfillmentOrder(TEST_ORDER_ID, null,
             TEST_ADDRESS, null, null, "QUICK", "AN order", new Date(), null,
             Arrays.asList(new CreateFulfillmentOrderItem(TEST_MSKU, "1", 1, "", "An item", "", nsku,
                 new Currency("USD", BigDecimal.valueOf(100)))));
-        // FIXME should fail
-        assertNotNull(result);
+        assertEquals(1, size(connector.listFulfillmentOrders(null, null)));
+        connector.cancelFulfillmentOrder(TEST_ORDER_ID);
+        assertEquals(0, size(connector.listFulfillmentOrders(null, null)));
     }
 
     @Test
@@ -167,4 +185,13 @@ public class FWSTestDriver
         assertTrue(status.matches(".*service (available|responding).*"));
     }
 
-}
+    private int size(Iterable<?> iterable)
+    {
+        int i = 0;
+        for (Object o : iterable)
+        {
+            i++;
+        }
+        return i;
+    }
+} 

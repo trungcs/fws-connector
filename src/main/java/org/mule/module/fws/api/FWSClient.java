@@ -78,7 +78,7 @@ public interface FWSClient<ExceptionType extends Throwable>
 
     void cancelFulfillmentOrder(@NotNull String orderId) throws ExceptionType;
 
-    GetFulfillmentOrderResult createFulfillmentOrder(@NotNull String orderId,
+    void createFulfillmentOrder(@NotNull String orderId,
                                                      @NotNull String displayableOrderId,
                                                      @NotNull Address destinationAddress,
                                                      String fulfillmentPolicy,
