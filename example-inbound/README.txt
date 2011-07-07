@@ -10,10 +10,15 @@ HOW TO DEMO:
   	* fwsAccessKey - your public FWS access key
 	* fwsSecretKey - your private FWS access key
   You also need a local Mongo server running with under default port
-  1. Run the FwsFunctionalTestDriver, or deploy this demo to a Mule Container. 
-  	a. Request an inventory status report: 
-  		Run the testSendInventoryStatus  test or alternatively hit 
-  		http://localhost:9090/fws-demo-inventory 
+  * If running from FwsFunctionalTestDriver, you just need to run testCreateShipment() method. 
+  * If running from a Mule Container: 
+  	1. Add at least an address from where you will send items to Amazon. Do not add the same address name more than once. It must be unique
+  		Example http://localhost:9091/fws-demo-inbound-add-from-address?addressLine1=...&city=...&countryCode=...&name=...&postalCode=...&stateOrProvinceCode=...
+    2. Add at least an item to ship through FBA. Please carefully read the considerations below. Do not add the same item msku more than once. It must be unique.  
+    	Example http://localhost:9091/fws-demo-inbound-add-item?merchantSku=...&quantity=...
+    3. Create the shipment, specifying a previously added sender address using its address name, and the shipment name.
+    	 Example http://localhost:9091/fws-demo-inbound-create-shipment?shipmentName=...&addressName=...
+        
   	
 HOW IT WORKS:
   * The AddFromAddress flow stores and address in a mongo database. This address has a logical, unique "address name", which will be used to find it in the CreateShipments flow.

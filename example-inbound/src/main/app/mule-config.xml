@@ -36,15 +36,18 @@
     <description>Gets All Shipment Items and an Address from a Mongo Collection, gets a preview for them, and creates the necessary shipments. This
     flows does NOT set items as SHIPPED, use set-inbound-shipment-status operation for marking it as SHIPPED</description>
     <http:inbound-endpoint host="localhost" port="9091" path="fws-demo-inbound-create-shipment" />
-     <enricher target="#[variable:fromAddress]">
+     <message-properties-transformer scope="session">
+        <add-message-property key="shipmentName" value="#[header:inbound:shipmentName]" />
+     </message-properties-transformer>
+     <enricher target="#[header:session:fromAddress]">
         <flow-ref name="GetAddress"/>
      </enricher>
     <flow-ref name="GetItems"/>
-    <fws:get-inbound-shipment-preview address="#[variable:fromAddress]" items="#[payload]"/>
+    <fws:get-inbound-shipment-preview address="#[header:session:fromAddress]" items="#[payload]"/>
     <collection-splitter/>
     <fws:put-inbound-shipment 
-      shipFromAddress="#[variable:fromAddress]"
-      shipmentName="#[header:inbound:shipmentName]"
+      shipFromAddress="#[header:session:fromAddress]"
+      shipmentName="#[header:session:shipmentName]"
       shipmentId="#[groovy:payload.shipmentId]" 
       destinationFulfillmentCenter="#[groovy:payload.destinationFulfillmentCenter]" 
       itemQuantities="#[groovy:payload.merchantSKUQuantityItem as List]"  />
