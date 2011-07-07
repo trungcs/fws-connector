@@ -21,6 +21,7 @@ import org.mule.module.fws.api.Address;
 import org.mule.module.fws.api.ShipmentStatus;
 
 import com.amazonaws.fba_inbound.doc._2007_05_10.FulfillmentItem;
+import com.amazonaws.fba_inbound.doc._2007_05_10.InboundShipmentData;
 import com.amazonaws.fba_inbound.doc._2007_05_10.InboundShipmentItem;
 import com.amazonaws.fba_inbound.doc._2007_05_10.MerchantSKUQuantityItem;
 import com.amazonaws.fba_inbound.doc._2007_05_10.ShipmentPreview;
@@ -98,15 +99,17 @@ public class FWSTestDriver
     /**
      * Tests a flow of getting a preview and putting items, as explained in
      * http://docs.amazonwebservices.com/fws/1.1/GettingStartedGuide/createShip.html
+     * 
+     * This tests assumes that there are no working items
      */
     @Test
     public void getPreviewAndPutItems() throws Exception
     {
+        assertEquals(0, size(connector.listInboundShipments(ShipmentStatus.WORKING, null, null)));
         List<ShipmentPreview> preview = connector.getInboundShipmentPreview(
-            Arrays.asList(new MerchantSKUQuantityItem(TEST_MSKU + "4 ", 1)), TEST_ADDRESS, null);
+            Arrays.asList(new MerchantSKUQuantityItem(TEST_MSKU, 1)), TEST_ADDRESS, null);
         assertEquals(preview.size(), 1);
         ShipmentPreview shipmentGroup = preview.get(0);
-        assertEquals(0, size(connector.listInboundShipments(ShipmentStatus.WORKING, null, null)));
         try
         {
             connector.putInboundShipment(shipmentGroup.getShipmentId(), "A shippment",
@@ -152,23 +155,6 @@ public class FWSTestDriver
     }
 
     // outbound
-
-    /**
-     * Tests that orders can be created. 
-     * As there is no real inventory in Amazon, this order is unfulfillable.
-     * Then, it will be canceled*/
-    @Test
-    public void testCreateOrderNoInventory() throws Exception
-    {
-        String nsku = connector.getFulfillmentIdentifierForMsku(TEST_MSKU).getFulfillmentNetworkSKU();
-        connector.createFulfillmentOrder(TEST_ORDER_ID, null,
-            TEST_ADDRESS, null, null, "QUICK", "AN order", new Date(), null,
-            Arrays.asList(new CreateFulfillmentOrderItem(TEST_MSKU, "1", 1, "", "An item", "", nsku,
-                new Currency("USD", BigDecimal.valueOf(100)))));
-        assertEquals(1, size(connector.listFulfillmentOrders(null, null)));
-        connector.cancelFulfillmentOrder(TEST_ORDER_ID);
-        assertEquals(0, size(connector.listFulfillmentOrders(null, null)));
-    }
 
     @Test
     public void listOrdersNoOrder()

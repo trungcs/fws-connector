@@ -620,37 +620,5 @@ public class FWSCloudConnector implements Initialisable
         this.secretKey = secretKey;
     }
     
-    /*
-     * 
-     *    * Get estimated shipping dates and fees for all 
-     *         available shipping speed given a set of merchant SKUs and
-     * quantities      
-     * 
-     *         If "ShippingSpeedCategories" are inputed, only previews for
-     * those options will be returned. 
-     *         
-     *         If "ShippingSpeedCategories" are not inputed, then previews
-     * for all available options 
-     *         are returned.
-     * 
-     *         The service will return the fulfillment estimates for a set
-     * of merchant 
-     *         SKUs and quantities.
-
-
-
-    /**
-     * Returns the information needed to create a set of shipments
-     * for the given collection of items and source address.  When 
-     *                     all the items are not all in the same category
-     * (e.g. some 
-     *                     sortable, some non-sortable) it may be necessary
-     * to create 
-     *                     multiple shipments (one for each of the shipment
-     * groups
-     *                     returned).
-     * 
-     * 
-     */
     
 }

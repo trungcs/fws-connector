@@ -16,7 +16,6 @@ import com.amazonaws.fba_inbound.doc._2007_05_10.AmazonFWSInboundPortType;
 import com.amazonaws.fba_inbound.doc._2007_05_10.FulfillmentItem;
 import com.amazonaws.fba_inbound.doc._2007_05_10.InboundShipmentData;
 import com.amazonaws.fba_inbound.doc._2007_05_10.InboundShipmentItem;
-import com.amazonaws.fba_inbound.doc._2007_05_10.LabelPrepPreference;
 import com.amazonaws.fba_inbound.doc._2007_05_10.ListAllFulfillmentItemsByNextTokenResult;
 import com.amazonaws.fba_inbound.doc._2007_05_10.ListAllFulfillmentItemsResult;
 import com.amazonaws.fba_inbound.doc._2007_05_10.ListInboundShipmentItemsByNextTokenResult;
@@ -60,17 +59,24 @@ import com.amazonaws.fba_outbound.doc._2007_08_02.holders.ListAllFulfillmentOrde
 import com.amazonaws.fba_outbound.doc._2007_08_02.holders.ListAllFulfillmentOrdersResultHolder;
 
 import java.rmi.RemoteException;
+import java.util.AbstractCollection;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
 import javax.xml.rpc.holders.Holder;
 
 import org.apache.commons.lang.Validate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class AxisFWSClient implements FWSClient<RemoteException>
 {
+    private Logger logger = LoggerFactory.getLogger(AxisFWSClient.class);
     private static final int PAGE_SIZE = 100;
     private final PortProvider<AmazonFWSInboundPortType> inboundPortProvider;
     private final PortProvider<AmazonFBAOutboundPortType> outboundPortProvider;
@@ -95,16 +101,15 @@ public class AxisFWSClient implements FWSClient<RemoteException>
     }
 
     public void createFulfillmentOrder(String orderId,
-                                                            String displayableOrderId,
-                                                            Address destinationAddress,
-                                                            String fulfillmentPolicy,
-                                                            String fulfillmentMethod,
-                                                            String shippingSpeedCategory,
-                                                            String displayableOrderComment,
-                                                            Date displayableOrderDate,
-                                                            List<String> emails,
-                                                            List<CreateFulfillmentOrderItem> items)
-        throws RemoteException
+                                       String displayableOrderId,
+                                       Address destinationAddress,
+                                       String fulfillmentPolicy,
+                                       String fulfillmentMethod,
+                                       String shippingSpeedCategory,
+                                       String displayableOrderComment,
+                                       Date displayableOrderDate,
+                                       List<String> emails,
+                                       List<CreateFulfillmentOrderItem> items) throws RemoteException
     {
         Validate.notNull(orderId);
         Validate.notNull(displayableOrderId);
@@ -114,11 +119,11 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         Validate.notNull(displayableOrderDate);
         Validate.notNull(emails);
         Validate.notNull(items);
-        Validate.notEmpty(items, "At least an item must be passed");
-        getPort(outboundPortProvider, "CreateFulfillmentOrder").createFulfillmentOrder(orderId, displayableOrderId,
-            FwsDates.format(displayableOrderDate), displayableOrderComment, shippingSpeedCategory,
-            destinationAddress.toOutboundAddress(), fulfillmentPolicy, fulfillmentMethod,
-            emails.toArray(new String[emails.size()]),
+        validateNotEmptyItemsList(items);
+        getPort(outboundPortProvider, "CreateFulfillmentOrder").createFulfillmentOrder(orderId,
+            displayableOrderId, FwsDates.format(displayableOrderDate), displayableOrderComment,
+            shippingSpeedCategory, destinationAddress.toOutboundAddress(), fulfillmentPolicy,
+            fulfillmentMethod, emails.toArray(new String[emails.size()]),
             items.toArray(new CreateFulfillmentOrderItem[items.size()]));
     }
 
@@ -177,18 +182,18 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         getPort(outboundPortProvider, result).getFulfillmentOrder(orderId, result, newOutboundMetadata());
         return result.value;
     }
-    
+
     public List<FulfillmentPreview> getFulfillmentPreview(Address address,
-                                                          List<GetFulfillmentPreviewItem> item,
+                                                          List<GetFulfillmentPreviewItem> items,
                                                           String shippingSpeedCategories,
                                                           String orderItemId) throws RemoteException
     {
         Validate.notNull(address);
-        Validate.notEmpty(item);
+        validateNotEmptyItemsList(items);
         Validate.notNull(orderItemId);
         GetFulfillmentPreviewResultHolder result = new GetFulfillmentPreviewResultHolder();
         getPort(outboundPortProvider, result).getFulfillmentPreview(address.toOutboundAddress(), //
-            item.toArray(new GetFulfillmentPreviewItem[item.size()]), // 
+            items.toArray(new GetFulfillmentPreviewItem[items.size()]), // 
             shippingSpeedCategories == null ? null : asArray(shippingSpeedCategories), // 
             result, //
             newOutboundMetadata());
@@ -215,7 +220,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
                                                            LabelPreference labelPreference)
         throws RemoteException
     {
-        Validate.notEmpty(items);
+        validateNotEmptyItemsList(items);
         Validate.notNull(address);
         GetInboundShipmentPreviewResultHolder result = new GetInboundShipmentPreviewResultHolder();
         getPort(inboundPortProvider, result).getInboundShipmentPreview(address.toInboundAddress(),
@@ -256,7 +261,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
     public Iterable<FulfillmentItem> listFulfillmentItems(final boolean includeInactive)
         throws RemoteException
     {
-        return new FwsPaginatedIterable<FulfillmentItem, ListAllFulfillmentItemsResult>()
+        return bug5588Workaournd(new FwsPaginatedIterable<FulfillmentItem, ListAllFulfillmentItemsResult>()
         {
             @Override
             protected ListAllFulfillmentItemsResult firstFwsPage() throws RemoteException
@@ -283,12 +288,13 @@ public class AxisFWSClient implements FWSClient<RemoteException>
                 return page.getFulfillmentItem();
             }
 
-        };
+        });
     }
 
-    public Iterable<FulfillmentOrder> listFulfillmentOrders(final Date startDate, final List<String> fulfillmentMethod)
+    public Iterable<FulfillmentOrder> listFulfillmentOrders(final Date startDate,
+                                                            final List<String> fulfillmentMethod)
     {
-        return new FwsPaginatedIterable<FulfillmentOrder, ListAllFulfillmentOrdersResult>()
+        return bug5588Workaournd(new FwsPaginatedIterable<FulfillmentOrder, ListAllFulfillmentOrdersResult>()
         {
 
             @Override
@@ -296,7 +302,9 @@ public class AxisFWSClient implements FWSClient<RemoteException>
             {
                 ListAllFulfillmentOrdersResultHolder result = new ListAllFulfillmentOrdersResultHolder();
                 getPort(outboundPortProvider, result).listAllFulfillmentOrders(PAGE_SIZE,
-                    FwsDates.format(startDate), fulfillmentMethod.toArray(new String[fulfillmentMethod.size()]), result, newOutboundMetadata());
+                    FwsDates.format(startDate),
+                    fulfillmentMethod.toArray(new String[fulfillmentMethod.size()]), result,
+                    newOutboundMetadata());
                 return result.value;
             }
 
@@ -315,13 +323,13 @@ public class AxisFWSClient implements FWSClient<RemoteException>
             {
                 return page.getFulfillmentOrder();
             }
-        };
+        });
     }
 
     public Iterable<InboundShipmentItem> listInboundShipmentItems(final String shipmentId)
     {
         Validate.notEmpty(shipmentId);
-        return new FwsPaginatedIterable<InboundShipmentItem, ListInboundShipmentItemsResult>()
+        return bug5588Workaournd(new FwsPaginatedIterable<InboundShipmentItem, ListInboundShipmentItemsResult>()
         {
 
             @Override
@@ -348,7 +356,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
             {
                 return page.getShipmentItem();
             }
-        };
+        });
     }
 
     public Iterable<InboundShipmentData> listInboundShipments(final org.mule.module.fws.api.ShipmentStatus shipmentStatus,
@@ -356,7 +364,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
                                                               final Date createdBefore)
     {
         Validate.notNull(shipmentStatus);
-        return new FwsPaginatedIterable<InboundShipmentData, ListInboundShipmentsResult>()
+        return bug5588Workaournd(new FwsPaginatedIterable<InboundShipmentData, ListInboundShipmentsResult>()
         {
             @Override
             protected ListInboundShipmentsResult firstFwsPage() throws RemoteException
@@ -383,7 +391,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
             {
                 return page.getShipmentData();
             }
-        };
+        });
 
     }
 
@@ -391,7 +399,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
                                                                   final String responseGroup)
     {
         Validate.notNull(startDate);
-        return new FwsPaginatedIterable<MerchantSKUSupply, ListUpdatedInventorySupplyResult>()
+        return bug5588Workaournd(new FwsPaginatedIterable<MerchantSKUSupply, ListUpdatedInventorySupplyResult>()
         {
             @Override
             protected ListUpdatedInventorySupplyResult firstFwsPage() throws RemoteException
@@ -417,30 +425,28 @@ public class AxisFWSClient implements FWSClient<RemoteException>
             {
                 return page.getMerchantSKUSupply();
             }
-        };
+        });
     }
 
     public void putInboundShipmentData(String shipmentId,
-                                   String shipmentName,
-                                   String destinationFulfillmentCenter,
-                                   Address shipFromAddress,
-                                   LabelPreference labelPreference)
-        throws RemoteException
+                                       String shipmentName,
+                                       String destinationFulfillmentCenter,
+                                       Address shipFromAddress,
+                                       LabelPreference labelPreference) throws RemoteException
     {
         getPort(inboundPortProvider, "PutInboundShipment")//
         .putInboundShipmentData(shipmentId, shipmentName, destinationFulfillmentCenter,
             shipFromAddress.toInboundAddress(), LabelPreference.toFwsLabelPrepPreference(labelPreference));
     }
-    
+
     public void putInboundShipment(String shipmentId,
                                    String shipmentName,
                                    String destinationFulfillmentCenter,
                                    Address shipFromAddress,
-                                   LabelPreference labelPreference, 
-                                   List<MerchantSKUQuantityItem> itemQuantities)
-        throws RemoteException
+                                   LabelPreference labelPreference,
+                                   List<MerchantSKUQuantityItem> itemQuantities) throws RemoteException
     {
-        Validate.notEmpty(itemQuantities);
+        validateNotEmptyItemsList(itemQuantities);
         Validate.notEmpty(shipmentId);
         Validate.notEmpty(destinationFulfillmentCenter);
         Validate.notNull(shipmentName);
@@ -454,7 +460,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         throws RemoteException
     {
         Validate.notEmpty(shipmentId);
-        Validate.notEmpty(itemQuantities, "At least an item quantity must be passed");
+        validateNotEmptyItemsList(itemQuantities);
         getPort(inboundPortProvider, "PutInboundShipmentItems").putInboundShipmentItems(shipmentId,
             itemQuantities.toArray(new MerchantSKUQuantityItem[itemQuantities.size()]));
     }
@@ -511,6 +517,84 @@ public class AxisFWSClient implements FWSClient<RemoteException>
     private com.amazonaws.fba_inventory.doc._2009_07_31.holders.ResponseMetadataHolder newInventoryMetadata()
     {
         return new com.amazonaws.fba_inventory.doc._2009_07_31.holders.ResponseMetadataHolder();
+    }
+
+    private void validateNotEmptyItemsList(List<?> items)
+    {
+        Validate.notEmpty(items, "At least an item must be passed");
+    }
+
+    /*
+     * see http://www.mulesoft.org/jira/browse/MULE-5588
+     */
+    @SuppressWarnings("unchecked")
+    private <T> Iterable<T> bug5588Workaournd(final Iterable<? extends T> o)
+    {
+        if (o instanceof Collection<?>)
+        {
+            return (Iterable<T>) o;
+        }
+        return new AbstractCollection<T>()
+        {
+
+            @Override
+            public Iterator<T> iterator()
+            {
+                return (Iterator<T>) o.iterator();
+            }
+
+            @Override
+            public Object[] toArray()
+            {
+                warnEagerMessage("toArray");
+                LinkedList<Object> l = new LinkedList<Object>();
+                for (Object o : this)
+                {
+                    l.add(o);
+                }
+                return l.toArray();
+            }
+
+            @Override
+            public int size()
+            {
+                warnEagerMessage("size");
+                int i = 0;
+                for (@SuppressWarnings("unused")
+                Object o : this)
+                {
+                    i++;
+                }
+                return i;
+            }
+
+            /**
+             * Same impl that those found in Object, in order to avoid eager elements
+             * consumption
+             */
+            @Override
+            public String toString()
+            {
+                return getClass().getName() + "@" + Integer.toHexString(hashCode());
+            }
+
+            /**
+             * Warns that sending the given message implied processing all the
+             * elements, which is not efficient at all, and most times is a bad idea,
+             * as lazy iterables should be traversed only once and in a lazy manner.
+             * 
+             * @param message
+             */
+            private void warnEagerMessage(String message)
+            {
+                if (logger.isWarnEnabled())
+                {
+                    logger.warn(
+                        "Method {} needs to consume all the element. It is inefficient and thus should be used with care",
+                        message);
+                }
+            }
+        };
     }
 
 }
