@@ -94,7 +94,7 @@ public class FWSTestDriver
     {
         assertNotNull(connector.getFulfillmentIdentifierForMsku(TEST_MSKU));
     }
-
+    
     /**
      * Tests a flow of getting a preview and putting items, as explained in
      * http://docs.amazonwebservices.com/fws/1.1/GettingStartedGuide/createShip.html
@@ -106,16 +106,14 @@ public class FWSTestDriver
             Arrays.asList(new MerchantSKUQuantityItem(TEST_MSKU, 1)), TEST_ADDRESS, null);
         assertEquals(preview.size(), 1);
         ShipmentPreview shipmentGroup = preview.get(0);
-        assertFalse(connector.listInboundShipments(ShipmentStatus.WORKING, null, null).iterator().hasNext());
+        assertEquals(0, size(connector.listInboundShipments(ShipmentStatus.WORKING, null, null)));
         try
         {
             connector.putInboundShipment(shipmentGroup.getShipmentId(), "A shippment",
                 shipmentGroup.getDestinationFulfillmentCenter(), TEST_ADDRESS, null,
-                Collections.singletonList(new MerchantSKUQuantityItem(TEST_MSKU, 1)));
-            assertTrue(connector.listInboundShipmentItems(shipmentGroup.getShipmentId()).iterator().hasNext());
-            assertTrue(connector.listInboundShipments(ShipmentStatus.WORKING, null, null)
-                .iterator()
-                .hasNext());
+                Arrays.asList(shipmentGroup.getMerchantSKUQuantityItem()));
+            assertEquals(1, size(connector.listInboundShipmentItems(shipmentGroup.getShipmentId())));
+            assertEquals(1, size(connector.listInboundShipments(ShipmentStatus.WORKING, null, null)));
         }
         finally
         {
@@ -188,7 +186,7 @@ public class FWSTestDriver
     private int size(Iterable<?> iterable)
     {
         int i = 0;
-        for (Object o : iterable)
+        for (@SuppressWarnings("unused") Object o : iterable)
         {
             i++;
         }

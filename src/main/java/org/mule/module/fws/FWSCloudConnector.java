@@ -331,7 +331,6 @@ public class FWSCloudConnector implements Initialisable
     }
     
     
-    
     /**
      * Adds line items to a pre-existing shipment that the ShipmentId specifies. 
      * 

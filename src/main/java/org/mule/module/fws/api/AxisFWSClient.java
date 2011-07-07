@@ -16,6 +16,7 @@ import com.amazonaws.fba_inbound.doc._2007_05_10.AmazonFWSInboundPortType;
 import com.amazonaws.fba_inbound.doc._2007_05_10.FulfillmentItem;
 import com.amazonaws.fba_inbound.doc._2007_05_10.InboundShipmentData;
 import com.amazonaws.fba_inbound.doc._2007_05_10.InboundShipmentItem;
+import com.amazonaws.fba_inbound.doc._2007_05_10.LabelPrepPreference;
 import com.amazonaws.fba_inbound.doc._2007_05_10.ListAllFulfillmentItemsByNextTokenResult;
 import com.amazonaws.fba_inbound.doc._2007_05_10.ListAllFulfillmentItemsResult;
 import com.amazonaws.fba_inbound.doc._2007_05_10.ListInboundShipmentItemsByNextTokenResult;
@@ -423,26 +424,29 @@ public class AxisFWSClient implements FWSClient<RemoteException>
                                    String shipmentName,
                                    String destinationFulfillmentCenter,
                                    Address shipFromAddress,
-                                   org.mule.module.fws.api.LabelPreference labelPreference)
+                                   LabelPreference labelPreference)
         throws RemoteException
     {
         getPort(inboundPortProvider, "PutInboundShipment")//
         .putInboundShipmentData(shipmentId, shipmentName, destinationFulfillmentCenter,
-            shipFromAddress.toInboundAddress(), labelPreference.toFwsLabelPrepPreference());
+            shipFromAddress.toInboundAddress(), LabelPreference.toFwsLabelPrepPreference(labelPreference));
     }
     
     public void putInboundShipment(String shipmentId,
                                    String shipmentName,
                                    String destinationFulfillmentCenter,
                                    Address shipFromAddress,
-                                   org.mule.module.fws.api.LabelPreference labelPreference, 
+                                   LabelPreference labelPreference, 
                                    List<MerchantSKUQuantityItem> itemQuantities)
         throws RemoteException
     {
         Validate.notEmpty(itemQuantities);
+        Validate.notEmpty(shipmentId);
+        Validate.notEmpty(destinationFulfillmentCenter);
+        Validate.notNull(shipmentName);
         getPort(inboundPortProvider, "PutInboundShipment")//
         .putInboundShipment(shipmentId, shipmentName, destinationFulfillmentCenter,
-            shipFromAddress.toInboundAddress(), labelPreference.toFwsLabelPrepPreference(),
+            shipFromAddress.toInboundAddress(), LabelPreference.toFwsLabelPrepPreference(labelPreference),
             itemQuantities.toArray(new MerchantSKUQuantityItem[itemQuantities.size()]));
     }
 
