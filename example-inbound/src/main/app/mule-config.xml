@@ -17,6 +17,7 @@
   xmlns:spring="http://www.springframework.org/schema/beans"
   xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting"
   xmlns:http="http://www.mulesoft.org/schema/mule/http"
+  xmlns:mongo="http://www.mulesoft.org/schema/mule/mongo"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
   xsi:schemaLocation="
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
@@ -24,10 +25,85 @@
        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
        http://www.mulesoft.org/schema/mule/json    http://www.mulesoft.org/schema/mule/json/3.1/mule-json.xsd
        http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/3.0/mule-http.xsd
-       http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/3.1/mule-scripting.xsd">
+       http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/3.1/mule-scripting.xsd
+       http://www.mulesoft.org/schema/mule/mongo http://www.mulesoft.org/schema/mule/mongo/1.0/mule-mongo.xsd">
 
-  <fws:config name="fws" />
-
-
-
+  <fws:config name="fws" accessKey="${fwsAccessKey}" secretKey="${fwsSecretKey}"/>
+  <mongo:config  name="mongo" />
+  
+  
+   <flow name="CreateShipments">
+    <description>Gets All Shipment Items and an Address from a Mongo Collection, gets a preview for them, and creates the necessary shipments. This
+    flows does NOT set items as SHIPPED, use set-inbound-shipment-status operation for marking it as SHIPPED</description>
+    <http:inbound-endpoint host="localhost" port="9091" path="fws-demo-inbound-create-shipment" />
+     <enricher target="#[variable:fromAddress]">
+        <flow-ref name="GetAddress"/>
+     </enricher>
+    <flow-ref name="GetItems"/>
+    <fws:get-inbound-shipment-preview address="#[variable:fromAddress]" items="#[payload]"/>
+    <collection-splitter/>
+    <fws:put-inbound-shipment 
+      shipFromAddress="#[variable:fromAddress]"
+      shipmentName="#[header:inbound:shipmentName]"
+      shipmentId="#[groovy:payload.shipmentId]" 
+      destinationFulfillmentCenter="#[groovy:payload.destinationFulfillmentCenter]" 
+      itemQuantities="#[groovy:payload.merchantSKUQuantityItem as List]"  />
+  </flow>
+  
+  
+  <flow name="AddItem">
+    <description>Adds an item. This flow register it in Amazon FBA and adds it to the Items collection.
+    Please notice that you still need to manually list this item in the Amazon Seller Center before executing this flow</description>
+    <http:inbound-endpoint host="localhost" port="9091" path="fws-demo-inbound-add-item" />
+    <fws:get-fulfillment-identifier-for-msku merchantSku="#[header:inbound:merchantSku]"/>
+    <mongo:insert-object collection="Items" element='{ "quantity": "#[header:inbound:quantity]", "merchantSKU" : "#[header:inbound:merchantSku]" } '/>
+  </flow>
+  
+  <flow name="AddFromAddress">
+    <description>Adds an address. This flow adds it to the Address collection </description>
+    <http:inbound-endpoint host="localhost" port="9091" path="fws-demo-inbound-add-from-address" />
+    <mongo:insert-object collection="Addresses" element='{
+          "addressLine1" : "#[header:inbound:addressLine1]", 
+          "city" : "#[header:inbound:city]",
+          "countryCode" : "#[header:inbound:countryCode]",
+          "name" : "#[header:inbound:name]",
+          "postalCode" : "#[header:inbound:postalCode]",
+          "stateOrProvinceCode": "#[header:inbound:stateOrProvinceCode]"
+         }'/>
+  </flow>
+  
+   <flow name="GetItems">
+   <description>Converts the items into proper MerchantSKUQuantityItem instances</description>
+   <mongo:find-objects collection="Items"/>
+    <scripting:component>
+      <scripting:script engine="groovy">
+      <![CDATA[  
+        import com.amazonaws.fba_inbound.doc._2007_05_10.MerchantSKUQuantityItem;
+        return payload.collect({ o -> 
+                new MerchantSKUQuantityItem( 
+                  quantity: o['quantity'] as Integer, 
+                  merchantSKU: o['merchantSKU']) });
+      ]]>
+     </scripting:script>
+    </scripting:component>
+  </flow>
+  
+    <flow name="GetAddress">
+    <mongo:find-one-object collection="Addresses" query='{ "name": "#[header:inbound:addressName]" }' />
+    <scripting:component>
+      <scripting:script engine="groovy">
+      <![CDATA[  
+        import org.mule.module.fws.api.Address;
+        def o = payload
+        return new Address( 
+              addressLine1: o['addressLine1'],
+              city: o['city'],
+              countryCode: o['countryCode'],
+              name: o['name'],
+              postalCode: o['postalCode'],
+              stateOrProvinceCode: o['stateOrProvinceCode']);
+      ]]>
+     </scripting:script>
+    </scripting:component>
+  </flow>
 </mule>

@@ -21,6 +21,7 @@ import org.mule.module.fws.api.Address;
 import org.mule.module.fws.api.ShipmentStatus;
 
 import com.amazonaws.fba_inbound.doc._2007_05_10.FulfillmentItem;
+import com.amazonaws.fba_inbound.doc._2007_05_10.InboundShipmentItem;
 import com.amazonaws.fba_inbound.doc._2007_05_10.MerchantSKUQuantityItem;
 import com.amazonaws.fba_inbound.doc._2007_05_10.ShipmentPreview;
 import com.amazonaws.fba_outbound.doc._2007_08_02.CreateFulfillmentOrderItem;
@@ -44,7 +45,6 @@ public class FWSTestDriver
     private static final String TEST_ORDER_ID = "TEST_ORDER1";
     private FWSCloudConnector connector;
     private static final String TEST_MSKU = "my-test-sku-01";
-    @SuppressWarnings("serial")
     private static final Address TEST_ADDRESS = new Address()
     {
         {
@@ -103,7 +103,7 @@ public class FWSTestDriver
     public void getPreviewAndPutItems() throws Exception
     {
         List<ShipmentPreview> preview = connector.getInboundShipmentPreview(
-            Arrays.asList(new MerchantSKUQuantityItem(TEST_MSKU, 1)), TEST_ADDRESS, null);
+            Arrays.asList(new MerchantSKUQuantityItem(TEST_MSKU + "4 ", 1)), TEST_ADDRESS, null);
         assertEquals(preview.size(), 1);
         ShipmentPreview shipmentGroup = preview.get(0);
         assertEquals(0, size(connector.listInboundShipments(ShipmentStatus.WORKING, null, null)));
@@ -114,6 +114,15 @@ public class FWSTestDriver
                 Arrays.asList(shipmentGroup.getMerchantSKUQuantityItem()));
             assertEquals(1, size(connector.listInboundShipmentItems(shipmentGroup.getShipmentId())));
             assertEquals(1, size(connector.listInboundShipments(ShipmentStatus.WORKING, null, null)));
+            
+            connector.putInboundShipmentItems(shipmentGroup.getShipmentId(),
+                Arrays.asList(new MerchantSKUQuantityItem(TEST_MSKU, 4)));
+            
+            //The original item quantity was replaced
+            Iterator<InboundShipmentItem> iter = connector.listInboundShipmentItems(shipmentGroup.getShipmentId()).iterator();
+            assertTrue(iter.hasNext());
+            assertEquals(4, iter.next().getQuantityShipped());
+            assertFalse(iter.hasNext());
         }
         finally
         {
