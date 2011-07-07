@@ -8,10 +8,8 @@
  * LICENSE.txt file.
  */
 
-package org.mulesoft.demo.mongo;
+package org.mulesoft.demo.fws;
 
-import org.mule.api.MuleEvent;
-import org.mule.api.transport.PropertyScope;
 import org.mule.construct.SimpleFlowConstruct;
 import org.mule.tck.FunctionalTestCase;
 
@@ -25,10 +23,7 @@ public class FwsFunctionalTestDriver extends FunctionalTestCase
 
     public void testSendInventoryStatus() throws Exception
     {
-        /*
-         * will cover all the three operations of the Inventory API, by sending an
-         * email with the inventory status using GMail connector or SMTP transport.
-         */
+        lookupFlowConstruct("InventoryStatus").process(getTestEvent(""));
     }
 
     private SimpleFlowConstruct lookupFlowConstruct(final String name)

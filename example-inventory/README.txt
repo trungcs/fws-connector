@@ -2,26 +2,23 @@ FWS Inventory Demo
 ===========================================
 
 INTRODUCTION
-   TODO    
+  This demo sends an email from a GMail account, with inventory items that experienced changes in the last 10 days.      
 
 HOW TO DEMO:
-  TODO PRE
-  1. Run the MongoFunctionalTestDriver, or deploy this demo an a Mule Container. 
-  	a. Add one or more a weather observations for one or more airports: 
-  		Run the testAddWeatherObservation  test or alternatively hit 
-  		http://localhost:9091/mongo-demo-add-weater-observations,
-  		passing an ICAO code - http://en.wikipedia.org/wiki/List_of_airports_by_ICAO_code. 
-  	Example: http://localhost:9091/mongo-demo-add-weater-observations?cityIcao=KMCO
-  2. Consult the average temperature of any previously added airport: 
-  		Run the testGetAverageTemperature test or alternatively hit
-  		http://localhost:9091/mongo-demo-get-average-temperature. This will return the average of 
-  		temperatures for each observation for the given airport
-  		Example: http://localhost:9091/mongo-demo-get-average-temperature?cityIcao=KMCO
- 	
+  In order to run this test, you need to setup the following environment variable:
+  	* fwsAccessKey - your public FWS access key
+	* fwsSecretKey - your private FWS access key
+	* smtpFromAddress - the sender email address
+	* smtpToAddress - the recipient email address 
+	* smtpUsername - the GMail username of the sender account 
+	* smtpPassword - the GMail password of the sender account
+  1. Run the FwsFunctionalTestDriver, or deploy this demo to a Mule Container. 
+  	a. Request an inventory status report: 
+  		Run the testSendInventoryStatus  test or alternatively hit 
+  		http://localhost:9090/fws-demo-inventory 
+  	
 HOW IT WORKS:
-  * The AddWeatherObservation flow queries and HTTP service that has a JSon output, and adds the result 
-  to a weatherObservations collection. 
-  * The GetAverageTemperature flow uses map-reduce to group weather observations by ICAO code, 
-  and get the average of temperatures for each observations group  
-  
+  * The InventoryStatus logs the service status, and then gets an iterable of recent inventory changes
+  * For each MerchantSKUSupply instance returned by the iterable, it is formatted using a groovy script
+  * The resultant text is send by email using the smtp transport
   

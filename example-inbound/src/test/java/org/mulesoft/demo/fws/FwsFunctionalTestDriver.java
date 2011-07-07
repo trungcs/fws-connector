@@ -8,7 +8,7 @@
  * LICENSE.txt file.
  */
 
-package org.mulesoft.demo.mongo;
+package org.mulesoft.demo.fws;
 
 import org.mule.api.MuleEvent;
 import org.mule.api.MuleMessage;
