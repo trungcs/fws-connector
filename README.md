@@ -38,7 +38,7 @@ application:
     <dependency>
         <groupId>org.mule.modules</groupId>
         <artifactId>mule-module-fws</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.1-SNAPSHOT</version>
     </dependency>
 
 Configuration
@@ -53,9 +53,9 @@ Here is detailed list of all the configuration attributes:
 | attribute | description | optional | default value |
 |:-----------|:-----------|:---------|:--------------|
 |name|Give a name to this configuration so it can be later referenced by config-ref.|yes||
-|client||yes|
-|accessKey||no|
-|secretKey||no|
+|client|The FWSClient. You may change it for mocking purposes|yes|
+|accessKey|The Amazon AWS account public key|no|
+|secretKey|The Amazon AWS account private key|no|
 
 
 Delete Inbound Shipment Items
@@ -74,8 +74,8 @@ If the MerchantSKU is not currently a part of the shipment, then that particular
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|merchantSku||no||
-|shipmentId||no||
+|merchantSku|the msku of the items to delete|no||
+|shipmentId|the id of the shipment|no||
 
 
 
@@ -104,6 +104,8 @@ Use this operation instead of getFulfillmentIdentifierForMSKU if an offer does n
 |asin|the mandatory Aamzon's identifier|no||
 |itemCondition|the mandatory item's condition|no||*NEW_ITEM*, *NEW_WITH_WARRANTY*, *NEW_OEM*, *NEW_OPEN_BOX*, *USED_LIKE_NEW*, *USED_VERY_GOOD*, *USED_GOOD*, *USED_ACCEPTABLE*, *USED_POOR*, *USED_REFURBISHED*, *COLLECTIBLE_LIKE_NEW*, *COLLECTIBLE_VERY_GOOD*, *COLLECTIBLE_GOOD*, *COLLECTIBLE_ACCEPTABLE*, *COLLECTIBLE_POOR*, *REFURBISHED_WITH_WARRANTY*, *REFUrbished*, *CLUB*, *UNKNOWN*, *fwsItemCondition*
 |merchantSku|the mandatory merchant's sku|no||
+
+Returns FulfillmentIdentier
 
 
 
@@ -307,7 +309,7 @@ for the given ShipmentId.
 |shipmentId|the mandatory shipment's id|no||
 |shipmentName|the mandatory shipment name|no||
 |destinationFulfillmentCenter|the mandatory Amazon's fulfillment center where the client's products are stored|no||
-|shipFromAddress||no||
+|shipFromAddress|the mandatory  source address of the shipment to amazon's centers|no||
 |labelPreference|the optional label preference|yes||*AMAZON_LABEL_ONLY*, *AMAZON_LABEL_PREFERRED*, *MERCHANT_LABEL*, *fwsLabelPrepPreference*
 
 
@@ -341,9 +343,9 @@ the items should work. You may add more items to the shipment by calling putInbo
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
 |shipmentId|the mandatory shipment's id|no||
-|shipmentName||no||
+|shipmentName|the mandatory shipment name|no||
 |destinationFulfillmentCenter|the mandatory Amazon's fulfillment center where the client's products are stored|no||
-|shipFromAddress||no||
+|shipFromAddress|the mandatory source address of the shipment to amazon's centers|no||
 |labelPreference|the optional label preference|yes||*AMAZON_LABEL_ONLY*, *AMAZON_LABEL_PREFERRED*, *MERCHANT_LABEL*, *fwsLabelPrepPreference*
 |itemQuantities|a mandatory list of MerchantSKUQuantityItem objects, with the amount of item for each merchant sku. At least one item must be passed|no||
 
@@ -582,7 +584,7 @@ This operation provides the most efficient mechanism for clients to maintain loc
 | attribute | description | optional | default value | possible values |
 |:-----------|:-----------|:---------|:--------------|:----------------|
 |config-ref|Specify which configuration to use for this invocation|yes||
-|startDateTime||no||
+|startDateTime|the mandatory start date|no||
 |responseGroup||yes||
 
 Returns MerchantSKUSupply iterable

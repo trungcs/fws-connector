@@ -11,7 +11,7 @@
 	<properties>
 		<muleVersion>3.1.0</muleVersion>
 		<ibeansVersion>1.1</ibeansVersion>
-		<mule.fws.version>1.0-SNAPSHOT</mule.fws.version>
+		<mule.fws.version>1.1-SNAPSHOT</mule.fws.version>
 	</properties>
 
 	<description>Example that shows the FWS Inventory API</description>

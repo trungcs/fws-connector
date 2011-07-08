@@ -61,10 +61,13 @@ import org.apache.commons.lang.Validate;
 @Connector(namespacePrefix = "fws")
 public class FWSCloudConnector implements Initialisable
 {
+    /**The FWSClient. You may change it for mocking purposes*/
     @Property(optional = true)
     private FWSClient<RuntimeException> client;
+    /**The Amazon AWS account public key*/
     @Property
     private String accessKey;
+    /**The Amazon AWS account private key*/
     @Property
     private String secretKey;
 
@@ -77,8 +80,8 @@ public class FWSCloudConnector implements Initialisable
      * 
      * {@code <delete-inbound-shipment-items merchantSku="#[header:merchantSku]" shipmentId="#[header:shipmentId]" />}
      * 
-     * @param merchantSku
-     * @param shipmentId
+     * @param merchantSku the msku of the items to delete
+     * @param shipmentId the id of the shipment 
      */
     @Operation
     public void deleteInboundShipmentItems(@Parameter String merchantSku, @Parameter String shipmentId)
@@ -103,7 +106,7 @@ public class FWSCloudConnector implements Initialisable
      * @param asin the mandatory Aamzon's identifier
      * @param itemCondition the mandatory item's condition
      * @param merchantSku the mandatory merchant's sku
-     * @return 
+     * @return a FulfillmentIdentier
      */
     @Operation
     public FulfillmentItem getFulfillmentIdentifier(@Parameter String asin,
@@ -274,7 +277,7 @@ public class FWSCloudConnector implements Initialisable
      * @param shipmentName the mandatory shipment name
      * @param destinationFulfillmentCenter the mandatory Amazon's fulfillment center where the 
      *      client's products are stored
-     * @param shipFromAddress 
+     * @param shipFromAddress the mandatory  source address of the shipment to amazon's centers
      * @param labelPreference  the optional label preference
      */
     @Operation
@@ -309,10 +312,10 @@ public class FWSCloudConnector implements Initialisable
      *    shipFromAddress="#[variable:shipFromAddress]" />}
      *      
      * @param shipmentId the mandatory shipment's id
-     * @param shipmentName
+     * @param shipmentName the mandatory shipment name
      * @param destinationFulfillmentCenter the mandatory Amazon's fulfillment center where the 
      *      client's products are stored
-     * @param shipFromAddress  
+     * @param shipFromAddress the mandatory source address of the shipment to amazon's centers  
      * @param labelPreference  the optional label preference
      * @param itemQuantities a mandatory list of MerchantSKUQuantityItem objects, with the amount of item for each merchant sku. 
      *              At least one item must be passed
@@ -548,7 +551,7 @@ public class FWSCloudConnector implements Initialisable
      *      startDateTime="#[header:querystartDateTime]" 
      *      responseGroup="DETAILED" /> }
      * 
-     * @param startDateTime
+     * @param startDateTime the mandatory start date  
      * @param responseGroup
      * @return a MerchantSKUSupply iterable
      */
