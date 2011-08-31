@@ -5,7 +5,7 @@
   <artifactId>mule-module-fws</artifactId>
   <packaging>cloud-connector</packaging>
   <name>Mule FWS Cloud Connector</name>
-  <version>1.0.1</version>
+  <version>1.1-SNAPSHOT</version>
   <description>Mule Cloud connector to FWS</description>
   <url>http://www.muleforge.org/projects/mule-module-fws</url>
 
