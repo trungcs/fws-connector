@@ -62,7 +62,7 @@ import org.apache.commons.lang.Validate;
 public class FWSCloudConnector implements Initialisable
 {
     /**The FWSClient. You may change it for mocking purposes*/
-    @Property(optional = true)
+    @Property(name = "client-ref", optional = true)
     private FWSClient<RuntimeException> client;
     /**The Amazon AWS account public key*/
     @Property
