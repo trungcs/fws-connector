@@ -17,6 +17,8 @@ package org.mule.module.fws.config;
 import org.mule.construct.SimpleFlowConstruct;
 import org.mule.tck.FunctionalTestCase;
 
+import edu.emory.mathcs.backport.java.util.concurrent.TimeUnit;
+
 public class FWSNamespaceHandlerTestCase extends FunctionalTestCase
 {
     @Override
@@ -27,11 +29,22 @@ public class FWSNamespaceHandlerTestCase extends FunctionalTestCase
 
     public void testSendMessageToFlow() throws Exception
     {
-        lookupFlowConstruct("DeleteInboundShipmentItems");
+        try{
+            lookupFlowConstruct("DeleteInboundShipmentItems").process(getTestEvent(""));
+        }catch (Exception e){ e.printStackTrace(); }
+        try{ 
+        lookupFlowConstruct("DeleteInboundShipmentItems").process(getTestEvent(""));
+    }catch (Exception e){ e.printStackTrace(); }
     }
 
     private SimpleFlowConstruct lookupFlowConstruct(String name)
     {
         return (SimpleFlowConstruct) muleContext.getRegistry().lookupFlowConstruct(name);
+    }
+    
+    @Override
+    public void handleTimeout(long timeout, TimeUnit unit)
+    {
+     
     }
 }

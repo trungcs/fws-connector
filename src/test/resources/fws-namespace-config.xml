@@ -25,7 +25,7 @@
     <inbound-endpoint address="vm://DeleteInboundShipmentItems"
       exchange-pattern="request-response" />
     <fws:delete-inbound-shipment-items
-      merchantSku="#[header:merchantSku]" shipmentId="#[header:shipmentId]" />
+      merchantSku="#[payload]" shipmentId="#[payload]" />
   </flow>
 
 
