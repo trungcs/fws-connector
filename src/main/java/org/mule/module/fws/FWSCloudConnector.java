@@ -83,7 +83,7 @@ public class FWSCloudConnector implements Initialisable
      * specified in each MerchantSKU parameter from the shipment in their entirety, no matter the quantity.
      * If the MerchantSKU is not currently a part of the shipment, then that particular line item is ignored, but others are still processed.
      * 
-     * {@code <delete-inbound-shipment-items merchantSku="#[header:merchantSku]" shipmentId="#[header:shipmentId]" />}
+     * {@sample.xml ../../../doc/mule-module-fws.xml.sample fws:delete-inbound-shipment-items merchantSku="#[header:merchantSku]" shipmentId="#[header:shipmentId]"}
      * 
      * @param merchantSku the msku of the items to delete
      * @param shipmentId the id of the shipment 
@@ -104,19 +104,17 @@ public class FWSCloudConnector implements Initialisable
      * quantity in the fulfillment center, but will never be fulfilled.
      * Use this operation instead of getFulfillmentIdentifierForMSKU if an offer does not already exist for the MerchantSKU.
      * 
-     * {@code <get-fulfillment-identifier
-     *      asin="#[variable:asin]"
-     *      itemCondition="#[variable:itemCondition]"
-     *      merchantSku="#[variable:merchantSku]" />}
+     * {@sample.xml ../../../doc/mule-module-fws.xml.sample fws:get-fulfillment-identifier
+}
      * @param asin the mandatory Aamzon's identifier
      * @param itemCondition the mandatory item's condition
      * @param merchantSku the mandatory merchant's sku
      * @return a FulfillmentIdentier
      */
     @Processor
-    public FulfillmentItem getFulfillmentIdentifier( String asin,
-                                                           ItemCondition itemCondition,
-                                                           String merchantSku)
+    public FulfillmentItem getFulfillmentIdentifier(String asin,
+                                                    ItemCondition itemCondition,
+                                                    String merchantSku)
     {
         return client.getFulfillmentIdentifier(asin, itemCondition, merchantSku);
     }
@@ -132,12 +130,12 @@ public class FWSCloudConnector implements Initialisable
      * quantity in the fulfillment center, but will never be fulfilled.
      * Use this operation instead of GetFulfillmentIdentifier if an offer already exists for the SKU.
      * 
-     * {@code <get-fulfillment-identifier-for-msku merchantSku="#[map-payload:merchantSku]"/>}
+     * {@sample.xml ../../../doc/mule-module-fws.xml.sample fws:get-fulfillment-identifier-for-msku}
      * @param merchantSku the merchant's sku
      * @return 
      */
     @Processor
-    public FulfillmentItem getFulfillmentIdentifierForMsku( String merchantSku)
+    public FulfillmentItem getFulfillmentIdentifierForMsku(String merchantSku)
     {
         return client.getFulfillmentIdentifierForMsku(merchantSku);
     }
@@ -148,13 +146,13 @@ public class FWSCloudConnector implements Initialisable
      * A response does not imply that the item has an offer for which it can be fulfilled; only that the Amazon Fulfillment Network
      * can track it. An inactive item can have a quantity in the fulfillment center, but will never be fulfilled. 
      *
-     * {@code <get-fulfillment-item-by-fnsku fulfillmentNetworkSku="#[payload]" />}
+     * {@sample.xml ../../../doc/mule-module-fws.xml.sample fws:get-fulfillment-item-by-fnsku fulfillmentNetworkSku="#[payload]"}
      * 
      * @param fulfillmentNetworkSku the mandatory fulfillment network sku - aka nsku, aka fnsku
      * @return a FulfillmentItem
      */
     @Processor
-    public FulfillmentItem getFulfillmentItemByFnsku( String fulfillmentNetworkSku)
+    public FulfillmentItem getFulfillmentItemByFnsku(String fulfillmentNetworkSku)
     {
         return client.getFulfillmentItemByFnsku(fulfillmentNetworkSku);
     }
@@ -165,25 +163,25 @@ public class FWSCloudConnector implements Initialisable
      * A response does not imply that the item has an offer for which it can be fulfilled; 
      * only that the Amazon Fulfillment Network can track it. An inactive item can have a quantity in the fulfillment center, but will never be fulfille
      * 
-     * {@code <get-fulfillment-item-by-msku merchantSku="#[map-payload:merchantSku]"/>}
+     * {@sample.xml ../../../doc/mule-module-fws.xml.sample fws:get-fulfillment-item-by-msku}
      * @param merchantSku the mandatory merchant's sku
      * @return a FulfillmentItem
      */
     @Processor
-    public FulfillmentItem getFulfillmentItemByMsku( String merchantSku)
+    public FulfillmentItem getFulfillmentItemByMsku(String merchantSku)
     {
         return client.getFulfillmentItemByMsku(merchantSku);
     }
  
     /**
      * Gets inbound shipment data without the item details for a given ShipmentId.
-     * {@code <get-inbound-shipment-data shipmentId="#[header:ShipmentId]"/>}
+     * {@sample.xml ../../../doc/mule-module-fws.xml.sample fws:get-inbound-shipment-data}
      * 
      * @param shipmentId the mandatory shipment id
      * @return an InboundShipmentData
      */
     @Processor
-    public InboundShipmentData getInboundShipment( String shipmentId)
+    public InboundShipmentData getInboundShipment(String shipmentId)
     {
         return client.getInboundShipment(shipmentId);
     }
@@ -194,7 +192,7 @@ public class FWSCloudConnector implements Initialisable
      * You might need to create multiple shipments for various reasons, but the most common reason is when there are sortable and non-sortable items. 
      * In this case, there is one shipment for each of the shipment sets returned.
      *
-     * {@code <get-inbound-shipment-preview  items="#[variable:items]"  address="#[address]" labelPreference="MERCHANT_LABEL" />}
+     * {@sample.xml ../../../doc/mule-module-fws.xml.sample fws:get-inbound-shipment-preview  items="#[variable:items]"  address="#[address]" labelPreference="MERCHANT_LABEL"}
      * @param items the mandatory items list of MerchantSkuItems to preview. At least one item is required
      * @param address the mandatory destination address
      * @param labelPreference the optional label preference
@@ -212,7 +210,7 @@ public class FWSCloudConnector implements Initialisable
     /**
      * Answers a brief status message from the service
      * 
-     * {@code <get-inbound-service-status/>}
+     * {@sample.xml ../../../doc/mule-module-fws.xml.sample fws:get-inbound-service-status}
      * @return the status message
      */
     @Processor
@@ -225,7 +223,7 @@ public class FWSCloudConnector implements Initialisable
      * Lazily lists fulfillment items registered.
      * 
      * If IncludeInactive is set to True, the operation returns both active (available for fulfillment) and inactive (not available for fulfillment) mappings. This parameter defaults to False. You can use inactive mappings to track inventory in Amazon's fulfillment centers; however, inactive items can't be fulfilled.
-     * {@code <list-fulfillment-items includeInactive="true"/>}
+     * {@sample.xml ../../../doc/mule-module-fws.xml.sample fws:list-fulfillment-items}
      * 
      * @param includeInactive optional. Whether non available items for fulfillment should be listed   
      * @return a FulfillmentItem iterable
@@ -239,7 +237,7 @@ public class FWSCloudConnector implements Initialisable
     /**
      * Lazily retrieved the all the inbound shipment items for the given shipmentId. 
      * 
-     * {@code <list-inbound-shipment-items shipmentId="#[header:shipmentId]"/>}
+     * {@sample.xml ../../../doc/mule-module-fws.xml.sample fws:list-inbound-shipment-items}
      * 
      * @param shipmentId the mandatory shipment's id
      * @return a InboundShipmentItem items iterable
@@ -253,7 +251,7 @@ public class FWSCloudConnector implements Initialisable
     /**
      * Lazily lists the inbound shipments a merchant has created, according to the specified query parameters. 
      * 
-     * {@code <list-inbound-shipments shipmentStatus="CANCELED" createdAfter="#[varaible:creationDate]" />}
+     * {@sample.xml ../../../doc/mule-module-fws.xml.sample fws:list-inbound-shipments shipmentStatus="CANCELED" createdAfter="#[varaible:creationDate]"}
      * 
      * @param shipmentStatus the mandatory status of listed items
      * @param createdAfter optional. The min creation date of listed shipment
@@ -272,11 +270,7 @@ public class FWSCloudConnector implements Initialisable
      * Adds or replaces the merchant's inbound shipment header information
      * for the given ShipmentId.
      * 
-     * {@code <put-inbound-shipment 
-     *    labelPreference="MERCHANT_LABEL"
-     *    shipmentId="#[variable:shipmentId]" shipmentName="#[variable:shipmentName]"
-     *    destinationFulfillmentCenter="#[variable:destinationFulfillmentCenter]"
-     *    shipFromAddress="#[variable:shipFromAddress]" />}
+     * {@sample.xml ../../../doc/mule-module-fws.xml.sample fws:put-inbound-shipment}
      * 
      * @param shipmentId the mandatory shipment's id
      * @param shipmentName the mandatory shipment name
@@ -309,12 +303,7 @@ public class FWSCloudConnector implements Initialisable
      * NOTE: If you are experiencing time-outs due to too many items in the shipment, calling this operation with a subset of
      * the items should work. You may add more items to the shipment by calling putInboundShipmentItems. 
      * 
-     * {@code <put-inbound-shipment 
-     *    labelPreference="MERCHANT_LABEL"
-     *    items="#[variable:items]"
-     *    shipmentId="#[variable:shipmentId]" shipmentName="#[variable:shipmentName]"
-     *    destinationFulfillmentCenter="#[variable:destinationFulfillmentCenter]"
-     *    shipFromAddress="#[variable:shipFromAddress]" />}
+     * {@sample.xml ../../../doc/mule-module-fws.xml.sample fws:put-inbound-shipment}
      *      
      * @param shipmentId the mandatory shipment's id
      * @param shipmentName the mandatory shipment name
@@ -346,12 +335,8 @@ public class FWSCloudConnector implements Initialisable
      * Call PutInboundShipment to create a new shipment. 
      * This call returns an exception if you attempt to add line items to a shipment that is in a status other than Working.
      * 
-     * {@code <put-inbound-shipment-items
-     *      shipmentId="#[variable:shipmentId]">
-     *          <itemQuantities>
-     *              <itemQuantity key="#[variable:aMerchantSku]" value="#[variable:quantity]"/>
-     *          </itemQuantities>
-     *        </put-inbound-shipment-items>}
+     * {@sample.xml ../../../doc/mule-module-fws.xml.sample fws:put-inbound-shipment-items
+}
      * @param shipmentId the mandatory shipment's id
      * @param itemQuantities a mandatory list of MerchantSKUQuantityItem objects, with the amount of item for each merchant sku. 
      *              At least one item must be passed
@@ -368,9 +353,8 @@ public class FWSCloudConnector implements Initialisable
      * Once a shipment's status has been set to Shipped, you cannot make any further changes except to update the status to Cancelled. Any item not received at the time a shipment is cancelled is put into problem receive at the fulfillment center.
      * 
      * This operation returns a RequestId upon success, otherwise an explicit error is returned.
-     * {@code <set-inbound-shipment-status
-     *      shipmentId="#[variable:shipmentId]"
-     *      shipmentStatus="SHIPPED"/>}
+     * {@sample.xml ../../../doc/mule-module-fws.xml.sample fws:set-inbound-shipment-status
+}
      * @param shipmentId the mandatory shipment's id
      * @param shipmentStatus the mandatory new status for the given shipment
      */
@@ -384,7 +368,7 @@ public class FWSCloudConnector implements Initialisable
      * Requests Amazon not to fulfill an existing fulfillment order. This is just a hint, already shipped 
      * orders may not be canceled.
      * 
-     * {@code <cancel-fulfillment-order orderId="#[header:orderId]"/>}
+     * {@sample.xml ../../../doc/mule-module-fws.xml.sample fws:cancel-fulfillment-order}
      * @param orderId the mandatory order's id
      */
     @Processor
@@ -396,11 +380,7 @@ public class FWSCloudConnector implements Initialisable
     /**
      * Generates a request for Amazon to ship items from the merchant's inventory to a destination address.
      * 
-     * {@code <create-fulfillment-order 
-     *           destinationAddress="#[map-payload:destinationAddress]" orderId="#[map-payload:orderId]"
-     *           displayableOrderComment="#[map-payload:comment]"
-     *           displayableOrderDate="[map-payload:orderDate]" items="#[map-payload:items]"
-     *           shippingSpeedCategory="#[map-payload:shippingSpeed]" /> }
+     * {@sample.xml ../../../doc/mule-module-fws.xml.sample fws:create-fulfillment-order}
      * @param orderId the mandatory fulfillment order id
      * @param displayableOrderId the order id displayed in the fulfillment. If not specified, the orderId is used.
      * @param destinationAddress the mandatory destination address of the fulfillment 
@@ -448,7 +428,7 @@ public class FWSCloudConnector implements Initialisable
      * both the order and its items in the Amazon Fulfillment Network, 
      * and the shipments that have been generated to fulfill the order.
      * 
-     * {@code <insert-element orderId="#[map-payload:orderId]"/> }
+     * {@sample.xml ../../../doc/mule-module-fws.xml.sample fws:insert-element}
      * @param orderId the mandatory order id of the fulfillment
      * @return a GetFulfillmentOrderResult
      */
@@ -461,11 +441,8 @@ public class FWSCloudConnector implements Initialisable
     /**
      * Answers estimated shipping dates and fees for a given set of merchant SKUs and quantities.
      * 
-     * {@code <get-fulfillment-preview
-     *     address="#[variable:address]" 
-     *     items="#[variable:items]" 
-     *     shippingSpeedCategories="Standard"
-     *     orderItemId="X123698" /> }
+     * {@sample.xml ../../../doc/mule-module-fws.xml.sample fws:get-fulfillment-preview
+}
      * @param address the mandatory destination address
      * @param items the mandatory items list of GetFulfillmentPreviewItem to preview. At least one item is required 
      * @param shippingSpeedCategories the optional shipping categories
@@ -486,7 +463,7 @@ public class FWSCloudConnector implements Initialisable
     /**
      * Answers a brief status message from the service
      * 
-     * {@code <get-outbound-service-status/>}
+     * {@sample.xml ../../../doc/mule-module-fws.xml.sample fws:get-outbound-service-status}
      * @return the status message
      */
     @Processor
@@ -499,7 +476,7 @@ public class FWSCloudConnector implements Initialisable
     /**
      * Lazily lists all the fulfillment orders
      * 
-     * {@code <list-fulfillment-orders/> } 
+     * {@sample.xml ../../../doc/mule-module-fws.xml.sample fws:list-fulfillment-orders} 
      * @param startDate the start date of the query 
      * @param fulfillmentMethod optional
      * @return the orders iterable 
@@ -520,9 +497,7 @@ public class FWSCloudConnector implements Initialisable
       *  is already bound to a customer order or 
       *  bound to internal fulfillment center processing (for example, labeling).
       *  
-      *  {@code <get-inventory-supply 
-      *     merchantSku="#[header:merchantSku]" 
-      *     responseGroup="DETAILED"/> }
+      *  {@sample.xml ../../../doc/mule-module-fws.xml.sample fws:get-inventory-supply}
       * @param merchantSku the mandatory merchant's sku
       * @param responseGroup the optional response group
      *  @return a merchant sku supply iterable
@@ -537,7 +512,7 @@ public class FWSCloudConnector implements Initialisable
     /**
      * Answers a brief status message from the service
      * 
-     * {@code <get-inventory-service-status/>}
+     * {@sample.xml ../../../doc/mule-module-fws.xml.sample fws:get-inventory-service-status}
      * @return the status message 
      */
     @Processor
@@ -552,9 +527,7 @@ public class FWSCloudConnector implements Initialisable
      * returned by this operation is the same as that returned by getInventorySupply.
      * This operation provides the most efficient mechanism for clients to maintain local copies of inventory supply data.
      * 
-     * {@code <list-updated-inventory-supply 
-     *      startDateTime="#[header:querystartDateTime]" 
-     *      responseGroup="DETAILED" /> }
+     * {@sample.xml ../../../doc/mule-module-fws.xml.sample fws:list-updated-inventory-supply}
      * 
      * @param startDateTime the mandatory start date  
      * @param responseGroup

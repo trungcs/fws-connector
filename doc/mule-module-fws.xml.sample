@@ -1,0 +1,138 @@
+<!-- BEGIN_INCLUDE(fws:delete-inbound-shipment-items) -->
+<fws:delete-inbound-shipment-items merchantSku="#[header:merchantSku]" shipmentId="#[header:shipmentId]" />
+<!-- END_INCLUDE(fws:delete-inbound-shipment-items) -->
+
+<!-- BEGIN_INCLUDE(fws:get-fulfillment-identifier-for-msku) -->
+<fws:get-fulfillment-identifier-for-msku merchantSku="#[map-payload:merchantSku]"/>
+<!-- END_INCLUDE(fws:get-fulfillment-identifier-for-msku) -->
+
+<!-- BEGIN_INCLUDE(fws:get-fulfillment-item-by-fnsku) -->
+<fws:get-fulfillment-item-by-fnsku fulfillmentNetworkSku="#[payload]" />
+<!-- END_INCLUDE(fws:get-fulfillment-item-by-fnsku) -->
+
+<!-- BEGIN_INCLUDE(fws:get-fulfillment-item-by-msku) -->
+<fws:get-fulfillment-item-by-msku merchantSku="#[map-payload:merchantSku]"/>
+<!-- END_INCLUDE(fws:get-fulfillment-item-by-msku) -->
+
+<!-- BEGIN_INCLUDE(fws:get-inbound-shipment-data) -->
+<fws:get-inbound-shipment-data shipmentId="#[header:ShipmentId]"/>
+<!-- END_INCLUDE(fws:get-inbound-shipment-data) -->
+
+
+<!-- BEGIN_INCLUDE(fws:get-inbound-shipment-preview) -->
+<fws:get-inbound-shipment-preview items="#[variable:items]"  address="#[address]" labelPreference="MERCHANT_LABEL" />
+<!-- END_INCLUDE(fws:get-inbound-shipment-preview) -->
+
+
+<!-- BEGIN_INCLUDE(fws:get-inbound-service-status) -->
+<fws:get-inbound-service-status >
+<!-- END_INCLUDE(fws:get-inbound-service-status) -->
+
+
+
+ <!-- BEGIN_INCLUDE(fws:list-fulfillment-items) -->
+<fws:list-fulfillment-items includeInactive="true"/>
+<!-- END_INCLUDE(fws:list-fulfillment-items) -->
+
+<!-- BEGIN_INCLUDE(fws:list-inbound-shipment-items) -->
+<fws:list-inbound-shipment-items shipmentId="#[header:shipmentId]"/>
+<!-- END_INCLUDE(fws:list-inbound-shipment-items) -->
+
+<!-- BEGIN_INCLUDE(fws:list-inbound-shipments) -->
+<fws:list-inbound-shipments shipmentStatus="CANCELED" createdAfter="#[varaible:creationDate]" />
+<!-- END_INCLUDE(fws:list-inbound-shipments) -->
+
+
+<!-- BEGIN_INCLUDE(fws:cancel-fulfillment-order) -->
+<fws:cancel-fulfillment-order orderId="#[header:orderId]"/>
+<!-- END_INCLUDE(fws:cancel-fulfillment-order) -->
+
+
+<!-- BEGIN_INCLUDE(fws:insert-element) -->
+<fws:insert-element orderId="#[map-payload:orderId]"/>
+<!-- END_INCLUDE(fws:insert-element) -->
+
+<!-- BEGIN_INCLUDE(fws:get-outbound-service-status/) -->
+<fws:get-outbound-service-status/ >
+<!-- END_INCLUDE(fws:get-outbound-service-status/) -->
+
+
+<!-- BEGIN_INCLUDE(fws:list-fulfillment-orders) -->
+<fws:list-fulfillment-orders >
+<!-- END_INCLUDE(fws:list-fulfillment-orders) --> 
+
+
+ <!-- BEGIN_INCLUDE(fws:get-inventory-service-status) -->
+<fws:get-inventory-service-status >
+<!-- END_INCLUDE(fws:get-inventory-service-status) -->
+
+ <!-- BEGIN_INCLUDE(fws:get-fulfillment-identifier) -->
+<fws:get-fulfillment-identifier
+           asin="#[variable:asin]"
+           itemCondition="#[variable:itemCondition]"
+           merchantSku="#[variable:merchantSku]" />
+<!-- END_INCLUDE(fws:get-fulfillment-identifier) -->
+
+<!-- BEGIN_INCLUDE(fws:put-inbound-shipment) -->
+<fws:put-inbound-shipment 
+         labelPreference="MERCHANT_LABEL"
+         shipmentId="#[variable:shipmentId]" shipmentName="#[variable:shipmentName]"
+         destinationFulfillmentCenter="#[variable:destinationFulfillmentCenter]"
+         shipFromAddress="#[variable:shipFromAddress]" />
+<!-- END_INCLUDE(fws:put-inbound-shipment) -->
+
+<!-- BEGIN_INCLUDE(fws:put-inbound-shipment) -->
+<fws:put-inbound-shipment 
+         labelPreference="MERCHANT_LABEL"
+         items="#[variable:items]"
+         shipmentId="#[variable:shipmentId]" shipmentName="#[variable:shipmentName]"
+         destinationFulfillmentCenter="#[variable:destinationFulfillmentCenter]"
+         shipFromAddress="#[variable:shipFromAddress]" />
+<!-- END_INCLUDE(fws:put-inbound-shipment) -->
+
+
+<!-- BEGIN_INCLUDE(fws:put-inbound-shipment-items) -->
+<fws:put-inbound-shipment-items
+         shipmentId="#[variable:shipmentId]">
+             <itemQuantities>
+                 <itemQuantity key="#[variable:aMerchantSku]" value="#[variable:quantity]"/>
+             </itemQuantities>
+           </put-inbound-shipment-items>
+<!-- END_INCLUDE(fws:put-inbound-shipment-items) -->
+
+
+<!-- BEGIN_INCLUDE(fws:set-inbound-shipment-status) -->
+<fws:set-inbound-shipment-status
+         shipmentId="#[variable:shipmentId]"
+         shipmentStatus="SHIPPED"/>
+<!-- END_INCLUDE(fws:set-inbound-shipment-status) -->
+
+
+ <!-- BEGIN_INCLUDE(fws:create-fulfillment-order) -->
+<fws:create-fulfillment-order 
+              destinationAddress="#[map-payload:destinationAddress]" orderId="#[map-payload:orderId]"
+              displayableOrderComment="#[map-payload:comment]"
+              displayableOrderDate="[map-payload:orderDate]" items="#[map-payload:items]"
+              shippingSpeedCategory="#[map-payload:shippingSpeed]" /> 
+<!-- END_INCLUDE(fws:create-fulfillment-order) -->
+
+<!-- BEGIN_INCLUDE(fws:get-fulfillment-preview) -->
+<fws:get-fulfillment-preview
+        address="#[variable:address]" 
+        items="#[variable:items]" 
+        shippingSpeedCategories="Standard"
+        orderItemId="X123698" /> 
+<!-- END_INCLUDE(fws:get-fulfillment-preview) -->
+
+
+<!-- BEGIN_INCLUDE(fws:get-inventory-supply) -->
+<fws:get-inventory-supply 
+         merchantSku="#[header:merchantSku]" 
+         responseGroup="DETAILED"/> 
+<!-- END_INCLUDE(fws:get-inventory-supply) -->
+
+<!-- BEGIN_INCLUDE(fws:list-updated-inventory-supply) -->
+<fws:list-updated-inventory-supply 
+         startDateTime="#[header:querystartDateTime]" 
+         responseGroup="DETAILED" /> 
+<!-- END_INCLUDE(fws:list-updated-inventory-supply) -->
