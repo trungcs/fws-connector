@@ -13,8 +13,8 @@ package org.mulesoft.demo.fws;
 import org.mule.api.MuleEvent;
 import org.mule.api.MuleException;
 import org.mule.api.MuleMessage;
+import org.mule.api.processor.MessageProcessor;
 import org.mule.api.transport.PropertyScope;
-import org.mule.construct.SimpleFlowConstruct;
 import org.mule.tck.FunctionalTestCase;
 
 public class FwsFunctionalTestDriver extends FunctionalTestCase
@@ -76,9 +76,9 @@ public class FwsFunctionalTestDriver extends FunctionalTestCase
         lookupFlowConstruct("AddFromAddress").process(newAddressEvent);
     }
 
-    private SimpleFlowConstruct lookupFlowConstruct(final String name)
+    private MessageProcessor lookupFlowConstruct(final String name)
     {
-        return (SimpleFlowConstruct) muleContext.getRegistry().lookupFlowConstruct(name);
+        return (MessageProcessor) muleContext.getRegistry().lookupFlowConstruct(name);
     }
 
 }

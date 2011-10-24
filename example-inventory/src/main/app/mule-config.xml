@@ -12,7 +12,7 @@
 -->
 
 <mule xmlns="http://www.mulesoft.org/schema/mule/core" 
-  xmlns:fws="http://www.mulesoft.org/schema/mule/fws"
+  xmlns:fws="http://repository.mulesoft.org/releases/org/mule/modules/mule-module-fws"
   xmlns:json="http://www.mulesoft.org/schema/mule/json" 
   xmlns:spring="http://www.springframework.org/schema/beans"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -22,11 +22,11 @@
   xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting"
   xsi:schemaLocation="
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-       http://www.mulesoft.org/schema/mule/fws http://www.mulesoft.org/schema/mule/fws/1.0/mule-fws.xsd
+       http://repository.mulesoft.org/releases/org/mule/modules/mule-module-fws http://repository.mulesoft.org/releases/org/mule/modules/mule-module-fws/2.0/mule-fws.xsd
        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
        http://www.mulesoft.org/schema/mule/json    http://www.mulesoft.org/schema/mule/json/3.1/mule-json.xsd
        http://www.mulesoft.org/schema/mule/smtp http://www.mulesoft.org/schema/mule/smtp/3.1/mule-smtp.xsd
-       http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/3.1/mule-scripting.xsd 
+       http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/3.2/mule-scripting.xsd 
        http://www.mulesoft.org/schema/mule/email http://www.mulesoft.org/schema/mule/email/3.1/mule-email.xsd
        http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/3.0/mule-http.xsd">
 

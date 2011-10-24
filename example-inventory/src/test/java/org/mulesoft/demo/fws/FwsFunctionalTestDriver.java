@@ -10,7 +10,7 @@
 
 package org.mulesoft.demo.fws;
 
-import org.mule.construct.SimpleFlowConstruct;
+import org.mule.api.processor.MessageProcessor;
 import org.mule.tck.FunctionalTestCase;
 
 public class FwsFunctionalTestDriver extends FunctionalTestCase
@@ -26,9 +26,9 @@ public class FwsFunctionalTestDriver extends FunctionalTestCase
         lookupFlowConstruct("InventoryStatus").process(getTestEvent(""));
     }
 
-    private SimpleFlowConstruct lookupFlowConstruct(final String name)
+    private MessageProcessor lookupFlowConstruct(final String name)
     {
-        return (SimpleFlowConstruct) muleContext.getRegistry().lookupFlowConstruct(name);
+        return (MessageProcessor) muleContext.getRegistry().lookupFlowConstruct(name);
     }
 
 }
