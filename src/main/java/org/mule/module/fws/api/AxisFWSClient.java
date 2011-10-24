@@ -261,7 +261,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
     public Iterable<FulfillmentItem> listFulfillmentItems(final boolean includeInactive)
         throws RemoteException
     {
-        return bug5588Workaournd(new FwsPaginatedIterable<FulfillmentItem, ListAllFulfillmentItemsResult>()
+        return new FwsPaginatedIterable<FulfillmentItem, ListAllFulfillmentItemsResult>()
         {
             @Override
             protected ListAllFulfillmentItemsResult firstFwsPage() throws RemoteException
@@ -271,7 +271,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
                     result, newInboundMetadata());
                 return result.value;
             }
-
+        
             @Override
             protected ListAllFulfillmentItemsByNextTokenResult nextFwsPage(ListAllFulfillmentItemsResult currentPage)
                 throws RemoteException
@@ -281,22 +281,22 @@ public class AxisFWSClient implements FWSClient<RemoteException>
                     currentPage.getNextToken(), result, newInboundMetadata());
                 return result.value;
             }
-
+        
             @Override
             protected FulfillmentItem[] pageArray(ListAllFulfillmentItemsResult page)
             {
                 return page.getFulfillmentItem();
             }
-
-        });
+        
+        };
     }
 
     public Iterable<FulfillmentOrder> listFulfillmentOrders(final Date startDate,
                                                             final List<String> fulfillmentMethod)
     {
-        return bug5588Workaournd(new FwsPaginatedIterable<FulfillmentOrder, ListAllFulfillmentOrdersResult>()
+        return new FwsPaginatedIterable<FulfillmentOrder, ListAllFulfillmentOrdersResult>()
         {
-
+        
             @Override
             protected ListAllFulfillmentOrdersResult firstFwsPage() throws RemoteException
             {
@@ -307,7 +307,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
                     newOutboundMetadata());
                 return result.value;
             }
-
+        
             @Override
             protected ListAllFulfillmentOrdersByNextTokenResultHolder nextFwsPage(ListAllFulfillmentOrdersResult currentPage)
                 throws RemoteException
@@ -317,21 +317,21 @@ public class AxisFWSClient implements FWSClient<RemoteException>
                     currentPage.getNextToken(), result, newOutboundMetadata());
                 return result;
             }
-
+        
             @Override
             protected FulfillmentOrder[] pageArray(ListAllFulfillmentOrdersResult page)
             {
                 return page.getFulfillmentOrder();
             }
-        });
+        };
     }
 
     public Iterable<InboundShipmentItem> listInboundShipmentItems(final String shipmentId)
     {
         Validate.notEmpty(shipmentId);
-        return bug5588Workaournd(new FwsPaginatedIterable<InboundShipmentItem, ListInboundShipmentItemsResult>()
+        return new FwsPaginatedIterable<InboundShipmentItem, ListInboundShipmentItemsResult>()
         {
-
+        
             @Override
             protected ListInboundShipmentItemsResult firstFwsPage() throws RemoteException
             {
@@ -340,7 +340,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
                     newInboundMetadata());
                 return result.value;
             }
-
+        
             @Override
             protected ListInboundShipmentItemsByNextTokenResult nextFwsPage(ListInboundShipmentItemsResult currentPage)
                 throws RemoteException
@@ -350,13 +350,13 @@ public class AxisFWSClient implements FWSClient<RemoteException>
                     currentPage.getNextToken(), result, newInboundMetadata());
                 return result.value;
             }
-
+        
             @Override
             protected InboundShipmentItem[] pageArray(ListInboundShipmentItemsResult page)
             {
                 return page.getShipmentItem();
             }
-        });
+        };
     }
 
     public Iterable<InboundShipmentData> listInboundShipments(final org.mule.module.fws.api.ShipmentStatus shipmentStatus,
@@ -364,7 +364,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
                                                               final Date createdBefore)
     {
         Validate.notNull(shipmentStatus);
-        return bug5588Workaournd(new FwsPaginatedIterable<InboundShipmentData, ListInboundShipmentsResult>()
+        return new FwsPaginatedIterable<InboundShipmentData, ListInboundShipmentsResult>()
         {
             @Override
             protected ListInboundShipmentsResult firstFwsPage() throws RemoteException
@@ -375,7 +375,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
                     FwsDates.toCalendar(createdAfter), PAGE_SIZE, result, newInboundMetadata());
                 return result.value;
             }
-
+        
             @Override
             protected ListInboundShipmentsByNextTokenResult nextFwsPage(ListInboundShipmentsResult currentPage)
                 throws RemoteException
@@ -385,13 +385,13 @@ public class AxisFWSClient implements FWSClient<RemoteException>
                     currentPage.getNextToken(), result, newInboundMetadata());
                 return result.value;
             }
-
+        
             @Override
             protected InboundShipmentData[] pageArray(ListInboundShipmentsResult page)
             {
                 return page.getShipmentData();
             }
-        });
+        };
 
     }
 
@@ -399,7 +399,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
                                                                   final String responseGroup)
     {
         Validate.notNull(startDate);
-        return bug5588Workaournd(new FwsPaginatedIterable<MerchantSKUSupply, ListUpdatedInventorySupplyResult>()
+        return new FwsPaginatedIterable<MerchantSKUSupply, ListUpdatedInventorySupplyResult>()
         {
             @Override
             protected ListUpdatedInventorySupplyResult firstFwsPage() throws RemoteException
@@ -409,7 +409,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
                     FwsDates.format(startDate), responseGroup, result, newInventoryMetadata());
                 return result.value;
             }
-
+        
             @Override
             protected ListUpdatedInventorySupplyByNextTokenResult nextFwsPage(ListUpdatedInventorySupplyResult currentPage)
                 throws RemoteException
@@ -419,13 +419,13 @@ public class AxisFWSClient implements FWSClient<RemoteException>
                     currentPage.getNextToken(), result, newInventoryMetadata());
                 return result.value;
             }
-
+        
             @Override
             protected MerchantSKUSupply[] pageArray(ListUpdatedInventorySupplyResult page)
             {
                 return page.getMerchantSKUSupply();
             }
-        });
+        };
     }
 
     public void putInboundShipmentData(String shipmentId,
@@ -522,79 +522,6 @@ public class AxisFWSClient implements FWSClient<RemoteException>
     private void validateNotEmptyItemsList(List<?> items)
     {
         Validate.notEmpty(items, "At least an item must be passed");
-    }
-
-    /*
-     * see http://www.mulesoft.org/jira/browse/MULE-5588
-     */
-    @SuppressWarnings("unchecked")
-    private <T> Iterable<T> bug5588Workaournd(final Iterable<? extends T> o)
-    {
-        if (o instanceof Collection<?>)
-        {
-            return (Iterable<T>) o;
-        }
-        return new AbstractCollection<T>()
-        {
-
-            @Override
-            public Iterator<T> iterator()
-            {
-                return (Iterator<T>) o.iterator();
-            }
-
-            @Override
-            public Object[] toArray()
-            {
-                warnEagerMessage("toArray");
-                LinkedList<Object> l = new LinkedList<Object>();
-                for (Object o : this)
-                {
-                    l.add(o);
-                }
-                return l.toArray();
-            }
-
-            @Override
-            public int size()
-            {
-                warnEagerMessage("size");
-                int i = 0;
-                for (@SuppressWarnings("unused")
-                Object o : this)
-                {
-                    i++;
-                }
-                return i;
-            }
-
-            /**
-             * Same impl that those found in Object, in order to avoid eager elements
-             * consumption
-             */
-            @Override
-            public String toString()
-            {
-                return getClass().getName() + "@" + Integer.toHexString(hashCode());
-            }
-
-            /**
-             * Warns that sending the given message implied processing all the
-             * elements, which is not efficient at all, and most times is a bad idea,
-             * as lazy iterables should be traversed only once and in a lazy manner.
-             * 
-             * @param message
-             */
-            private void warnEagerMessage(String message)
-            {
-                if (logger.isWarnEnabled())
-                {
-                    logger.warn(
-                        "Method {} needs to consume all the element. It is inefficient and thus should be used with care",
-                        message);
-                }
-            }
-        };
     }
 
 }
