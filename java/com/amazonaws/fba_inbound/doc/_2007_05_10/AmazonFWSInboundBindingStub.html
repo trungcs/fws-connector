@@ -1,0 +1,4191 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="description" content="Documentation for Mule FWS Cloud Connector." />
+
+<link rel="shortcut icon" type="image/x-icon" href="../../../../../../favicon.ico" />
+<title>
+
+  AmazonFWSInboundBindingStub
+
+
+| Mule FWS Cloud Connector
+
+</title>
+<link href="../../../../../../assets/mule-developer-docs.css" rel="stylesheet" type="text/css" />
+<link href="../../../../../../assets/mule-developer-prettify.css" rel="stylesheet" type="text/css" />
+<link href="../../../../../../assets/customizations.css" rel="stylesheet" type="text/css" />
+<link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
+<script src="../../../../../../assets/search_autocomplete.js" type="text/javascript"></script>
+<script src="../../../../../../assets/jquery-resizable.min.js" type="text/javascript"></script>
+<script src="../../../../../../assets/mule-developer-docs.js" type="text/javascript"></script>
+<script src="../../../../../../assets/prettify.js" type="text/javascript"></script>
+<script type="text/javascript">
+  setToRoot("../../../../../../", "../../../../../../assets/");
+</script>
+<script src="../../../../../../assets/mule-developer-reference.js" type="text/javascript"></script>
+<script src="../../../../../../assets/navtree_data.js" type="text/javascript"></script>
+<script src="../../../../../../assets/customizations.js" type="text/javascript"></script>
+<noscript>
+  <style type="text/css">
+    html,body{overflow:auto;}
+    #body-content{position:relative; top:0;}
+    #doc-content{overflow:visible;border-left:3px solid #666;}
+    #side-nav{padding:0;}
+    #side-nav .toggle-list ul {display:block;}
+    #resize-packages-nav{border-bottom:3px solid #666;}
+  </style>
+</noscript>
+</head>
+
+<body class="">
+
+<div id="header">
+    <div id="headerLeft">
+    
+      <span id="masthead-title">Mule FWS Cloud Connector</span>
+    
+    <ul id="header-tabs" class="">
+    	<li id="guide"><a href="../../../../../../guide/install.html">
+	    	<span class="en">Install Guide</span>
+    	</a></li>
+    	<li id="java"><a href="../../../../../../java/packages.html">
+	    	<span class="en">Java API</span>
+    	</a></li>
+    	<li id="mule"><a href="../../../../../../mule/modules.html">
+	    	<span class="en">Mule API</span>
+    	</a></li>
+    </ul>
+    </div>
+    <div id="headerRight">
+      <a href="http://www.mulesoft.com" tabindex="-1">
+      <img src="../../../../../../assets//images/mulesoft-logo-final.gif" alt="MuleSoft" border="0" id="mulesoftlogo"></a><br/>
+      
+  <div id="search" >
+      <div id="searchForm">
+          <form accept-charset="utf-8" class="gsc-search-box" 
+                onsubmit="return submit_search()">
+            <table class="gsc-search-box" cellpadding="0" cellspacing="0"><tbody>
+                <tr>
+                  <td class="gsc-input">
+                    <input id="search_autocomplete" class="gsc-input" type="text" size="33" autocomplete="off"
+                      title="search developer docs" name="q"
+                      value="search developer docs"
+                      onFocus="search_focus_changed(this, true)"
+                      onBlur="search_focus_changed(this, false)"
+                      onkeydown="return search_changed(event, true, '../../../../../../')"
+                      onkeyup="return search_changed(event, false, '../../../../../../')" />
+                  <div id="search_filtered_div" class="no-display">
+                      <table id="search_filtered" cellspacing=0>
+                      </table>
+                  </div>
+                  </td>
+                  <td class="gsc-search-button">
+                    <input type="submit" value="Search" title="search" id="search-button" class="gsc-search-button" />
+                  </td>
+                  <td class="gsc-clear-button">
+                    <div title="clear results" class="gsc-clear-button">&nbsp;</div>
+                  </td>
+                </tr></tbody>
+              </table>
+          </form>
+      </div><!-- searchForm -->
+  </div><!-- search -->
+      
+    </div>
+</div><!-- header -->
+
+
+  <div class="g-section g-tpl-240" id="body-content">
+    <div class="g-unit g-first side-nav-resizable" id="side-nav">
+      <div id="swapper">
+        <div id="nav-panels">
+          <div id="resize-packages-nav">
+            <div id="packages-nav">
+              <div id="index-links">
+                <a href="../../../../../../java/packages.html"  >Package Index</a> |
+                <a href="../../../../../../java/classes.html" >Class Index</a>
+              </div>
+              <ul>
+                
+    <li class="selected api apilevel-">
+  <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/package-summary.html">com.amazonaws.fba_inbound.doc._2007_05_10</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/package-summary.html">com.amazonaws.fba_inbound.doc._2007_05_10.holders</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/com/amazonaws/fba_inventory/doc/_2009_07_31/package-summary.html">com.amazonaws.fba_inventory.doc._2009_07_31</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/com/amazonaws/fba_inventory/doc/_2009_07_31/holders/package-summary.html">com.amazonaws.fba_inventory.doc._2009_07_31.holders</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/package-summary.html">com.amazonaws.fba_outbound.doc._2007_08_02</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/holders/package-summary.html">com.amazonaws.fba_outbound.doc._2007_08_02.holders</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/module/fws/package-summary.html">org.mule.module.fws</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/module/fws/api/package-summary.html">org.mule.module.fws.api</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/module/fws/config/package-summary.html">org.mule.module.fws.config</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/module/fws/config/spring/package-summary.html">org.mule.module.fws.config.spring</a></li>
+              </ul><br/>
+            </div> <!-- end packages -->
+          </div> <!-- end resize-packages -->
+          <div id="classes-nav">
+            <ul>
+              
+    <li><h2>Interfaces</h2>
+      <ul>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInbound.html">AmazonFWSInbound</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundPortType.html">AmazonFWSInboundPortType</a></li>
+      </ul>
+    </li>
+              
+    <li><h2>Classes</h2>
+      <ul>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/Address.html">Address</a></li>
+          <li class="selected api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundBindingStub.html">AmazonFWSInboundBindingStub</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundLocator.html">AmazonFWSInboundLocator</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/FulfillmentItem.html">FulfillmentItem</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/GetFulfillmentIdentifierForMSKUResult.html">GetFulfillmentIdentifierForMSKUResult</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/GetFulfillmentIdentifierResult.html">GetFulfillmentIdentifierResult</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/GetFulfillmentItemByFNSKUResult.html">GetFulfillmentItemByFNSKUResult</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/GetFulfillmentItemByMSKUResult.html">GetFulfillmentItemByMSKUResult</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/GetInboundShipmentDataResult.html">GetInboundShipmentDataResult</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/GetInboundShipmentPreviewResult.html">GetInboundShipmentPreviewResult</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/GetServiceStatusResult.html">GetServiceStatusResult</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/InboundShipmentData.html">InboundShipmentData</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/InboundShipmentItem.html">InboundShipmentItem</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ItemCondition.html">ItemCondition</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/LabelPrepPreference.html">LabelPrepPreference</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/LabelPrepType.html">LabelPrepType</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ListAllFulfillmentItemsByNextTokenResult.html">ListAllFulfillmentItemsByNextTokenResult</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ListAllFulfillmentItemsResult.html">ListAllFulfillmentItemsResult</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ListInboundShipmentItemsByNextTokenResult.html">ListInboundShipmentItemsByNextTokenResult</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ListInboundShipmentItemsResult.html">ListInboundShipmentItemsResult</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ListInboundShipmentsByNextTokenResult.html">ListInboundShipmentsByNextTokenResult</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ListInboundShipmentsResult.html">ListInboundShipmentsResult</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/MerchantItem.html">MerchantItem</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/MerchantSKUQuantityItem.html">MerchantSKUQuantityItem</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ResponseMetadata.html">ResponseMetadata</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ShipmentPreview.html">ShipmentPreview</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ShipmentStatus.html">ShipmentStatus</a></li>
+      </ul>
+    </li>
+              
+              
+              
+              
+            </ul><br/>
+          </div><!-- end classes -->
+        </div><!-- end nav-panels -->
+        <div id="nav-tree" style="display:none">
+          <div id="index-links">
+            <a href="../../../../../../packages.html"  >Package Index</a> | 
+            <a href="../../../../../../classes.html" >Class Index</a>
+          </div>
+        </div><!-- end nav-tree -->
+      </div><!-- end swapper -->
+    </div> <!-- end side-nav -->
+    <script>
+      if (!isMobile) {
+        $("<a href='#' id='nav-swap' onclick='swapNav();return false;' style='font-size:10px;line-height:9px;margin-left:1em;text-decoration:none;'><span id='tree-link'>Use Tree Navigation</span><span id='panel-link' style='display:none'>Use Panel Navigation</span></a>").appendTo("#side-nav");
+        chooseDefaultNav();
+        if ($("#nav-tree").is(':visible')) {
+          init_default_navtree("../../../../../../");
+        } else {
+          addLoadEvent(function() {
+            scrollIntoView("packages-nav");
+            scrollIntoView("classes-nav");
+          });
+        }
+        $("#swapper").css({borderBottom:"2px solid #aaa"});
+      } else {
+        swapNav(); // tree view should be used on mobile
+      }
+    </script>
+
+
+
+<div class="g-unit" id="doc-content">
+
+<div id="api-info-block">
+
+
+
+  
+   
+  
+  
+  
+   
+  
+  
+
+  
+   
+  
+  
+  
+  
+
+  
+   
+  
+  
+  
+  
+
+  
+  
+  
+  
+
+  
+   
+  
+  
+   
+  
+  
+  
+
+
+<div class="sum-details-links">
+
+
+Summary:
+
+
+
+
+
+
+  <a href="#inhconstants">Inherited Constants</a>
+  
+
+
+  &#124; <a href="#lfields">Fields</a>
+  
+
+
+  &#124; <a href="#inhfields">Inherited Fields</a>
+  
+
+
+  &#124; <a href="#pubctors">Ctors</a>
+  
+
+
+
+  &#124; <a href="#pubmethods">Methods</a>
+  
+
+
+  &#124; <a href="#promethods">Protected Methods</a>
+  
+
+
+  &#124; <a href="#inhmethods">Inherited Methods</a>
+
+&#124; <a href="#" onclick="return toggleAllClassInherited()" id="toggleAllClassInherited">[Expand All]</a>
+
+</div><!-- end sum-details-links -->
+<div class="api-level">
+  
+
+
+  
+  
+
+</div>
+</div><!-- end api-info-block -->
+
+
+<!-- ======== START OF CLASS DATA ======== -->
+
+<div id="jd-header">
+    public
+     
+     
+    
+    class
+<h1>AmazonFWSInboundBindingStub</h1>
+
+
+
+  
+  
+  
+
+  
+    extends Stub<br/>
+  
+  
+  
+
+  
+  
+      implements 
+      
+        <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundPortType.html">AmazonFWSInboundPortType</a> 
+      
+  
+  
+
+
+</div><!-- end header -->
+
+<div id="naMessage"></div>
+
+<div id="jd-content" class="api apilevel-">
+<table class="jd-inheritance-table">
+
+
+    <tr>
+        
+        <td colspan="3" class="jd-inheritance-class-cell">java.lang.Object</td>
+    </tr>
+    
+
+    <tr>
+        
+            <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+        
+        <td colspan="2" class="jd-inheritance-class-cell">org.apache.axis.client.Stub</td>
+    </tr>
+    
+
+    <tr>
+        
+            <td class="jd-inheritance-space">&nbsp;</td>
+        
+            <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+        
+        <td colspan="1" class="jd-inheritance-class-cell">com.amazonaws.fba_inbound.doc._2007_05_10.AmazonFWSInboundBindingStub</td>
+    </tr>
+    
+
+</table>
+
+
+
+
+
+
+
+<div class="jd-descr">
+
+
+
+
+
+
+</div><!-- jd-descr -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="jd-descr">
+
+
+<h2>Summary</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =========== ENUM CONSTANT SUMMARY =========== -->
+<table id="inhconstants" class="jd-sumtable"><tr><th>
+  <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
+  <div style="clear:left;">Inherited Constants</div></th></tr>
+
+
+
+
+
+
+
+
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-constants-javax.xml.rpc.Stub" class="jd-expando-trigger closed"
+          ><img id="inherited-constants-javax.xml.rpc.Stub-trigger"
+          src="../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>From interface
+javax.xml.rpc.Stub
+<div id="inherited-constants-javax.xml.rpc.Stub">
+  <div id="inherited-constants-javax.xml.rpc.Stub-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-constants-javax.xml.rpc.Stub-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol">ENDPOINT_ADDRESS_PROPERTY</td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol">PASSWORD_PROPERTY</td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol">SESSION_MAINTAIN_PROPERTY</td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol">USERNAME_PROPERTY</td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+</table>
+
+
+
+
+<!-- =========== FIELD SUMMARY =========== -->
+<table id="lfields" class="jd-sumtable"><tr><th colspan="12">Fields</th></tr>
+
+
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          
+          static
+          
+          OperationDesc[]</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundBindingStub.html#_operations">_operations</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          Vector</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundBindingStub.html#cachedDeserFactories">cachedDeserFactories</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          Vector</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundBindingStub.html#cachedSerClasses">cachedSerClasses</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          Vector</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundBindingStub.html#cachedSerFactories">cachedSerFactories</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          Vector</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundBindingStub.html#cachedSerQNames">cachedSerQNames</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+
+</table>
+
+
+
+
+
+<!-- =========== FIELD SUMMARY =========== -->
+<table id="inhfields" class="jd-sumtable"><tr><th>
+  <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
+  <div style="clear:left;">Inherited Fields</div></th></tr>
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-fields-org.apache.axis.client.Stub" class="jd-expando-trigger closed"
+          ><img id="inherited-fields-org.apache.axis.client.Stub-trigger"
+          src="../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>From class
+org.apache.axis.client.Stub
+<div id="inherited-fields-org.apache.axis.client.Stub">
+  <div id="inherited-fields-org.apache.axis.client.Stub-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-fields-org.apache.axis.client.Stub-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          Call</nobr></td>
+          <td class="jd-linkcol">_call</td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          Vector</nobr></td>
+          <td class="jd-linkcol">attachments</td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          URL</nobr></td>
+          <td class="jd-linkcol">cachedEndpoint</td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          String</nobr></td>
+          <td class="jd-linkcol">cachedPassword</td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          QName</nobr></td>
+          <td class="jd-linkcol">cachedPortName</td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          Properties</nobr></td>
+          <td class="jd-linkcol">cachedProperties</td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          Integer</nobr></td>
+          <td class="jd-linkcol">cachedTimeout</td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          String</nobr></td>
+          <td class="jd-linkcol">cachedUsername</td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          boolean</nobr></td>
+          <td class="jd-linkcol">firstCall</td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          Vector</nobr></td>
+          <td class="jd-linkcol">headers</td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          boolean</nobr></td>
+          <td class="jd-linkcol">maintainSession</td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          boolean</nobr></td>
+          <td class="jd-linkcol">maintainSessionSet</td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          protected
+          
+          
+          Service</nobr></td>
+          <td class="jd-linkcol">service</td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+
+
+
+
+
+
+
+
+</table>
+
+
+
+
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+<table id="pubctors" class="jd-sumtable"><tr><th colspan="12">Public Constructors</th></tr>
+
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            </nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundBindingStub.html#AmazonFWSInboundBindingStub()">AmazonFWSInboundBindingStub</a></span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            </nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundBindingStub.html#AmazonFWSInboundBindingStub(java.net.URL, javax.xml.rpc.Service)">AmazonFWSInboundBindingStub</a></span>(URL endpointURL, Service service)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            </nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundBindingStub.html#AmazonFWSInboundBindingStub(javax.xml.rpc.Service)">AmazonFWSInboundBindingStub</a></span>(Service service)</nobr>
+        
+  </td></tr>
+
+
+
+</table>
+
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="pubmethods" class="jd-sumtable"><tr><th colspan="12">Public Methods</th></tr>
+
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ResponseMetadata.html">ResponseMetadata</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundBindingStub.html#deleteInboundShipmentItems(java.lang.String, java.lang.String[])">deleteInboundShipmentItems</a></span>(String shipmentId, String[] merchantSKU)</nobr>
+        
+        <div class="jd-descrdiv">Removes line items from the pre-existing shipment specified
+ by the 
+                     ShipmentId.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundBindingStub.html#getFulfillmentIdentifier(com.amazonaws.fba_inbound.doc._2007_05_10.MerchantItem[], com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetFulfillmentIdentifierResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)">getFulfillmentIdentifier</a></span>(<a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/MerchantItem.html">MerchantItem[]</a> merchantItem, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/GetFulfillmentIdentifierResultHolder.html">GetFulfillmentIdentifierResultHolder</a> getFulfillmentIdentifierResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</nobr>
+        
+        <div class="jd-descrdiv">Gets the Fulfillment Network SKU (FNSKU) for each supplied
+                     Merchant Item, creating it if needed.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundBindingStub.html#getFulfillmentIdentifierForMSKU(java.lang.String[], com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetFulfillmentIdentifierForMSKUResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)">getFulfillmentIdentifierForMSKU</a></span>(String[] merchantSKU, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/GetFulfillmentIdentifierForMSKUResultHolder.html">GetFulfillmentIdentifierForMSKUResultHolder</a> getFulfillmentIdentifierForMSKUResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</nobr>
+        
+        <div class="jd-descrdiv">Gets the Fulfillment Network SKU (FNSKU) for each supplied
+                     Merchant Item, creating it if needed.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundBindingStub.html#getFulfillmentItemByFNSKU(java.lang.String[], com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetFulfillmentItemByFNSKUResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)">getFulfillmentItemByFNSKU</a></span>(String[] fulfillmentNetworkSKU, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/GetFulfillmentItemByFNSKUResultHolder.html">GetFulfillmentItemByFNSKUResultHolder</a> getFulfillmentItemByFNSKUResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</nobr>
+        
+        <div class="jd-descrdiv">Gets fulfillment item data for the provided Fulfillment
+                     Network SKUs.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundBindingStub.html#getFulfillmentItemByMSKU(java.lang.String[], com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetFulfillmentItemByMSKUResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)">getFulfillmentItemByMSKU</a></span>(String[] merchantSKU, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/GetFulfillmentItemByMSKUResultHolder.html">GetFulfillmentItemByMSKUResultHolder</a> getFulfillmentItemByMSKUResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</nobr>
+        
+        <div class="jd-descrdiv">Gets fulfillment item data for the provided Merchant SKUs.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundBindingStub.html#getInboundShipmentData(java.lang.String, com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetInboundShipmentDataResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)">getInboundShipmentData</a></span>(String shipmentId, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/GetInboundShipmentDataResultHolder.html">GetInboundShipmentDataResultHolder</a> getInboundShipmentDataResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</nobr>
+        
+        <div class="jd-descrdiv">Gets the merchant's inbound shipment header information for
+ the 
+                     given ShipmentId.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundBindingStub.html#getInboundShipmentPreview(com.amazonaws.fba_inbound.doc._2007_05_10.Address, com.amazonaws.fba_inbound.doc._2007_05_10.MerchantSKUQuantityItem[], com.amazonaws.fba_inbound.doc._2007_05_10.LabelPrepPreference, com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetInboundShipmentPreviewResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)">getInboundShipmentPreview</a></span>(<a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/Address.html">Address</a> shipFromAddress, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/MerchantSKUQuantityItem.html">MerchantSKUQuantityItem[]</a> merchantSKUQuantityItem, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/LabelPrepPreference.html">LabelPrepPreference</a> labelPrepPreference, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/GetInboundShipmentPreviewResultHolder.html">GetInboundShipmentPreviewResultHolder</a> getInboundShipmentPreviewResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</nobr>
+        
+        <div class="jd-descrdiv">Returns the information needed to create a set of shipments
+ for the given collection of items and source address.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundBindingStub.html#getServiceStatus(com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetServiceStatusResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)">getServiceStatus</a></span>(<a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/GetServiceStatusResultHolder.html">GetServiceStatusResultHolder</a> getServiceStatusResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</nobr>
+        
+        <div class="jd-descrdiv">Gets a brief status message from the service.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundBindingStub.html#listAllFulfillmentItems(java.lang.Boolean, java.lang.Integer, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ListAllFulfillmentItemsResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)">listAllFulfillmentItems</a></span>(Boolean includeInactive, Integer maxCount, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ListAllFulfillmentItemsResultHolder.html">ListAllFulfillmentItemsResultHolder</a> listAllFulfillmentItemsResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</nobr>
+        
+        <div class="jd-descrdiv">Gets the first set of fulfillment items registered to a 
+                     merchant and returns a NextToken which can be
+ used to 
+                     iterate through the remaining fulfillment items
+ (via the
+                     'ListAllFulfillmentItemsByNextToken operation).</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundBindingStub.html#listAllFulfillmentItemsByNextToken(java.lang.String, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ListAllFulfillmentItemsByNextTokenResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)">listAllFulfillmentItemsByNextToken</a></span>(String nextToken, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ListAllFulfillmentItemsByNextTokenResultHolder.html">ListAllFulfillmentItemsByNextTokenResultHolder</a> listAllFulfillmentItemsByNextTokenResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</nobr>
+        
+        <div class="jd-descrdiv">Gets the next set of fulfillment items registered to a 
+                     merchant and returns a NextToken which can be
+ used to
+                     iterate through the remaining fulfillment items.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundBindingStub.html#listInboundShipmentItems(java.lang.String, java.lang.Integer, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ListInboundShipmentItemsResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)">listInboundShipmentItems</a></span>(String shipmentId, Integer maxCount, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ListInboundShipmentItemsResultHolder.html">ListInboundShipmentItemsResultHolder</a> listInboundShipmentItemsResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</nobr>
+        
+        <div class="jd-descrdiv">Gets the first set of inbound shipment items for the given
+ 
+                     ShipmentId.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundBindingStub.html#listInboundShipmentItemsByNextToken(java.lang.String, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ListInboundShipmentItemsByNextTokenResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)">listInboundShipmentItemsByNextToken</a></span>(String nextToken, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ListInboundShipmentItemsByNextTokenResultHolder.html">ListInboundShipmentItemsByNextTokenResultHolder</a> listInboundShipmentItemsByNextTokenResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</nobr>
+        
+        <div class="jd-descrdiv">Gets the next set of inbound shipment items and returns the
+ 
+                     NextToken which can be used to iterate through
+ the remaining 
+                     inbound shipment items.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundBindingStub.html#listInboundShipments(com.amazonaws.fba_inbound.doc._2007_05_10.ShipmentStatus[], java.util.Calendar, java.util.Calendar, java.lang.Integer, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ListInboundShipmentsResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)">listInboundShipments</a></span>(<a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ShipmentStatus.html">ShipmentStatus[]</a> shipmentStatus, Calendar createdBefore, Calendar createdAfter, Integer maxCount, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ListInboundShipmentsResultHolder.html">ListInboundShipmentsResultHolder</a> listInboundShipmentsResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</nobr>
+        
+        <div class="jd-descrdiv">Get the first set of inbound shipments created by a merchant
+ 
+                     according to the specified query parameters.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundBindingStub.html#listInboundShipmentsByNextToken(java.lang.String, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ListInboundShipmentsByNextTokenResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)">listInboundShipmentsByNextToken</a></span>(String nextToken, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ListInboundShipmentsByNextTokenResultHolder.html">ListInboundShipmentsByNextTokenResultHolder</a> listInboundShipmentsByNextTokenResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</nobr>
+        
+        <div class="jd-descrdiv">Gets the next set of inbound shipments created by a
+                     merchant and returns the next NextToken which
+ can be used to
+                     iterate through the remaining inbound shipments.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ResponseMetadata.html">ResponseMetadata</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundBindingStub.html#putInboundShipment(java.lang.String, java.lang.String, java.lang.String, com.amazonaws.fba_inbound.doc._2007_05_10.Address, com.amazonaws.fba_inbound.doc._2007_05_10.LabelPrepPreference, com.amazonaws.fba_inbound.doc._2007_05_10.MerchantSKUQuantityItem[])">putInboundShipment</a></span>(String shipmentId, String shipmentName, String destinationFulfillmentCenter, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/Address.html">Address</a> shipFromAddress, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/LabelPrepPreference.html">LabelPrepPreference</a> labelPrepPreference, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/MerchantSKUQuantityItem.html">MerchantSKUQuantityItem[]</a> merchantSKUQuantityItem)</nobr>
+        
+        <div class="jd-descrdiv">Creates or replaces information about a shipment.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ResponseMetadata.html">ResponseMetadata</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundBindingStub.html#putInboundShipmentData(java.lang.String, java.lang.String, java.lang.String, com.amazonaws.fba_inbound.doc._2007_05_10.Address, com.amazonaws.fba_inbound.doc._2007_05_10.LabelPrepPreference)">putInboundShipmentData</a></span>(String shipmentId, String shipmentName, String destinationFulfillmentCenter, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/Address.html">Address</a> shipFromAddress, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/LabelPrepPreference.html">LabelPrepPreference</a> labelPrepPreference)</nobr>
+        
+        <div class="jd-descrdiv">Adds or replaces the merchant's inbound shipment header information
+ for the 
+                     given ShipmentId.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ResponseMetadata.html">ResponseMetadata</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundBindingStub.html#putInboundShipmentItems(java.lang.String, com.amazonaws.fba_inbound.doc._2007_05_10.MerchantSKUQuantityItem[])">putInboundShipmentItems</a></span>(String shipmentId, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/MerchantSKUQuantityItem.html">MerchantSKUQuantityItem[]</a> merchantSKUQuantityItem)</nobr>
+        
+        <div class="jd-descrdiv">Adds line items to the pre-existing shipment specified by the
+ 
+                     ShipmentId.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ResponseMetadata.html">ResponseMetadata</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundBindingStub.html#setInboundShipmentStatus(java.lang.String, com.amazonaws.fba_inbound.doc._2007_05_10.ShipmentStatus)">setInboundShipmentStatus</a></span>(String shipmentId, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ShipmentStatus.html">ShipmentStatus</a> shipmentStatus)</nobr>
+        
+        <div class="jd-descrdiv">Sets the inbound shipment status to the specified ShipmentStatus.</div>
+  
+  </td></tr>
+
+
+
+</table>
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="promethods" class="jd-sumtable"><tr><th colspan="12">Protected Methods</th></tr>
+
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Call</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundBindingStub.html#createCall()">createCall</a></span>()</nobr>
+        
+  </td></tr>
+
+
+
+</table>
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="inhmethods" class="jd-sumtable"><tr><th>
+  <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
+  <div style="clear:left;">Inherited Methods</div></th></tr>
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.apache.axis.client.Stub" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-org.apache.axis.client.Stub-trigger"
+          src="../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From class
+
+  org.apache.axis.client.Stub
+
+<div id="inherited-methods-org.apache.axis.client.Stub">
+  <div id="inherited-methods-org.apache.axis.client.Stub-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-org.apache.axis.client.Stub-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Call</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">_createCall</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Call</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">_getCall</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Object</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">_getProperty</span>(String arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Iterator</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">_getPropertyNames</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Service</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">_getService</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">_setProperty</span>(String arg0, Object arg1)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">addAttachment</span>(Object arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">clearAttachments</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">clearHeaders</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">extractAttachments</span>(Call arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">firstCall</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Object[]</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">getAttachments</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            SOAPHeaderElement</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">getHeader</span>(String arg0, String arg1)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            SOAPHeaderElement[]</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">getHeaders</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">getPassword</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            QName</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">getPortName</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            SOAPHeaderElement</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">getResponseHeader</span>(String arg0, String arg1)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">getResponseHeaders</span>(Call arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            SOAPHeaderElement[]</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">getResponseHeaders</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            int</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">getTimeout</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">getUsername</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Object</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">removeProperty</span>(String arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">setAttachments</span>(Call arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">setHeader</span>(String arg0, String arg1, Object arg2)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">setHeader</span>(SOAPHeaderElement arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">setMaintainSession</span>(boolean arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">setPassword</span>(String arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">setPortName</span>(String arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">setPortName</span>(QName arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">setRequestHeaders</span>(Call arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">setTimeout</span>(int arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">setUsername</span>(String arg0)</nobr>
+        
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-java.lang.Object" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-java.lang.Object-trigger"
+          src="../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From class
+
+  java.lang.Object
+
+<div id="inherited-methods-java.lang.Object">
+  <div id="inherited-methods-java.lang.Object-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-java.lang.Object-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Object</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">clone</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">equals</span>(Object arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">finalize</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            final
+            
+            
+            Class&lt;?&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">getClass</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            int</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">hashCode</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            final
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">notify</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            final
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">notifyAll</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">toString</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            final
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">wait</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            final
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">wait</span>(long arg0, int arg1)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            final
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">wait</span>(long arg0)</nobr>
+        
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-com.amazonaws.fba_inbound.doc._2007_05_10.AmazonFWSInboundPortType" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-com.amazonaws.fba_inbound.doc._2007_05_10.AmazonFWSInboundPortType-trigger"
+          src="../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From interface
+
+  <a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundPortType.html">com.amazonaws.fba_inbound.doc._2007_05_10.AmazonFWSInboundPortType</a>
+
+<div id="inherited-methods-com.amazonaws.fba_inbound.doc._2007_05_10.AmazonFWSInboundPortType">
+  <div id="inherited-methods-com.amazonaws.fba_inbound.doc._2007_05_10.AmazonFWSInboundPortType-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-com.amazonaws.fba_inbound.doc._2007_05_10.AmazonFWSInboundPortType-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ResponseMetadata.html">ResponseMetadata</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundPortType.html#deleteInboundShipmentItems(java.lang.String, java.lang.String[])">deleteInboundShipmentItems</a></span>(String shipmentId, String[] merchantSKU)</nobr>
+        
+        <div class="jd-descrdiv">Removes line items from the pre-existing shipment specified
+ by the 
+                     ShipmentId.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundPortType.html#getFulfillmentIdentifier(com.amazonaws.fba_inbound.doc._2007_05_10.MerchantItem[], com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetFulfillmentIdentifierResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)">getFulfillmentIdentifier</a></span>(<a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/MerchantItem.html">MerchantItem[]</a> merchantItem, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/GetFulfillmentIdentifierResultHolder.html">GetFulfillmentIdentifierResultHolder</a> getFulfillmentIdentifierResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</nobr>
+        
+        <div class="jd-descrdiv">Gets the Fulfillment Network SKU (FNSKU) for each supplied
+                     Merchant Item, creating it if needed.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundPortType.html#getFulfillmentIdentifierForMSKU(java.lang.String[], com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetFulfillmentIdentifierForMSKUResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)">getFulfillmentIdentifierForMSKU</a></span>(String[] merchantSKU, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/GetFulfillmentIdentifierForMSKUResultHolder.html">GetFulfillmentIdentifierForMSKUResultHolder</a> getFulfillmentIdentifierForMSKUResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</nobr>
+        
+        <div class="jd-descrdiv">Gets the Fulfillment Network SKU (FNSKU) for each supplied
+                     Merchant Item, creating it if needed.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundPortType.html#getFulfillmentItemByFNSKU(java.lang.String[], com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetFulfillmentItemByFNSKUResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)">getFulfillmentItemByFNSKU</a></span>(String[] fulfillmentNetworkSKU, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/GetFulfillmentItemByFNSKUResultHolder.html">GetFulfillmentItemByFNSKUResultHolder</a> getFulfillmentItemByFNSKUResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</nobr>
+        
+        <div class="jd-descrdiv">Gets fulfillment item data for the provided Fulfillment
+                     Network SKUs.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundPortType.html#getFulfillmentItemByMSKU(java.lang.String[], com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetFulfillmentItemByMSKUResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)">getFulfillmentItemByMSKU</a></span>(String[] merchantSKU, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/GetFulfillmentItemByMSKUResultHolder.html">GetFulfillmentItemByMSKUResultHolder</a> getFulfillmentItemByMSKUResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</nobr>
+        
+        <div class="jd-descrdiv">Gets fulfillment item data for the provided Merchant SKUs.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundPortType.html#getInboundShipmentData(java.lang.String, com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetInboundShipmentDataResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)">getInboundShipmentData</a></span>(String shipmentId, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/GetInboundShipmentDataResultHolder.html">GetInboundShipmentDataResultHolder</a> getInboundShipmentDataResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</nobr>
+        
+        <div class="jd-descrdiv">Gets the merchant's inbound shipment header information for
+ the 
+                     given ShipmentId.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundPortType.html#getInboundShipmentPreview(com.amazonaws.fba_inbound.doc._2007_05_10.Address, com.amazonaws.fba_inbound.doc._2007_05_10.MerchantSKUQuantityItem[], com.amazonaws.fba_inbound.doc._2007_05_10.LabelPrepPreference, com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetInboundShipmentPreviewResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)">getInboundShipmentPreview</a></span>(<a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/Address.html">Address</a> shipFromAddress, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/MerchantSKUQuantityItem.html">MerchantSKUQuantityItem[]</a> merchantSKUQuantityItem, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/LabelPrepPreference.html">LabelPrepPreference</a> labelPrepPreference, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/GetInboundShipmentPreviewResultHolder.html">GetInboundShipmentPreviewResultHolder</a> getInboundShipmentPreviewResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</nobr>
+        
+        <div class="jd-descrdiv">Returns the information needed to create a set of shipments
+ for the given collection of items and source address.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundPortType.html#getServiceStatus(com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetServiceStatusResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)">getServiceStatus</a></span>(<a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/GetServiceStatusResultHolder.html">GetServiceStatusResultHolder</a> getServiceStatusResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</nobr>
+        
+        <div class="jd-descrdiv">Gets a brief status message from the service.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundPortType.html#listAllFulfillmentItems(java.lang.Boolean, java.lang.Integer, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ListAllFulfillmentItemsResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)">listAllFulfillmentItems</a></span>(Boolean includeInactive, Integer maxCount, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ListAllFulfillmentItemsResultHolder.html">ListAllFulfillmentItemsResultHolder</a> listAllFulfillmentItemsResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</nobr>
+        
+        <div class="jd-descrdiv">Gets the first set of fulfillment items registered to a 
+                     merchant and returns a NextToken which can be
+ used to 
+                     iterate through the remaining fulfillment items
+ (via the
+                     'ListAllFulfillmentItemsByNextToken operation).</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundPortType.html#listAllFulfillmentItemsByNextToken(java.lang.String, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ListAllFulfillmentItemsByNextTokenResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)">listAllFulfillmentItemsByNextToken</a></span>(String nextToken, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ListAllFulfillmentItemsByNextTokenResultHolder.html">ListAllFulfillmentItemsByNextTokenResultHolder</a> listAllFulfillmentItemsByNextTokenResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</nobr>
+        
+        <div class="jd-descrdiv">Gets the next set of fulfillment items registered to a 
+                     merchant and returns a NextToken which can be
+ used to
+                     iterate through the remaining fulfillment items.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundPortType.html#listInboundShipmentItems(java.lang.String, java.lang.Integer, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ListInboundShipmentItemsResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)">listInboundShipmentItems</a></span>(String shipmentId, Integer maxCount, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ListInboundShipmentItemsResultHolder.html">ListInboundShipmentItemsResultHolder</a> listInboundShipmentItemsResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</nobr>
+        
+        <div class="jd-descrdiv">Gets the first set of inbound shipment items for the given
+ 
+                     ShipmentId.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundPortType.html#listInboundShipmentItemsByNextToken(java.lang.String, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ListInboundShipmentItemsByNextTokenResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)">listInboundShipmentItemsByNextToken</a></span>(String nextToken, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ListInboundShipmentItemsByNextTokenResultHolder.html">ListInboundShipmentItemsByNextTokenResultHolder</a> listInboundShipmentItemsByNextTokenResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</nobr>
+        
+        <div class="jd-descrdiv">Gets the next set of inbound shipment items and returns the
+ 
+                     NextToken which can be used to iterate through
+ the remaining 
+                     inbound shipment items.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundPortType.html#listInboundShipments(com.amazonaws.fba_inbound.doc._2007_05_10.ShipmentStatus[], java.util.Calendar, java.util.Calendar, java.lang.Integer, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ListInboundShipmentsResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)">listInboundShipments</a></span>(<a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ShipmentStatus.html">ShipmentStatus[]</a> shipmentStatus, Calendar createdBefore, Calendar createdAfter, Integer maxCount, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ListInboundShipmentsResultHolder.html">ListInboundShipmentsResultHolder</a> listInboundShipmentsResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</nobr>
+        
+        <div class="jd-descrdiv">Get the first set of inbound shipments created by a merchant
+ 
+                     according to the specified query parameters.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundPortType.html#listInboundShipmentsByNextToken(java.lang.String, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ListInboundShipmentsByNextTokenResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)">listInboundShipmentsByNextToken</a></span>(String nextToken, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ListInboundShipmentsByNextTokenResultHolder.html">ListInboundShipmentsByNextTokenResultHolder</a> listInboundShipmentsByNextTokenResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</nobr>
+        
+        <div class="jd-descrdiv">Gets the next set of inbound shipments created by a
+                     merchant and returns the next NextToken which
+ can be used to
+                     iterate through the remaining inbound shipments.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ResponseMetadata.html">ResponseMetadata</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundPortType.html#putInboundShipment(java.lang.String, java.lang.String, java.lang.String, com.amazonaws.fba_inbound.doc._2007_05_10.Address, com.amazonaws.fba_inbound.doc._2007_05_10.LabelPrepPreference, com.amazonaws.fba_inbound.doc._2007_05_10.MerchantSKUQuantityItem[])">putInboundShipment</a></span>(String shipmentId, String shipmentName, String destinationFulfillmentCenter, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/Address.html">Address</a> shipFromAddress, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/LabelPrepPreference.html">LabelPrepPreference</a> labelPrepPreference, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/MerchantSKUQuantityItem.html">MerchantSKUQuantityItem[]</a> merchantSKUQuantityItem)</nobr>
+        
+        <div class="jd-descrdiv">Creates or replaces information about a shipment.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ResponseMetadata.html">ResponseMetadata</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundPortType.html#putInboundShipmentData(java.lang.String, java.lang.String, java.lang.String, com.amazonaws.fba_inbound.doc._2007_05_10.Address, com.amazonaws.fba_inbound.doc._2007_05_10.LabelPrepPreference)">putInboundShipmentData</a></span>(String shipmentId, String shipmentName, String destinationFulfillmentCenter, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/Address.html">Address</a> shipFromAddress, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/LabelPrepPreference.html">LabelPrepPreference</a> labelPrepPreference)</nobr>
+        
+        <div class="jd-descrdiv">Adds or replaces the merchant's inbound shipment header information
+ for the 
+                     given ShipmentId.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ResponseMetadata.html">ResponseMetadata</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundPortType.html#putInboundShipmentItems(java.lang.String, com.amazonaws.fba_inbound.doc._2007_05_10.MerchantSKUQuantityItem[])">putInboundShipmentItems</a></span>(String shipmentId, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/MerchantSKUQuantityItem.html">MerchantSKUQuantityItem[]</a> merchantSKUQuantityItem)</nobr>
+        
+        <div class="jd-descrdiv">Adds line items to the pre-existing shipment specified by the
+ 
+                     ShipmentId.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ResponseMetadata.html">ResponseMetadata</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_inbound/doc/_2007_05_10/AmazonFWSInboundPortType.html#setInboundShipmentStatus(java.lang.String, com.amazonaws.fba_inbound.doc._2007_05_10.ShipmentStatus)">setInboundShipmentStatus</a></span>(String shipmentId, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ShipmentStatus.html">ShipmentStatus</a> shipmentStatus)</nobr>
+        
+        <div class="jd-descrdiv">Sets the inbound shipment status to the specified ShipmentStatus.</div>
+  
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-javax.xml.rpc.Stub" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-javax.xml.rpc.Stub-trigger"
+          src="../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From interface
+
+  javax.xml.rpc.Stub
+
+<div id="inherited-methods-javax.xml.rpc.Stub">
+  <div id="inherited-methods-javax.xml.rpc.Stub-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-javax.xml.rpc.Stub-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            Object</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">_getProperty</span>(String arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            Iterator</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">_getPropertyNames</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            abstract
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">_setProperty</span>(String arg0, Object arg1)</nobr>
+        
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+</table>
+
+
+</div><!-- jd-descr (summary) -->
+
+<!-- Details -->
+
+
+
+
+
+
+
+
+<!-- XML Attributes -->
+
+
+<!-- Enum Values -->
+
+
+<!-- Constants -->
+
+
+<!-- Fields -->
+
+
+<!-- ========= FIELD DETAIL ======== -->
+<h2>Fields</h2>
+
+
+
+
+<A NAME="_operations"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+         
+        static 
+         
+        OperationDesc[]
+      </span>
+        _operations
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="cachedDeserFactories"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        Vector
+      </span>
+        cachedDeserFactories
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="cachedSerClasses"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        Vector
+      </span>
+        cachedSerClasses
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="cachedSerFactories"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        Vector
+      </span>
+        cachedSerFactories
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="cachedSerQNames"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        Vector
+      </span>
+        cachedSerQNames
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+
+<!-- Public ctors -->
+
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<h2>Public Constructors</h2>
+
+
+
+<A NAME="AmazonFWSInboundBindingStub()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        
+      </span>
+      <span class="sympad">AmazonFWSInboundBindingStub</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>AxisFault</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="AmazonFWSInboundBindingStub(java.net.URL, javax.xml.rpc.Service)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        
+      </span>
+      <span class="sympad">AmazonFWSInboundBindingStub</span>
+      <span class="normal">(URL endpointURL, Service service)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>endpointURL</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>service</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>AxisFault</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="AmazonFWSInboundBindingStub(javax.xml.rpc.Service)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        
+      </span>
+      <span class="sympad">AmazonFWSInboundBindingStub</span>
+      <span class="normal">(Service service)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>service</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>AxisFault</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+
+
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<!-- Protected ctors -->
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+<!-- Public methdos -->
+
+<h2>Public Methods</h2>
+
+
+
+<A NAME="deleteInboundShipmentItems(java.lang.String, java.lang.String[])"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ResponseMetadata.html">ResponseMetadata</a>
+      </span>
+      <span class="sympad">deleteInboundShipmentItems</span>
+      <span class="normal">(String shipmentId, String[] merchantSKU)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Removes line items from the pre-existing shipment specified
+ by the 
+                     ShipmentId. If the MerchantSKU is not currently
+ a part of the 
+                     shipment, then that particular line item will
+ be ignored and all 
+                     others will still be processed. Call PutInboundShipment
+ to create 
+                     the shipment to be worked on.
+                     
+                     This call will return an exception when attempting
+ to remove line 
+                     items from a shipment that is in a status of 'Receiving'
+ or later.
+</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>shipmentId</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>merchantSKU</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>RemoteException</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getFulfillmentIdentifier(com.amazonaws.fba_inbound.doc._2007_05_10.MerchantItem[], com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetFulfillmentIdentifierResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">getFulfillmentIdentifier</span>
+      <span class="normal">(<a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/MerchantItem.html">MerchantItem[]</a> merchantItem, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/GetFulfillmentIdentifierResultHolder.html">GetFulfillmentIdentifierResultHolder</a> getFulfillmentIdentifierResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the Fulfillment Network SKU (FNSKU) for each supplied
+                     Merchant Item, creating it if needed. This operation
+ is
+                     idempotent in that it can be called multiple times
+ without
+                     any adverse effects. This operation is necessary
+ to register 
+                     items for Amazon fulfillment in order to send
+ them to Amazon, 
+                     but does NOT do the work of marking any offer
+ for this item 
+                     as Amazon-fulfilled. Providing more than 250 Merchant
+ Items 
+                     will result in an error. 
+                     
+                     NOTE: Use this operation over GetFulfillmentIdentifierForMSKU
+ 
+                     if an offer does NOT already exist for the MerchantSKU.
+</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>merchantItem</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>getFulfillmentIdentifierResult</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>responseMetadata</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>RemoteException</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getFulfillmentIdentifierForMSKU(java.lang.String[], com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetFulfillmentIdentifierForMSKUResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">getFulfillmentIdentifierForMSKU</span>
+      <span class="normal">(String[] merchantSKU, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/GetFulfillmentIdentifierForMSKUResultHolder.html">GetFulfillmentIdentifierForMSKUResultHolder</a> getFulfillmentIdentifierForMSKUResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the Fulfillment Network SKU (FNSKU) for each supplied
+                     Merchant Item, creating it if needed. This operation
+ is
+                     idempotent in that it can be called multiple times
+ without
+                     any adverse effects. This operation is necessary
+ to register 
+                     items for Amazon fulfillment in order to send
+ them to Amazon, 
+                     but does NOT do the work of marking any offer
+ for this item 
+                     as Amazon-fulfilled. Providing more than 250 Merchant
+ Items 
+                     will result in an error. 
+                     
+                     NOTE: Use this operation over GetFulfillmentIdentifier
+ if 
+                     an offer already exists for the SKU.
+</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>merchantSKU</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>getFulfillmentIdentifierForMSKUResult</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>responseMetadata</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>RemoteException</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getFulfillmentItemByFNSKU(java.lang.String[], com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetFulfillmentItemByFNSKUResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">getFulfillmentItemByFNSKU</span>
+      <span class="normal">(String[] fulfillmentNetworkSKU, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/GetFulfillmentItemByFNSKUResultHolder.html">GetFulfillmentItemByFNSKUResultHolder</a> getFulfillmentItemByFNSKUResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets fulfillment item data for the provided Fulfillment
+                     Network SKUs.  If any of the provided FNSKUs are
+ invalid
+                     they will be ignored and only the valid SKUs will
+ be returned.
+                     NOTE: Providing more than 2,000 FNSKUs will result
+ in an error.
+</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>fulfillmentNetworkSKU</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>getFulfillmentItemByFNSKUResult</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>responseMetadata</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>RemoteException</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getFulfillmentItemByMSKU(java.lang.String[], com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetFulfillmentItemByMSKUResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">getFulfillmentItemByMSKU</span>
+      <span class="normal">(String[] merchantSKU, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/GetFulfillmentItemByMSKUResultHolder.html">GetFulfillmentItemByMSKUResultHolder</a> getFulfillmentItemByMSKUResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets fulfillment item data for the provided Merchant SKUs.
+ If 
+                     any of the provided MSKUs are invalid (e.g. does
+ not have an 
+                     assigned Fulfillment Network SKU) they will be
+ ignored and only 
+                     the valid SKUs will be returned.  NOTE: Providing
+ more than
+                     2,000 MSKUs will result in an error.
+</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>merchantSKU</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>getFulfillmentItemByMSKUResult</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>responseMetadata</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>RemoteException</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getInboundShipmentData(java.lang.String, com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetInboundShipmentDataResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">getInboundShipmentData</span>
+      <span class="normal">(String shipmentId, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/GetInboundShipmentDataResultHolder.html">GetInboundShipmentDataResultHolder</a> getInboundShipmentDataResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the merchant's inbound shipment header information for
+ the 
+                     given ShipmentId.
+</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>shipmentId</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>getInboundShipmentDataResult</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>responseMetadata</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>RemoteException</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getInboundShipmentPreview(com.amazonaws.fba_inbound.doc._2007_05_10.Address, com.amazonaws.fba_inbound.doc._2007_05_10.MerchantSKUQuantityItem[], com.amazonaws.fba_inbound.doc._2007_05_10.LabelPrepPreference, com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetInboundShipmentPreviewResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">getInboundShipmentPreview</span>
+      <span class="normal">(<a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/Address.html">Address</a> shipFromAddress, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/MerchantSKUQuantityItem.html">MerchantSKUQuantityItem[]</a> merchantSKUQuantityItem, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/LabelPrepPreference.html">LabelPrepPreference</a> labelPrepPreference, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/GetInboundShipmentPreviewResultHolder.html">GetInboundShipmentPreviewResultHolder</a> getInboundShipmentPreviewResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Returns the information needed to create a set of shipments
+ for the given collection of items and source address.  When 
+                     all the items are not all in the same category
+ (e.g. some 
+                     sortable, some non-sortable) it may be necessary
+ to create 
+                     multiple shipments (one for each of the shipment
+ groups
+                     returned).
+</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>shipFromAddress</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>merchantSKUQuantityItem</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>labelPrepPreference</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>getInboundShipmentPreviewResult</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>responseMetadata</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>RemoteException</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getServiceStatus(com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetServiceStatusResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">getServiceStatus</span>
+      <span class="normal">(<a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/GetServiceStatusResultHolder.html">GetServiceStatusResultHolder</a> getServiceStatusResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets a brief status message from the service.
+</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>getServiceStatusResult</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>responseMetadata</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>RemoteException</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="listAllFulfillmentItems(java.lang.Boolean, java.lang.Integer, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ListAllFulfillmentItemsResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">listAllFulfillmentItems</span>
+      <span class="normal">(Boolean includeInactive, Integer maxCount, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ListAllFulfillmentItemsResultHolder.html">ListAllFulfillmentItemsResultHolder</a> listAllFulfillmentItemsResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the first set of fulfillment items registered to a 
+                     merchant and returns a NextToken which can be
+ used to 
+                     iterate through the remaining fulfillment items
+ (via the
+                     'ListAllFulfillmentItemsByNextToken operation).
+ The
+                     service will return between 1 and 'MaxCount' number
+ of
+                     items.  Please check the value of 'HasNext' to
+ determine
+                     whether there were some items which were not returned.
+ If 
+                     'IncludeInactive' is set to true, it will return
+ both 
+                     active and inactive mappings (this parameter defaults
+ to 
+                     false).  Inactive mappings can be used to track
+ inventory in 
+                     Amazon's fulfillment centers although they can't
+ be fulfilled.
+</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>includeInactive</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>maxCount</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>listAllFulfillmentItemsResult</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>responseMetadata</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>RemoteException</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="listAllFulfillmentItemsByNextToken(java.lang.String, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ListAllFulfillmentItemsByNextTokenResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">listAllFulfillmentItemsByNextToken</span>
+      <span class="normal">(String nextToken, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ListAllFulfillmentItemsByNextTokenResultHolder.html">ListAllFulfillmentItemsByNextTokenResultHolder</a> listAllFulfillmentItemsByNextTokenResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the next set of fulfillment items registered to a 
+                     merchant and returns a NextToken which can be
+ used to
+                     iterate through the remaining fulfillment items.
+ The
+                     service will return between 1 and 'MaxCount' number
+ of
+                     items.  Please check the value of 'HasNext' to
+ determine
+                     whether there were some items which were not returned.
+</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>nextToken</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>listAllFulfillmentItemsByNextTokenResult</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>responseMetadata</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>RemoteException</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="listInboundShipmentItems(java.lang.String, java.lang.Integer, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ListInboundShipmentItemsResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">listInboundShipmentItems</span>
+      <span class="normal">(String shipmentId, Integer maxCount, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ListInboundShipmentItemsResultHolder.html">ListInboundShipmentItemsResultHolder</a> listInboundShipmentItemsResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the first set of inbound shipment items for the given
+ 
+                     ShipmentId. A NextToken is also returned to further
+ iterate
+                     through the merchant's remaining inbound shipment
+ items.
+                     The service will return between 1 and 'MaxCount'
+ number of
+                     shipment items.  Please check the value of 'HasNext'
+ to
+                     determine whether there are some items which were
+ not
+                     returned. To get the next set of inbound shipment
+ items, you
+                     must call ListInboundShipmentItemsByNextToken
+ and pass in
+                     the 'NextToken' this call returned.
+</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>shipmentId</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>maxCount</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>listInboundShipmentItemsResult</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>responseMetadata</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>RemoteException</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="listInboundShipmentItemsByNextToken(java.lang.String, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ListInboundShipmentItemsByNextTokenResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">listInboundShipmentItemsByNextToken</span>
+      <span class="normal">(String nextToken, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ListInboundShipmentItemsByNextTokenResultHolder.html">ListInboundShipmentItemsByNextTokenResultHolder</a> listInboundShipmentItemsByNextTokenResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the next set of inbound shipment items and returns the
+ 
+                     NextToken which can be used to iterate through
+ the remaining 
+                     inbound shipment items. The service will return
+ between 1 and 
+                     'MaxCount' number of shipment items.  Please check
+ the value 
+                     of 'HasNext' to determine whether there are some
+ items which 
+                     were not returned. You must first call 
+                     ListInboundShipmentItems to get a 'NextToken'.
+</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>nextToken</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>listInboundShipmentItemsByNextTokenResult</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>responseMetadata</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>RemoteException</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="listInboundShipments(com.amazonaws.fba_inbound.doc._2007_05_10.ShipmentStatus[], java.util.Calendar, java.util.Calendar, java.lang.Integer, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ListInboundShipmentsResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">listInboundShipments</span>
+      <span class="normal">(<a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ShipmentStatus.html">ShipmentStatus[]</a> shipmentStatus, Calendar createdBefore, Calendar createdAfter, Integer maxCount, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ListInboundShipmentsResultHolder.html">ListInboundShipmentsResultHolder</a> listInboundShipmentsResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Get the first set of inbound shipments created by a merchant
+ 
+                     according to the specified query parameters. 
+ A NextToken is also
+                     returned to further iterate through the merchant's
+ remaining
+                     shipments.  The service will return between 1
+ and 'MaxCount' number 
+                     of items.  Please check the value of 'HasNext'
+ to determine
+                     whether there were some items which were not returned.
+ If 
+                     ShipmentStatus is not set, then all shipments
+ for a merchant will 
+                     be returned, otherwise only shipments in the specified
+ status will 
+                     be returned.  If CreatedBefore is set, only shipments
+ which were 
+                     created before the specified date will be returned
+ (if left 
+                     unspecified, it defaults to "now").  If CreatedAfter
+ is set, only 
+                     shipments which were created after the specified
+ date will be 
+                     returned (if left unspecified, it defaults to
+ the epoch).
+ 
+                     NOTE: The CreatedBefore and CreatedAfter functionality
+ is not
+                     currently implemented and defaults to the values
+ mentioned above.
+</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>shipmentStatus</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>createdBefore</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>createdAfter</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>maxCount</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>listInboundShipmentsResult</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>responseMetadata</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>RemoteException</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="listInboundShipmentsByNextToken(java.lang.String, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ListInboundShipmentsByNextTokenResultHolder, com.amazonaws.fba_inbound.doc._2007_05_10.holders.ResponseMetadataHolder)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">listInboundShipmentsByNextToken</span>
+      <span class="normal">(String nextToken, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ListInboundShipmentsByNextTokenResultHolder.html">ListInboundShipmentsByNextTokenResultHolder</a> listInboundShipmentsByNextTokenResult, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/ResponseMetadataHolder.html">ResponseMetadataHolder</a> responseMetadata)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the next set of inbound shipments created by a
+                     merchant and returns the next NextToken which
+ can be used to
+                     iterate through the remaining inbound shipments.
+ The
+                     service will return between 1 and 'MaxCount' number
+ of
+                     items.  Please check the value of 'HasNext' to
+ determine
+                     whether there were some items which were not returned.
+</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>nextToken</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>listInboundShipmentsByNextTokenResult</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>responseMetadata</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>RemoteException</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="putInboundShipment(java.lang.String, java.lang.String, java.lang.String, com.amazonaws.fba_inbound.doc._2007_05_10.Address, com.amazonaws.fba_inbound.doc._2007_05_10.LabelPrepPreference, com.amazonaws.fba_inbound.doc._2007_05_10.MerchantSKUQuantityItem[])"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ResponseMetadata.html">ResponseMetadata</a>
+      </span>
+      <span class="sympad">putInboundShipment</span>
+      <span class="normal">(String shipmentId, String shipmentName, String destinationFulfillmentCenter, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/Address.html">Address</a> shipFromAddress, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/LabelPrepPreference.html">LabelPrepPreference</a> labelPrepPreference, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/MerchantSKUQuantityItem.html">MerchantSKUQuantityItem[]</a> merchantSKUQuantityItem)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Creates or replaces information about a shipment. If the 
+                     shipment already exists, the information about
+ the shipment 
+                     (and its associated items) will be replaced (for
+ the provided 
+                     ShipmentId).  If the shipment does not exist,
+ one will be 
+                     created.
+                     
+                     Note, the merchant should call SetInboundShipmentStatus
+ with a 
+                     status of 'Shipped' when the shipment is picked
+ up, or set the status 
+                     to 'Cancelled' if the shipment is abandoned. The
+ intial status
+                     of a shipment will be set to 'Working'. Once a
+ shipment's status 
+                     has been set to 'Shipped', the merchant may make
+ no further changes 
+                     except to update the status to 'Cancelled'.  Any
+ items not received 
+                     at the time a shipment is 'Cancelled' will be
+ sidelined if they 
+                     arrive at the fulfillment center.
+ 
+                     This operation will simply return a requestId
+ upon success,
+                     otherwise an explicit error will be returned.
+ 
+                     NOTE: If you are experiencing time-outs due to
+ too many
+                     items in the shipment, calling this operation
+ with a subset
+                     of the items should work.  You may add more items
+ to the
+                     shipment by calling PutInboundShipmentItems.
+</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>shipmentId</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>shipmentName</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>destinationFulfillmentCenter</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>shipFromAddress</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>labelPrepPreference</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>merchantSKUQuantityItem</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>RemoteException</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="putInboundShipmentData(java.lang.String, java.lang.String, java.lang.String, com.amazonaws.fba_inbound.doc._2007_05_10.Address, com.amazonaws.fba_inbound.doc._2007_05_10.LabelPrepPreference)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ResponseMetadata.html">ResponseMetadata</a>
+      </span>
+      <span class="sympad">putInboundShipmentData</span>
+      <span class="normal">(String shipmentId, String shipmentName, String destinationFulfillmentCenter, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/Address.html">Address</a> shipFromAddress, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/LabelPrepPreference.html">LabelPrepPreference</a> labelPrepPreference)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Adds or replaces the merchant's inbound shipment header information
+ for the 
+                     given ShipmentId.
+</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>shipmentId</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>shipmentName</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>destinationFulfillmentCenter</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>shipFromAddress</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>labelPrepPreference</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>RemoteException</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="putInboundShipmentItems(java.lang.String, com.amazonaws.fba_inbound.doc._2007_05_10.MerchantSKUQuantityItem[])"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ResponseMetadata.html">ResponseMetadata</a>
+      </span>
+      <span class="sympad">putInboundShipmentItems</span>
+      <span class="normal">(String shipmentId, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/MerchantSKUQuantityItem.html">MerchantSKUQuantityItem[]</a> merchantSKUQuantityItem)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Adds line items to the pre-existing shipment specified by the
+ 
+                     ShipmentId. If the MerchantSKU is already in the
+ shipment, then 
+                     that particular line item will be replaced. Call
+ PutInboundShipment to create the shipment to be worked on.
+                     
+                     This call will return an exception when attempting
+ to add line 
+                     items to a shipment that is in a status of 'Receiving'
+ or later.
+</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>shipmentId</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>merchantSKUQuantityItem</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>RemoteException</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setInboundShipmentStatus(java.lang.String, com.amazonaws.fba_inbound.doc._2007_05_10.ShipmentStatus)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ResponseMetadata.html">ResponseMetadata</a>
+      </span>
+      <span class="sympad">setInboundShipmentStatus</span>
+      <span class="normal">(String shipmentId, <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ShipmentStatus.html">ShipmentStatus</a> shipmentStatus)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the inbound shipment status to the specified ShipmentStatus.
+ 
+                     Valid statuses are 'Shipped' (the shipment has
+ left the merchant) 
+                     or 'Cancelled'.
+ 
+                     Once a shipment's status has been set to 'Shipped',
+ the merchant 
+                     may make no further changes except to update the
+ status to 
+                     'Cancelled'.  Any items not received at the time
+ a shipment is 
+                     'Cancelled' will be put into problem receive at
+ the
+                     fulfillment center.
+ 
+                     This operation will simply return a requestId
+ upon success,
+                     otherwise an explicit error will be returned.
+</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>shipmentId</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>shipmentStatus</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>RemoteException</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+
+<h2>Protected Methods</h2>
+
+
+
+<A NAME="createCall()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+         
+         
+        Call
+      </span>
+      <span class="sympad">createCall</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>RemoteException</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+
+
+
+<!-- ========= END OF CLASS DATA ========= -->
+<A NAME="navbar_top"></A>
+
+<div id="footer">
+Generated by <a href="http://www.mulesoft.com/devkit">Mule DevKit</a>. Document generation technology based on <a href="http://code.google.com/p/doclava/">Google's Doclava</a>.
+</div> <!-- end footer -->
+
+</div> <!-- jd-content -->
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+<script type="text/javascript">
+init(); /* initialize mule-developer-docs.js */
+</script>
+
+</body>
+</html>

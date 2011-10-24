@@ -1,0 +1,11 @@
+com.amazonaws.fba_inbound.doc._2007_05_10
+com.amazonaws.fba_inbound.doc._2007_05_10.holders
+com.amazonaws.fba_inventory.doc._2009_07_31
+com.amazonaws.fba_inventory.doc._2009_07_31.holders
+com.amazonaws.fba_outbound.doc._2007_08_02
+com.amazonaws.fba_outbound.doc._2007_08_02.holders
+org.mule.module.fws
+org.mule.module.fws.api
+org.mule.module.fws.config
+org.mule.module.fws.config.spring
+

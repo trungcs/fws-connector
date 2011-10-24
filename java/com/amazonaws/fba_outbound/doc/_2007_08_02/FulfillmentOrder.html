@@ -1,0 +1,3327 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="description" content="Documentation for Mule FWS Cloud Connector." />
+
+<link rel="shortcut icon" type="image/x-icon" href="../../../../../../favicon.ico" />
+<title>
+
+  FulfillmentOrder
+
+
+| Mule FWS Cloud Connector
+
+</title>
+<link href="../../../../../../assets/mule-developer-docs.css" rel="stylesheet" type="text/css" />
+<link href="../../../../../../assets/mule-developer-prettify.css" rel="stylesheet" type="text/css" />
+<link href="../../../../../../assets/customizations.css" rel="stylesheet" type="text/css" />
+<link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
+<script src="../../../../../../assets/search_autocomplete.js" type="text/javascript"></script>
+<script src="../../../../../../assets/jquery-resizable.min.js" type="text/javascript"></script>
+<script src="../../../../../../assets/mule-developer-docs.js" type="text/javascript"></script>
+<script src="../../../../../../assets/prettify.js" type="text/javascript"></script>
+<script type="text/javascript">
+  setToRoot("../../../../../../", "../../../../../../assets/");
+</script>
+<script src="../../../../../../assets/mule-developer-reference.js" type="text/javascript"></script>
+<script src="../../../../../../assets/navtree_data.js" type="text/javascript"></script>
+<script src="../../../../../../assets/customizations.js" type="text/javascript"></script>
+<noscript>
+  <style type="text/css">
+    html,body{overflow:auto;}
+    #body-content{position:relative; top:0;}
+    #doc-content{overflow:visible;border-left:3px solid #666;}
+    #side-nav{padding:0;}
+    #side-nav .toggle-list ul {display:block;}
+    #resize-packages-nav{border-bottom:3px solid #666;}
+  </style>
+</noscript>
+</head>
+
+<body class="">
+
+<div id="header">
+    <div id="headerLeft">
+    
+      <span id="masthead-title">Mule FWS Cloud Connector</span>
+    
+    <ul id="header-tabs" class="">
+    	<li id="guide"><a href="../../../../../../guide/install.html">
+	    	<span class="en">Install Guide</span>
+    	</a></li>
+    	<li id="java"><a href="../../../../../../java/packages.html">
+	    	<span class="en">Java API</span>
+    	</a></li>
+    	<li id="mule"><a href="../../../../../../mule/modules.html">
+	    	<span class="en">Mule API</span>
+    	</a></li>
+    </ul>
+    </div>
+    <div id="headerRight">
+      <a href="http://www.mulesoft.com" tabindex="-1">
+      <img src="../../../../../../assets//images/mulesoft-logo-final.gif" alt="MuleSoft" border="0" id="mulesoftlogo"></a><br/>
+      
+  <div id="search" >
+      <div id="searchForm">
+          <form accept-charset="utf-8" class="gsc-search-box" 
+                onsubmit="return submit_search()">
+            <table class="gsc-search-box" cellpadding="0" cellspacing="0"><tbody>
+                <tr>
+                  <td class="gsc-input">
+                    <input id="search_autocomplete" class="gsc-input" type="text" size="33" autocomplete="off"
+                      title="search developer docs" name="q"
+                      value="search developer docs"
+                      onFocus="search_focus_changed(this, true)"
+                      onBlur="search_focus_changed(this, false)"
+                      onkeydown="return search_changed(event, true, '../../../../../../')"
+                      onkeyup="return search_changed(event, false, '../../../../../../')" />
+                  <div id="search_filtered_div" class="no-display">
+                      <table id="search_filtered" cellspacing=0>
+                      </table>
+                  </div>
+                  </td>
+                  <td class="gsc-search-button">
+                    <input type="submit" value="Search" title="search" id="search-button" class="gsc-search-button" />
+                  </td>
+                  <td class="gsc-clear-button">
+                    <div title="clear results" class="gsc-clear-button">&nbsp;</div>
+                  </td>
+                </tr></tbody>
+              </table>
+          </form>
+      </div><!-- searchForm -->
+  </div><!-- search -->
+      
+    </div>
+</div><!-- header -->
+
+
+  <div class="g-section g-tpl-240" id="body-content">
+    <div class="g-unit g-first side-nav-resizable" id="side-nav">
+      <div id="swapper">
+        <div id="nav-panels">
+          <div id="resize-packages-nav">
+            <div id="packages-nav">
+              <div id="index-links">
+                <a href="../../../../../../java/packages.html"  >Package Index</a> |
+                <a href="../../../../../../java/classes.html" >Class Index</a>
+              </div>
+              <ul>
+                
+    <li class="api apilevel-">
+  <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/package-summary.html">com.amazonaws.fba_inbound.doc._2007_05_10</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/holders/package-summary.html">com.amazonaws.fba_inbound.doc._2007_05_10.holders</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/com/amazonaws/fba_inventory/doc/_2009_07_31/package-summary.html">com.amazonaws.fba_inventory.doc._2009_07_31</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/com/amazonaws/fba_inventory/doc/_2009_07_31/holders/package-summary.html">com.amazonaws.fba_inventory.doc._2009_07_31.holders</a></li>
+    <li class="selected api apilevel-">
+  <a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/package-summary.html">com.amazonaws.fba_outbound.doc._2007_08_02</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/holders/package-summary.html">com.amazonaws.fba_outbound.doc._2007_08_02.holders</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/module/fws/package-summary.html">org.mule.module.fws</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/module/fws/api/package-summary.html">org.mule.module.fws.api</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/module/fws/config/package-summary.html">org.mule.module.fws.config</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/module/fws/config/spring/package-summary.html">org.mule.module.fws.config.spring</a></li>
+              </ul><br/>
+            </div> <!-- end packages -->
+          </div> <!-- end resize-packages -->
+          <div id="classes-nav">
+            <ul>
+              
+    <li><h2>Interfaces</h2>
+      <ul>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/AmazonFBAOutbound.html">AmazonFBAOutbound</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/AmazonFBAOutboundPortType.html">AmazonFBAOutboundPortType</a></li>
+      </ul>
+    </li>
+              
+    <li><h2>Classes</h2>
+      <ul>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/Address.html">Address</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/AmazonFBAOutboundBindingStub.html">AmazonFBAOutboundBindingStub</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/AmazonFBAOutboundLocator.html">AmazonFBAOutboundLocator</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/CreateFulfillmentOrderItem.html">CreateFulfillmentOrderItem</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/Currency.html">Currency</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/Fee.html">Fee</a></li>
+          <li class="selected api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html">FulfillmentOrder</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrderItem.html">FulfillmentOrderItem</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrderStatus.html">FulfillmentOrderStatus</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentPreview.html">FulfillmentPreview</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentPreviewItem.html">FulfillmentPreviewItem</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentPreviewShipment.html">FulfillmentPreviewShipment</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentShipment.html">FulfillmentShipment</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentShipmentItem.html">FulfillmentShipmentItem</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentShipmentPackage.html">FulfillmentShipmentPackage</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentShipmentStatus.html">FulfillmentShipmentStatus</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/GetFulfillmentOrderResult.html">GetFulfillmentOrderResult</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/GetFulfillmentPreviewItem.html">GetFulfillmentPreviewItem</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/GetFulfillmentPreviewResult.html">GetFulfillmentPreviewResult</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/GetServiceStatusResult.html">GetServiceStatusResult</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/ListAllFulfillmentOrdersByNextTokenResult.html">ListAllFulfillmentOrdersByNextTokenResult</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/ListAllFulfillmentOrdersResult.html">ListAllFulfillmentOrdersResult</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/ResponseMetadata.html">ResponseMetadata</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/UnfulfillablePreviewItem.html">UnfulfillablePreviewItem</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/Weight.html">Weight</a></li>
+      </ul>
+    </li>
+              
+              
+              
+              
+            </ul><br/>
+          </div><!-- end classes -->
+        </div><!-- end nav-panels -->
+        <div id="nav-tree" style="display:none">
+          <div id="index-links">
+            <a href="../../../../../../packages.html"  >Package Index</a> | 
+            <a href="../../../../../../classes.html" >Class Index</a>
+          </div>
+        </div><!-- end nav-tree -->
+      </div><!-- end swapper -->
+    </div> <!-- end side-nav -->
+    <script>
+      if (!isMobile) {
+        $("<a href='#' id='nav-swap' onclick='swapNav();return false;' style='font-size:10px;line-height:9px;margin-left:1em;text-decoration:none;'><span id='tree-link'>Use Tree Navigation</span><span id='panel-link' style='display:none'>Use Panel Navigation</span></a>").appendTo("#side-nav");
+        chooseDefaultNav();
+        if ($("#nav-tree").is(':visible')) {
+          init_default_navtree("../../../../../../");
+        } else {
+          addLoadEvent(function() {
+            scrollIntoView("packages-nav");
+            scrollIntoView("classes-nav");
+          });
+        }
+        $("#swapper").css({borderBottom:"2px solid #aaa"});
+      } else {
+        swapNav(); // tree view should be used on mobile
+      }
+    </script>
+
+
+
+<div class="g-unit" id="doc-content">
+
+<div id="api-info-block">
+
+
+
+  
+   
+  
+  
+  
+  
+
+  
+  
+  
+  
+
+
+<div class="sum-details-links">
+
+
+Summary:
+
+
+
+
+
+
+
+  <a href="#lfields">Fields</a>
+  
+
+
+
+  &#124; <a href="#pubctors">Ctors</a>
+  
+
+
+
+  &#124; <a href="#pubmethods">Methods</a>
+  
+
+
+
+  &#124; <a href="#inhmethods">Inherited Methods</a>
+
+&#124; <a href="#" onclick="return toggleAllClassInherited()" id="toggleAllClassInherited">[Expand All]</a>
+
+</div><!-- end sum-details-links -->
+<div class="api-level">
+  
+
+
+  
+  
+
+</div>
+</div><!-- end api-info-block -->
+
+
+<!-- ======== START OF CLASS DATA ======== -->
+
+<div id="jd-header">
+    public
+     
+     
+    
+    class
+<h1>FulfillmentOrder</h1>
+
+
+
+  
+    extends Object<br/>
+  
+  
+  
+
+  
+  
+      implements 
+      
+        Serializable 
+      
+  
+  
+
+
+</div><!-- end header -->
+
+<div id="naMessage"></div>
+
+<div id="jd-content" class="api apilevel-">
+<table class="jd-inheritance-table">
+
+
+    <tr>
+        
+        <td colspan="2" class="jd-inheritance-class-cell">java.lang.Object</td>
+    </tr>
+    
+
+    <tr>
+        
+            <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+        
+        <td colspan="1" class="jd-inheritance-class-cell">com.amazonaws.fba_outbound.doc._2007_08_02.FulfillmentOrder</td>
+    </tr>
+    
+
+</table>
+
+
+
+
+
+
+
+<div class="jd-descr">
+
+
+<h2>Class Overview</h2>
+<p>The MerchantFulfillmentOrderId must be unique for all fulfillment
+ orders created by the merchant. If your system already has a unique
+ order identifier, then that may be a good value to put in this
+             field.
+ 
+             This DisplayableOrderDate will appear as the "order date"
+ in
+             recipient-facing materials such as the packing slip. The
+ DisplayableOrderId will appear as the "order id" in those
+             materials, and the DisplayableOrderComment will appear
+ as well.
+ 
+             The ReceivedDate indicates when Amazon received the
+             CreateFulfillmentOrder request for this order.
+ 
+             The StatusUpdatedDate indicates when Status of this order
+ last
+             changed.
+ 
+             ShippingSpeedCategory is the Service Level Agreement for
+ how long it will
+             take a shipment to be transported from the fulfillment
+ center to
+             the recipient, once shipped.
+             See enumeration for possible values, no default.
+ 
+             FulfillmentPolicy indicates how unfulfillable items should
+ be handled.
+             See enumeration for possible values, default is FillOrKill.
+ 
+             FulfillmentMethod indicates the intended recipient channel
+ for the
+             order whether it be a consumer order or inventory return.
+ See enumeration for possible values, default is Consumer.
+ 
+             NotificationEmailList can be used to provide a list of
+ e-mail 
+             addresses to receive ship-complete e-mail notifications.
+ These 
+             e-mails are customer-facing e-mails sent by FBA on behalf
+ of 
+             the merchant.
+</p>
+
+
+
+
+
+</div><!-- jd-descr -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="jd-descr">
+
+
+<h2>Summary</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =========== FIELD SUMMARY =========== -->
+<table id="lfields" class="jd-sumtable"><tr><th colspan="12">Fields</th></tr>
+
+
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          Object</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#__equalsCalc">__equalsCalc</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          boolean</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#__hashCodeCalc">__hashCodeCalc</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          <a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/Address.html">Address</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#destinationAddress">destinationAddress</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#displayableOrderComment">displayableOrderComment</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#displayableOrderDateTime">displayableOrderDateTime</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#displayableOrderId">displayableOrderId</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#fulfillmentMethod">fulfillmentMethod</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          <a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrderStatus.html">FulfillmentOrderStatus</a></nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#fulfillmentOrderStatus">fulfillmentOrderStatus</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#fulfillmentPolicy">fulfillmentPolicy</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#merchantFulfillmentOrderId">merchantFulfillmentOrderId</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          String[]</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#notificationEmailList">notificationEmailList</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#receivedDateTime">receivedDateTime</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#shippingSpeedCategory">shippingSpeedCategory</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
+          String</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#statusUpdatedDateTime">statusUpdatedDateTime</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          static
+          
+          TypeDesc</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#typeDesc">typeDesc</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+
+</table>
+
+
+
+
+
+
+
+<!-- ======== CONSTRUCTOR SUMMARY ======== -->
+<table id="pubctors" class="jd-sumtable"><tr><th colspan="12">Public Constructors</th></tr>
+
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            </nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#FulfillmentOrder()">FulfillmentOrder</a></span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            </nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#FulfillmentOrder(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.amazonaws.fba_outbound.doc._2007_08_02.Address, java.lang.String, java.lang.String, java.lang.String, com.amazonaws.fba_outbound.doc._2007_08_02.FulfillmentOrderStatus, java.lang.String, java.lang.String[])">FulfillmentOrder</a></span>(String merchantFulfillmentOrderId, String displayableOrderId, String displayableOrderDateTime, String displayableOrderComment, String shippingSpeedCategory, <a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/Address.html">Address</a> destinationAddress, String fulfillmentPolicy, String fulfillmentMethod, String receivedDateTime, <a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrderStatus.html">FulfillmentOrderStatus</a> fulfillmentOrderStatus, String statusUpdatedDateTime, String[] notificationEmailList)</nobr>
+        
+  </td></tr>
+
+
+
+</table>
+
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="pubmethods" class="jd-sumtable"><tr><th colspan="12">Public Methods</th></tr>
+
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            synchronized
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#equals(java.lang.Object)">equals</a></span>(Object obj)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            static
+            
+            Deserializer</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#getDeserializer(java.lang.String, java.lang.Class, javax.xml.namespace.QName)">getDeserializer</a></span>(String mechType, Class _javaType, QName _xmlType)</nobr>
+        
+        <div class="jd-descrdiv">Get Custom Deserializer
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/Address.html">Address</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#getDestinationAddress()">getDestinationAddress</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the destinationAddress value for this FulfillmentOrder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#getDisplayableOrderComment()">getDisplayableOrderComment</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the displayableOrderComment value for this FulfillmentOrder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#getDisplayableOrderDateTime()">getDisplayableOrderDateTime</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the displayableOrderDateTime value for this FulfillmentOrder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#getDisplayableOrderId()">getDisplayableOrderId</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the displayableOrderId value for this FulfillmentOrder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#getFulfillmentMethod()">getFulfillmentMethod</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the fulfillmentMethod value for this FulfillmentOrder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            <a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrderStatus.html">FulfillmentOrderStatus</a></nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#getFulfillmentOrderStatus()">getFulfillmentOrderStatus</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the fulfillmentOrderStatus value for this FulfillmentOrder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#getFulfillmentPolicy()">getFulfillmentPolicy</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the fulfillmentPolicy value for this FulfillmentOrder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#getMerchantFulfillmentOrderId()">getMerchantFulfillmentOrderId</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the merchantFulfillmentOrderId value for this FulfillmentOrder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#getNotificationEmailList(int)">getNotificationEmailList</a></span>(int i)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String[]</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#getNotificationEmailList()">getNotificationEmailList</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the notificationEmailList value for this FulfillmentOrder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#getReceivedDateTime()">getReceivedDateTime</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the receivedDateTime value for this FulfillmentOrder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            static
+            
+            Serializer</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#getSerializer(java.lang.String, java.lang.Class, javax.xml.namespace.QName)">getSerializer</a></span>(String mechType, Class _javaType, QName _xmlType)</nobr>
+        
+        <div class="jd-descrdiv">Get Custom Serializer
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#getShippingSpeedCategory()">getShippingSpeedCategory</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the shippingSpeedCategory value for this FulfillmentOrder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#getStatusUpdatedDateTime()">getStatusUpdatedDateTime</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Gets the statusUpdatedDateTime value for this FulfillmentOrder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            static
+            
+            TypeDesc</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#getTypeDesc()">getTypeDesc</a></span>()</nobr>
+        
+        <div class="jd-descrdiv">Return type metadata object
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            synchronized
+            
+            
+            
+            int</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#hashCode()">hashCode</a></span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#setDestinationAddress(com.amazonaws.fba_outbound.doc._2007_08_02.Address)">setDestinationAddress</a></span>(<a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/Address.html">Address</a> destinationAddress)</nobr>
+        
+        <div class="jd-descrdiv">Sets the destinationAddress value for this FulfillmentOrder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#setDisplayableOrderComment(java.lang.String)">setDisplayableOrderComment</a></span>(String displayableOrderComment)</nobr>
+        
+        <div class="jd-descrdiv">Sets the displayableOrderComment value for this FulfillmentOrder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#setDisplayableOrderDateTime(java.lang.String)">setDisplayableOrderDateTime</a></span>(String displayableOrderDateTime)</nobr>
+        
+        <div class="jd-descrdiv">Sets the displayableOrderDateTime value for this FulfillmentOrder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#setDisplayableOrderId(java.lang.String)">setDisplayableOrderId</a></span>(String displayableOrderId)</nobr>
+        
+        <div class="jd-descrdiv">Sets the displayableOrderId value for this FulfillmentOrder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#setFulfillmentMethod(java.lang.String)">setFulfillmentMethod</a></span>(String fulfillmentMethod)</nobr>
+        
+        <div class="jd-descrdiv">Sets the fulfillmentMethod value for this FulfillmentOrder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#setFulfillmentOrderStatus(com.amazonaws.fba_outbound.doc._2007_08_02.FulfillmentOrderStatus)">setFulfillmentOrderStatus</a></span>(<a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrderStatus.html">FulfillmentOrderStatus</a> fulfillmentOrderStatus)</nobr>
+        
+        <div class="jd-descrdiv">Sets the fulfillmentOrderStatus value for this FulfillmentOrder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#setFulfillmentPolicy(java.lang.String)">setFulfillmentPolicy</a></span>(String fulfillmentPolicy)</nobr>
+        
+        <div class="jd-descrdiv">Sets the fulfillmentPolicy value for this FulfillmentOrder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#setMerchantFulfillmentOrderId(java.lang.String)">setMerchantFulfillmentOrderId</a></span>(String merchantFulfillmentOrderId)</nobr>
+        
+        <div class="jd-descrdiv">Sets the merchantFulfillmentOrderId value for this FulfillmentOrder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#setNotificationEmailList(int, java.lang.String)">setNotificationEmailList</a></span>(int i, String _value)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#setNotificationEmailList(java.lang.String[])">setNotificationEmailList</a></span>(String[] notificationEmailList)</nobr>
+        
+        <div class="jd-descrdiv">Sets the notificationEmailList value for this FulfillmentOrder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#setReceivedDateTime(java.lang.String)">setReceivedDateTime</a></span>(String receivedDateTime)</nobr>
+        
+        <div class="jd-descrdiv">Sets the receivedDateTime value for this FulfillmentOrder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#setShippingSpeedCategory(java.lang.String)">setShippingSpeedCategory</a></span>(String shippingSpeedCategory)</nobr>
+        
+        <div class="jd-descrdiv">Sets the shippingSpeedCategory value for this FulfillmentOrder.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad"><a href="../../../../../../com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrder.html#setStatusUpdatedDateTime(java.lang.String)">setStatusUpdatedDateTime</a></span>(String statusUpdatedDateTime)</nobr>
+        
+        <div class="jd-descrdiv">Sets the statusUpdatedDateTime value for this FulfillmentOrder.</div>
+  
+  </td></tr>
+
+
+
+</table>
+
+
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="inhmethods" class="jd-sumtable"><tr><th>
+  <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
+  <div style="clear:left;">Inherited Methods</div></th></tr>
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-java.lang.Object" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-java.lang.Object-trigger"
+          src="../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From class
+
+  java.lang.Object
+
+<div id="inherited-methods-java.lang.Object">
+  <div id="inherited-methods-java.lang.Object-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-java.lang.Object-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            Object</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">clone</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            boolean</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">equals</span>(Object arg0)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">finalize</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            final
+            
+            
+            Class&lt;?&gt;</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">getClass</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            int</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">hashCode</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            final
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">notify</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            final
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">notifyAll</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            
+            
+            
+            String</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">toString</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            final
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">wait</span>()</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            final
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">wait</span>(long arg0, int arg1)</nobr>
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol"><nobr>
+            
+            
+            final
+            
+            
+            void</nobr>
+        </td>
+        <td class="jd-linkcol" width="100%"><nobr>
+        <span class="sympad">wait</span>(long arg0)</nobr>
+        
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+
+
+</table>
+
+
+</div><!-- jd-descr (summary) -->
+
+<!-- Details -->
+
+
+
+
+
+
+
+
+<!-- XML Attributes -->
+
+
+<!-- Enum Values -->
+
+
+<!-- Constants -->
+
+
+<!-- Fields -->
+
+
+<!-- ========= FIELD DETAIL ======== -->
+<h2>Fields</h2>
+
+
+
+
+<A NAME="__equalsCalc"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        Object
+      </span>
+        __equalsCalc
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="__hashCodeCalc"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        boolean
+      </span>
+        __hashCodeCalc
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="destinationAddress"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        <a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/Address.html">Address</a>
+      </span>
+        destinationAddress
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="displayableOrderComment"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        String
+      </span>
+        displayableOrderComment
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="displayableOrderDateTime"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        String
+      </span>
+        displayableOrderDateTime
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="displayableOrderId"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        String
+      </span>
+        displayableOrderId
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="fulfillmentMethod"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        String
+      </span>
+        fulfillmentMethod
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="fulfillmentOrderStatus"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        <a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrderStatus.html">FulfillmentOrderStatus</a>
+      </span>
+        fulfillmentOrderStatus
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="fulfillmentPolicy"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        String
+      </span>
+        fulfillmentPolicy
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="merchantFulfillmentOrderId"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        String
+      </span>
+        merchantFulfillmentOrderId
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="notificationEmailList"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        String[]
+      </span>
+        notificationEmailList
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="receivedDateTime"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        String
+      </span>
+        receivedDateTime
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="shippingSpeedCategory"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        String
+      </span>
+        shippingSpeedCategory
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="statusUpdatedDateTime"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        String
+      </span>
+        statusUpdatedDateTime
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<A NAME="typeDesc"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+        static 
+         
+        TypeDesc
+      </span>
+        typeDesc
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+
+<!-- Public ctors -->
+
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<h2>Public Constructors</h2>
+
+
+
+<A NAME="FulfillmentOrder()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        
+      </span>
+      <span class="sympad">FulfillmentOrder</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<A NAME="FulfillmentOrder(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, com.amazonaws.fba_outbound.doc._2007_08_02.Address, java.lang.String, java.lang.String, java.lang.String, com.amazonaws.fba_outbound.doc._2007_08_02.FulfillmentOrderStatus, java.lang.String, java.lang.String[])"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        
+      </span>
+      <span class="sympad">FulfillmentOrder</span>
+      <span class="normal">(String merchantFulfillmentOrderId, String displayableOrderId, String displayableOrderDateTime, String displayableOrderComment, String shippingSpeedCategory, <a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/Address.html">Address</a> destinationAddress, String fulfillmentPolicy, String fulfillmentMethod, String receivedDateTime, <a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrderStatus.html">FulfillmentOrderStatus</a> fulfillmentOrderStatus, String statusUpdatedDateTime, String[] notificationEmailList)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>merchantFulfillmentOrderId</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>displayableOrderId</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>displayableOrderDateTime</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>displayableOrderComment</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>shippingSpeedCategory</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>destinationAddress</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>fulfillmentPolicy</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>fulfillmentMethod</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>receivedDateTime</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>fulfillmentOrderStatus</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>statusUpdatedDateTime</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>notificationEmailList</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+
+
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<!-- Protected ctors -->
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+<!-- Public methdos -->
+
+<h2>Public Methods</h2>
+
+
+
+<A NAME="equals(java.lang.Object)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+        synchronized 
+        boolean
+      </span>
+      <span class="sympad">equals</span>
+      <span class="normal">(Object obj)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>obj</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getDeserializer(java.lang.String, java.lang.Class, javax.xml.namespace.QName)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+         
+         
+         
+        Deserializer
+      </span>
+      <span class="sympad">getDeserializer</span>
+      <span class="normal">(String mechType, Class _javaType, QName _xmlType)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Get Custom Deserializer
+</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>mechType</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>_javaType</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>_xmlType</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getDestinationAddress()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/Address.html">Address</a>
+      </span>
+      <span class="sympad">getDestinationAddress</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the destinationAddress value for this FulfillmentOrder.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>destinationAddress
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getDisplayableOrderComment()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getDisplayableOrderComment</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the displayableOrderComment value for this FulfillmentOrder.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>displayableOrderComment
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getDisplayableOrderDateTime()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getDisplayableOrderDateTime</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the displayableOrderDateTime value for this FulfillmentOrder.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>displayableOrderDateTime
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getDisplayableOrderId()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getDisplayableOrderId</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the displayableOrderId value for this FulfillmentOrder.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>displayableOrderId
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getFulfillmentMethod()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getFulfillmentMethod</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the fulfillmentMethod value for this FulfillmentOrder.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>fulfillmentMethod
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getFulfillmentOrderStatus()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrderStatus.html">FulfillmentOrderStatus</a>
+      </span>
+      <span class="sympad">getFulfillmentOrderStatus</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the fulfillmentOrderStatus value for this FulfillmentOrder.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>fulfillmentOrderStatus
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getFulfillmentPolicy()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getFulfillmentPolicy</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the fulfillmentPolicy value for this FulfillmentOrder.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>fulfillmentPolicy
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getMerchantFulfillmentOrderId()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getMerchantFulfillmentOrderId</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the merchantFulfillmentOrderId value for this FulfillmentOrder.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>merchantFulfillmentOrderId
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getNotificationEmailList(int)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getNotificationEmailList</span>
+      <span class="normal">(int i)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>i</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getNotificationEmailList()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String[]
+      </span>
+      <span class="sympad">getNotificationEmailList</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the notificationEmailList value for this FulfillmentOrder.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>notificationEmailList
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getReceivedDateTime()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getReceivedDateTime</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the receivedDateTime value for this FulfillmentOrder.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>receivedDateTime
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getSerializer(java.lang.String, java.lang.Class, javax.xml.namespace.QName)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+         
+         
+         
+        Serializer
+      </span>
+      <span class="sympad">getSerializer</span>
+      <span class="normal">(String mechType, Class _javaType, QName _xmlType)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Get Custom Serializer
+</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>mechType</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>_javaType</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>_xmlType</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getShippingSpeedCategory()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getShippingSpeedCategory</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the shippingSpeedCategory value for this FulfillmentOrder.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>shippingSpeedCategory
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getStatusUpdatedDateTime()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getStatusUpdatedDateTime</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Gets the statusUpdatedDateTime value for this FulfillmentOrder.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>statusUpdatedDateTime
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="getTypeDesc()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+         
+         
+         
+        TypeDesc
+      </span>
+      <span class="sympad">getTypeDesc</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Return type metadata object
+</p></div>
+
+    </div>
+</div>
+
+
+<A NAME="hashCode()"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+        synchronized 
+        int
+      </span>
+      <span class="sympad">hashCode</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<A NAME="setDestinationAddress(com.amazonaws.fba_outbound.doc._2007_08_02.Address)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setDestinationAddress</span>
+      <span class="normal">(<a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/Address.html">Address</a> destinationAddress)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the destinationAddress value for this FulfillmentOrder.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>destinationAddress</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setDisplayableOrderComment(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setDisplayableOrderComment</span>
+      <span class="normal">(String displayableOrderComment)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the displayableOrderComment value for this FulfillmentOrder.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>displayableOrderComment</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setDisplayableOrderDateTime(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setDisplayableOrderDateTime</span>
+      <span class="normal">(String displayableOrderDateTime)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the displayableOrderDateTime value for this FulfillmentOrder.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>displayableOrderDateTime</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setDisplayableOrderId(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setDisplayableOrderId</span>
+      <span class="normal">(String displayableOrderId)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the displayableOrderId value for this FulfillmentOrder.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>displayableOrderId</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setFulfillmentMethod(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setFulfillmentMethod</span>
+      <span class="normal">(String fulfillmentMethod)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the fulfillmentMethod value for this FulfillmentOrder.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>fulfillmentMethod</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setFulfillmentOrderStatus(com.amazonaws.fba_outbound.doc._2007_08_02.FulfillmentOrderStatus)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setFulfillmentOrderStatus</span>
+      <span class="normal">(<a href="../../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentOrderStatus.html">FulfillmentOrderStatus</a> fulfillmentOrderStatus)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the fulfillmentOrderStatus value for this FulfillmentOrder.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>fulfillmentOrderStatus</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setFulfillmentPolicy(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setFulfillmentPolicy</span>
+      <span class="normal">(String fulfillmentPolicy)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the fulfillmentPolicy value for this FulfillmentOrder.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>fulfillmentPolicy</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setMerchantFulfillmentOrderId(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setMerchantFulfillmentOrderId</span>
+      <span class="normal">(String merchantFulfillmentOrderId)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the merchantFulfillmentOrderId value for this FulfillmentOrder.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>merchantFulfillmentOrderId</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setNotificationEmailList(int, java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setNotificationEmailList</span>
+      <span class="normal">(int i, String _value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>i</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>_value</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setNotificationEmailList(java.lang.String[])"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setNotificationEmailList</span>
+      <span class="normal">(String[] notificationEmailList)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the notificationEmailList value for this FulfillmentOrder.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>notificationEmailList</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setReceivedDateTime(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setReceivedDateTime</span>
+      <span class="normal">(String receivedDateTime)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the receivedDateTime value for this FulfillmentOrder.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>receivedDateTime</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setShippingSpeedCategory(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setShippingSpeedCategory</span>
+      <span class="normal">(String shippingSpeedCategory)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the shippingSpeedCategory value for this FulfillmentOrder.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>shippingSpeedCategory</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<A NAME="setStatusUpdatedDateTime(java.lang.String)"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setStatusUpdatedDateTime</span>
+      <span class="normal">(String statusUpdatedDateTime)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sets the statusUpdatedDateTime value for this FulfillmentOrder.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>statusUpdatedDateTime</td>
+          <td></td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+
+
+
+<!-- ========= END OF CLASS DATA ========= -->
+<A NAME="navbar_top"></A>
+
+<div id="footer">
+Generated by <a href="http://www.mulesoft.com/devkit">Mule DevKit</a>. Document generation technology based on <a href="http://code.google.com/p/doclava/">Google's Doclava</a>.
+</div> <!-- end footer -->
+
+</div> <!-- jd-content -->
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+<script type="text/javascript">
+init(); /* initialize mule-developer-docs.js */
+</script>
+
+</body>
+</html>
