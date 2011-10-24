@@ -20,7 +20,10 @@
 
 
 <!-- BEGIN_INCLUDE(fws:get-inbound-shipment-preview) -->
-<fws:get-inbound-shipment-preview items="#[variable:items]"  address="#[address]" labelPreference="MERCHANT_LABEL" />
+  <fws:get-inbound-shipment-preview
+      labelPreference="MERCHANT_LABEL" address-ref="#[address]" >
+        <fws:items ref="#[variable:items]" /> 
+    </fws:get-inbound-shipment-preview>
 <!-- END_INCLUDE(fws:get-inbound-shipment-preview) -->
 
 
@@ -78,7 +81,7 @@
          labelPreference="MERCHANT_LABEL"
          shipmentId="#[variable:shipmentId]" shipmentName="#[variable:shipmentName]"
          destinationFulfillmentCenter="#[variable:destinationFulfillmentCenter]"
-         shipFromAddress="#[variable:shipFromAddress]" />
+         shipFromAddress-ref="#[variable:shipFromAddress]" />
 <!-- END_INCLUDE(fws:put-inbound-shipment) -->
 
 <!-- BEGIN_INCLUDE(fws:put-inbound-shipment) -->
@@ -91,13 +94,10 @@
 <!-- END_INCLUDE(fws:put-inbound-shipment) -->
 
 
-<!-- BEGIN_INCLUDE(fws:put-inbound-shipment-items) -->
-<fws:put-inbound-shipment-items
-         shipmentId="#[variable:shipmentId]">
-             <itemQuantities>
-                 <itemQuantity key="#[variable:aMerchantSku]" value="#[variable:quantity]"/>
-             </itemQuantities>
-           </put-inbound-shipment-items>
+<!-- BEGIN_INCLUDE(fws:put-inbound-shipment-items) -->           
+     <fws:put-inbound-shipment-items shipmentId="#[variable:shipmentId]" >
+      <fws:item-quantities ref="#[variable:aQuantityItem]"/>
+    </fws:put-inbound-shipment-items>
 <!-- END_INCLUDE(fws:put-inbound-shipment-items) -->
 
 
@@ -109,19 +109,22 @@
 
 
  <!-- BEGIN_INCLUDE(fws:create-fulfillment-order) -->
-<fws:create-fulfillment-order 
-              destinationAddress="#[map-payload:destinationAddress]" orderId="#[map-payload:orderId]"
-              displayableOrderComment="#[map-payload:comment]"
-              displayableOrderDate="[map-payload:orderDate]" items="#[map-payload:items]"
-              shippingSpeedCategory="#[map-payload:shippingSpeed]" /> 
+  <fws:create-fulfillment-order
+      destinationAddress-ref="#[map-payload:destinationAddress]" 
+      orderId="#[map-payload:orderId]"
+      displayableOrderComment="#[map-payload:comment]"
+      displayableOrderDate="#[map-payload:orderDate]"      
+      shippingSpeedCategory="#[map-payload:shippingSpeed]" >
+      <fws:items ref="#[map-payload:items]"/>      
+    </fws:create-fulfillment-order>
 <!-- END_INCLUDE(fws:create-fulfillment-order) -->
 
 <!-- BEGIN_INCLUDE(fws:get-fulfillment-preview) -->
-<fws:get-fulfillment-preview
-        address="#[variable:address]" 
-        items="#[variable:items]" 
-        shippingSpeedCategories="Standard"
-        orderItemId="X123698" /> 
+ <fws:get-fulfillment-preview address-ref="#[variable:address]"
+      shippingSpeedCategories="Standard"
+      orderItemId="X123698" >
+      <fws:items ref="#[variable:items]"/>
+    </fws:get-fulfillment-preview>
 <!-- END_INCLUDE(fws:get-fulfillment-preview) -->
 
 
