@@ -25,7 +25,7 @@
 
 
 <!-- BEGIN_INCLUDE(fws:get-inbound-service-status) -->
-<fws:get-inbound-service-status >
+<fws:get-inbound-service-status />
 <!-- END_INCLUDE(fws:get-inbound-service-status) -->
 
 
@@ -52,18 +52,18 @@
 <fws:insert-element orderId="#[map-payload:orderId]"/>
 <!-- END_INCLUDE(fws:insert-element) -->
 
-<!-- BEGIN_INCLUDE(fws:get-outbound-service-status/) -->
+<!-- BEGIN_INCLUDE(fws:get-outbound-service-status) -->
 <fws:get-outbound-service-status/ >
-<!-- END_INCLUDE(fws:get-outbound-service-status/) -->
+<!-- END_INCLUDE(fws:get-outbound-service-status) -->
 
 
 <!-- BEGIN_INCLUDE(fws:list-fulfillment-orders) -->
-<fws:list-fulfillment-orders >
+<fws:list-fulfillment-orders />
 <!-- END_INCLUDE(fws:list-fulfillment-orders) --> 
 
 
- <!-- BEGIN_INCLUDE(fws:get-inventory-service-status) -->
-<fws:get-inventory-service-status >
+<!-- BEGIN_INCLUDE(fws:get-inventory-service-status) -->
+<fws:get-inventory-service-status />
 <!-- END_INCLUDE(fws:get-inventory-service-status) -->
 
  <!-- BEGIN_INCLUDE(fws:get-fulfillment-identifier) -->
