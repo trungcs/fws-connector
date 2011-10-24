@@ -22,11 +22,11 @@
   xsi:schemaLocation="
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
        http://repository.mulesoft.org/releases/org/mule/modules/mule-module-fws http://repository.mulesoft.org/releases/org/mule/modules/mule-module-fws/2.0/mule-fws.xsd
-       http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
-       http://www.mulesoft.org/schema/mule/json    http://www.mulesoft.org/schema/mule/json/3.1/mule-json.xsd
+       http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.2/mule.xsd
+       http://www.mulesoft.org/schema/mule/json    http://www.mulesoft.org/schema/mule/json/3.2/mule-json.xsd
        http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/3.0/mule-http.xsd
-       http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/3.1/mule-scripting.xsd
-       http://www.mulesoft.org/schema/mule/mongo http://www.mulesoft.org/schema/mule/mongo/1.0/mule-mongo.xsd">
+       http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/3.2/mule-scripting.xsd
+       http://www.mulesoft.org/schema/mule/mongo http://www.mulesoft.org/schema/mule/mongo/2.0/mule-mongo.xsd">
 
   <fws:config name="fws" accessKey="${fwsAccessKey}" secretKey="${fwsSecretKey}"/>
   <mongo:config  name="mongo" />
@@ -43,14 +43,18 @@
         <flow-ref name="GetAddress"/>
      </enricher>
     <flow-ref name="GetItems"/>
-    <fws:get-inbound-shipment-preview address="#[header:session:fromAddress]" items="#[payload]"/>
+    <fws:get-inbound-shipment-preview address-ref="#[header:session:fromAddress]" >
+      <fws:items ref="#[payload]"/>
+    </fws:get-inbound-shipment-preview>
     <collection-splitter/>
     <fws:put-inbound-shipment 
-      shipFromAddress="#[header:session:fromAddress]"
+      shipFromAddress-ref="#[header:session:fromAddress]"
       shipmentName="#[header:session:shipmentName]"
       shipmentId="#[groovy:payload.shipmentId]" 
       destinationFulfillmentCenter="#[groovy:payload.destinationFulfillmentCenter]" 
-      itemQuantities="#[groovy:payload.merchantSKUQuantityItem as List]"  />
+       >
+       <fws:item-quantities ref="#[groovy:payload.merchantSKUQuantityItem as List]"/> 
+     </fws:put-inbound-shipment>
   </flow>
   
   
@@ -59,20 +63,25 @@
     Please notice that you still need to manually list this item in the Amazon Seller Center before executing this flow</description>
     <http:inbound-endpoint host="localhost" port="9091" path="fws-demo-inbound-add-item" />
     <fws:get-fulfillment-identifier-for-msku merchantSku="#[header:inbound:merchantSku]"/>
-    <mongo:insert-object collection="Items" element='{ "quantity": "#[header:inbound:quantity]", "merchantSKU" : "#[header:inbound:merchantSku]" } '/>
+    <expression-transformer expression='{ "quantity": "#[header:inbound:quantity]", "merchantSKU" : "#[header:inbound:merchantSku]" } ' evaluator="string"/>
+    <mongo:json-to-dbobject />
+    <mongo:insert-object  collection="Items" dbObject-ref='#[payload]'/>
   </flow>
   
   <flow name="AddFromAddress">
     <description>Adds an address. This flow adds it to the Address collection </description>
     <http:inbound-endpoint host="localhost" port="9091" path="fws-demo-inbound-add-from-address" />
-    <mongo:insert-object collection="Addresses" element='{
+    
+    <expression-transformer expression='{
           "addressLine1" : "#[header:inbound:addressLine1]", 
           "city" : "#[header:inbound:city]",
           "countryCode" : "#[header:inbound:countryCode]",
           "name" : "#[header:inbound:name]",
           "postalCode" : "#[header:inbound:postalCode]",
           "stateOrProvinceCode": "#[header:inbound:stateOrProvinceCode]"
-         }'/>
+         }' evaluator="string"/>
+    <mongo:json-to-dbobject/>    
+    <mongo:insert-object collection="Addresses" dbObject-ref='#[payload]'/>
   </flow>
   
    <flow name="GetItems">

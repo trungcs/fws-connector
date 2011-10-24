@@ -12,7 +12,7 @@
 		<muleVersion>3.2.0</muleVersion>
 		<ibeansVersion>1.1</ibeansVersion>
 		<mule.fws.version>2.0-SNAPSHOT</mule.fws.version>
-        <mule.mongo.version>1.1</mule.mongo.version>
+        <mule.mongo.version>2.0-SNAPSHOT</mule.mongo.version>
 	</properties>
 
 	<description>Example that shows the FWS Inbound API</description>
