@@ -26,7 +26,7 @@
        http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.1/mule.xsd
        http://www.mulesoft.org/schema/mule/json    http://www.mulesoft.org/schema/mule/json/3.1/mule-json.xsd
        http://www.mulesoft.org/schema/mule/smtp http://www.mulesoft.org/schema/mule/smtp/3.1/mule-smtp.xsd
-       http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/3.1/mule-scripting.xsd 
+       http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/3.2/mule-scripting.xsd 
        http://www.mulesoft.org/schema/mule/email http://www.mulesoft.org/schema/mule/email/3.1/mule-email.xsd
        http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/3.0/mule-http.xsd">
 

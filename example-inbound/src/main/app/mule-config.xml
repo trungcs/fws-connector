@@ -101,7 +101,10 @@
   </flow>
   
     <flow name="GetAddress">
-    <mongo:find-one-object collection="Addresses" query='{ "name": "#[header:inbound:addressName]" }' />
+    
+    <expression-transformer expression='{ "name": "#[header:inbound:addressName]" }' evaluator="string"/>
+    <mongo:json-to-dbobject/>        
+    <mongo:find-one-object collection="Addresses" query-ref='#[payload]' />
     <scripting:component>
       <scripting:script engine="groovy">
       <![CDATA[  
