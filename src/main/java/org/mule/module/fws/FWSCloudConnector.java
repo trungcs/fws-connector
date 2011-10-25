@@ -51,6 +51,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.xml.rpc.ServiceException;
 
 import org.apache.commons.lang.Validate;
@@ -107,7 +108,7 @@ import org.apache.commons.lang.Validate;
  * @author flbulgarelli
  */
 @Module(name = "fws", schemaVersion = "2.0")
-public class FWSCloudConnector implements Initialisable
+public class FWSCloudConnector 
 {
     /**The FWSClient. You may change it for mocking purposes*/
     @Optional
@@ -577,6 +578,7 @@ public class FWSCloudConnector implements Initialisable
         return client.listUpdatedInventorySupply(startDateTime, responseGroup);
     }
 
+    @PostConstruct
     public void initialise() throws InitialisationException
     {
         if (client == null)
