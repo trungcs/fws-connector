@@ -16,6 +16,7 @@
     <junit.version>4.8.2</junit.version>
     <mockito.version>1.8.2</mockito.version>
     <cxf.version>2.3.0</cxf.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> 
   </properties>
 
 
