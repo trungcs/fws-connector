@@ -204,12 +204,12 @@ Summary:
 <div class="jd-tagdata">
       <table class="jd-tagtable">
         <tbody><tr>
-          <th>Namespace</th><td>http://repository.mulesoft.org/releases/org/mule/modules/mule-module-fws</td>
+          <th>Namespace</th><td>http://www.mulesoft.org/schema/mule/fws</td>
         </tr><tr>
-          <th>Schema Location</th><td>http://repository.mulesoft.org/releases/org/mule/modules/mule-module-fws/2.0/mule-fws.xsd</td>
+          <th>Schema Location</th><td>http://www.mulesoft.org/schema/mule/fws/2.0/mule-fws.xsd</td>
         </tr>
 <tr>
-          <th>Version</th><td>1.0</td>
+          <th>Version</th><td>2.0</td>
         </tr>
 <tr>
           <th>Minimum Mule Version</th><td>3.2</td>
@@ -221,7 +221,53 @@ Summary:
 
 
 <h2>Module Overview</h2>
-<p>Mule Module Facade for Amazon <a href="http://aws.amazon.com/fws/">FulfillmentWebService</a><br/></p>
+<p>Mule Module Facade for Amazon <a
+ href="http://aws.amazon.com/fws/">FulfillmentWebService</a> <h1 id="functionality">
+ Amazon Fulfillment Web Service Functionality</h1>
+ <p>
+ With Amazon FWS, merchants can directly integrate with the FBA system, allowing
+ them to automatically process shipments to Amazon and then out to customers. This
+ functionality is contained in three key APIs: the inbound service, the outbound
+ service, and the inventory service.
+ </p>
+ <h2>Inbound Service</h2>
+ <p>
+ The inbound service allows merchants to create and send inbound shipments of
+ inventory to Amazon&#8217;s fulfillment centers.
+ </p>
+ <ul>
+ <li><strong>Create shipments of inventory to Amazon fulfillment centers</strong><br>
+ Our tools make it easy for merchants to ship inventory to Amazon with everything
+ from label creation to packing slips. Merchants in the U.S. can also take
+ advantage of Amazon&#8217;s discounted UPS shipping rates.<br>
+ <br>
+ </li>
+ </ul>
+ <h2>Outbound Service</h2>
+ <p>
+ The outbound service allows merchants to use Amazon&#8217;s fulfillment processing
+ for orders sold on the merchant&#8217;s website or other non-Amazon channels.
+ </p>
+ <ul>
+ <li><strong>Submit fulfillment order/shipment requests</strong><br>
+ By integrating the outbound service API into merchant software, customer orders
+ are processed in real time, informing Amazon what to ship and where to ship it.</li>
+ </ul>
+ <ul>
+ <li><strong>Track and manage shipment requests</strong><br>
+ After orders leave our fulfillment centers, merchants can track shipments and keep
+ their customers aware of arrival times.</li>
+ </ul>
+ <h2>Inventory Service</h2>
+ <p>
+ The inventory service allows merchants to stay up to date on the status of
+ inventory in Amazon���s fulfillment centers.
+ </p>
+ <ul>
+ <li><strong>Check Inventory Status</strong><br>
+ Merchants can discover when inventory items change status and get the current
+ availability status to keep product listing information up to date.</li>
+ </ul><br/></p>
 
 
 </div><!-- jd-descr -->
@@ -536,12 +582,12 @@ similar to the following:</p>
 <pre>
 &lt;mule xmlns="http://www.mulesoft.org/schema/mule/core"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns:fws="http://repository.mulesoft.org/releases/org/mule/modules/mule-module-fws"
+      xmlns:fws="http://www.mulesoft.org/schema/mule/fws"
       xsi:schemaLocation="
                http://www.mulesoft.org/schema/mule/core
                http://www.mulesoft.org/schema/mule/core/current/mule.xsd
-               http://repository.mulesoft.org/releases/org/mule/modules/mule-module-fws
-               http://repository.mulesoft.org/releases/org/mule/modules/mule-module-fws/2.0/mule-fws.xsd"&gt;
+               http://www.mulesoft.org/schema/mule/fws
+               http://www.mulesoft.org/schema/mule/fws/2.0/mule-fws.xsd"&gt;
 
       &lt;!-- here goes your flows and configuration elements --&gt;
 
