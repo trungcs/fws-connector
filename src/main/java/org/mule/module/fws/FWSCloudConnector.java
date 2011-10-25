@@ -106,9 +106,7 @@ import org.apache.commons.lang.Validate;
  * 
  * @author flbulgarelli
  */
-@Module(name = "fws",        
-        namespace = "http://repository.mulesoft.org/releases/org/mule/modules/mule-module-fws",
-        schemaLocation = "http://repository.mulesoft.org/releases/org/mule/modules/mule-module-fws/2.0/mule-fws.xsd")
+@Module(name = "fws", schemaVersion = "2.0")
 public class FWSCloudConnector implements Initialisable
 {
     /**The FWSClient. You may change it for mocking purposes*/
