@@ -460,7 +460,7 @@ Summary:
 
 
 <h2>Class Overview</h2>
-<p>PutInboundShipmentDataMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/module/fws/FWSCloudConnector.html#putInboundShipmentData(java.lang.String, java.lang.String, java.lang.String, org.mule.module.fws.api.Address, org.mule.module.fws.api.LabelPreference)">putInboundShipmentData(java.lang.String, java.lang.String, java.lang.String, org.mule.module.fws.api.Address, org.mule.module.fws.api.LabelPreference)</a></code> method in <code><a href="../../../../../../java/org/mule/module/fws/FWSCloudConnector.html">FWSCloudConnector</a></code>. For each argument there is a field in this processor to match it.  Before invoking the actual method the processor will evaluate and transform where possible to the expected argument type.
+<p>PutInboundShipmentDataMessageProcessor invokes the <code><a href="../../../../../../java/org/mule/module/fws/FWSCloudConnector.html#putInboundShipmentData(java.lang.String, java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, org.mule.module.fws.api.LabelPreference)">putInboundShipmentData(java.lang.String, java.lang.String, java.lang.String, java.util.Map, org.mule.module.fws.api.LabelPreference)</a></code> method in <code><a href="../../../../../../java/org/mule/module/fws/FWSCloudConnector.html">FWSCloudConnector</a></code>. For each argument there is a field in this processor to match it.  Before invoking the actual method the processor will evaluate and transform where possible to the expected argument type.
  
 </p>
 
@@ -679,7 +679,7 @@ org.mule.api.lifecycle.Stoppable
           private
           
           
-          <a href="../../../../../../java/org/mule/module/fws/api/Address.html">Address</a></nobr></td>
+          Map&lt;String,&nbsp;Object&gt;</nobr></td>
           <td class="jd-linkcol"><a href="../../../../../../org/mule/module/fws/config/PutInboundShipmentDataMessageProcessor.html#_shipFromAddressType">_shipFromAddressType</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
@@ -1761,7 +1761,7 @@ From interface
         private 
          
          
-        <a href="../../../../../../java/org/mule/module/fws/api/Address.html">Address</a>
+        Map&lt;String,&nbsp;Object&gt;
       </span>
         _shipFromAddressType
     </h4>

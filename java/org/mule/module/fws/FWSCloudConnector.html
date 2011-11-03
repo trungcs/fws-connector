@@ -535,6 +535,17 @@ Summary:
           private
           
           
+          MapObjectMapper</nobr></td>
+          <td class="jd-linkcol"><a href="../../../../../org/mule/module/fws/FWSCloudConnector.html#mom">mom</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol"><nobr>
+          private
+          
+          
           String</nobr></td>
           <td class="jd-linkcol"><a href="../../../../../org/mule/module/fws/FWSCloudConnector.html#secretKey">secretKey</a></td>
           <td class="jd-descrcol" width="100%">The Amazon AWS account private key</td>
@@ -613,7 +624,7 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/fws/FWSCloudConnector.html#createFulfillmentOrder(java.lang.String, java.lang.String, org.mule.module.fws.api.Address, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date, java.util.List<java.lang.String>, java.util.List<com.amazonaws.fba_outbound.doc._2007_08_02.CreateFulfillmentOrderItem>)">createFulfillmentOrder</a></span>(String orderId, String displayableOrderId, <a href="../../../../../java/org/mule/module/fws/api/Address.html">Address</a> destinationAddress, String fulfillmentPolicy, String fulfillmentMethod, String shippingSpeedCategory, String displayableOrderComment, Date displayableOrderDate, List&lt;String&gt; emails, List&lt;<a href="../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/CreateFulfillmentOrderItem.html">CreateFulfillmentOrderItem</a>&gt; items)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/fws/FWSCloudConnector.html#createFulfillmentOrder(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date, java.util.List<java.lang.String>, java.util.List<com.amazonaws.fba_outbound.doc._2007_08_02.CreateFulfillmentOrderItem>)">createFulfillmentOrder</a></span>(String orderId, String displayableOrderId, Map&lt;String,&nbsp;Object&gt; destinationAddress, String fulfillmentPolicy, String fulfillmentMethod, String shippingSpeedCategory, String displayableOrderComment, Date displayableOrderDate, List&lt;String&gt; emails, List&lt;<a href="../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/CreateFulfillmentOrderItem.html">CreateFulfillmentOrderItem</a>&gt; items)</nobr>
         
         <div class="jd-descrdiv">Generates a request for Amazon to ship items from the merchant's inventory to a destination address.</div>
   
@@ -773,7 +784,7 @@ Summary:
             List&lt;<a href="../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentPreview.html">FulfillmentPreview</a>&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/fws/FWSCloudConnector.html#getFulfillmentPreview(org.mule.module.fws.api.Address, java.util.List<com.amazonaws.fba_outbound.doc._2007_08_02.GetFulfillmentPreviewItem>, java.lang.String, java.lang.String)">getFulfillmentPreview</a></span>(<a href="../../../../../java/org/mule/module/fws/api/Address.html">Address</a> address, List&lt;<a href="../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/GetFulfillmentPreviewItem.html">GetFulfillmentPreviewItem</a>&gt; items, String shippingSpeedCategories, String orderItemId)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/fws/FWSCloudConnector.html#getFulfillmentPreview(java.util.Map<java.lang.String, java.lang.Object>, java.util.List<com.amazonaws.fba_outbound.doc._2007_08_02.GetFulfillmentPreviewItem>, java.lang.String, java.lang.String)">getFulfillmentPreview</a></span>(Map&lt;String,&nbsp;Object&gt; address, List&lt;<a href="../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/GetFulfillmentPreviewItem.html">GetFulfillmentPreviewItem</a>&gt; items, String shippingSpeedCategories, String orderItemId)</nobr>
         
         <div class="jd-descrdiv">Answers estimated shipping dates and fees for a given set of merchant SKUs and quantities.</div>
   
@@ -829,7 +840,7 @@ Summary:
             List&lt;<a href="../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ShipmentPreview.html">ShipmentPreview</a>&gt;</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/fws/FWSCloudConnector.html#getInboundShipmentPreview(java.util.List<com.amazonaws.fba_inbound.doc._2007_05_10.MerchantSKUQuantityItem>, org.mule.module.fws.api.Address, org.mule.module.fws.api.LabelPreference)">getInboundShipmentPreview</a></span>(List&lt;<a href="../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/MerchantSKUQuantityItem.html">MerchantSKUQuantityItem</a>&gt; items, <a href="../../../../../java/org/mule/module/fws/api/Address.html">Address</a> address, <a href="../../../../../java/org/mule/module/fws/api/LabelPreference.html">LabelPreference</a> labelPreference)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/fws/FWSCloudConnector.html#getInboundShipmentPreview(java.util.List<com.amazonaws.fba_inbound.doc._2007_05_10.MerchantSKUQuantityItem>, java.util.Map<java.lang.String, java.lang.Object>, org.mule.module.fws.api.LabelPreference)">getInboundShipmentPreview</a></span>(List&lt;<a href="../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/MerchantSKUQuantityItem.html">MerchantSKUQuantityItem</a>&gt; items, Map&lt;String,&nbsp;Object&gt; address, <a href="../../../../../java/org/mule/module/fws/api/LabelPreference.html">LabelPreference</a> labelPreference)</nobr>
         
         <div class="jd-descrdiv">Gets the information needed to create a set of shipments for a given set of items and the ship from address.</div>
   
@@ -1030,7 +1041,7 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/fws/FWSCloudConnector.html#putInboundShipment(java.lang.String, java.lang.String, java.lang.String, org.mule.module.fws.api.Address, org.mule.module.fws.api.LabelPreference, java.util.List<com.amazonaws.fba_inbound.doc._2007_05_10.MerchantSKUQuantityItem>)">putInboundShipment</a></span>(String shipmentId, String shipmentName, String destinationFulfillmentCenter, <a href="../../../../../java/org/mule/module/fws/api/Address.html">Address</a> shipFromAddress, <a href="../../../../../java/org/mule/module/fws/api/LabelPreference.html">LabelPreference</a> labelPreference, List&lt;<a href="../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/MerchantSKUQuantityItem.html">MerchantSKUQuantityItem</a>&gt; itemQuantities)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/fws/FWSCloudConnector.html#putInboundShipment(java.lang.String, java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, org.mule.module.fws.api.LabelPreference, java.util.List<com.amazonaws.fba_inbound.doc._2007_05_10.MerchantSKUQuantityItem>)">putInboundShipment</a></span>(String shipmentId, String shipmentName, String destinationFulfillmentCenter, Map&lt;String,&nbsp;Object&gt; shipFromAddress, <a href="../../../../../java/org/mule/module/fws/api/LabelPreference.html">LabelPreference</a> labelPreference, List&lt;<a href="../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/MerchantSKUQuantityItem.html">MerchantSKUQuantityItem</a>&gt; itemQuantities)</nobr>
         
         <div class="jd-descrdiv">Adds or replaces inbound shipment for a given shipmentId.</div>
   
@@ -1048,7 +1059,7 @@ Summary:
             void</nobr>
         </td>
         <td class="jd-linkcol" width="100%"><nobr>
-        <span class="sympad"><a href="../../../../../org/mule/module/fws/FWSCloudConnector.html#putInboundShipmentData(java.lang.String, java.lang.String, java.lang.String, org.mule.module.fws.api.Address, org.mule.module.fws.api.LabelPreference)">putInboundShipmentData</a></span>(String shipmentId, String shipmentName, String destinationFulfillmentCenter, <a href="../../../../../java/org/mule/module/fws/api/Address.html">Address</a> shipFromAddress, <a href="../../../../../java/org/mule/module/fws/api/LabelPreference.html">LabelPreference</a> labelPreference)</nobr>
+        <span class="sympad"><a href="../../../../../org/mule/module/fws/FWSCloudConnector.html#putInboundShipmentData(java.lang.String, java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, org.mule.module.fws.api.LabelPreference)">putInboundShipmentData</a></span>(String shipmentId, String shipmentName, String destinationFulfillmentCenter, Map&lt;String,&nbsp;Object&gt; shipFromAddress, <a href="../../../../../java/org/mule/module/fws/api/LabelPreference.html">LabelPreference</a> labelPreference)</nobr>
         
         <div class="jd-descrdiv">Adds or replaces the merchant's inbound shipment header information
  for the given ShipmentId.</div>
@@ -1448,6 +1459,36 @@ From class
 
 
 
+<A NAME="mom"></A>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        private 
+         
+         
+        MapObjectMapper
+      </span>
+        mom
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
 <A NAME="secretKey"></A>
 
 <div class="jd-details api apilevel-"> 
@@ -1577,7 +1618,7 @@ From class
 </div>
 
 
-<A NAME="createFulfillmentOrder(java.lang.String, java.lang.String, org.mule.module.fws.api.Address, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date, java.util.List<java.lang.String>, java.util.List<com.amazonaws.fba_outbound.doc._2007_08_02.CreateFulfillmentOrderItem>)"></A>
+<A NAME="createFulfillmentOrder(java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.util.Date, java.util.List<java.lang.String>, java.util.List<com.amazonaws.fba_outbound.doc._2007_08_02.CreateFulfillmentOrderItem>)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1590,7 +1631,7 @@ From class
         void
       </span>
       <span class="sympad">createFulfillmentOrder</span>
-      <span class="normal">(String orderId, String displayableOrderId, <a href="../../../../../java/org/mule/module/fws/api/Address.html">Address</a> destinationAddress, String fulfillmentPolicy, String fulfillmentMethod, String shippingSpeedCategory, String displayableOrderComment, Date displayableOrderDate, List&lt;String&gt; emails, List&lt;<a href="../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/CreateFulfillmentOrderItem.html">CreateFulfillmentOrderItem</a>&gt; items)</span>
+      <span class="normal">(String orderId, String displayableOrderId, Map&lt;String,&nbsp;Object&gt; destinationAddress, String fulfillmentPolicy, String fulfillmentMethod, String shippingSpeedCategory, String displayableOrderComment, Date displayableOrderDate, List&lt;String&gt; emails, List&lt;<a href="../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/CreateFulfillmentOrderItem.html">CreateFulfillmentOrderItem</a>&gt; items)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2035,7 +2076,7 @@ From class
 </div>
 
 
-<A NAME="getFulfillmentPreview(org.mule.module.fws.api.Address, java.util.List<com.amazonaws.fba_outbound.doc._2007_08_02.GetFulfillmentPreviewItem>, java.lang.String, java.lang.String)"></A>
+<A NAME="getFulfillmentPreview(java.util.Map<java.lang.String, java.lang.Object>, java.util.List<com.amazonaws.fba_outbound.doc._2007_08_02.GetFulfillmentPreviewItem>, java.lang.String, java.lang.String)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2048,7 +2089,7 @@ From class
         List&lt;<a href="../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/FulfillmentPreview.html">FulfillmentPreview</a>&gt;
       </span>
       <span class="sympad">getFulfillmentPreview</span>
-      <span class="normal">(<a href="../../../../../java/org/mule/module/fws/api/Address.html">Address</a> address, List&lt;<a href="../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/GetFulfillmentPreviewItem.html">GetFulfillmentPreviewItem</a>&gt; items, String shippingSpeedCategories, String orderItemId)</span>
+      <span class="normal">(Map&lt;String,&nbsp;Object&gt; address, List&lt;<a href="../../../../../java/com/amazonaws/fba_outbound/doc/_2007_08_02/GetFulfillmentPreviewItem.html">GetFulfillmentPreviewItem</a>&gt; items, String shippingSpeedCategories, String orderItemId)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2178,7 +2219,7 @@ From class
 </div>
 
 
-<A NAME="getInboundShipmentPreview(java.util.List<com.amazonaws.fba_inbound.doc._2007_05_10.MerchantSKUQuantityItem>, org.mule.module.fws.api.Address, org.mule.module.fws.api.LabelPreference)"></A>
+<A NAME="getInboundShipmentPreview(java.util.List<com.amazonaws.fba_inbound.doc._2007_05_10.MerchantSKUQuantityItem>, java.util.Map<java.lang.String, java.lang.Object>, org.mule.module.fws.api.LabelPreference)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2191,7 +2232,7 @@ From class
         List&lt;<a href="../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/ShipmentPreview.html">ShipmentPreview</a>&gt;
       </span>
       <span class="sympad">getInboundShipmentPreview</span>
-      <span class="normal">(List&lt;<a href="../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/MerchantSKUQuantityItem.html">MerchantSKUQuantityItem</a>&gt; items, <a href="../../../../../java/org/mule/module/fws/api/Address.html">Address</a> address, <a href="../../../../../java/org/mule/module/fws/api/LabelPreference.html">LabelPreference</a> labelPreference)</span>
+      <span class="normal">(List&lt;<a href="../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/MerchantSKUQuantityItem.html">MerchantSKUQuantityItem</a>&gt; items, Map&lt;String,&nbsp;Object&gt; address, <a href="../../../../../java/org/mule/module/fws/api/LabelPreference.html">LabelPreference</a> labelPreference)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2693,7 +2734,7 @@ From class
 </div>
 
 
-<A NAME="putInboundShipment(java.lang.String, java.lang.String, java.lang.String, org.mule.module.fws.api.Address, org.mule.module.fws.api.LabelPreference, java.util.List<com.amazonaws.fba_inbound.doc._2007_05_10.MerchantSKUQuantityItem>)"></A>
+<A NAME="putInboundShipment(java.lang.String, java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, org.mule.module.fws.api.LabelPreference, java.util.List<com.amazonaws.fba_inbound.doc._2007_05_10.MerchantSKUQuantityItem>)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2706,7 +2747,7 @@ From class
         void
       </span>
       <span class="sympad">putInboundShipment</span>
-      <span class="normal">(String shipmentId, String shipmentName, String destinationFulfillmentCenter, <a href="../../../../../java/org/mule/module/fws/api/Address.html">Address</a> shipFromAddress, <a href="../../../../../java/org/mule/module/fws/api/LabelPreference.html">LabelPreference</a> labelPreference, List&lt;<a href="../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/MerchantSKUQuantityItem.html">MerchantSKUQuantityItem</a>&gt; itemQuantities)</span>
+      <span class="normal">(String shipmentId, String shipmentName, String destinationFulfillmentCenter, Map&lt;String,&nbsp;Object&gt; shipFromAddress, <a href="../../../../../java/org/mule/module/fws/api/LabelPreference.html">LabelPreference</a> labelPreference, List&lt;<a href="../../../../../java/com/amazonaws/fba_inbound/doc/_2007_05_10/MerchantSKUQuantityItem.html">MerchantSKUQuantityItem</a>&gt; itemQuantities)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2769,7 +2810,7 @@ From class
 </div>
 
 
-<A NAME="putInboundShipmentData(java.lang.String, java.lang.String, java.lang.String, org.mule.module.fws.api.Address, org.mule.module.fws.api.LabelPreference)"></A>
+<A NAME="putInboundShipmentData(java.lang.String, java.lang.String, java.lang.String, java.util.Map<java.lang.String, java.lang.Object>, org.mule.module.fws.api.LabelPreference)"></A>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2782,7 +2823,7 @@ From class
         void
       </span>
       <span class="sympad">putInboundShipmentData</span>
-      <span class="normal">(String shipmentId, String shipmentName, String destinationFulfillmentCenter, <a href="../../../../../java/org/mule/module/fws/api/Address.html">Address</a> shipFromAddress, <a href="../../../../../java/org/mule/module/fws/api/LabelPreference.html">LabelPreference</a> labelPreference)</span>
+      <span class="normal">(String shipmentId, String shipmentName, String destinationFulfillmentCenter, Map&lt;String,&nbsp;Object&gt; shipFromAddress, <a href="../../../../../java/org/mule/module/fws/api/LabelPreference.html">LabelPreference</a> labelPreference)</span>
     </h4>
       <div class="api-level">
         <div>
