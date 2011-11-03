@@ -57,10 +57,6 @@ import javax.xml.rpc.ServiceException;
 import org.apache.commons.lang.Validate;
 
 /**
- * Mule Module Facade for Amazon <a
- * href="http://aws.amazon.com/fws/">FulfillmentWebService</a> <h1 id="functionality">
- * Amazon Fulfillment Web Service Functionality</h1>
- * <p>
  * With Amazon FWS, merchants can directly integrate with the FBA system, allowing
  * them to automatically process shipments to Amazon and then out to customers. This
  * functionality is contained in three key APIs: the inbound service, the outbound
