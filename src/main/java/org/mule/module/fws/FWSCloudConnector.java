@@ -18,9 +18,7 @@ import org.mule.api.annotations.Module;
 import org.mule.api.annotations.Processor;
 import org.mule.api.annotations.param.Default;
 import org.mule.api.annotations.param.Optional;
-import org.mule.api.lifecycle.Initialisable;
 import org.mule.api.lifecycle.InitialisationException;
-import org.mule.module.fws.api.Address;
 import org.mule.module.fws.api.AxisFWSClient;
 import org.mule.module.fws.api.FWSClient;
 import org.mule.module.fws.api.FWSClientAdaptor;
@@ -29,6 +27,9 @@ import org.mule.module.fws.api.LabelPreference;
 import org.mule.module.fws.api.PortProvider;
 import org.mule.module.fws.api.ShipmentStatus;
 
+import ar.com.zauber.commons.mom.MapObjectMapper;
+
+import com.amazonaws.fba_inbound.doc._2007_05_10.Address;
 import com.amazonaws.fba_inbound.doc._2007_05_10.AmazonFWSInboundLocator;
 import com.amazonaws.fba_inbound.doc._2007_05_10.AmazonFWSInboundPortType;
 import com.amazonaws.fba_inbound.doc._2007_05_10.FulfillmentItem;
@@ -50,6 +51,7 @@ import com.amazonaws.fba_outbound.doc._2007_08_02.GetFulfillmentPreviewItem;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.xml.rpc.ServiceException;
@@ -116,6 +118,8 @@ public class FWSCloudConnector
     /**The Amazon AWS account private key*/
     @Configurable
     private String secretKey;
+    
+    private MapObjectMapper mom = new MapObjectMapper("com.amazonaws");
 
     /**
      * Removes items from a pre-existing shipment specified by the ShipmentId. 
@@ -242,10 +246,10 @@ public class FWSCloudConnector
      */
     @Processor
     public List<ShipmentPreview> getInboundShipmentPreview( List<MerchantSKUQuantityItem> items,
-                                                            Address address,
+                                                           Map<String, Object> address,
                                                             @Optional LabelPreference labelPreference)
     {
-        return client.getInboundShipmentPreview(items, address, labelPreference);
+        return client.getInboundShipmentPreview(items, mom.toObject(Address.class, address), labelPreference);
     }
  
     /**
@@ -324,10 +328,10 @@ public class FWSCloudConnector
     public void putInboundShipmentData( String shipmentId,
                                         String shipmentName,
                                         String destinationFulfillmentCenter,
-                                        Address shipFromAddress,
+                                       Map<String, Object> shipFromAddress,
                                        @Optional LabelPreference labelPreference)
     {
-        client.putInboundShipmentData(shipmentId, shipmentName, destinationFulfillmentCenter, shipFromAddress, labelPreference);
+        client.putInboundShipmentData(shipmentId, shipmentName, destinationFulfillmentCenter, mom.toObject(Address.class, shipFromAddress), labelPreference);
     }
     
     /**
@@ -359,11 +363,11 @@ public class FWSCloudConnector
     public void putInboundShipment(String shipmentId,
                                    String shipmentName,
                                    String destinationFulfillmentCenter,
-                                   Address shipFromAddress,
+                                   Map<String,Object> shipFromAddress,
                                    @Optional LabelPreference labelPreference,
                                    List<MerchantSKUQuantityItem> itemQuantities)
     {
-        client.putInboundShipment(shipmentId, shipmentName, destinationFulfillmentCenter, shipFromAddress,
+        client.putInboundShipment(shipmentId, shipmentName, destinationFulfillmentCenter, mom.toObject(Address.class, shipFromAddress),
             labelPreference, itemQuantities);
     }
     
@@ -430,21 +434,21 @@ public class FWSCloudConnector
      * @param items a mandatory list of CreateFulfillmentOrderItem. At least one item must be specified
      */
     @Processor
-    public void createFulfillmentOrder( String orderId,
-                                                            @Optional String displayableOrderId,
-                                                             Address destinationAddress,
-                                                            @Optional String fulfillmentPolicy,
-                                                            @Optional String fulfillmentMethod,
-                                                             String shippingSpeedCategory,
-                                                             String displayableOrderComment,
-                                                             Date displayableOrderDate,
-                                                            @Optional List<String> emails,
-                                                            List<CreateFulfillmentOrderItem> items)
+    public void createFulfillmentOrder(String orderId,
+                                       @Optional String displayableOrderId,
+                                       Map<String,Object> destinationAddress,
+                                       @Optional String fulfillmentPolicy,
+                                       @Optional String fulfillmentMethod,
+                                       String shippingSpeedCategory,
+                                       String displayableOrderComment,
+                                       Date displayableOrderDate,
+                                       @Optional List<String> emails,
+                                       List<CreateFulfillmentOrderItem> items)
     {
         client.createFulfillmentOrder(
             orderId, // 
             coalesce(displayableOrderId, orderId), // 
-            destinationAddress, // 
+            mom.toObject(com.amazonaws.fba_outbound.doc._2007_08_02.Address.class, destinationAddress), // 
             fulfillmentPolicy, // 
             fulfillmentMethod, // 
             shippingSpeedCategory, // 
@@ -486,13 +490,13 @@ public class FWSCloudConnector
      * @return  a list of fulfillment previews
      */
     @Processor
-    public List<FulfillmentPreview> getFulfillmentPreview(Address address,
+    public List<FulfillmentPreview> getFulfillmentPreview(Map<String,Object> address,
                                                           List<GetFulfillmentPreviewItem> items,
                                                           @Optional String shippingSpeedCategories,
                                                           String orderItemId)
     {
-        return client.getFulfillmentPreview(address,  items,
-            shippingSpeedCategories, orderItemId);
+        return client.getFulfillmentPreview(mom.toObject(com.amazonaws.fba_outbound.doc._2007_08_02.Address.class,
+            address), items, shippingSpeedCategories, orderItemId);
     }
 
     /**

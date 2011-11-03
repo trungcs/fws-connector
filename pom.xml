@@ -14,6 +14,11 @@
   <version>2.0.2-SNAPSHOT</version>
   <url>http://www.muleforge.org/projects/mule-module-fws</url>
 
+  <properties>
+    <mom.version>1.1</mom.version>
+  </properties>
+
+
   <build>
     <plugins>
       <plugin>
@@ -34,6 +39,13 @@
 
 
   <dependencies>
+    <!-- Mom -->
+    <dependency>
+      <groupId>com.zaubersoftware</groupId>
+      <artifactId>mom</artifactId>
+      <version>${mom.version}</version>
+    </dependency>
+
     <dependency>
       <groupId>org.mule.transports</groupId>
       <artifactId>mule-transport-axis</artifactId>

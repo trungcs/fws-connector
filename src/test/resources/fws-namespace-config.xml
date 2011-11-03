@@ -73,8 +73,9 @@
     <inbound-endpoint address="vm://GetInboundShipmentPreview"
       exchange-pattern="request-response" />
     <fws:get-inbound-shipment-preview
-      labelPreference="MERCHANT_LABEL" address-ref="#[address]" >
+      labelPreference="MERCHANT_LABEL" >
         <fws:items ref="#[variable:items]" /> 
+        <fws:address ref="#[address]"/>
     </fws:get-inbound-shipment-preview>
   </flow>
 
@@ -116,8 +117,9 @@
       exchange-pattern="request-response" />
     <fws:put-inbound-shipment-data labelPreference="MERCHANT_LABEL"
       shipmentId="#[variable:shipmentId]" shipmentName="#[variable:shipmentName]"
-      destinationFulfillmentCenter="#[variable:destinationFulfillmentCenter]"
-      shipFromAddress-ref="#[variable:shipFromAddress]" />
+      destinationFulfillmentCenter="#[variable:destinationFulfillmentCenter]">
+      <fws:ship-from-address ref="#[variable:shipFromAddress]" />
+    </fws:put-inbound-shipment-data>
   </flow>
 
 
@@ -149,13 +151,13 @@
   <flow name="CreateFulfillmentOrder">
     <inbound-endpoint address="vm://CreateFulfillmentOrder"
       exchange-pattern="request-response" />
-    <fws:create-fulfillment-order
-      destinationAddress-ref="#[map-payload:destinationAddress]" 
+    <fws:create-fulfillment-order       
       orderId="#[map-payload:orderId]"
       displayableOrderComment="#[map-payload:comment]"
       displayableOrderDate="#[map-payload:orderDate]"      
       shippingSpeedCategory="#[map-payload:shippingSpeed]" >
-      <fws:items ref="#[map-payload:items]"/>      
+      <fws:destination-address ref="#[map-payload:destinationAddress]"/>      
+      <fws:items ref="#[map-payload:items]"/>
     </fws:create-fulfillment-order>
   </flow>
 
@@ -169,9 +171,10 @@
   <flow name="GetFulfillmentPreview">
     <inbound-endpoint address="vm://GetFulfillmentPreview"
       exchange-pattern="request-response" />
-    <fws:get-fulfillment-preview address-ref="#[variable:address]"
+    <fws:get-fulfillment-preview
       shippingSpeedCategories="Standard"
       orderItemId="X123698" >
+      <fws:address ref="#[variable:address]"/>
       <fws:items ref="#[variable:items]"/>
     </fws:get-fulfillment-preview>
   </flow>

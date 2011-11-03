@@ -13,8 +13,8 @@
  */
 
 package org.mule.module.fws;
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
@@ -28,7 +28,6 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 import static org.mule.module.fws.api.Arrays.asArray;
 
-import org.mule.module.fws.api.Address;
 import org.mule.module.fws.api.AxisFWSClient;
 import org.mule.module.fws.api.FwsException;
 import org.mule.module.fws.api.ItemCondition;
@@ -47,7 +46,6 @@ import com.amazonaws.fba_inbound.doc._2007_05_10.GetServiceStatusResult;
 import com.amazonaws.fba_inbound.doc._2007_05_10.InboundShipmentData;
 import com.amazonaws.fba_inbound.doc._2007_05_10.LabelPrepPreference;
 import com.amazonaws.fba_inbound.doc._2007_05_10.MerchantItem;
-import com.amazonaws.fba_inbound.doc._2007_05_10.MerchantSKUQuantityItem;
 import com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetFulfillmentIdentifierForMSKUResultHolder;
 import com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetFulfillmentIdentifierResultHolder;
 import com.amazonaws.fba_inbound.doc._2007_05_10.holders.GetFulfillmentItemByFNSKUResultHolder;
@@ -74,6 +72,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 
 import org.junit.After;
 import org.junit.Before;
@@ -129,7 +128,7 @@ public class FWSUnitTest
     @Test
     public void createFulfillmentOrder() throws RemoteException
     {
-        connector.createFulfillmentOrder(ORDER_ID, null, new Address(), null, null, "QUICK", "An order",
+        connector.createFulfillmentOrder(ORDER_ID, null, new HashMap<String, Object>(), null, null, "QUICK", "An order",
             new GregorianCalendar(2011, Calendar.JUNE, 28, 15, 0, 0).getTime(), null,
             Arrays.asList(new CreateFulfillmentOrderItem(MSKU, "1", 1, "", "An item", "", NSKU,
                 new Currency())));
@@ -276,7 +275,7 @@ public class FWSUnitTest
             (String[]) isNull(), //
             any(GetFulfillmentPreviewResultHolder.class), // 
             anyOutboundMetadata());
-        connector.getFulfillmentPreview(new Address(), //
+        connector.getFulfillmentPreview(new HashMap<String, Object>(), //
             Arrays.asList(new GetFulfillmentPreviewItem(MSKU, 10, ORDER_ITEM_ID)), null, ORDER_ITEM_ID);
         reset(out);
     }
@@ -290,7 +289,7 @@ public class FWSUnitTest
             eq(asArray("CAT-1")), //
             any(GetFulfillmentPreviewResultHolder.class), //
             anyOutboundMetadata());
-        connector.getFulfillmentPreview(new Address(), Arrays.asList(new GetFulfillmentPreviewItem(MSKU, 10,
+        connector.getFulfillmentPreview(new HashMap<String, Object>(), Arrays.asList(new GetFulfillmentPreviewItem(MSKU, 10,
             ORDER_ITEM_ID)), "CAT-1", ORDER_ITEM_ID);
         reset(out);
     }
@@ -408,8 +407,7 @@ public class FWSUnitTest
     @Test
     public void putInboundShipment() throws RemoteException
     {
-        Address shipFromAddress = new Address();
-        connector.putInboundShipmentData(SHIP_ID, "A shipment", "a center", shipFromAddress,
+        connector.putInboundShipmentData(SHIP_ID, "A shipment", "a center", new HashMap<String, Object>(),
             LabelPreference.AMAZON_LABEL_ONLY);
         verify(in).putInboundShipmentData(eq(SHIP_ID), eq("A shipment"), eq("a center"),
             any(com.amazonaws.fba_inbound.doc._2007_05_10.Address.class),

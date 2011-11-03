@@ -12,6 +12,7 @@ package org.mule.module.fws.api;
 
 import static org.mule.module.fws.api.Arrays.asArray;
 
+import com.amazonaws.fba_inbound.doc._2007_05_10.Address;
 import com.amazonaws.fba_inbound.doc._2007_05_10.AmazonFWSInboundPortType;
 import com.amazonaws.fba_inbound.doc._2007_05_10.FulfillmentItem;
 import com.amazonaws.fba_inbound.doc._2007_05_10.InboundShipmentData;
@@ -59,12 +60,8 @@ import com.amazonaws.fba_outbound.doc._2007_08_02.holders.ListAllFulfillmentOrde
 import com.amazonaws.fba_outbound.doc._2007_08_02.holders.ListAllFulfillmentOrdersResultHolder;
 
 import java.rmi.RemoteException;
-import java.util.AbstractCollection;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
@@ -102,7 +99,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
 
     public void createFulfillmentOrder(String orderId,
                                        String displayableOrderId,
-                                       Address destinationAddress,
+                                       com.amazonaws.fba_outbound.doc._2007_08_02.Address destinationAddress,
                                        String fulfillmentPolicy,
                                        String fulfillmentMethod,
                                        String shippingSpeedCategory,
@@ -122,7 +119,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         validateNotEmptyItemsList(items);
         getPort(outboundPortProvider, "CreateFulfillmentOrder").createFulfillmentOrder(orderId,
             displayableOrderId, FwsDates.format(displayableOrderDate), displayableOrderComment,
-            shippingSpeedCategory, destinationAddress.toOutboundAddress(), fulfillmentPolicy,
+            shippingSpeedCategory, destinationAddress, fulfillmentPolicy,
             fulfillmentMethod, emails.toArray(new String[emails.size()]),
             items.toArray(new CreateFulfillmentOrderItem[items.size()]));
     }
@@ -183,7 +180,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         return result.value;
     }
 
-    public List<FulfillmentPreview> getFulfillmentPreview(Address address,
+    public List<FulfillmentPreview> getFulfillmentPreview(com.amazonaws.fba_outbound.doc._2007_08_02.Address address,
                                                           List<GetFulfillmentPreviewItem> items,
                                                           String shippingSpeedCategories,
                                                           String orderItemId) throws RemoteException
@@ -192,7 +189,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         validateNotEmptyItemsList(items);
         Validate.notNull(orderItemId);
         GetFulfillmentPreviewResultHolder result = new GetFulfillmentPreviewResultHolder();
-        getPort(outboundPortProvider, result).getFulfillmentPreview(address.toOutboundAddress(), //
+        getPort(outboundPortProvider, result).getFulfillmentPreview(address, //
             items.toArray(new GetFulfillmentPreviewItem[items.size()]), // 
             shippingSpeedCategories == null ? null : asArray(shippingSpeedCategories), // 
             result, //
@@ -223,7 +220,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         validateNotEmptyItemsList(items);
         Validate.notNull(address);
         GetInboundShipmentPreviewResultHolder result = new GetInboundShipmentPreviewResultHolder();
-        getPort(inboundPortProvider, result).getInboundShipmentPreview(address.toInboundAddress(),
+        getPort(inboundPortProvider, result).getInboundShipmentPreview(address,
             items.toArray(new MerchantSKUQuantityItem[items.size()]),
             LabelPreference.toFwsLabelPrepPreference(labelPreference), result, newInboundMetadata());
         return Arrays.asList(result.value.getShipmentPreview());
@@ -436,7 +433,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
     {
         getPort(inboundPortProvider, "PutInboundShipment")//
         .putInboundShipmentData(shipmentId, shipmentName, destinationFulfillmentCenter,
-            shipFromAddress.toInboundAddress(), LabelPreference.toFwsLabelPrepPreference(labelPreference));
+            shipFromAddress, LabelPreference.toFwsLabelPrepPreference(labelPreference));
     }
 
     public void putInboundShipment(String shipmentId,
@@ -452,7 +449,7 @@ public class AxisFWSClient implements FWSClient<RemoteException>
         Validate.notNull(shipmentName);
         getPort(inboundPortProvider, "PutInboundShipment")//
         .putInboundShipment(shipmentId, shipmentName, destinationFulfillmentCenter,
-            shipFromAddress.toInboundAddress(), LabelPreference.toFwsLabelPrepPreference(labelPreference),
+            shipFromAddress, LabelPreference.toFwsLabelPrepPreference(labelPreference),
             itemQuantities.toArray(new MerchantSKUQuantityItem[itemQuantities.size()]));
     }
 

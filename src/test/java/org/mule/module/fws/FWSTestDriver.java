@@ -10,51 +10,45 @@
 
 package org.mule.module.fws;
 
-import static org.mule.module.fws.api.Arrays.asArray;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.mule.api.lifecycle.InitialisationException;
-import org.mule.module.fws.api.Address;
 import org.mule.module.fws.api.ShipmentStatus;
 
 import com.amazonaws.fba_inbound.doc._2007_05_10.FulfillmentItem;
-import com.amazonaws.fba_inbound.doc._2007_05_10.InboundShipmentData;
 import com.amazonaws.fba_inbound.doc._2007_05_10.InboundShipmentItem;
 import com.amazonaws.fba_inbound.doc._2007_05_10.MerchantSKUQuantityItem;
 import com.amazonaws.fba_inbound.doc._2007_05_10.ShipmentPreview;
-import com.amazonaws.fba_outbound.doc._2007_08_02.CreateFulfillmentOrderItem;
-import com.amazonaws.fba_outbound.doc._2007_08_02.Currency;
-import com.amazonaws.fba_outbound.doc._2007_08_02.GetFulfillmentOrderResult;
 
-import java.math.BigDecimal;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang.time.DateUtils;
-import org.apache.xml.security.utils.ElementCheckerImpl.FullChecker;
 import org.junit.Before;
 import org.junit.Test;
 
+@SuppressWarnings("serial")
 public class FWSTestDriver
 {
     private static final String TEST_ORDER_ID = "TEST_ORDER1";
     private FWSCloudConnector connector;
     private static final String TEST_MSKU = "my-test-sku-01";
-    private static final Address TEST_ADDRESS = new Address()
+    private static final Map<String, Object> TEST_ADDRESS = new HashMap<String, Object>()
     {
         {
-            setAddressLine1("605 5th Ave SE");
-            setCity("Seattle");
-            setCountryCode("US");
-            setName("My Ship From Address");
-            setPostalCode("98101");
-            setStateOrProvinceCode("WA");
+            put("addressLine1", "605 5th Ave SE");
+            put("city", "Seattle");
+            put("countryCode", "US");
+            put("name", "My Ship From Address");
+            put("postalCode", "98101");
+            put("stateOrProvinceCode", "WA");
         }
     };
 

@@ -10,6 +10,7 @@
 
 package org.mule.module.fws.api;
 
+import com.amazonaws.fba_inbound.doc._2007_05_10.Address;
 import com.amazonaws.fba_inbound.doc._2007_05_10.FulfillmentItem;
 import com.amazonaws.fba_inbound.doc._2007_05_10.InboundShipmentData;
 import com.amazonaws.fba_inbound.doc._2007_05_10.InboundShipmentItem;
@@ -80,7 +81,7 @@ public interface FWSClient<ExceptionType extends Throwable>
 
     void createFulfillmentOrder(@NotNull String orderId,
                                                      @NotNull String displayableOrderId,
-                                                     @NotNull Address destinationAddress,
+                                                     @NotNull com.amazonaws.fba_outbound.doc._2007_08_02.Address destinationAddress,
                                                      String fulfillmentPolicy,
                                                      String fulfillmentMethod,
                                                      @NotNull String shippingSpeedCategory,
@@ -92,7 +93,7 @@ public interface FWSClient<ExceptionType extends Throwable>
 
     GetFulfillmentOrderResult getFulfillmentOrder(@NotNull String orderId) throws ExceptionType;
 
-    List<FulfillmentPreview> getFulfillmentPreview(@NotNull Address address,
+    List<FulfillmentPreview> getFulfillmentPreview(@NotNull com.amazonaws.fba_outbound.doc._2007_08_02.Address address,
                                                    @NotNull List<GetFulfillmentPreviewItem> item,
                                                    String shippingSpeedCategories,
                                                    @NotNull String orderItemId) throws ExceptionType;
