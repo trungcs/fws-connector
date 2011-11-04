@@ -48,6 +48,7 @@ import com.amazonaws.fba_outbound.doc._2007_08_02.FulfillmentPreview;
 import com.amazonaws.fba_outbound.doc._2007_08_02.GetFulfillmentOrderResult;
 import com.amazonaws.fba_outbound.doc._2007_08_02.GetFulfillmentPreviewItem;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -436,14 +437,14 @@ public class FWSCloudConnector
     @Processor
     public void createFulfillmentOrder(String orderId,
                                        @Optional String displayableOrderId,
-                                       Map<String,Object> destinationAddress,
+                                       Map<String, Object> destinationAddress,
                                        @Optional String fulfillmentPolicy,
                                        @Optional String fulfillmentMethod,
                                        String shippingSpeedCategory,
                                        String displayableOrderComment,
                                        Date displayableOrderDate,
                                        @Optional List<String> emails,
-                                       List<CreateFulfillmentOrderItem> items)
+                                       List<Map<String, Object>> items)
     {
         client.createFulfillmentOrder(
             orderId, // 
@@ -455,10 +456,15 @@ public class FWSCloudConnector
             displayableOrderComment, //
             displayableOrderDate, // 
             coalesce(emails, Collections.<String> emptyList()),
-            items);
+            toList(CreateFulfillmentOrderItem.class, items));
     }
     
-    private static <T> T coalesce(T o1, T o2)
+    protected <T> List<T> toList(final Class<T> componentType, final List<Map<String, Object>> value)
+    {
+        return Arrays.asList(mom.toArray(componentType, value));
+    }
+    
+    protected static <T> T coalesce(T o1, T o2)
     {
         return o1 != null ? o1 : o2;
     }

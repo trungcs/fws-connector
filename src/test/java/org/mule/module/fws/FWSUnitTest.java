@@ -56,7 +56,6 @@ import com.amazonaws.fba_inventory.doc._2009_07_31.GetInventorySupplyResult;
 import com.amazonaws.fba_inventory.doc._2009_07_31.MerchantSKUSupply;
 import com.amazonaws.fba_inventory.doc._2009_07_31.holders.GetInventorySupplyResultHolder;
 import com.amazonaws.fba_outbound.doc._2007_08_02.AmazonFBAOutboundPortType;
-import com.amazonaws.fba_outbound.doc._2007_08_02.CreateFulfillmentOrderItem;
 import com.amazonaws.fba_outbound.doc._2007_08_02.Currency;
 import com.amazonaws.fba_outbound.doc._2007_08_02.FulfillmentPreview;
 import com.amazonaws.fba_outbound.doc._2007_08_02.GetFulfillmentOrderResult;
@@ -73,6 +72,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.After;
 import org.junit.Before;
@@ -124,19 +124,27 @@ public class FWSUnitTest
         verify(out).cancelFulfillmentOrder(eq(ORDER_ID));
     }
 
+    @SuppressWarnings({"unchecked", "serial" })
     @Ignore
     @Test
     public void createFulfillmentOrder() throws RemoteException
     {
         connector.createFulfillmentOrder(ORDER_ID, null, new HashMap<String, Object>(), null, null, "QUICK", "An order",
             new GregorianCalendar(2011, Calendar.JUNE, 28, 15, 0, 0).getTime(), null,
-            Arrays.asList(new CreateFulfillmentOrderItem(MSKU, "1", 1, "", "An item", "", NSKU,
-                new Currency())));
+            Arrays.<Map<String, Object>> asList(new HashMap<String, Object>() { {
+                put("merchantSKU", MSKU);
+                put("merchantFulfillmentOrderItemId", "1");
+                put("quantity", 1);
+                put("giftMessage", "");
+                put("displayableComment", "An item");
+                put("fulfillmentNetworkSKU", NSKU);
+                put("perUnitDeclaredValue", new Currency());
+            } }));
         verify(out).createFulfillmentOrder(eq(ORDER_ID), eq(ORDER_ID), eq("2011-06-28T15:00Z"),
             eq("An order"), null, eq(new com.amazonaws.fba_outbound.doc._2007_08_02.Address()), eq("QUICK"),
             null, null, null);
     }
-
+    
     @Test
     public void deleteInboundShipmentItems() throws RemoteException
     {
