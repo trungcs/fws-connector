@@ -13,6 +13,15 @@
  */
 package org.mule.module.fws;
 
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.PostConstruct;
+import javax.xml.rpc.ServiceException;
+
+import org.apache.commons.lang.Validate;
 import org.mule.api.annotations.Configurable;
 import org.mule.api.annotations.Module;
 import org.mule.api.annotations.Processor;
@@ -26,8 +35,7 @@ import org.mule.module.fws.api.ItemCondition;
 import org.mule.module.fws.api.LabelPreference;
 import org.mule.module.fws.api.PortProvider;
 import org.mule.module.fws.api.ShipmentStatus;
-
-import ar.com.zauber.commons.mom.MapObjectMapper;
+import org.mule.modules.utils.mom.JaxbMapObjectMappers;
 
 import com.amazonaws.fba_inbound.doc._2007_05_10.Address;
 import com.amazonaws.fba_inbound.doc._2007_05_10.AmazonFWSInboundLocator;
@@ -47,17 +55,7 @@ import com.amazonaws.fba_outbound.doc._2007_08_02.FulfillmentOrder;
 import com.amazonaws.fba_outbound.doc._2007_08_02.FulfillmentPreview;
 import com.amazonaws.fba_outbound.doc._2007_08_02.GetFulfillmentOrderResult;
 import com.amazonaws.fba_outbound.doc._2007_08_02.GetFulfillmentPreviewItem;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.PostConstruct;
-import javax.xml.rpc.ServiceException;
-
-import org.apache.commons.lang.Validate;
+import com.zauberlabs.commons.mom.MapObjectMapper;
 
 /**
  * With Amazon FWS, merchants can directly integrate with the FBA system, allowing
@@ -120,7 +118,9 @@ public class FWSCloudConnector
     @Configurable
     private String secretKey;
     
-    private MapObjectMapper mom = new MapObjectMapper("com.amazonaws");
+    //private MapObjectMapper mom = new MapObjectMapper("com.amazonaws");
+    
+    private final MapObjectMapper mom = JaxbMapObjectMappers.defaultWithPackage("com.amazonaws").build();
 
     /**
      * Removes items from a pre-existing shipment specified by the ShipmentId. 
@@ -250,7 +250,7 @@ public class FWSCloudConnector
                                                            Map<String, Object> address,
                                                             @Optional LabelPreference labelPreference)
     {
-        return client.getInboundShipmentPreview(items, mom.toObject(Address.class, address), labelPreference);
+        return client.getInboundShipmentPreview(items, (Address) mom.unmap(address, Address.class), labelPreference);
     }
  
     /**
@@ -332,7 +332,7 @@ public class FWSCloudConnector
                                        Map<String, Object> shipFromAddress,
                                        @Optional LabelPreference labelPreference)
     {
-        client.putInboundShipmentData(shipmentId, shipmentName, destinationFulfillmentCenter, mom.toObject(Address.class, shipFromAddress), labelPreference);
+        client.putInboundShipmentData(shipmentId, shipmentName, destinationFulfillmentCenter, (Address) mom.unmap(shipFromAddress, Address.class), labelPreference);
     }
     
     /**
@@ -368,7 +368,7 @@ public class FWSCloudConnector
                                    @Optional LabelPreference labelPreference,
                                    List<MerchantSKUQuantityItem> itemQuantities)
     {
-        client.putInboundShipment(shipmentId, shipmentName, destinationFulfillmentCenter, mom.toObject(Address.class, shipFromAddress),
+        client.putInboundShipment(shipmentId, shipmentName, destinationFulfillmentCenter, (Address) mom.unmap(shipFromAddress, Address.class),
             labelPreference, itemQuantities);
     }
     
@@ -449,7 +449,7 @@ public class FWSCloudConnector
         client.createFulfillmentOrder(
             orderId, // 
             coalesce(displayableOrderId, orderId), // 
-            mom.toObject(com.amazonaws.fba_outbound.doc._2007_08_02.Address.class, destinationAddress), // 
+            (com.amazonaws.fba_outbound.doc._2007_08_02.Address) mom.unmap(destinationAddress, com.amazonaws.fba_outbound.doc._2007_08_02.Address.class), // 
             fulfillmentPolicy, // 
             fulfillmentMethod, // 
             shippingSpeedCategory, // 
@@ -459,9 +459,10 @@ public class FWSCloudConnector
             toList(CreateFulfillmentOrderItem.class, items));
     }
     
+    @SuppressWarnings("unchecked")
     protected <T> List<T> toList(final Class<T> componentType, final List<Map<String, Object>> value)
     {
-        return Arrays.asList(mom.toArray(componentType, value));
+        return (List<T>) mom.unmap(value, componentType);
     }
     
     protected static <T> T coalesce(T o1, T o2)
@@ -501,8 +502,8 @@ public class FWSCloudConnector
                                                           @Optional String shippingSpeedCategories,
                                                           String orderItemId)
     {
-        return client.getFulfillmentPreview(mom.toObject(com.amazonaws.fba_outbound.doc._2007_08_02.Address.class,
-            address), items, shippingSpeedCategories, orderItemId);
+        return client.getFulfillmentPreview((com.amazonaws.fba_outbound.doc._2007_08_02.Address) mom.unmap(address, 
+            com.amazonaws.fba_outbound.doc._2007_08_02.Address.class), items, shippingSpeedCategories, orderItemId);
     }
 
     /**
