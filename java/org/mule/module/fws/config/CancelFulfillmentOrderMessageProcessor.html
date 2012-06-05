@@ -63,6 +63,8 @@
 
 
 
+
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -84,6 +86,7 @@
 <link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
 <script src="../../../../../../assets/search_autocomplete.js" type="text/javascript"></script>
 <script src="../../../../../../assets/jquery-resizable.min.js" type="text/javascript"></script>
+<script src="../../../../../../assets/jquery-toc.js" type="text/javascript"></script>
 <script src="../../../../../../assets/mule-developer-docs.js" type="text/javascript"></script>
 <script src="../../../../../../assets/prettify.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -102,6 +105,27 @@
     #resize-packages-nav{border-bottom:3px solid #666;}
   </style>
 </noscript>
+<script type="text/javascript" charset="utf-8">
+  var is_ssl = ("https:" == document.location.protocol);
+  var asset_host = is_ssl ? "https://s3.amazonaws.com/getsatisfaction.com/" : "http://s3.amazonaws.com/getsatisfaction.com/";
+  document.write(unescape("%3Cscript src='" + asset_host + "javascripts/feedback-v2.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  var feedback_widget_options = {};
+
+  feedback_widget_options.display = "overlay";
+  feedback_widget_options.company = "mulesoft";
+  feedback_widget_options.placement = "right";
+  feedback_widget_options.color = "#2F74AE";
+  feedback_widget_options.style = "question";
+
+  feedback_widget_options.tag = "Mule Amazon FWS Connector";
+
+  feedback_widget_options.limit = "3";
+
+  var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
+</script>
 </head>
 
 <body class="">
@@ -193,11 +217,17 @@
     <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/module/fws/package-summary.html">org.mule.module.fws</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/module/fws/adapters/package-summary.html">org.mule.module.fws.adapters</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/module/fws/api/package-summary.html">org.mule.module.fws.api</a></li>
     <li class="selected api apilevel-">
   <a href="../../../../../../java/org/mule/module/fws/config/package-summary.html">org.mule.module.fws.config</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../java/org/mule/module/fws/config/spring/package-summary.html">org.mule.module.fws.config.spring</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/module/fws/processors/package-summary.html">org.mule.module.fws.processors</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../java/org/mule/module/fws/transformers/package-summary.html">org.mule.module.fws.transformers</a></li>
               </ul><br/>
             </div> <!-- end packages -->
           </div> <!-- end resize-packages -->
@@ -207,33 +237,59 @@
               
     <li><h2>Classes</h2>
       <ul>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/CancelFulfillmentOrderDefinitionParser.html">CancelFulfillmentOrderDefinitionParser</a></li>
           <li class="selected api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/CancelFulfillmentOrderMessageProcessor.html">CancelFulfillmentOrderMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/CreateFulfillmentOrderDefinitionParser.html">CreateFulfillmentOrderDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/CreateFulfillmentOrderMessageProcessor.html">CreateFulfillmentOrderMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/DeleteInboundShipmentItemsDefinitionParser.html">DeleteInboundShipmentItemsDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/DeleteInboundShipmentItemsMessageProcessor.html">DeleteInboundShipmentItemsMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/FWSCloudConnectorCapabilitiesAdapter.html">FWSCloudConnectorCapabilitiesAdapter</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/FWSCloudConnectorConfigDefinitionParser.html">FWSCloudConnectorConfigDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/FWSCloudConnectorLifecycleAdapter.html">FWSCloudConnectorLifecycleAdapter</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/FWSCloudConnectorNamespaceHandler.html">FWSCloudConnectorNamespaceHandler</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/GetFulfillmentIdentifierDefinitionParser.html">GetFulfillmentIdentifierDefinitionParser</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/GetFulfillmentIdentifierForMskuDefinitionParser.html">GetFulfillmentIdentifierForMskuDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/GetFulfillmentIdentifierForMskuMessageProcessor.html">GetFulfillmentIdentifierForMskuMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/GetFulfillmentIdentifierMessageProcessor.html">GetFulfillmentIdentifierMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/GetFulfillmentItemByFnskuDefinitionParser.html">GetFulfillmentItemByFnskuDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/GetFulfillmentItemByFnskuMessageProcessor.html">GetFulfillmentItemByFnskuMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/GetFulfillmentItemByMskuDefinitionParser.html">GetFulfillmentItemByMskuDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/GetFulfillmentItemByMskuMessageProcessor.html">GetFulfillmentItemByMskuMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/GetFulfillmentOrderDefinitionParser.html">GetFulfillmentOrderDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/GetFulfillmentOrderMessageProcessor.html">GetFulfillmentOrderMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/GetFulfillmentPreviewDefinitionParser.html">GetFulfillmentPreviewDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/GetFulfillmentPreviewMessageProcessor.html">GetFulfillmentPreviewMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/GetInboundServiceStatusDefinitionParser.html">GetInboundServiceStatusDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/GetInboundServiceStatusMessageProcessor.html">GetInboundServiceStatusMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/GetInboundShipmentDefinitionParser.html">GetInboundShipmentDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/GetInboundShipmentMessageProcessor.html">GetInboundShipmentMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/GetInboundShipmentPreviewDefinitionParser.html">GetInboundShipmentPreviewDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/GetInboundShipmentPreviewMessageProcessor.html">GetInboundShipmentPreviewMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/GetInventoryServiceStatusDefinitionParser.html">GetInventoryServiceStatusDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/GetInventoryServiceStatusMessageProcessor.html">GetInventoryServiceStatusMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/GetInventorySupplyDefinitionParser.html">GetInventorySupplyDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/GetInventorySupplyMessageProcessor.html">GetInventorySupplyMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/GetOutboundServiceStatusDefinitionParser.html">GetOutboundServiceStatusDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/GetOutboundServiceStatusMessageProcessor.html">GetOutboundServiceStatusMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/ItemConditionEnumTransformer.html">ItemConditionEnumTransformer</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/LabelPreferenceEnumTransformer.html">LabelPreferenceEnumTransformer</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/ListFulfillmentItemsDefinitionParser.html">ListFulfillmentItemsDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/ListFulfillmentItemsMessageProcessor.html">ListFulfillmentItemsMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/ListFulfillmentOrdersDefinitionParser.html">ListFulfillmentOrdersDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/ListFulfillmentOrdersMessageProcessor.html">ListFulfillmentOrdersMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/ListInboundShipmentItemsDefinitionParser.html">ListInboundShipmentItemsDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/ListInboundShipmentItemsMessageProcessor.html">ListInboundShipmentItemsMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/ListInboundShipmentsDefinitionParser.html">ListInboundShipmentsDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/ListInboundShipmentsMessageProcessor.html">ListInboundShipmentsMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/ListUpdatedInventorySupplyDefinitionParser.html">ListUpdatedInventorySupplyDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/ListUpdatedInventorySupplyMessageProcessor.html">ListUpdatedInventorySupplyMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/PutInboundShipmentDataDefinitionParser.html">PutInboundShipmentDataDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/PutInboundShipmentDataMessageProcessor.html">PutInboundShipmentDataMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/PutInboundShipmentDefinitionParser.html">PutInboundShipmentDefinitionParser</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/PutInboundShipmentItemsDefinitionParser.html">PutInboundShipmentItemsDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/PutInboundShipmentItemsMessageProcessor.html">PutInboundShipmentItemsMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/PutInboundShipmentMessageProcessor.html">PutInboundShipmentMessageProcessor</a></li>
+          <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/SetInboundShipmentStatusDefinitionParser.html">SetInboundShipmentStatusDefinitionParser</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/SetInboundShipmentStatusMessageProcessor.html">SetInboundShipmentStatusMessageProcessor</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/ShipmentStatusEnumTransformer.html">ShipmentStatusEnumTransformer</a></li>
           <li class="api apilevel-"><a href="../../../../../../java/org/mule/module/fws/config/StringToDateTransformer.html">StringToDateTransformer</a></li>

@@ -1,0 +1,1513 @@
+
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="description" content="Documentation for Mule Amazon FWS Connector." />
+
+<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
+<title>
+
+  FWSCloudConnector
+
+
+| Mule Amazon FWS Connector
+
+</title>
+<link href="../assets/mule-developer-docs.css" rel="stylesheet" type="text/css" />
+<link href="../assets/mule-developer-prettify.css" rel="stylesheet" type="text/css" />
+<link href="../assets/customizations.css" rel="stylesheet" type="text/css" />
+<link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
+<script src="../assets/search_autocomplete.js" type="text/javascript"></script>
+<script src="../assets/jquery-resizable.min.js" type="text/javascript"></script>
+<script src="../assets/jquery-toc.js" type="text/javascript"></script>
+<script src="../assets/mule-developer-docs.js" type="text/javascript"></script>
+<script src="../assets/prettify.js" type="text/javascript"></script>
+<script type="text/javascript">
+  setToRoot("../", "../assets/");
+</script>
+<script src="../assets/customizations.js" type="text/javascript"></script>
+<noscript>
+  <style type="text/css">
+    html,body{overflow:auto;}
+    #body-content{position:relative; top:0;}
+    #doc-content{overflow:visible;border-left:3px solid #666;}
+    #side-nav{padding:0;}
+    #side-nav .toggle-list ul {display:block;}
+    #resize-packages-nav{border-bottom:3px solid #666;}
+  </style>
+</noscript>
+<script type="text/javascript" charset="utf-8">
+  var is_ssl = ("https:" == document.location.protocol);
+  var asset_host = is_ssl ? "https://s3.amazonaws.com/getsatisfaction.com/" : "http://s3.amazonaws.com/getsatisfaction.com/";
+  document.write(unescape("%3Cscript src='" + asset_host + "javascripts/feedback-v2.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  var feedback_widget_options = {};
+
+  feedback_widget_options.display = "overlay";
+  feedback_widget_options.company = "mulesoft";
+  feedback_widget_options.placement = "right";
+  feedback_widget_options.color = "#2F74AE";
+  feedback_widget_options.style = "question";
+
+  feedback_widget_options.tag = "Mule Amazon FWS Connector";
+
+  feedback_widget_options.limit = "3";
+
+  var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
+</script>
+</head>
+
+<body class="">
+
+<div id="header">
+    <div id="headerLeft">
+    
+      <span id="masthead-title">Mule Amazon FWS Connector</span>
+    
+    <ul id="header-tabs" class="mule">
+    
+    	<li id="guide"><a href="../guide/install.html">
+	    	<span class="en">Install Guide</span>
+    	</a></li>
+    
+    	<li id="java"><a href="../java/packages.html">
+	    	<span class="en">Java API Reference</span>
+    	</a></li>
+    
+    	<li id="mule"><a href="../mule/modules.html">
+	    	<span class="en">Mule API Reference</span>
+    	</a></li>
+    
+    </ul>
+    </div>
+    <div id="headerRight">
+      <a href="http://www.mulesoft.com" tabindex="-1">
+      <img src="../assets//images/mulesoft-logo-final.gif" alt="MuleSoft" border="0" id="mulesoftlogo"></a><br/>
+      
+  <div id="search" >
+      <div id="searchForm">
+          <form accept-charset="utf-8" class="gsc-search-box" 
+                onsubmit="return submit_search()">
+            <table class="gsc-search-box" cellpadding="0" cellspacing="0"><tbody>
+                <tr>
+                  <td class="gsc-input">
+                    <input id="search_autocomplete" class="gsc-input" type="text" size="33" autocomplete="off"
+                      title="search developer docs" name="q"
+                      value="search developer docs"
+                      onFocus="search_focus_changed(this, true)"
+                      onBlur="search_focus_changed(this, false)"
+                      onkeydown="return search_changed(event, true, '../')"
+                      onkeyup="return search_changed(event, false, '../')" />
+                  <div id="search_filtered_div" class="no-display">
+                      <table id="search_filtered" cellspacing=0>
+                      </table>
+                  </div>
+                  </td>
+                  <td class="gsc-search-button">
+                    <input type="submit" value="Search" title="search" id="search-button" class="gsc-search-button" />
+                  </td>
+                  <td class="gsc-clear-button">
+                    <div title="clear results" class="gsc-clear-button">&nbsp;</div>
+                  </td>
+                </tr></tbody>
+              </table>
+          </form>
+      </div><!-- searchForm -->
+  </div><!-- search -->
+      
+    </div>
+</div><!-- header -->
+
+
+<div class="g-unit" id="all-content">
+
+<div id="api-info-block">
+
+<div class="api-level">
+  
+
+
+  
+  
+
+</div>
+</div><!-- end api-info-block -->
+
+
+<!-- ======== START OF MODULE DATA ======== -->
+
+<div id="jd-header">
+    org.mule.modules
+<h1>mule-module-fws</h1>
+
+</div><!-- end header -->
+
+<div id="naMessage"></div>
+
+<div id="jd-content" class="api apilevel-">
+
+
+<div class="jd-tagdata">
+      <table class="jd-tagtable">
+        <tbody><tr>
+          <th>Namespace</th><td>http://www.mulesoft.org/schema/mule/fws</td>
+        </tr><tr>
+          <th>Schema Location</th><td>http://www.mulesoft.org/schema/mule/fws/current/mule-fws.xsd&nbsp;&nbsp;(<a href="fws-schema.html">View Schema</a>)</td>
+        </tr>
+<tr>
+          <th>Schema Version</th><td>2.0</td>
+        </tr>
+<tr>
+          <th>Minimum Mule Version</th><td>3.2</td>
+        </tr>
+    </tbody></table>
+  </div>
+
+<div class="jd-descr">
+<h2>Schema</h2>
+<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+
+&lt;xs:schema xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; elementFormDefault=&quot;qualified&quot; attributeFormDefault=&quot;unqualified&quot; targetNamespace=&quot;http://www.mulesoft.org/schema/mule/fws&quot;&gt;
+  &lt;xs:import namespace=&quot;http://www.w3.org/XML/1998/namespace&quot;&gt;&lt;/xs:import&gt;
+  &lt;xs:import schemaLocation=&quot;http://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot; namespace=&quot;http://www.springframework.org/schema/beans&quot;&gt;&lt;/xs:import&gt;
+  &lt;xs:import schemaLocation=&quot;http://www.mulesoft.org/schema/mule/core/current/mule.xsd&quot; namespace=&quot;http://www.mulesoft.org/schema/mule/core&quot;&gt;&lt;/xs:import&gt;
+  &lt;xs:import schemaLocation=&quot;http://www.mulesoft.org/schema/mule/devkit/current/mule-devkit.xsd&quot; namespace=&quot;http://www.mulesoft.org/schema/mule/devkit&quot;&gt;&lt;/xs:import&gt;
+  &lt;xs:simpleType name=&quot;integerType&quot;&gt;
+    &lt;xs:union&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:integer&quot;&gt;&lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:pattern value=&quot;(\#\[[^\]]+\]|\$\{[^\}]+\})&quot;&gt;&lt;/xs:pattern&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+    &lt;/xs:union&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name=&quot;decimalType&quot;&gt;
+    &lt;xs:union&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:decimal&quot;&gt;&lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:pattern value=&quot;(\#\[[^\]]+\]|\$\{[^\}]+\})&quot;&gt;&lt;/xs:pattern&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+    &lt;/xs:union&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name=&quot;floatType&quot;&gt;
+    &lt;xs:union&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:float&quot;&gt;&lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:pattern value=&quot;(\#\[[^\]]+\]|\$\{[^\}]+\})&quot;&gt;&lt;/xs:pattern&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+    &lt;/xs:union&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name=&quot;doubleType&quot;&gt;
+    &lt;xs:union&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:double&quot;&gt;&lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:pattern value=&quot;(\#\[[^\]]+\]|\$\{[^\}]+\})&quot;&gt;&lt;/xs:pattern&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+    &lt;/xs:union&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name=&quot;dateTimeType&quot;&gt;
+    &lt;xs:union&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:dateTime&quot;&gt;&lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:pattern value=&quot;(\#\[[^\]]+\]|\$\{[^\}]+\})&quot;&gt;&lt;/xs:pattern&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+    &lt;/xs:union&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name=&quot;longType&quot;&gt;
+    &lt;xs:union&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:long&quot;&gt;&lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:pattern value=&quot;(\#\[[^\]]+\]|\$\{[^\}]+\})&quot;&gt;&lt;/xs:pattern&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+    &lt;/xs:union&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name=&quot;byteType&quot;&gt;
+    &lt;xs:union&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:byte&quot;&gt;&lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:pattern value=&quot;(\#\[[^\]]+\]|\$\{[^\}]+\})&quot;&gt;&lt;/xs:pattern&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+    &lt;/xs:union&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name=&quot;booleanType&quot;&gt;
+    &lt;xs:union&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:boolean&quot;&gt;&lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:pattern value=&quot;(\#\[[^\]]+\]|\$\{[^\}]+\})&quot;&gt;&lt;/xs:pattern&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+    &lt;/xs:union&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name=&quot;anyUriType&quot;&gt;
+    &lt;xs:union&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:anyURI&quot;&gt;&lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:pattern value=&quot;(\#\[[^\]]+\]|\$\{[^\}]+\})&quot;&gt;&lt;/xs:pattern&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+    &lt;/xs:union&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name=&quot;charType&quot;&gt;
+    &lt;xs:union&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:minLength value=&quot;1&quot;&gt;&lt;/xs:minLength&gt;
+          &lt;xs:maxLength value=&quot;1&quot;&gt;&lt;/xs:maxLength&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:pattern value=&quot;(\#\[[^\]]+\]|\$\{[^\}]+\})&quot;&gt;&lt;/xs:pattern&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+    &lt;/xs:union&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:complexType name=&quot;XmlType&quot;&gt;
+    &lt;xs:sequence&gt;
+      &lt;xs:any maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot; processContents=&quot;lax&quot;&gt;&lt;/xs:any&gt;
+    &lt;/xs:sequence&gt;
+    &lt;xs:attribute name=&quot;ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+      &lt;xs:annotation&gt;
+        &lt;xs:documentation&gt;The reference object for this parameter&lt;/xs:documentation&gt;
+      &lt;/xs:annotation&gt;
+    &lt;/xs:attribute&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns:devkit=&quot;http://www.mulesoft.org/schema/mule/devkit&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;config&quot; substitutionGroup=&quot;mule:abstract-extension&quot; devkit:javaClass=&quot;org.mule.module.fws.adapters.FWSCloudConnectorLifecycleAdapter&quot;&gt;
+    &lt;xs:complexType&gt;
+      &lt;xs:complexContent&gt;
+        &lt;xs:extension base=&quot;mule:abstractExtensionType&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;With Amazon FWS, merchants can directly integrate with the FBA system, allowing
+them to automatically process shipments to Amazon and then out to customers. This
+functionality is contained in three key APIs: the inbound service, the outbound
+service, and the inventory service.
+&amp;lt;/p&amp;gt;
+&amp;lt;h2&amp;gt;Inbound Service&amp;lt;/h2&amp;gt;
+&amp;lt;p&amp;gt;
+The inbound service allows merchants to create and send inbound shipments of
+inventory to Amazon&amp;amp;#8217;s fulfillment centers.
+&amp;lt;/p&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;&amp;lt;strong&amp;gt;Create shipments of inventory to Amazon fulfillment centers&amp;lt;/strong&amp;gt;&amp;lt;br&amp;gt;
+Our tools make it easy for merchants to ship inventory to Amazon with everything
+from label creation to packing slips. Merchants in the U.S. can also take
+advantage of Amazon&amp;amp;#8217;s discounted UPS shipping rates.&amp;lt;br&amp;gt;
+&amp;lt;br&amp;gt;
+&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;h2&amp;gt;Outbound Service&amp;lt;/h2&amp;gt;
+&amp;lt;p&amp;gt;
+The outbound service allows merchants to use Amazon&amp;amp;#8217;s fulfillment processing
+for orders sold on the merchant&amp;amp;#8217;s website or other non-Amazon channels.
+&amp;lt;/p&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;&amp;lt;strong&amp;gt;Submit fulfillment order/shipment requests&amp;lt;/strong&amp;gt;&amp;lt;br&amp;gt;
+By integrating the outbound service API into merchant software, customer orders
+are processed in real time, informing Amazon what to ship and where to ship it.&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;&amp;lt;strong&amp;gt;Track and manage shipment requests&amp;lt;/strong&amp;gt;&amp;lt;br&amp;gt;
+After orders leave our fulfillment centers, merchants can track shipments and keep
+their customers aware of arrival times.&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;h2&amp;gt;Inventory Service&amp;lt;/h2&amp;gt;
+&amp;lt;p&amp;gt;
+The inventory service allows merchants to stay up to date on the status of
+inventory in Amazon���s fulfillment centers.
+&amp;lt;/p&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;&amp;lt;strong&amp;gt;Check Inventory Status&amp;lt;/strong&amp;gt;&amp;lt;br&amp;gt;
+Merchants can discover when inventory items change status and get the current
+availability status to keep product listing information up to date.&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+          &lt;xs:attribute name=&quot;name&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+            &lt;xs:annotation&gt;
+              &lt;xs:documentation&gt;Give a name to this configuration so it can be later referenced by config-ref.&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+          &lt;/xs:attribute&gt;
+          &lt;xs:attribute name=&quot;client-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+            &lt;xs:annotation&gt;
+              &lt;xs:documentation&gt;The FWSClient. You may change it for mocking purposes&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+          &lt;/xs:attribute&gt;
+          &lt;xs:attribute name=&quot;accessKey&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+            &lt;xs:annotation&gt;
+              &lt;xs:documentation&gt;The Amazon AWS account public key&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+          &lt;/xs:attribute&gt;
+          &lt;xs:attribute name=&quot;secretKey&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+            &lt;xs:annotation&gt;
+              &lt;xs:documentation&gt;The Amazon AWS account private key&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+          &lt;/xs:attribute&gt;
+        &lt;/xs:extension&gt;
+      &lt;/xs:complexContent&gt;
+    &lt;/xs:complexType&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;delete-inbound-shipment-items&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;DeleteInboundShipmentItemsType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Removes items from a pre-existing shipment specified by the ShipmentId.
+
+This operation removes the items
+specified in each MerchantSKU parameter from the shipment in their entirety, no matter the quantity.
+If the MerchantSKU is not currently a part of the shipment, then that particular line item is ignored, but others are still processed.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;DeleteInboundShipmentItemsType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;merchantSku&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the msku of the items to delete&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;shipmentId&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the id of the shipment&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;get-fulfillment-identifier&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;GetFulfillmentIdentifierType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Gets the Fulfillment Network SKU (FNSKU) for the supplied merchant item - creating it if needed.
+
+This operation is  idempotent in that it can be called multiple times without any adverse effects. This operation is required whenever you need to register items
+for Amazon fulfillment that require labeling and when you need to get the identifier prior to creating an offer. This operation is necessary to register items for Amazon
+fulfillment in order to send them to Amazon, but does not do the work of marking any offer for this item as Amazon fulfilled.
+A response does not imply that the item has an offer for which it can be fulfilled; only that the Amazon Fulfillment Network can track it. An inactive item can have a
+quantity in the fulfillment center, but will never be fulfilled.
+Use this operation instead of getFulfillmentIdentifierForMSKU if an offer does not already exist for the MerchantSKU.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;GetFulfillmentIdentifierType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;asin&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the mandatory Aamzon's identifier&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; name=&quot;itemCondition&quot; use=&quot;required&quot; type=&quot;ItemConditionEnumType&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the mandatory item's condition&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;merchantSku&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the mandatory merchant's sku&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;get-fulfillment-identifier-for-msku&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;GetFulfillmentIdentifierForMskuType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Gets the Fulfillment Network SKU (FNSKU) for the supplied merchant item - creating it if needed.
+
+This operation is idempotent in that you can call it multiple times without any adverse effects.
+This operation is required whenever you need to register items for Amazon fulfillment that require
+labeling. This operation is necessary to register items for Amazon fulfillment in order to send them to Amazon, but doesn't mark any offer for this item as
+Amazon fulfilled.
+A response does not imply that the item has an offer for which it can be fulfilled; only that the Amazon Fulfillment Network can track it. An inactive item can have a
+quantity in the fulfillment center, but will never be fulfilled.
+Use this operation instead of GetFulfillmentIdentifier if an offer already exists for the SKU.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;GetFulfillmentIdentifierForMskuType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;merchantSku&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the merchant's sku&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;get-fulfillment-item-by-fnsku&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;GetFulfillmentItemByFnskuType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Gets fulfillment item data for the provided Fulfillment Network SKU (FNSKU). Throws an FWSException if the fnsku is invalid.
+
+A response does not imply that the item has an offer for which it can be fulfilled; only that the Amazon Fulfillment Network
+can track it. An inactive item can have a quantity in the fulfillment center, but will never be fulfilled.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;GetFulfillmentItemByFnskuType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;fulfillmentNetworkSku&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the mandatory fulfillment network sku - aka nsku, aka fnsku&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;get-fulfillment-item-by-msku&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;GetFulfillmentItemByMskuType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Gets fulfillment item data for the provided Merchant SKU. Throws an FWSException if the msku is invalid.
+
+A response does not imply that the item has an offer for which it can be fulfilled;
+only that the Amazon Fulfillment Network can track it. An inactive item can have a quantity in the fulfillment center, but will never be fulfille&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;GetFulfillmentItemByMskuType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;merchantSku&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the mandatory merchant's sku&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;get-inbound-shipment&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;GetInboundShipmentType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Gets inbound shipment data without the item details for a given ShipmentId.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;GetInboundShipmentType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;shipmentId&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the mandatory shipment id&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;get-inbound-shipment-preview&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;GetInboundShipmentPreviewType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Gets the information needed to create a set of shipments for a given set of items and the ship from address.
+
+You might need to create multiple shipments for various reasons, but the most common reason is when there are sortable and non-sortable items.
+In this case, there is one shipment for each of the shipment sets returned.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;GetInboundShipmentPreviewType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element name=&quot;items&quot; maxOccurs=&quot;1&quot; minOccurs=&quot;1&quot;&gt;
+            &lt;xs:annotation&gt;
+              &lt;xs:documentation&gt;the mandatory items list of MerchantSkuItems to preview. At least one item is required&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+            &lt;xs:complexType&gt;
+              &lt;xs:sequence&gt;
+                &lt;xs:element name=&quot;item&quot; maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot;&gt;
+                  &lt;xs:complexType&gt;
+                    &lt;xs:attribute name=&quot;value-ref&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;&lt;/xs:attribute&gt;
+                  &lt;/xs:complexType&gt;
+                &lt;/xs:element&gt;
+              &lt;/xs:sequence&gt;
+              &lt;xs:attribute name=&quot;ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;The reference object for this parameter&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+              &lt;/xs:attribute&gt;
+            &lt;/xs:complexType&gt;
+          &lt;/xs:element&gt;
+          &lt;xs:element name=&quot;address&quot; maxOccurs=&quot;1&quot; minOccurs=&quot;1&quot;&gt;
+            &lt;xs:annotation&gt;
+              &lt;xs:documentation&gt;the mandatory destination address&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+            &lt;xs:complexType&gt;
+              &lt;xs:choice&gt;
+                &lt;xs:sequence&gt;
+                  &lt;xs:element name=&quot;addres&quot; maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot;&gt;
+                    &lt;xs:complexType&gt;
+                      &lt;xs:simpleContent&gt;
+                        &lt;xs:extension base=&quot;xs:string&quot;&gt;
+                          &lt;xs:attribute name=&quot;value-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;&lt;/xs:attribute&gt;
+                          &lt;xs:attribute name=&quot;key&quot; type=&quot;xs:string&quot;&gt;&lt;/xs:attribute&gt;
+                        &lt;/xs:extension&gt;
+                      &lt;/xs:simpleContent&gt;
+                    &lt;/xs:complexType&gt;
+                  &lt;/xs:element&gt;
+                &lt;/xs:sequence&gt;
+                &lt;xs:sequence&gt;
+                  &lt;xs:any maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot; processContents=&quot;lax&quot;&gt;&lt;/xs:any&gt;
+                &lt;/xs:sequence&gt;
+              &lt;/xs:choice&gt;
+              &lt;xs:attribute name=&quot;ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;The reference object for this parameter&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+              &lt;/xs:attribute&gt;
+            &lt;/xs:complexType&gt;
+          &lt;/xs:element&gt;
+        &lt;/xs:sequence&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; name=&quot;labelPreference&quot; use=&quot;optional&quot; type=&quot;LabelPreferenceEnumType&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the optional label preference&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;get-inbound-service-status&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;GetInboundServiceStatusType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Answers a brief status message from the service&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;GetInboundServiceStatusType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;list-fulfillment-items&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;ListFulfillmentItemsType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Lazily lists fulfillment items registered.
+
+If IncludeInactive is set to True, the operation returns both active (available for fulfillment) and inactive (not available for fulfillment) mappings. This parameter defaults to False. You can use inactive mappings to track inventory in Amazon's fulfillment centers; however, inactive items can't be fulfilled.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;ListFulfillmentItemsType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; name=&quot;includeInactive&quot; default=&quot;false&quot; use=&quot;optional&quot; type=&quot;booleanType&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;optional. Whether non available items for fulfillment should be listed&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;list-inbound-shipment-items&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;ListInboundShipmentItemsType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Lazily retrieved the all the inbound shipment items for the given shipmentId.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;ListInboundShipmentItemsType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;shipmentId&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the mandatory shipment's id&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;list-inbound-shipments&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;ListInboundShipmentsType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Lazily lists the inbound shipments a merchant has created, according to the specified query parameters.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;ListInboundShipmentsType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; name=&quot;shipmentStatus&quot; use=&quot;required&quot; type=&quot;ShipmentStatusEnumType&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the mandatory status of listed items&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; name=&quot;createdAfter&quot; use=&quot;optional&quot; type=&quot;dateTimeType&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;optional. The min creation date of listed shipment&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; name=&quot;createdBefore&quot; use=&quot;optional&quot; type=&quot;dateTimeType&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;optional. The max creation date of listed shipments&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;put-inbound-shipment-data&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;PutInboundShipmentDataType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Adds or replaces the merchant's inbound shipment header information
+for the given ShipmentId.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;PutInboundShipmentDataType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element name=&quot;ship-from-address&quot; maxOccurs=&quot;1&quot; minOccurs=&quot;1&quot;&gt;
+            &lt;xs:annotation&gt;
+              &lt;xs:documentation&gt;the mandatory  source address of the shipment to amazon's centers&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+            &lt;xs:complexType&gt;
+              &lt;xs:choice&gt;
+                &lt;xs:sequence&gt;
+                  &lt;xs:element name=&quot;ship-from-addres&quot; maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot;&gt;
+                    &lt;xs:complexType&gt;
+                      &lt;xs:simpleContent&gt;
+                        &lt;xs:extension base=&quot;xs:string&quot;&gt;
+                          &lt;xs:attribute name=&quot;value-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;&lt;/xs:attribute&gt;
+                          &lt;xs:attribute name=&quot;key&quot; type=&quot;xs:string&quot;&gt;&lt;/xs:attribute&gt;
+                        &lt;/xs:extension&gt;
+                      &lt;/xs:simpleContent&gt;
+                    &lt;/xs:complexType&gt;
+                  &lt;/xs:element&gt;
+                &lt;/xs:sequence&gt;
+                &lt;xs:sequence&gt;
+                  &lt;xs:any maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot; processContents=&quot;lax&quot;&gt;&lt;/xs:any&gt;
+                &lt;/xs:sequence&gt;
+              &lt;/xs:choice&gt;
+              &lt;xs:attribute name=&quot;ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;The reference object for this parameter&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+              &lt;/xs:attribute&gt;
+            &lt;/xs:complexType&gt;
+          &lt;/xs:element&gt;
+        &lt;/xs:sequence&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;shipmentId&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the mandatory shipment's id&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;shipmentName&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the mandatory shipment name&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;destinationFulfillmentCenter&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the mandatory Amazon's fulfillment center where the client's products are stored&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; name=&quot;labelPreference&quot; use=&quot;optional&quot; type=&quot;LabelPreferenceEnumType&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the optional label preference&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;put-inbound-shipment&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;PutInboundShipmentType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Adds or replaces inbound shipment for a given shipmentId. If the shipment does not
+exist, one will be created. Note, the merchant should call
+SetInboundShipmentStatus with a status of 'Shipped' when the shipment is
+picked up, or set the status to 'Cancelled' if the shipment is abandoned. The
+intial status of a shipment will be set to 'Working'. Once a shipment's status
+has been set to 'Shipped', the merchant may make no further changes except to
+update the status to 'Cancelled'. Any items not received at the time a
+shipment is 'Cancelled' will be sidelined if they arrive at the fulfillment
+center.
+
+NOTE: If you are experiencing time-outs due to too many items in the shipment, calling this operation with a subset of
+the items should work. You may add more items to the shipment by calling putInboundShipmentItems.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;PutInboundShipmentType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element name=&quot;ship-from-address&quot; maxOccurs=&quot;1&quot; minOccurs=&quot;1&quot;&gt;
+            &lt;xs:annotation&gt;
+              &lt;xs:documentation&gt;the mandatory source address of the shipment to amazon's centers&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+            &lt;xs:complexType&gt;
+              &lt;xs:choice&gt;
+                &lt;xs:sequence&gt;
+                  &lt;xs:element name=&quot;ship-from-addres&quot; maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot;&gt;
+                    &lt;xs:complexType&gt;
+                      &lt;xs:simpleContent&gt;
+                        &lt;xs:extension base=&quot;xs:string&quot;&gt;
+                          &lt;xs:attribute name=&quot;value-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;&lt;/xs:attribute&gt;
+                          &lt;xs:attribute name=&quot;key&quot; type=&quot;xs:string&quot;&gt;&lt;/xs:attribute&gt;
+                        &lt;/xs:extension&gt;
+                      &lt;/xs:simpleContent&gt;
+                    &lt;/xs:complexType&gt;
+                  &lt;/xs:element&gt;
+                &lt;/xs:sequence&gt;
+                &lt;xs:sequence&gt;
+                  &lt;xs:any maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot; processContents=&quot;lax&quot;&gt;&lt;/xs:any&gt;
+                &lt;/xs:sequence&gt;
+              &lt;/xs:choice&gt;
+              &lt;xs:attribute name=&quot;ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;The reference object for this parameter&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+              &lt;/xs:attribute&gt;
+            &lt;/xs:complexType&gt;
+          &lt;/xs:element&gt;
+          &lt;xs:element name=&quot;item-quantities&quot; maxOccurs=&quot;1&quot; minOccurs=&quot;1&quot;&gt;
+            &lt;xs:annotation&gt;
+              &lt;xs:documentation&gt;a mandatory list of MerchantSKUQuantityItem objects, with the amount of item for each merchant sku. At least one item must be passed&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+            &lt;xs:complexType&gt;
+              &lt;xs:sequence&gt;
+                &lt;xs:element name=&quot;item-quantity&quot; maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot;&gt;
+                  &lt;xs:complexType&gt;
+                    &lt;xs:attribute name=&quot;value-ref&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;&lt;/xs:attribute&gt;
+                  &lt;/xs:complexType&gt;
+                &lt;/xs:element&gt;
+              &lt;/xs:sequence&gt;
+              &lt;xs:attribute name=&quot;ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;The reference object for this parameter&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+              &lt;/xs:attribute&gt;
+            &lt;/xs:complexType&gt;
+          &lt;/xs:element&gt;
+        &lt;/xs:sequence&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;shipmentId&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the mandatory shipment's id&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;shipmentName&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the mandatory shipment name&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;destinationFulfillmentCenter&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the mandatory Amazon's fulfillment center where the client's products are stored&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; name=&quot;labelPreference&quot; use=&quot;optional&quot; type=&quot;LabelPreferenceEnumType&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the optional label preference&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;put-inbound-shipment-items&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;PutInboundShipmentItemsType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Adds line items to a pre-existing shipment that the ShipmentId specifies.
+
+If the MerchantSKU is already in the shipment, then that particular line item is replaced.
+Call PutInboundShipment to create a new shipment.
+This call returns an exception if you attempt to add line items to a shipment that is in a status other than Working.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;PutInboundShipmentItemsType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element name=&quot;item-quantities&quot; maxOccurs=&quot;1&quot; minOccurs=&quot;1&quot;&gt;
+            &lt;xs:annotation&gt;
+              &lt;xs:documentation&gt;a mandatory list of MerchantSKUQuantityItem objects, with the amount of item for each merchant sku. At least one item must be passed&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+            &lt;xs:complexType&gt;
+              &lt;xs:sequence&gt;
+                &lt;xs:element name=&quot;item-quantity&quot; maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot;&gt;
+                  &lt;xs:complexType&gt;
+                    &lt;xs:attribute name=&quot;value-ref&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;&lt;/xs:attribute&gt;
+                  &lt;/xs:complexType&gt;
+                &lt;/xs:element&gt;
+              &lt;/xs:sequence&gt;
+              &lt;xs:attribute name=&quot;ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;The reference object for this parameter&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+              &lt;/xs:attribute&gt;
+            &lt;/xs:complexType&gt;
+          &lt;/xs:element&gt;
+        &lt;/xs:sequence&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;shipmentId&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the mandatory shipment's id&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;set-inbound-shipment-status&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;SetInboundShipmentStatusType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Sets the inbound shipment status to the specified ShipmentStatus.
+Once a shipment's status has been set to Shipped, you cannot make any further changes except to update the status to Cancelled. Any item not received at the time a shipment is cancelled is put into problem receive at the fulfillment center.
+
+This operation returns a RequestId upon success, otherwise an explicit error is returned.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;SetInboundShipmentStatusType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;shipmentId&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the mandatory shipment's id&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; name=&quot;shipmentStatus&quot; use=&quot;required&quot; type=&quot;ShipmentStatusEnumType&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the mandatory new status for the given shipment&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;cancel-fulfillment-order&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;CancelFulfillmentOrderType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Requests Amazon not to fulfill an existing fulfillment order. This is just a hint, already shipped
+orders may not be canceled.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;CancelFulfillmentOrderType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;orderId&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the mandatory order's id&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;create-fulfillment-order&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;CreateFulfillmentOrderType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Generates a request for Amazon to ship items from the merchant's inventory to a destination address.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;CreateFulfillmentOrderType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element name=&quot;destination-address&quot; maxOccurs=&quot;1&quot; minOccurs=&quot;1&quot;&gt;
+            &lt;xs:annotation&gt;
+              &lt;xs:documentation&gt;the mandatory destination address of the fulfillment&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+            &lt;xs:complexType&gt;
+              &lt;xs:choice&gt;
+                &lt;xs:sequence&gt;
+                  &lt;xs:element name=&quot;destination-addres&quot; maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot;&gt;
+                    &lt;xs:complexType&gt;
+                      &lt;xs:simpleContent&gt;
+                        &lt;xs:extension base=&quot;xs:string&quot;&gt;
+                          &lt;xs:attribute name=&quot;value-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;&lt;/xs:attribute&gt;
+                          &lt;xs:attribute name=&quot;key&quot; type=&quot;xs:string&quot;&gt;&lt;/xs:attribute&gt;
+                        &lt;/xs:extension&gt;
+                      &lt;/xs:simpleContent&gt;
+                    &lt;/xs:complexType&gt;
+                  &lt;/xs:element&gt;
+                &lt;/xs:sequence&gt;
+                &lt;xs:sequence&gt;
+                  &lt;xs:any maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot; processContents=&quot;lax&quot;&gt;&lt;/xs:any&gt;
+                &lt;/xs:sequence&gt;
+              &lt;/xs:choice&gt;
+              &lt;xs:attribute name=&quot;ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;The reference object for this parameter&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+              &lt;/xs:attribute&gt;
+            &lt;/xs:complexType&gt;
+          &lt;/xs:element&gt;
+          &lt;xs:element name=&quot;emails&quot; maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot;&gt;
+            &lt;xs:annotation&gt;
+              &lt;xs:documentation&gt;an optional list of email strings&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+            &lt;xs:complexType&gt;
+              &lt;xs:sequence&gt;
+                &lt;xs:element name=&quot;email&quot; maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot;&gt;
+                  &lt;xs:complexType&gt;
+                    &lt;xs:simpleContent&gt;
+                      &lt;xs:extension base=&quot;xs:string&quot;&gt;
+                        &lt;xs:attribute name=&quot;value-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;&lt;/xs:attribute&gt;
+                      &lt;/xs:extension&gt;
+                    &lt;/xs:simpleContent&gt;
+                  &lt;/xs:complexType&gt;
+                &lt;/xs:element&gt;
+              &lt;/xs:sequence&gt;
+              &lt;xs:attribute name=&quot;ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;The reference object for this parameter&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+              &lt;/xs:attribute&gt;
+            &lt;/xs:complexType&gt;
+          &lt;/xs:element&gt;
+          &lt;xs:element name=&quot;items&quot; maxOccurs=&quot;1&quot; minOccurs=&quot;1&quot;&gt;
+            &lt;xs:annotation&gt;
+              &lt;xs:documentation&gt;a mandatory list of CreateFulfillmentOrderItem. At least one item must be specified&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+            &lt;xs:complexType&gt;
+              &lt;xs:sequence&gt;
+                &lt;xs:element name=&quot;item&quot; maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot;&gt;
+                  &lt;xs:complexType&gt;
+                    &lt;xs:choice&gt;
+                      &lt;xs:sequence&gt;
+                        &lt;xs:element name=&quot;inner-item&quot; maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot;&gt;
+                          &lt;xs:complexType&gt;
+                            &lt;xs:simpleContent&gt;
+                              &lt;xs:extension base=&quot;xs:string&quot;&gt;
+                                &lt;xs:attribute name=&quot;value-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;&lt;/xs:attribute&gt;
+                                &lt;xs:attribute name=&quot;key&quot; type=&quot;xs:string&quot;&gt;&lt;/xs:attribute&gt;
+                              &lt;/xs:extension&gt;
+                            &lt;/xs:simpleContent&gt;
+                          &lt;/xs:complexType&gt;
+                        &lt;/xs:element&gt;
+                      &lt;/xs:sequence&gt;
+                      &lt;xs:sequence&gt;
+                        &lt;xs:any maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot; processContents=&quot;lax&quot;&gt;&lt;/xs:any&gt;
+                      &lt;/xs:sequence&gt;
+                    &lt;/xs:choice&gt;
+                    &lt;xs:attribute name=&quot;ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+                      &lt;xs:annotation&gt;
+                        &lt;xs:documentation&gt;The reference object for this parameter&lt;/xs:documentation&gt;
+                      &lt;/xs:annotation&gt;
+                    &lt;/xs:attribute&gt;
+                  &lt;/xs:complexType&gt;
+                &lt;/xs:element&gt;
+              &lt;/xs:sequence&gt;
+              &lt;xs:attribute name=&quot;ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;The reference object for this parameter&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+              &lt;/xs:attribute&gt;
+            &lt;/xs:complexType&gt;
+          &lt;/xs:element&gt;
+        &lt;/xs:sequence&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;orderId&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the mandatory fulfillment order id&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;displayableOrderId&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the order id displayed in the fulfillment. If not specified, the orderId is used.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;fulfillmentPolicy&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the optional fulfillment policy&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;fulfillmentMethod&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the optional fulfillment method&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;shippingSpeedCategory&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the mandatory shipping speed category&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;displayableOrderComment&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the mandatory comment that will be displayed in the order&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; name=&quot;displayableOrderDate&quot; use=&quot;required&quot; type=&quot;dateTimeType&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the mandatory order date displayed in the fulfillment&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;get-fulfillment-order&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;GetFulfillmentOrderType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Gets the original fulfillment order request, the status of
+both the order and its items in the Amazon Fulfillment Network,
+and the shipments that have been generated to fulfill the order.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;GetFulfillmentOrderType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;orderId&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the mandatory order id of the fulfillment&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;get-fulfillment-preview&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;GetFulfillmentPreviewType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Answers estimated shipping dates and fees for a given set of merchant SKUs and quantities.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;GetFulfillmentPreviewType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element name=&quot;address&quot; maxOccurs=&quot;1&quot; minOccurs=&quot;1&quot;&gt;
+            &lt;xs:annotation&gt;
+              &lt;xs:documentation&gt;the mandatory destination address&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+            &lt;xs:complexType&gt;
+              &lt;xs:choice&gt;
+                &lt;xs:sequence&gt;
+                  &lt;xs:element name=&quot;addres&quot; maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot;&gt;
+                    &lt;xs:complexType&gt;
+                      &lt;xs:simpleContent&gt;
+                        &lt;xs:extension base=&quot;xs:string&quot;&gt;
+                          &lt;xs:attribute name=&quot;value-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;&lt;/xs:attribute&gt;
+                          &lt;xs:attribute name=&quot;key&quot; type=&quot;xs:string&quot;&gt;&lt;/xs:attribute&gt;
+                        &lt;/xs:extension&gt;
+                      &lt;/xs:simpleContent&gt;
+                    &lt;/xs:complexType&gt;
+                  &lt;/xs:element&gt;
+                &lt;/xs:sequence&gt;
+                &lt;xs:sequence&gt;
+                  &lt;xs:any maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot; processContents=&quot;lax&quot;&gt;&lt;/xs:any&gt;
+                &lt;/xs:sequence&gt;
+              &lt;/xs:choice&gt;
+              &lt;xs:attribute name=&quot;ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;The reference object for this parameter&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+              &lt;/xs:attribute&gt;
+            &lt;/xs:complexType&gt;
+          &lt;/xs:element&gt;
+          &lt;xs:element name=&quot;items&quot; maxOccurs=&quot;1&quot; minOccurs=&quot;1&quot;&gt;
+            &lt;xs:annotation&gt;
+              &lt;xs:documentation&gt;the mandatory items list of GetFulfillmentPreviewItem to preview. At least one item is required&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+            &lt;xs:complexType&gt;
+              &lt;xs:sequence&gt;
+                &lt;xs:element name=&quot;item&quot; maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot;&gt;
+                  &lt;xs:complexType&gt;
+                    &lt;xs:attribute name=&quot;value-ref&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;&lt;/xs:attribute&gt;
+                  &lt;/xs:complexType&gt;
+                &lt;/xs:element&gt;
+              &lt;/xs:sequence&gt;
+              &lt;xs:attribute name=&quot;ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;The reference object for this parameter&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+              &lt;/xs:attribute&gt;
+            &lt;/xs:complexType&gt;
+          &lt;/xs:element&gt;
+        &lt;/xs:sequence&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;shippingSpeedCategories&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the optional shipping categories&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;orderItemId&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the mandatory order item id&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;get-outbound-service-status&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;GetOutboundServiceStatusType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Answers a brief status message from the service&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;GetOutboundServiceStatusType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;list-fulfillment-orders&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;ListFulfillmentOrdersType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Lazily lists all the fulfillment orders&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;ListFulfillmentOrdersType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:sequence&gt;
+          &lt;xs:element name=&quot;fulfillment-methods&quot; maxOccurs=&quot;1&quot; minOccurs=&quot;0&quot;&gt;
+            &lt;xs:annotation&gt;
+              &lt;xs:documentation&gt;optional list of FWS fulfillment method strings&lt;/xs:documentation&gt;
+            &lt;/xs:annotation&gt;
+            &lt;xs:complexType&gt;
+              &lt;xs:sequence&gt;
+                &lt;xs:element name=&quot;fulfillment-method&quot; maxOccurs=&quot;unbounded&quot; minOccurs=&quot;0&quot;&gt;
+                  &lt;xs:complexType&gt;
+                    &lt;xs:simpleContent&gt;
+                      &lt;xs:extension base=&quot;xs:string&quot;&gt;
+                        &lt;xs:attribute name=&quot;value-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;&lt;/xs:attribute&gt;
+                      &lt;/xs:extension&gt;
+                    &lt;/xs:simpleContent&gt;
+                  &lt;/xs:complexType&gt;
+                &lt;/xs:element&gt;
+              &lt;/xs:sequence&gt;
+              &lt;xs:attribute name=&quot;ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+                &lt;xs:annotation&gt;
+                  &lt;xs:documentation&gt;The reference object for this parameter&lt;/xs:documentation&gt;
+                &lt;/xs:annotation&gt;
+              &lt;/xs:attribute&gt;
+            &lt;/xs:complexType&gt;
+          &lt;/xs:element&gt;
+        &lt;/xs:sequence&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; name=&quot;startDate&quot; use=&quot;optional&quot; type=&quot;dateTimeType&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the start date of the query&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;get-inventory-supply&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;GetInventorySupplyType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Gets information about the supply of merchant-owned inventory in Amazon's fulfillment network.
+
+Throws a FWSException if inventory is unsellable or
+is already bound to a customer order or
+bound to internal fulfillment center processing (for example, labeling).&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;GetInventorySupplyType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;merchantSku&quot; use=&quot;required&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the mandatory merchant's sku&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;responseGroup&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the optional response group&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;get-inventory-service-status&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;GetInventoryServiceStatusType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Answers a brief status message from the service&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;GetInventoryServiceStatusType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:element xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; name=&quot;list-updated-inventory-supply&quot; substitutionGroup=&quot;mule:abstract-message-processor&quot; type=&quot;ListUpdatedInventorySupplyType&quot;&gt;
+    &lt;xs:annotation&gt;
+      &lt;xs:documentation&gt;Lazily retrieves all the information about the supply of merchant-owned inventory in Amazon's fulfillment network, for
+inventory items that may have had recent changes in inventory levels. The type of inventory data
+returned by this operation is the same as that returned by getInventorySupply.
+This operation provides the most efficient mechanism for clients to maintain local copies of inventory supply data.&lt;/xs:documentation&gt;
+    &lt;/xs:annotation&gt;
+  &lt;/xs:element&gt;
+  &lt;xs:complexType name=&quot;ListUpdatedInventorySupplyType&quot;&gt;
+    &lt;xs:complexContent&gt;
+      &lt;xs:extension xmlns:mule=&quot;http://www.mulesoft.org/schema/mule/core&quot; base=&quot;mule:abstractMessageProcessorType&quot;&gt;
+        &lt;xs:attribute name=&quot;config-ref&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;Specify which configuration to use for this invocation.&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute xmlns=&quot;http://www.mulesoft.org/schema/mule/fws&quot; name=&quot;startDateTime&quot; use=&quot;required&quot; type=&quot;dateTimeType&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;the mandatory start date&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+        &lt;xs:attribute name=&quot;responseGroup&quot; use=&quot;optional&quot; type=&quot;xs:string&quot;&gt;
+          &lt;xs:annotation&gt;
+            &lt;xs:documentation&gt;a response group string&lt;/xs:documentation&gt;
+          &lt;/xs:annotation&gt;
+        &lt;/xs:attribute&gt;
+      &lt;/xs:extension&gt;
+    &lt;/xs:complexContent&gt;
+  &lt;/xs:complexType&gt;
+  &lt;xs:simpleType name=&quot;ItemConditionEnumType&quot;&gt;
+    &lt;xs:union&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:enumeration value=&quot;NEW_ITEM&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;NEW_WITH_WARRANTY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;NEW_OEM&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;NEW_OPEN_BOX&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;USED_LIKE_NEW&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;USED_VERY_GOOD&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;USED_GOOD&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;USED_ACCEPTABLE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;USED_POOR&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;USED_REFURBISHED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COLLECTIBLE_LIKE_NEW&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COLLECTIBLE_VERY_GOOD&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COLLECTIBLE_GOOD&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COLLECTIBLE_ACCEPTABLE&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;COLLECTIBLE_POOR&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;REFURBISHED_WITH_WARRANTY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;REFUrbished&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;CLUB&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;UNKNOWN&quot;&gt;&lt;/xs:enumeration&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:pattern value=&quot;\#\[[^\]]+\]&quot;&gt;&lt;/xs:pattern&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+    &lt;/xs:union&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name=&quot;LabelPreferenceEnumType&quot;&gt;
+    &lt;xs:union&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:enumeration value=&quot;AMAZON_LABEL_ONLY&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;AMAZON_LABEL_PREFERRED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;MERCHANT_LABEL&quot;&gt;&lt;/xs:enumeration&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:pattern value=&quot;\#\[[^\]]+\]&quot;&gt;&lt;/xs:pattern&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+    &lt;/xs:union&gt;
+  &lt;/xs:simpleType&gt;
+  &lt;xs:simpleType name=&quot;ShipmentStatusEnumType&quot;&gt;
+    &lt;xs:union&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:enumeration value=&quot;WORKING&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;SHIPPED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;INTRANSIT&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;DELIVERED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;CHECKEDIN&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;RECEIVING&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;CLOSED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;CANCELLED&quot;&gt;&lt;/xs:enumeration&gt;
+          &lt;xs:enumeration value=&quot;ERROR&quot;&gt;&lt;/xs:enumeration&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+      &lt;xs:simpleType&gt;
+        &lt;xs:restriction base=&quot;xs:string&quot;&gt;
+          &lt;xs:pattern value=&quot;\#\[[^\]]+\]&quot;&gt;&lt;/xs:pattern&gt;
+        &lt;/xs:restriction&gt;
+      &lt;/xs:simpleType&gt;
+    &lt;/xs:union&gt;
+  &lt;/xs:simpleType&gt;
+&lt;/xs:schema&gt;</pre>
+</div><!-- jd-descr -->
+
+<div id="footer">
+Generated by <a href="http://www.mulesoft.com/devkit">Mule DevKit</a>. Document generation technology based on <a href="http://code.google.com/p/doclava/">Google's Doclava</a>.
+</div> <!-- end footer -->
+
+</div> <!-- jd-content -->
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+<script type="text/javascript">
+init(); /* initialize mule-developer-docs.js */
+</script>
+
+</body>
+</html>

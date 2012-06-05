@@ -64,6 +64,8 @@
 
 
 
+
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -85,6 +87,7 @@
 <link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
 <script src="../assets/search_autocomplete.js" type="text/javascript"></script>
 <script src="../assets/jquery-resizable.min.js" type="text/javascript"></script>
+<script src="../assets/jquery-toc.js" type="text/javascript"></script>
 <script src="../assets/mule-developer-docs.js" type="text/javascript"></script>
 <script src="../assets/prettify.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -101,6 +104,27 @@
     #resize-packages-nav{border-bottom:3px solid #666;}
   </style>
 </noscript>
+<script type="text/javascript" charset="utf-8">
+  var is_ssl = ("https:" == document.location.protocol);
+  var asset_host = is_ssl ? "https://s3.amazonaws.com/getsatisfaction.com/" : "http://s3.amazonaws.com/getsatisfaction.com/";
+  document.write(unescape("%3Cscript src='" + asset_host + "javascripts/feedback-v2.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  var feedback_widget_options = {};
+
+  feedback_widget_options.display = "overlay";
+  feedback_widget_options.company = "mulesoft";
+  feedback_widget_options.placement = "right";
+  feedback_widget_options.color = "#2F74AE";
+  feedback_widget_options.style = "question";
+
+  feedback_widget_options.tag = "Mule Amazon FWS Connector";
+
+  feedback_widget_options.limit = "3";
+
+  var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
+</script>
 </head>
 
 <body class="">
@@ -196,7 +220,6 @@ Summary:
 <div id="jd-header">
     org.mule.modules
 <h1>mule-module-fws</h1>
-    2.2-SNAPSHOT
 
 </div><!-- end header -->
 
@@ -205,15 +228,17 @@ Summary:
 <div id="jd-content" class="api apilevel-">
 
 
+<br/>
+
 <div class="jd-tagdata">
       <table class="jd-tagtable">
         <tbody><tr>
           <th>Namespace</th><td>http://www.mulesoft.org/schema/mule/fws</td>
         </tr><tr>
-          <th>Schema Location</th><td>http://www.mulesoft.org/schema/mule/fws/2.0/mule-fws.xsd</td>
+          <th>Schema Location</th><td>http://www.mulesoft.org/schema/mule/fws/current/mule-fws.xsd&nbsp;&nbsp;(<a href="fws-schema.html">View Schema</a>)</td>
         </tr>
 <tr>
-          <th>Version</th><td>2.0</td>
+          <th>Schema Version</th><td>2.0</td>
         </tr>
 <tr>
           <th>Minimum Mule Version</th><td>3.2</td>
@@ -313,7 +338,7 @@ Summary:
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../mule/fws.html#cancel-fulfillment-order">&lt;fws:cancel-fulfillment-order&gt;</a></nobr>
         
-        <div class="jd-descrdiv">Requests Amazon not to fulfill an existing fulfillment order.<br/></div>
+        <div class="jd-descrdiv">Requests Amazon not to fulfill an existing fulfillment order.</div>
         
   </td></tr>
 
@@ -323,7 +348,7 @@ Summary:
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../mule/fws.html#create-fulfillment-order">&lt;fws:create-fulfillment-order&gt;</a></nobr>
         
-        <div class="jd-descrdiv">Generates a request for Amazon to ship items from the merchant's inventory to a destination address.<br/></div>
+        <div class="jd-descrdiv">Generates a request for Amazon to ship items from the merchant's inventory to a destination address.</div>
         
   </td></tr>
 
@@ -333,7 +358,7 @@ Summary:
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../mule/fws.html#delete-inbound-shipment-items">&lt;fws:delete-inbound-shipment-items&gt;</a></nobr>
         
-        <div class="jd-descrdiv">Removes items from a pre-existing shipment specified by the ShipmentId.<br/></div>
+        <div class="jd-descrdiv">Removes items from a pre-existing shipment specified by the ShipmentId.</div>
         
   </td></tr>
 
@@ -343,7 +368,7 @@ Summary:
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../mule/fws.html#get-fulfillment-identifier">&lt;fws:get-fulfillment-identifier&gt;</a></nobr>
         
-        <div class="jd-descrdiv">Gets the Fulfillment Network SKU (FNSKU) for the supplied merchant item - creating it if needed.<br/></div>
+        <div class="jd-descrdiv">Gets the Fulfillment Network SKU (FNSKU) for the supplied merchant item - creating it if needed.</div>
         
   </td></tr>
 
@@ -353,7 +378,7 @@ Summary:
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../mule/fws.html#get-fulfillment-identifier-for-msku">&lt;fws:get-fulfillment-identifier-for-msku&gt;</a></nobr>
         
-        <div class="jd-descrdiv">Gets the Fulfillment Network SKU (FNSKU) for the supplied merchant item - creating it if needed.<br/></div>
+        <div class="jd-descrdiv">Gets the Fulfillment Network SKU (FNSKU) for the supplied merchant item - creating it if needed.</div>
         
   </td></tr>
 
@@ -363,7 +388,7 @@ Summary:
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../mule/fws.html#get-fulfillment-item-by-fnsku">&lt;fws:get-fulfillment-item-by-fnsku&gt;</a></nobr>
         
-        <div class="jd-descrdiv">Gets fulfillment item data for the provided Fulfillment Network SKU (FNSKU).<br/></div>
+        <div class="jd-descrdiv">Gets fulfillment item data for the provided Fulfillment Network SKU (FNSKU).</div>
         
   </td></tr>
 
@@ -373,7 +398,7 @@ Summary:
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../mule/fws.html#get-fulfillment-item-by-msku">&lt;fws:get-fulfillment-item-by-msku&gt;</a></nobr>
         
-        <div class="jd-descrdiv">Gets fulfillment item data for the provided Merchant SKU.<br/></div>
+        <div class="jd-descrdiv">Gets fulfillment item data for the provided Merchant SKU.</div>
         
   </td></tr>
 
@@ -385,7 +410,7 @@ Summary:
         
         <div class="jd-descrdiv">Gets the original fulfillment order request, the status of
  both the order and its items in the Amazon Fulfillment Network, 
- and the shipments that have been generated to fulfill the order.<br/></div>
+ and the shipments that have been generated to fulfill the order.</div>
         
   </td></tr>
 
@@ -395,7 +420,7 @@ Summary:
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../mule/fws.html#get-fulfillment-preview">&lt;fws:get-fulfillment-preview&gt;</a></nobr>
         
-        <div class="jd-descrdiv">Answers estimated shipping dates and fees for a given set of merchant SKUs and quantities.<br/></div>
+        <div class="jd-descrdiv">Answers estimated shipping dates and fees for a given set of merchant SKUs and quantities.</div>
         
   </td></tr>
 
@@ -407,7 +432,7 @@ Summary:
         
         <div class="jd-descrdiv">Answers a brief status message from the service
  
- <br/></div>
+ </div>
         
   </td></tr>
 
@@ -417,7 +442,7 @@ Summary:
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../mule/fws.html#get-inbound-shipment">&lt;fws:get-inbound-shipment&gt;</a></nobr>
         
-        <div class="jd-descrdiv">Gets inbound shipment data without the item details for a given ShipmentId.<br/></div>
+        <div class="jd-descrdiv">Gets inbound shipment data without the item details for a given ShipmentId.</div>
         
   </td></tr>
 
@@ -427,7 +452,7 @@ Summary:
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../mule/fws.html#get-inbound-shipment-preview">&lt;fws:get-inbound-shipment-preview&gt;</a></nobr>
         
-        <div class="jd-descrdiv">Gets the information needed to create a set of shipments for a given set of items and the ship from address.<br/></div>
+        <div class="jd-descrdiv">Gets the information needed to create a set of shipments for a given set of items and the ship from address.</div>
         
   </td></tr>
 
@@ -439,7 +464,7 @@ Summary:
         
         <div class="jd-descrdiv">Answers a brief status message from the service
  
- <br/></div>
+ </div>
         
   </td></tr>
 
@@ -449,7 +474,7 @@ Summary:
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../mule/fws.html#get-inventory-supply">&lt;fws:get-inventory-supply&gt;</a></nobr>
         
-        <div class="jd-descrdiv">Gets information about the supply of merchant-owned inventory in Amazon's fulfillment network.<br/></div>
+        <div class="jd-descrdiv">Gets information about the supply of merchant-owned inventory in Amazon's fulfillment network.</div>
         
   </td></tr>
 
@@ -461,7 +486,7 @@ Summary:
         
         <div class="jd-descrdiv">Answers a brief status message from the service
  
- <br/></div>
+ </div>
         
   </td></tr>
 
@@ -471,7 +496,7 @@ Summary:
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../mule/fws.html#list-fulfillment-items">&lt;fws:list-fulfillment-items&gt;</a></nobr>
         
-        <div class="jd-descrdiv">Lazily lists fulfillment items registered.<br/></div>
+        <div class="jd-descrdiv">Lazily lists fulfillment items registered.</div>
         
   </td></tr>
 
@@ -483,7 +508,7 @@ Summary:
         
         <div class="jd-descrdiv">Lazily lists all the fulfillment orders
  
- <br/> <br/></div>
+  </div>
         
   </td></tr>
 
@@ -493,7 +518,7 @@ Summary:
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../mule/fws.html#list-inbound-shipment-items">&lt;fws:list-inbound-shipment-items&gt;</a></nobr>
         
-        <div class="jd-descrdiv">Lazily retrieved the all the inbound shipment items for the given shipmentId.<br/></div>
+        <div class="jd-descrdiv">Lazily retrieved the all the inbound shipment items for the given shipmentId.</div>
         
   </td></tr>
 
@@ -503,7 +528,7 @@ Summary:
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../mule/fws.html#list-inbound-shipments">&lt;fws:list-inbound-shipments&gt;</a></nobr>
         
-        <div class="jd-descrdiv">Lazily lists the inbound shipments a merchant has created, according to the specified query parameters.<br/></div>
+        <div class="jd-descrdiv">Lazily lists the inbound shipments a merchant has created, according to the specified query parameters.</div>
         
   </td></tr>
 
@@ -514,7 +539,7 @@ Summary:
         <span class="sympad"><a href="../mule/fws.html#list-updated-inventory-supply">&lt;fws:list-updated-inventory-supply&gt;</a></nobr>
         
         <div class="jd-descrdiv">Lazily retrieves all the information about the supply of merchant-owned inventory in Amazon's fulfillment network, for
- inventory items that may have had recent changes in inventory levels.<br/></div>
+ inventory items that may have had recent changes in inventory levels.</div>
         
   </td></tr>
 
@@ -524,7 +549,7 @@ Summary:
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../mule/fws.html#put-inbound-shipment">&lt;fws:put-inbound-shipment&gt;</a></nobr>
         
-        <div class="jd-descrdiv">Adds or replaces inbound shipment for a given shipmentId.<br/></div>
+        <div class="jd-descrdiv">Adds or replaces inbound shipment for a given shipmentId.</div>
         
   </td></tr>
 
@@ -535,7 +560,7 @@ Summary:
         <span class="sympad"><a href="../mule/fws.html#put-inbound-shipment-data">&lt;fws:put-inbound-shipment-data&gt;</a></nobr>
         
         <div class="jd-descrdiv">Adds or replaces the merchant's inbound shipment header information
- for the given ShipmentId.<br/></div>
+ for the given ShipmentId.</div>
         
   </td></tr>
 
@@ -545,7 +570,7 @@ Summary:
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../mule/fws.html#put-inbound-shipment-items">&lt;fws:put-inbound-shipment-items&gt;</a></nobr>
         
-        <div class="jd-descrdiv">Adds line items to a pre-existing shipment that the ShipmentId specifies.<br/></div>
+        <div class="jd-descrdiv">Adds line items to a pre-existing shipment that the ShipmentId specifies.</div>
         
   </td></tr>
 
@@ -555,7 +580,7 @@ Summary:
         <td class="jd-linkcol" width="100%"><nobr>
         <span class="sympad"><a href="../mule/fws.html#set-inbound-shipment-status">&lt;fws:set-inbound-shipment-status&gt;</a></nobr>
         
-        <div class="jd-descrdiv">Sets the inbound shipment status to the specified ShipmentStatus.<br/></div>
+        <div class="jd-descrdiv">Sets the inbound shipment status to the specified ShipmentStatus.</div>
         
   </td></tr>
 
@@ -573,7 +598,6 @@ Summary:
 </div><!-- jd-descr (summary) -->
 
 
-
 <!-- ========= CONFIGURATION DETAIL ======== -->
 <A NAME="config"></A>
 <h2>Configuration</h2>
@@ -587,14 +611,15 @@ similar to the following:</p>
                http://www.mulesoft.org/schema/mule/core
                http://www.mulesoft.org/schema/mule/core/current/mule.xsd
                http://www.mulesoft.org/schema/mule/fws
-               http://www.mulesoft.org/schema/mule/fws/2.0/mule-fws.xsd"&gt;
+               http://www.mulesoft.org/schema/mule/fws/current/mule-fws.xsd"&gt;
 
       &lt;!-- here goes your flows and configuration elements --&gt;
 
 &lt;/mule&gt;
 </pre>
+
 <p>This module is configured using the <i>config</i> element. This element must be placed outside of your flows and at
-the root of your Mule application. You can create as many configurations as you deem necesary as long as each carries
+the root of your Mule application. You can create as many configurations as you deem necessary as long as each carries
 its own name.</p>
 <p>Each message processor, message source or transformer carries a <i>config-ref</i> attribute that allows the invoker to
 specify which configuration to use.</p>
@@ -635,6 +660,7 @@ specify which configuration to use.</p>
       
     
 </table>
+
 
 
 
@@ -827,7 +853,7 @@ specify which configuration to use.</p>
             
           
             
-            <tr><th colspan="12"><nobr>&lt;fws:destinationAddress&gt;</nobr></br><span style="font-weight: normal;">The mandatory destination address of the fulfillment </span></th></tr>
+            <tr><th colspan="12"><nobr>&lt;fws:destination-address&gt;</nobr></br><span style="font-weight: normal;">The mandatory destination address of the fulfillment </span></th></tr>
             
             
           
@@ -1790,7 +1816,7 @@ specify which configuration to use.</p>
                 
                 <tr class=" api apilevel-" >
                     <td class="jd-linkcol"><nobr>includeInactive</nobr></td>
-                    <td class="jd-descrcol"></td>
+                    <td class="jd-descrcol">false</td>
                     <td class="jd-descrcol" width="100%"><i>Optional.&nbsp;</i>Optional. Whether non available items for fulfillment should be listed   </td>
                 </tr>
                 
@@ -1872,7 +1898,7 @@ specify which configuration to use.</p>
             
           
             
-            <tr><th colspan="12"><nobr>&lt;fws:fulfillmentMethods&gt;</nobr></br><span style="font-weight: normal;"><i>Optional.&nbsp;</i>Optional list of FWS fulfillment method strings</span></th></tr>
+            <tr><th colspan="12"><nobr>&lt;fws:fulfillment-methods&gt;</nobr></br><span style="font-weight: normal;"><i>Optional.&nbsp;</i>Optional list of FWS fulfillment method strings</span></th></tr>
             
             
           
@@ -2214,14 +2240,14 @@ specify which configuration to use.</p>
             
           
             
-            <tr><th colspan="12"><nobr>&lt;fws:shipFromAddress&gt;</nobr></br><span style="font-weight: normal;">The mandatory source address of the shipment to amazon's centers  </span></th></tr>
+            <tr><th colspan="12"><nobr>&lt;fws:ship-from-address&gt;</nobr></br><span style="font-weight: normal;">The mandatory source address of the shipment to amazon's centers  </span></th></tr>
             
             
           
             
           
             
-            <tr><th colspan="12"><nobr>&lt;fws:itemQuantities&gt;</nobr></br><span style="font-weight: normal;">A mandatory list of MerchantSKUQuantityItem objects, with the amount of item for each merchant sku. 
+            <tr><th colspan="12"><nobr>&lt;fws:item-quantities&gt;</nobr></br><span style="font-weight: normal;">A mandatory list of MerchantSKUQuantityItem objects, with the amount of item for each merchant sku. 
               At least one item must be passed
 </span></th></tr>
             
@@ -2325,7 +2351,7 @@ specify which configuration to use.</p>
             
           
             
-            <tr><th colspan="12"><nobr>&lt;fws:shipFromAddress&gt;</nobr></br><span style="font-weight: normal;">The mandatory  source address of the shipment to amazon's centers</span></th></tr>
+            <tr><th colspan="12"><nobr>&lt;fws:ship-from-address&gt;</nobr></br><span style="font-weight: normal;">The mandatory  source address of the shipment to amazon's centers</span></th></tr>
             
             
           
@@ -2397,7 +2423,7 @@ specify which configuration to use.</p>
             
           
             
-            <tr><th colspan="12"><nobr>&lt;fws:itemQuantities&gt;</nobr></br><span style="font-weight: normal;">A mandatory list of MerchantSKUQuantityItem objects, with the amount of item for each merchant sku. 
+            <tr><th colspan="12"><nobr>&lt;fws:item-quantities&gt;</nobr></br><span style="font-weight: normal;">A mandatory list of MerchantSKUQuantityItem objects, with the amount of item for each merchant sku. 
               At least one item must be passed
 </span></th></tr>
             
