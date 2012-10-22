@@ -222,7 +222,7 @@ public class FWSCloudConnector
  
     /**
      * Gets inbound shipment data without the item details for a given ShipmentId.
-     * {@sample.xml ../../../doc/mule-module-fws.xml.sample fws:get-inbound-shipment-data}
+     * {@sample.xml ../../../doc/mule-module-fws.xml.sample fws:get-inbound-shipment}
      * 
      * @param shipmentId the mandatory shipment id
      * @return an InboundShipmentData
@@ -475,7 +475,7 @@ public class FWSCloudConnector
      * both the order and its items in the Amazon Fulfillment Network, 
      * and the shipments that have been generated to fulfill the order.
      * 
-     * {@sample.xml ../../../doc/mule-module-fws.xml.sample fws:insert-element}
+     * {@sample.xml ../../../doc/mule-module-fws.xml.sample fws:get-fulfillment-order}
      * @param orderId the mandatory order id of the fulfillment
      * @return a GetFulfillmentOrderResult
      */
@@ -586,7 +586,7 @@ public class FWSCloudConnector
     }
 
     @PostConstruct
-    public void initialise() throws InitialisationException
+    public void init() throws InitialisationException
     {
         if (client == null)
         {

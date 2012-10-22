@@ -58,7 +58,7 @@ public class FWSTestDriver
         connector = new FWSCloudConnector();
         connector.setAccessKey(System.getenv("accessKey"));
         connector.setSecretKey(System.getenv("secretKey"));
-        connector.initialise();
+        connector.init();
     }
 
     // Status
